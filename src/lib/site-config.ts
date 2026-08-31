@@ -23,6 +23,14 @@ export const siteConfig = {
     "",
   ),
 
+  /**
+   * Autorise (ou non) l'indexation du site par les moteurs de recherche.
+   * Par défaut FALSE = site bloqué (noindex + robots disallow) tant qu'on finalise
+   * (coordonnées, mentions légales, relecture juriste). Le jour du vrai lancement,
+   * définir la variable d'environnement NEXT_PUBLIC_SITE_INDEXABLE=true sur Vercel.
+   */
+  indexable: process.env.NEXT_PUBLIC_SITE_INDEXABLE === "true",
+
   contact: {
     email: "contact@regista-a.com",
     // Téléphone masqué du site tant qu'on n'a pas le vrai numéro (ne pas mettre de placeholder).

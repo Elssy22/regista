@@ -27,6 +27,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: titre,
   description,
+  // Tant que le site n'est pas finalisé, on bloque l'indexation (cf siteConfig.indexable).
+  robots: siteConfig.indexable ? undefined : { index: false, follow: false },
   openGraph: {
     title: titre,
     description,
