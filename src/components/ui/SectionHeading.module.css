@@ -1,0 +1,21 @@
+.wrap {
+  text-align: center;
+  margin: 0 auto 40px;
+}
+
+.narrow {
+  max-width: 560px;
+}
+
+.title {
+  display: inline-block;
+  font-family: var(--font-titres);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-size: 40px;
+  line-height: 1.1;
+  color: var(--vert-nocturne);
+  border-bottom: 2px solid var(--or-laiton);
+  padding-bottom: 14px;
+}

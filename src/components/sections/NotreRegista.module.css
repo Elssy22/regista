@@ -1,0 +1,55 @@
+.section {
+  background: var(--blanc-atelier);
+  padding: 72px 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 48px;
+  align-items: stretch;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.portraitCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  border-radius: var(--rayon-photo);
+  overflow: hidden;
+}
+
+.portrait {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--rayon-photo);
+}
+
+.bio {
+  font-family: var(--font-corps);
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--vert-nocturne);
+  opacity: 0.85;
+}
+
+.bio p {
+  margin: 0 0 1em;
+}
+
+.bio p:first-child {
+  margin-top: 0;
+}
+
+.bio p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

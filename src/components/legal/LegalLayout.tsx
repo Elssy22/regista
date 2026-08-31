@@ -1,0 +1,56 @@
+import Link from "next/link";
+import Image from "next/image";
+import Footer from "@/components/layout/Footer";
+import styles from "./LegalLayout.module.css";
+
+// Styles partagés réexportés pour que les pages composent leurs sections
+// (titres, paragraphes, listes) avec la même charte.
+export { styles as legalStyles };
+
+// Marqueur visible pour les informations qu'il reste à fournir avant mise en ligne.
+export function ToDo({ children }: { children: React.ReactNode }) {
+  return <span className={styles.todo}>[À COMPLÉTER : {children}]</span>;
+}
+
+type LegalLayoutProps = {
+  title: string;
+  updated: string;
+  children: React.ReactNode;
+};
+
+export default function LegalLayout({
+  title,
+  updated,
+  children,
+}: LegalLayoutProps) {
+  return (
+    <div className={styles.page}>
+      <div className={styles.topbar}>
+        <Link
+          href="/football"
+          className={styles.logoLink}
+          aria-label="Regista — accueil"
+        >
+          <Image
+            src="/regista-r-transparent.png"
+            alt="Regista"
+            width={1373}
+            height={1146}
+            className={styles.logo}
+          />
+        </Link>
+        <Link href="/football" className={styles.backLink}>
+          ← Retour à l&apos;accueil
+        </Link>
+      </div>
+
+      <main className={styles.main}>
+        <h1 className={styles.title}>{title}</h1>
+        <p className={styles.updated}>{updated}</p>
+        {children}
+      </main>
+
+      <Footer />
+    </div>
+  );
+}

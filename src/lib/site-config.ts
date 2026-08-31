@@ -1,0 +1,61 @@
+/**
+ * Configuration centrale du site Regista.
+ * Coordonnées, liens Calendly et routes vivent ici :
+ * on ne recopie jamais ces valeurs en dur dans les composants.
+ *
+ * ⚠️ À FOURNIR AVANT MISE EN LIGNE :
+ *  - le numéro de téléphone (masqué tant qu'il vaut null),
+ *  - les URLs des réseaux sociaux LinkedIn / Instagram (masquées tant qu'elles valent null).
+ * La page /mentions-legales et /politique-confidentialite contiennent aussi des
+ * champs [À COMPLÉTER] (capital social, RCS, TVA, hébergeur, durée de conservation).
+ */
+
+export const siteConfig = {
+  nom: "Regista",
+
+  /**
+   * URL de production du site (sans slash final).
+   * Par défaut regista-a.com (domaine de l'e-mail) — surchargée par la variable
+   * d'environnement NEXT_PUBLIC_SITE_URL le jour où le domaine final est confirmé.
+   */
+  siteUrl: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://regista-a.com").replace(
+    /\/$/,
+    "",
+  ),
+
+  contact: {
+    email: "contact@regista-a.com",
+    // Téléphone masqué du site tant qu'on n'a pas le vrai numéro (ne pas mettre de placeholder).
+    telephoneAffiche: null as string | null,
+    telephoneLien: null as string | null,
+  },
+
+  legal: {
+    raisonSociale: "SASU Regista",
+    // Numéro brut ; chaque affichage ajoute son propre libellé.
+    siren: "103 786 752",
+    adresse: ["31 rue Gabriel Péri", "95240 Cormeilles-en-Parisis"],
+    mentionsLegalesUrl: "/mentions-legales",
+    politiqueConfidentialiteUrl: "/politique-confidentialite",
+  },
+
+  // Réseaux masqués tant que les vraies URLs ne sont pas fournies (null = non affiché).
+  reseaux: {
+    linkedin: null as string | null,
+    instagram: null as string | null,
+  },
+
+  calendly: {
+    /** Widget inline intégré en bas de page (section Prendre RDV), chargé après consentement. */
+    inlineUrl:
+      "https://calendly.com/registaa/30min?hide_gdpr_banner=1&hide_landing_page_details=1&background_color=f7f5f0&text_color=254222&primary_color=c9a227",
+  },
+} as const;
+
+/** Liens de la navigation principale (header + menu mobile). */
+export const navLinks = [
+  { libelle: "Accueil", href: "#accueil" },
+  { libelle: "Nos services", href: "#gestes" },
+  { libelle: "À propos", href: "#apropos" },
+  { libelle: "Nous contacter", href: "#contact" },
+] as const;
