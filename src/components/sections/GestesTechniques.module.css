@@ -102,8 +102,8 @@
   flex-direction: column;
   align-items: center;
   gap: 22px;
-  width: 720px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 720px;
   background: var(--vert-nocturne);
   border-radius: 14px;
   padding: 36px 44px;
@@ -160,6 +160,6 @@
 
 @media (max-width: 768px) {
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
