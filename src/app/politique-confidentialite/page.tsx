@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import LegalLayout, { legalStyles as styles, ToDo } from "@/components/legal/LegalLayout";
+import LegalLayout, { legalStyles as styles } from "@/components/legal/LegalLayout";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -75,8 +75,7 @@ export default function PolitiqueConfidentialitePage() {
       <section className={styles.section}>
         <h2 className={styles.h2}>5. Durée de conservation</h2>
         <p className={styles.p}>
-          {"Les données liées à une demande de rendez-vous sont conservées le temps nécessaire au traitement de votre demande, puis "}
-          <ToDo>durée de conservation à définir (ex. 3 ans après le dernier contact)</ToDo>
+          {`Les données liées à une demande de rendez-vous sont conservées le temps nécessaire au traitement de votre demande, puis pendant ${legal.dureeConservation}`}
           {". Les données gérées via Calendly sont conservées conformément aux paramètres de notre compte et à la politique de Calendly."}
         </p>
       </section>

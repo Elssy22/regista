@@ -6,8 +6,8 @@
  * ⚠️ À FOURNIR AVANT MISE EN LIGNE :
  *  - le numéro de téléphone (masqué tant qu'il vaut null),
  *  - les URLs des réseaux sociaux LinkedIn / Instagram (masquées tant qu'elles valent null).
- * La page /mentions-legales et /politique-confidentialite contiennent aussi des
- * champs [À COMPLÉTER] (capital social, RCS, TVA, hébergeur, durée de conservation).
+ * Les informations légales viennent de l'extrait KBis à jour au 18/06/2026 ; seul le
+ * téléphone reste [À COMPLÉTER] dans /mentions-legales.
  */
 
 export const siteConfig = {
@@ -39,10 +39,22 @@ export const siteConfig = {
   },
 
   legal: {
-    raisonSociale: "SASU Regista",
+    // Dénomination exacte du KBis (la forme juridique est affichée à part).
+    raisonSociale: "Regista",
+    formeJuridique: "Société par actions simplifiée unipersonnelle (SASU)",
+    capitalSocial: "10,00 €",
     // Numéro brut ; chaque affichage ajoute son propre libellé.
     siren: "103 786 752",
+    villeGreffe: "Pontoise",
+    // Franchise en base de TVA : aucun numéro de TVA à publier.
+    mentionTva: "TVA non applicable, article 293 B du CGI",
     adresse: ["31 rue Gabriel Péri", "95240 Cormeilles-en-Parisis"],
+    hebergeur: {
+      nom: "Vercel Inc.",
+      // Vérifiée sur vercel.com/legal/terms (mise à jour du 1er juin 2026).
+      adresse: "440 N Barranca Ave #4133, Covina, CA 91723, États-Unis",
+    },
+    dureeConservation: "3 ans à compter du dernier contact",
     mentionsLegalesUrl: "/mentions-legales",
     politiqueConfidentialiteUrl: "/politique-confidentialite",
   },

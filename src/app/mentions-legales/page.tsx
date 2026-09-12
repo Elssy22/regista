@@ -20,12 +20,12 @@ export default function MentionsLegalesPage() {
 
           <span className={styles.dt}>{"Forme juridique"}</span>
           <p className={styles.dd}>
-            {"Société par actions simplifiée unipersonnelle (SASU)"}
+            {legal.formeJuridique}
           </p>
 
           <span className={styles.dt}>{"Capital social"}</span>
           <p className={styles.dd}>
-            <ToDo>montant du capital social</ToDo>
+            {legal.capitalSocial}
           </p>
 
           <span className={styles.dt}>{"Siège social"}</span>
@@ -38,13 +38,11 @@ export default function MentionsLegalesPage() {
           <p className={styles.dd}>
             {legal.siren}
             {" R.C.S. "}
-            <ToDo>ville du greffe</ToDo>
+            {legal.villeGreffe}
           </p>
 
-          <span className={styles.dt}>{"N° TVA intracommunautaire"}</span>
-          <p className={styles.dd}>
-            <ToDo>numéro de TVA, le cas échéant</ToDo>
-          </p>
+          <span className={styles.dt}>{"TVA"}</span>
+          <p className={styles.dd}>{legal.mentionTva}</p>
 
           <span className={styles.dt}>{"E-mail"}</span>
           <p className={styles.dd}>
@@ -70,7 +68,7 @@ export default function MentionsLegalesPage() {
       <section className={styles.section}>
         <h2 className={styles.h2}>3. Hébergement</h2>
         <p className={styles.p}>
-          {"Le site est hébergé par Vercel Inc., dont les services sont accessibles à l'adresse "}
+          {`Le site est hébergé par ${legal.hebergeur.nom}, dont les services sont accessibles à l'adresse `}
           <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">
             vercel.com
           </a>
@@ -78,10 +76,7 @@ export default function MentionsLegalesPage() {
         </p>
         <p className={styles.p}>
           <span className={styles.dt}>{"Adresse postale de l'hébergeur : "}</span>
-          <ToDo>
-            adresse de Vercel Inc. à reporter depuis sa page légale, ou coordonnées de
-            l&apos;hébergeur définitif
-          </ToDo>
+          {legal.hebergeur.adresse}
         </p>
       </section>
 
