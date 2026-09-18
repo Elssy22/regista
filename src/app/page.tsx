@@ -20,7 +20,7 @@ export default function AccueilPage() {
         <div className="hero__contenu">
           <Etiquette texte="Communication · Financement · Tech" />
           <h1 className="titre-accueil">
-            Le travail est le vôtre. La <em className="rg-recit">lumière</em> aussi.
+            Le travail vous appartient. La <em className="rg-recit">lumière</em> aussi.
           </h1>
           <p className="chapo">
             Nous faisons sortir les structures du football de leur sphère.

@@ -49,7 +49,7 @@ export default function GabaritPartage() {
           className="display"
           style={{ margin: 0, maxWidth: "16ch" }}
         >
-          Le travail est le vôtre. La <em className="rg-recit">lumière</em> aussi.
+          Le travail vous appartient. La <em className="rg-recit">lumière</em> aussi.
         </h1>
       </div>
 

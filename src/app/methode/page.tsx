@@ -51,7 +51,7 @@ const REGLES: { mot: string; texte: string }[] = [
   },
   {
     mot: "Aucune signature",
-    texte: "Regista n'appose jamais son nom sur vos livrables. Le travail est le vôtre.",
+    texte: "Regista n'appose jamais son nom sur vos livrables. Le travail vous appartient.",
   },
 ];
 
