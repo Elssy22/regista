@@ -293,7 +293,7 @@ main.rg-focusable:focus-visible {
 .references__logo {
   display: block;
   width: auto;
-  height: 44px;
+  height: 56px;
 }
 
 @media (min-width: 768px) {
@@ -303,7 +303,7 @@ main.rg-focusable:focus-visible {
   }
 
   .references__logo {
-    height: 60px;
+    height: 76px;
   }
 }
 

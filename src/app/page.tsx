@@ -98,7 +98,7 @@ const REGLES: { mot: string; texte: string }[] = [
  * Landry, Plan_one_page.md en tête de fichier).
  */
 export default function AccueilPage() {
-  const { email, telephoneAffiche, telephoneLien } = siteConfig.contact;
+  const { email } = siteConfig.contact;
 
   return (
     <Gabarit section="Contact" page={`${TOTAL_CHAPITRES} / ${TOTAL_CHAPITRES}`}>
@@ -340,8 +340,9 @@ export default function AccueilPage() {
               à large audience, un ancien joueur professionnel devenu animateur, remarqué par un
               ancien designer de maillots.
             </p>
+            {/* « Trois millions de vues, tous relais confondus. » retiré à la
+                demande de Landry (18/09/2026) : un seul résultat en or. */}
             <p className="cas-principal__chiffres">Cinq cents maillots vendus sur la collection.</p>
-            <p className="cas-principal__chiffres">Trois millions de vues, tous relais confondus.</p>
             <p className="cas-principal__detail">
               <strong>
                 Repris par la presse nationale — quotidien sportif, radios, journal télévisé — sans
@@ -595,12 +596,10 @@ export default function AccueilPage() {
             catalogue.
           </p>
 
+          {/* Le numéro de téléphone n'est plus affiché ici (demande de Landry
+              du 18/09/2026) : le contact se fait par e-mail. Il reste dans
+              siteConfig pour les mentions légales, où la loi l'exige. */}
           <div className="coordonnees">
-            {telephoneAffiche && telephoneLien && (
-              <p className="coordonnees__lien">
-                <Lien texte={telephoneAffiche} href={`tel:${telephoneLien}`} />
-              </p>
-            )}
             <p className="coordonnees__lien">
               <Lien texte={email} href={`mailto:${email}`} />
             </p>
