@@ -396,8 +396,11 @@ export default function AccueilPage() {
           {/* Dernier point de la passe (M3, « 04 → 05 ») : après lui, plus
               aucun tronçon ni point (rien sur 06 — À propos). */}
           <OuvertureChapitre numero="05" etiquette="Comment ça se passe" idPoint="passe-05">
+            {/* Titre choisi par Landry le 18/09/2026 : l'étiquette dit déjà
+                « Comment ça se passe » (et reste le nom du chapitre dans le
+                sommaire), le titre nomme la méthode. */}
             <h2 id="deroule-titre" className="titre-chapitre rg-focusable" tabIndex={-1}>
-              Comment ça se passe
+              La méthode Regista
             </h2>
           </OuvertureChapitre>
 
