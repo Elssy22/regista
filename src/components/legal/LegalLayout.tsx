@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { PiedDePage } from "@/components/design-system";
-import { Marque, Signature } from "@/components/site/Marque";
+import { LiensLegaux, Marque, Signature } from "@/components/site/Marque";
 import styles from "./LegalLayout.module.css";
 
 // Styles partagés réexportés pour que les pages composent leurs sections
@@ -53,6 +53,7 @@ export default function LegalLayout({
 
       <div className={styles.pied}>
         <Signature />
+        <LiensLegaux />
         <PiedDePage section={title} page="—" />
       </div>
     </div>

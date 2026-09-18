@@ -1,4 +1,6 @@
+import Link from 'next/link'
 import { Monogramme } from '@/components/design-system'
+import { siteConfig } from '@/lib/site-config'
 
 /**
  * Les verrouillages du logo, tels que la charte les définit (section 3).
@@ -39,5 +41,25 @@ export function Signature() {
         Agence football — Communication · Financement · Tech
       </p>
     </div>
+  )
+}
+
+/**
+ * Les liens vers les pages légales, en pied de TOUTES les pages.
+ *
+ * Obligation, pas option : les mentions légales doivent être « facilement et
+ * directement accessibles » (loi pour la confiance dans l'économie
+ * numérique, article 6-III), et la politique de confidentialité aussi
+ * (RGPD, articles 12 et 13). L'ancien pied de page les portait ; il a été
+ * remplacé par la refonte, et ces liens avaient disparu avec lui.
+ */
+export function LiensLegaux() {
+  const { mentionsLegalesUrl, politiqueConfidentialiteUrl } = siteConfig.legal
+  return (
+    <nav className="rg-liens-legaux" aria-label="Informations légales">
+      <Link href={mentionsLegalesUrl}>Mentions légales</Link>
+      <span aria-hidden="true">·</span>
+      <Link href={politiqueConfidentialiteUrl}>Politique de confidentialité</Link>
+    </nav>
   )
 }

@@ -522,3 +522,32 @@
 .page-introuvable .chapo {
   max-width: 44ch;
 }
+
+/* --- Liens légaux -------------------------------------------------------- */
+
+.rg-liens-legaux {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--e-2) var(--e-3);
+  padding-bottom: var(--e-6);
+  font-family: var(--font-texte);
+  font-size: var(--taille-etiquette);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--texte-secondaire);
+}
+
+.rg-liens-legaux a {
+  color: var(--texte-secondaire);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+.rg-liens-legaux a:hover,
+.rg-liens-legaux a:focus-visible {
+  color: var(--texte);
+  border-bottom-color: var(--accent);
+}
