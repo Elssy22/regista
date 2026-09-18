@@ -1,11 +1,33 @@
 /* Regista — mise en page des cinq pages du site.
    Fichier NON généré (à la différence de tokens.css / components.css) :
-   c'est ici que le développeur front-end compose les pages. Toutes les
-   valeurs viennent des tokens : aucune couleur, taille ou espacement écrit
-   en dur. Mobile d'abord, une seule requête de média sur --rupture-large
+   c'est ici que le développeur front-end compose les pages. Couleurs et
+   espacements viennent des tokens ; les tailles de texte viennent de
+   l'échelle déclarée juste en dessous. Mobile d'abord, une seule requête de média sur --rupture-large
    (768px) : jamais de max-width, jamais de deuxième rupture — puisqu'il n'y
    a pas de conteneur à largeur fixe, un bandeau ou un hero pleine largeur
    n'a besoin d'aucune marge négative : il suffit de ne pas l'envelopper. */
+
+/* --- L'échelle typographique ------------------------------------------ */
+/* Recopie exacte de l'échelle figée par la charte (tokens.json, clé typo).
+   La charte ne la fournit que sous forme de classes : on la déclare ici en
+   variables pour qu'aucune taille ne soit plus écrite en dur ailleurs.
+   Règle, reprise du prototype de référence : l'échelle fait foi en grand
+   écran ; en mobile, un titre peut descendre d'un cran pour tenir, avec les
+   paliers --taille-mobile-*. Aucune autre valeur n'est admise. */
+
+:root {
+  --taille-display: 96px;
+  --taille-h1: 48px;
+  --taille-h2: 32px;
+  --taille-h3: 20px;
+  --taille-texte: 17px;
+  --taille-petit: 14px;
+  --taille-etiquette: 12px;
+
+  /* Paliers mobiles, repris du prototype de référence regista-site */
+  --taille-mobile-titre: 44px;
+  --taille-mobile-h2: 26px;
+}
 
 .enveloppe {
   padding: 0 var(--e-4);
@@ -24,7 +46,7 @@
 .titre-page {
   margin: var(--e-6) 0 0;
   font-family: var(--font-titre);
-  font-size: 44px;
+  font-size: var(--taille-mobile-titre);
   line-height: 0.98;
   font-weight: 700;
   font-variation-settings: "wdth" 118;
@@ -33,7 +55,7 @@
 .titre-accueil {
   margin: var(--e-5) 0 0;
   font-family: var(--font-titre);
-  font-size: 44px;
+  font-size: var(--taille-mobile-titre);
   line-height: 0.98;
   font-weight: 700;
   font-variation-settings: "wdth" 118;
@@ -42,7 +64,7 @@
 .titre-bloc {
   margin: 0;
   font-family: var(--font-titre);
-  font-size: 20px;
+  font-size: var(--taille-h3);
   line-height: 1.25;
   font-weight: 700;
   font-variation-settings: "wdth" 112;
@@ -58,7 +80,7 @@
 .paragraphe {
   margin: var(--e-5) 0 0;
   max-width: 62ch;
-  font-size: 17px;
+  font-size: var(--taille-texte);
   line-height: 1.65;
 }
 
@@ -69,7 +91,7 @@
 
 .legende {
   margin: var(--e-2) 0 0;
-  font-size: 14px;
+  font-size: var(--taille-petit);
   line-height: 1.55;
   color: var(--texte-secondaire);
 }
@@ -153,7 +175,7 @@
 .cas-principal__chiffres {
   margin: var(--e-4) 0 0;
   font-family: var(--font-titre);
-  font-size: 26px;
+  font-size: var(--taille-mobile-h2);
   line-height: 1.15;
   font-weight: 700;
   font-variation-settings: "wdth" 118;
@@ -193,7 +215,7 @@
 .regles li {
   padding-top: var(--e-3);
   border-top: var(--trait-1) solid var(--bordure-discrete);
-  font-size: 17px;
+  font-size: var(--taille-texte);
   line-height: 1.65;
 }
 
@@ -230,7 +252,7 @@
 
 .coordonnees__lien {
   font-family: var(--font-titre);
-  font-size: 26px;
+  font-size: var(--taille-mobile-h2);
   line-height: 1.2;
   font-weight: 700;
   font-variation-settings: "wdth" 112;
@@ -375,20 +397,20 @@
 
   .titre-page {
     margin-top: var(--e-7);
-    font-size: 72px;
+    font-size: var(--taille-h1);
     max-width: 16ch;
   }
 
   .titre-accueil {
     margin-top: var(--e-6);
-    font-size: 96px;
+    font-size: var(--taille-display);
     line-height: 0.92;
     font-variation-settings: "wdth" 125;
     max-width: 14ch;
   }
 
   .titre-bloc {
-    font-size: 32px;
+    font-size: var(--taille-h2);
   }
 
   .grille {
@@ -415,7 +437,11 @@
   }
 
   .cas-principal__chiffres {
-    font-size: 32px;
+    font-size: var(--taille-h2);
+  }
+
+  .coordonnees__lien {
+    font-size: var(--taille-h2);
   }
 }
 
@@ -423,7 +449,7 @@
    l'or reste un accent rare, il ne porte jamais un paragraphe entier. */
 .cas-principal__detail {
   margin: var(--e-4) 0 0;
-  font-size: 17px;
+  font-size: var(--taille-texte);
   line-height: 1.65;
   max-width: 62ch;
 }
@@ -448,7 +474,7 @@
   font-family: var(--font-titre);
   font-variation-settings: "wdth" 125;
   font-weight: 700;
-  font-size: 17px;
+  font-size: var(--taille-texte);
   line-height: 1;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -468,7 +494,7 @@
   font-family: var(--font-titre);
   font-variation-settings: "wdth" 125;
   font-weight: 700;
-  font-size: 24px;
+  font-size: var(--taille-h3);
   line-height: 1;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -477,7 +503,7 @@
 
 .rg-signature__ligne {
   font-family: var(--font-texte);
-  font-size: 11px;
+  font-size: var(--taille-etiquette);
   font-weight: 700;
   line-height: 1.5;
   letter-spacing: 0.14em;
@@ -485,4 +511,14 @@
   color: var(--texte-secondaire);
   margin: 0;
   max-width: 34ch;
+}
+
+/* --- Page introuvable --------------------------------------------------- */
+
+.page-introuvable {
+  padding: var(--e-9) 0 var(--e-8);
+}
+
+.page-introuvable .chapo {
+  max-width: 44ch;
 }
