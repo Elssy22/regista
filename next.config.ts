@@ -12,13 +12,12 @@ const nextConfig: NextConfig = {
       { source: "/football/:chemin*", destination: "/", permanent: true },
       // Les cinq pages ont fusionné en une seule (CONTENU/Plan_one_page.md,
       // section 7.1) : les anciennes adresses renvoient vers leur chapitre.
-      // Temporaire (307) le temps de vérifier le nouveau plan ; à repasser
-      // en permanent (308) au lancement — voir le point de vigilance sur la
-      // mise en cache des redirections 308.
-      { source: "/methode", destination: "/#methode", permanent: false },
-      { source: "/offres", destination: "/#offres", permanent: false },
-      { source: "/a-propos", destination: "/#a-propos", permanent: false },
-      { source: "/contact", destination: "/#contact", permanent: false },
+      // Permanentes (308) depuis la mise en ligne du 18/09/2026 (accord de
+      // Landry) : les moteurs de recherche transfèrent l'adresse.
+      { source: "/methode", destination: "/#methode", permanent: true },
+      { source: "/offres", destination: "/#offres", permanent: true },
+      { source: "/a-propos", destination: "/#a-propos", permanent: true },
+      { source: "/contact", destination: "/#contact", permanent: true },
     ];
   },
 };
