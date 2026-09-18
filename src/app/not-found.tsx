@@ -15,7 +15,7 @@ export default function NotFound() {
         La page que vous cherchez n&apos;existe pas ou a été déplacée. Revenons sur
         le terrain.
       </p>
-      <Link href="/football" className={styles.cta}>
+      <Link href="/" className={styles.cta}>
         Retour à l&apos;accueil
       </Link>
     </main>

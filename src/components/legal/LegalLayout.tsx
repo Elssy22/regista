@@ -1,6 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import Footer from "@/components/layout/Footer";
+// L'ancien pied de page (Footer) est archivé dans _ancien/ avec le reste de
+// l'habillage visuel qui disparaît, mais reste importable : LegalLayout en
+// dépend encore le temps que les pages légales soient reprises dans la
+// nouvelle charte. Ne pas supprimer ce fichier tant que ce lien existe.
+import Footer from "@/_ancien/components/layout/Footer";
 import styles from "./LegalLayout.module.css";
 
 // Styles partagés réexportés pour que les pages composent leurs sections
@@ -27,7 +31,7 @@ export default function LegalLayout({
     <div className={styles.page}>
       <div className={styles.topbar}>
         <Link
-          href="/football"
+          href="/"
           className={styles.logoLink}
           aria-label="Regista — accueil"
         >
@@ -39,7 +43,7 @@ export default function LegalLayout({
             className={styles.logo}
           />
         </Link>
-        <Link href="/football" className={styles.backLink}>
+        <Link href="/" className={styles.backLink}>
           ← Retour à l&apos;accueil
         </Link>
       </div>

@@ -1,5 +1,5 @@
-import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
+import Container from "@/_ancien/components/ui/Container";
+import SectionHeading from "@/_ancien/components/ui/SectionHeading";
 import styles from "./ConferenceDePresse.module.css";
 
 export default function ConferenceDePresse() {

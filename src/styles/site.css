@@ -1,0 +1,401 @@
+/* Regista — mise en page des cinq pages du site.
+   Fichier NON généré (à la différence de tokens.css / components.css) :
+   c'est ici que le développeur front-end compose les pages. Toutes les
+   valeurs viennent des tokens : aucune couleur, taille ou espacement écrit
+   en dur. Mobile d'abord, une seule requête de média sur --rupture-large
+   (768px) : jamais de max-width, jamais de deuxième rupture — puisqu'il n'y
+   a pas de conteneur à largeur fixe, un bandeau ou un hero pleine largeur
+   n'a besoin d'aucune marge négative : il suffit de ne pas l'envelopper. */
+
+.enveloppe {
+  padding: 0 var(--e-4);
+}
+
+.contenu {
+  padding-bottom: var(--e-8);
+}
+
+.pied {
+  padding: var(--e-6) 0 var(--e-7);
+}
+
+/* --- Titres --------------------------------------------------------- */
+
+.titre-page {
+  margin: var(--e-6) 0 0;
+  font-family: var(--font-titre);
+  font-size: 44px;
+  line-height: 0.98;
+  font-weight: 700;
+  font-variation-settings: "wdth" 118;
+}
+
+.titre-accueil {
+  margin: var(--e-5) 0 0;
+  font-family: var(--font-titre);
+  font-size: 44px;
+  line-height: 0.98;
+  font-weight: 700;
+  font-variation-settings: "wdth" 118;
+}
+
+.titre-bloc {
+  margin: 0;
+  font-family: var(--font-titre);
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: 700;
+  font-variation-settings: "wdth" 112;
+}
+
+.entete {
+  margin-top: var(--e-5);
+}
+
+/* --- Texte ------------------------------------------------------------- */
+
+.chapo,
+.paragraphe {
+  margin: var(--e-5) 0 0;
+  max-width: 62ch;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.chapo--gras,
+.paragraphe strong {
+  font-weight: 600;
+}
+
+.legende {
+  margin: var(--e-2) 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--texte-secondaire);
+}
+
+/* Même règle que pour les cartes : sur fond inversé, le texte secondaire
+   passe en crème du logo pour rester au-dessus du seuil AA. */
+.rg-inverse .legende {
+  color: var(--creme-logo);
+}
+
+/* --- Rythme ------------------------------------------------------------ */
+
+.piste {
+  margin-top: var(--e-5);
+}
+
+.section {
+  margin-top: var(--e-7);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-3);
+  margin-top: var(--e-6);
+}
+
+.grille {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-4);
+  margin-top: var(--e-7);
+}
+
+.duo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-5);
+  margin-top: var(--e-6);
+}
+
+/* --- Sections pleine largeur --------------------------------------------- */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: var(--e-7) var(--e-4) var(--e-8);
+}
+
+.hero__contenu {
+  position: relative;
+  z-index: 1;
+}
+
+/* Le bandeau inversé est l'équivalent web de la double page en miroir :
+   une section entière qui touche les deux bords de l'écran. */
+.bandeau {
+  padding: var(--e-7) var(--e-4);
+  background: var(--fond-inverse);
+  color: var(--texte-inverse);
+}
+
+.bandeau .rg-etiquette {
+  color: var(--creme-logo);
+}
+
+.schema {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--e-5);
+}
+
+/* --- Le cas principal du bloc de preuve --------------------------------- */
+
+.cas-principal {
+  margin-top: var(--e-6);
+  border: var(--trait-1) solid var(--filet-inv);
+  padding: var(--e-5);
+}
+
+.cas-principal__chiffres {
+  margin: var(--e-4) 0 0;
+  font-family: var(--font-titre);
+  font-size: 26px;
+  line-height: 1.15;
+  font-weight: 700;
+  font-variation-settings: "wdth" 118;
+  color: var(--accent);
+}
+
+.cas-duo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-4);
+  margin-top: var(--e-4);
+}
+
+.citation-preuve {
+  margin: var(--e-7) 0 0;
+  text-align: center;
+}
+
+/* Seul le résultat du client (cas 1 du bloc de preuve) porte l'or — jamais
+   Regista elle-même (voir Brief_design_site.md, section 1, « la règle de
+   l'or »). */
+.carte-preuve--or .rg-carte__titre {
+  color: var(--accent);
+}
+
+/* --- Liste « les règles du jeu » ---------------------------------------- */
+
+.regles {
+  margin: var(--e-6) 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-4);
+}
+
+.regles li {
+  padding-top: var(--e-3);
+  border-top: var(--trait-1) solid var(--bordure-discrete);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.regles strong {
+  font-weight: 600;
+}
+
+/* --- Offres : sections numérotées --------------------------------------- */
+
+.offre-section {
+  margin-top: var(--e-8);
+  padding-top: var(--e-6);
+  border-top: var(--trait-1) solid var(--bordure);
+}
+
+.offre-section:first-of-type {
+  margin-top: var(--e-7);
+}
+
+.offre-section__entete {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+}
+
+/* --- Coordonnées (Contact) ----------------------------------------------- */
+
+.coordonnees {
+  margin-top: var(--e-7);
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-5);
+}
+
+.coordonnees__lien {
+  font-family: var(--font-titre);
+  font-size: 26px;
+  line-height: 1.2;
+  font-weight: 700;
+  font-variation-settings: "wdth" 112;
+}
+
+/* ========================================================================
+   Le mouvement — trajectoires qui se tracent à l'entrée dans le champ de
+   vision, une seule fois, jamais rejouées (Brief_design_site.md, section 4).
+   ======================================================================== */
+
+.rg-trace {
+  display: inline-block;
+  overflow: hidden;
+  max-width: 0;
+  transition: max-width 1000ms ease-in-out;
+}
+
+.rg-trace--visible {
+  max-width: var(--rg-trace-largeur, 100%);
+}
+
+.rg-schema .rg-pt-point {
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.rg-schema .rg-pt-trait {
+  opacity: 0;
+  transition: opacity 1000ms ease-in-out;
+  transition-delay: 150ms;
+}
+
+.rg-schema--visible .rg-pt-point {
+  opacity: 1;
+}
+
+.rg-schema--visible .rg-pt-trait {
+  opacity: 1;
+}
+
+/* Le quadrillage de la section haute de l'Accueil, qui se remplit case par
+   case au chargement. */
+.rg-grille-animee {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--quadrillage-pas));
+  grid-auto-rows: var(--quadrillage-pas);
+  pointer-events: none;
+}
+
+.rg-grille-animee__case {
+  border-right: var(--trait-1) solid var(--quadrillage);
+  border-bottom: var(--trait-1) solid var(--quadrillage);
+  opacity: 0;
+  transition: opacity 220ms ease-out;
+}
+
+.rg-grille-animee--visible .rg-grille-animee__case {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rg-trace {
+    max-width: var(--rg-trace-largeur, 100%) !important;
+    transition: none !important;
+  }
+
+  .rg-schema .rg-pt-point,
+  .rg-schema .rg-pt-trait {
+    opacity: 1 !important;
+    transition: none !important;
+  }
+
+  .rg-grille-animee__case {
+    opacity: 1 !important;
+    transition: none !important;
+  }
+}
+
+/* --- Au-delà du point de rupture ----------------------------------------- */
+
+@media (min-width: 768px) {
+  .rg-nav {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .rg-nav__liste {
+    flex-direction: row;
+    gap: var(--e-6);
+  }
+
+  .enveloppe {
+    padding: 0 var(--e-8);
+  }
+
+  .contenu {
+    padding-bottom: var(--e-9);
+  }
+
+  .hero {
+    padding: var(--e-8) var(--e-8) var(--e-9);
+  }
+
+  .bandeau {
+    padding: var(--e-8) var(--e-8);
+  }
+
+  .titre-page {
+    margin-top: var(--e-7);
+    font-size: 72px;
+    max-width: 16ch;
+  }
+
+  .titre-accueil {
+    margin-top: var(--e-6);
+    font-size: 96px;
+    line-height: 0.92;
+    font-variation-settings: "wdth" 125;
+    max-width: 14ch;
+  }
+
+  .titre-bloc {
+    font-size: 32px;
+  }
+
+  .grille {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--e-5);
+  }
+
+  .grille--cinq {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--e-5);
+    align-items: start;
+  }
+
+  .cas-duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--e-5);
+  }
+
+  .cas-principal__chiffres {
+    font-size: 32px;
+  }
+}
+
+/* Le détail du cas principal suit les chiffres en or, mais en texte courant :
+   l'or reste un accent rare, il ne porte jamais un paragraphe entier. */
+.cas-principal__detail {
+  margin: var(--e-4) 0 0;
+  font-size: 17px;
+  line-height: 1.65;
+  max-width: 62ch;
+}
+
+.rg-inverse .cas-principal__detail {
+  color: var(--texte-inverse);
+}

@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
-import Reveal from "@/components/ui/Reveal";
+import Container from "@/_ancien/components/ui/Container";
+import SectionHeading from "@/_ancien/components/ui/SectionHeading";
+import Reveal from "@/_ancien/components/ui/Reveal";
 import styles from "./NotreRegista.module.css";
 
 export default function NotreRegista() {

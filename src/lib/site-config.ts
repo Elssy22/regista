@@ -32,10 +32,11 @@ export const siteConfig = {
   indexable: process.env.NEXT_PUBLIC_SITE_INDEXABLE === "true",
 
   contact: {
-    email: "contact@regista-a.com",
-    // Téléphone masqué du site tant qu'on n'a pas le vrai numéro (ne pas mettre de placeholder).
-    telephoneAffiche: null as string | null,
-    telephoneLien: null as string | null,
+    // Coordonnées reprises mot pour mot de CONTENU/Regista_methode.md, section 9
+    // (contenu validé), cohérentes avec le portage de référence regista-site/.
+    email: "landry@regista-a.com",
+    telephoneAffiche: "07 68 17 69 80" as string | null,
+    telephoneLien: "+33768176980" as string | null,
   },
 
   legal: {
@@ -72,10 +73,16 @@ export const siteConfig = {
   },
 } as const;
 
-/** Liens de la navigation principale (header + menu mobile). */
+/**
+ * Liens de la navigation principale — cinq pages, routage Next.js réel
+ * (et non plus des ancres d'une seule page). Ordre repris de la carte des
+ * écrans (CONTENU/UX_site.md, section 3) ; à confirmer par le développeur
+ * front-end / la maquette avant intégration définitive.
+ */
 export const navLinks = [
-  { libelle: "Accueil", href: "#accueil" },
-  { libelle: "Nos services", href: "#gestes" },
-  { libelle: "À propos", href: "#apropos" },
-  { libelle: "Nous contacter", href: "#contact" },
+  { libelle: "Accueil", href: "/" },
+  { libelle: "Méthode", href: "/methode" },
+  { libelle: "Offres", href: "/offres" },
+  { libelle: "À propos", href: "/a-propos" },
+  { libelle: "Contact", href: "/contact" },
 ] as const;

@@ -1,7 +1,7 @@
 import { Fragment } from "react";
-import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
-import Reveal from "@/components/ui/Reveal";
+import Container from "@/_ancien/components/ui/Container";
+import SectionHeading from "@/_ancien/components/ui/SectionHeading";
+import Reveal from "@/_ancien/components/ui/Reveal";
 import styles from "./GestesTechniques.module.css";
 
 /** Un segment de texte : chaîne normale, ou { b } pour un passage en gras. */

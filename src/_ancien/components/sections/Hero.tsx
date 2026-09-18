@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Reveal from "@/components/ui/Reveal";
+import Reveal from "@/_ancien/components/ui/Reveal";
 import styles from "./Hero.module.css";
 
 export default function Hero() {

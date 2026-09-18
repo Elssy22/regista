@@ -1,5 +1,5 @@
-import Container from "@/components/ui/Container";
-import Reveal from "@/components/ui/Reveal";
+import Container from "@/_ancien/components/ui/Container";
+import Reveal from "@/_ancien/components/ui/Reveal";
 import CalendlyInline from "@/components/calendly/CalendlyInline";
 import { siteConfig } from "@/lib/site-config";
 import styles from "./PrendreRDV.module.css";

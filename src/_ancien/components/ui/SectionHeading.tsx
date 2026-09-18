@@ -1,4 +1,4 @@
-import Reveal from "@/components/ui/Reveal";
+import Reveal from "@/_ancien/components/ui/Reveal";
 import styles from "./SectionHeading.module.css";
 
 type SectionHeadingProps = {
