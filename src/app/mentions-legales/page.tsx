@@ -51,7 +51,11 @@ export default function MentionsLegalesPage() {
 
           <span className={styles.dt}>{"Téléphone"}</span>
           <p className={styles.dd}>
-            <ToDo>numéro de téléphone</ToDo>
+            {contact.telephoneLien && contact.telephoneAffiche ? (
+              <a href={`tel:${contact.telephoneLien}`}>{contact.telephoneAffiche}</a>
+            ) : (
+              <ToDo>numéro de téléphone</ToDo>
+            )}
           </p>
         </div>
       </section>
@@ -98,7 +102,7 @@ export default function MentionsLegalesPage() {
           {"Le site ne comporte aucun formulaire et ne collecte pas directement de données personnelles lors de la navigation."}
         </p>
         <p className={styles.p}>
-          {"La prise de rendez-vous est assurée par le service tiers Calendly. Lorsque vous réservez un créneau, les informations que vous saisissez (nom, e-mail, éventuelles réponses) sont traitées par Calendly selon sa propre politique de confidentialité."}
+          {"Le site ne propose aucun formulaire et aucun service de réservation en ligne. Si vous nous écrivez ou nous appelez, les coordonnées que vous nous transmettez sont utilisées uniquement pour vous répondre."}
         </p>
         <p className={styles.p}>
           {"Pour en savoir plus sur le traitement de vos données et vos droits, consultez notre "}
@@ -110,7 +114,7 @@ export default function MentionsLegalesPage() {
       <section className={styles.section}>
         <h2 className={styles.h2}>6. Cookies</h2>
         <p className={styles.p}>
-          {"Le site n'utilise pas de cookies de suivi ou de mesure d'audience à des fins publicitaires. Le widget de prise de rendez-vous Calendly, intégré à la page, est toutefois susceptible de déposer des cookies nécessaires à son fonctionnement lors de son utilisation."}
+          {"Le site ne dépose aucun cookie : ni mesure d'audience, ni publicité, ni service tiers. Les polices de caractères sont hébergées sur nos propres serveurs, et aucune ressource n'est chargée depuis un site extérieur."}
         </p>
       </section>
 

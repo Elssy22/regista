@@ -1,10 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
-// L'ancien pied de page (Footer) est archivé dans _ancien/ avec le reste de
-// l'habillage visuel qui disparaît, mais reste importable : LegalLayout en
-// dépend encore le temps que les pages légales soient reprises dans la
-// nouvelle charte. Ne pas supprimer ce fichier tant que ce lien existe.
-import Footer from "@/_ancien/components/layout/Footer";
+import { Monogramme, PiedDePage } from "@/components/design-system";
 import styles from "./LegalLayout.module.css";
 
 // Styles partagés réexportés pour que les pages composent leurs sections
@@ -22,6 +17,17 @@ type LegalLayoutProps = {
   children: React.ReactNode;
 };
 
+/**
+ * Gabarit des pages légales, à la charte v1.0.
+ *
+ * Il reste volontairement plus sobre que les pages du site : la charte
+ * réserve aux documents formels « un simple filet, rien de plus ». Pas de
+ * trajectoire, pas de quadrillage, pas de récit en italique — ces pages se
+ * lisent, elles ne séduisent pas.
+ *
+ * LE TEXTE ENCADRÉ PAR CE GABARIT NE SE MODIFIE PAS : il a été complété
+ * depuis l'extrait KBis. Seule sa présentation relève de ce fichier.
+ */
 export default function LegalLayout({
   title,
   updated,
@@ -30,21 +36,11 @@ export default function LegalLayout({
   return (
     <div className={styles.page}>
       <div className={styles.topbar}>
-        <Link
-          href="/"
-          className={styles.logoLink}
-          aria-label="Regista — accueil"
-        >
-          <Image
-            src="/regista-r-transparent.png"
-            alt="Regista"
-            width={1373}
-            height={1146}
-            className={styles.logo}
-          />
+        <Link href="/" className={styles.logoLink} aria-label="Regista — accueil">
+          <Monogramme hauteur={30} />
         </Link>
         <Link href="/" className={styles.backLink}>
-          ← Retour à l&apos;accueil
+          Retour à l&apos;accueil
         </Link>
       </div>
 
@@ -54,7 +50,9 @@ export default function LegalLayout({
         {children}
       </main>
 
-      <Footer />
+      <div className={styles.pied}>
+        <PiedDePage section={title} page="—" />
+      </div>
     </div>
   );
 }

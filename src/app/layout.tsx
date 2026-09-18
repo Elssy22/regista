@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Anton, Work_Sans } from "next/font/google";
 import { siteConfig } from "@/lib/site-config";
 import { archivo, newsreader } from "@/lib/fonts";
 import "./globals.css";
@@ -7,30 +6,16 @@ import "@/styles/tokens.css";
 import "@/styles/components.css";
 import "@/styles/site.css";
 
-// Anton et Work Sans — polices de l'ANCIENNE charte (fond vert). Conservées
-// uniquement parce que le Header/Footer archivés et les pages légales
-// (src/components/legal/LegalLayout.tsx, qui affiche encore l'ancien Footer)
-// en dépendent via --font-titres / --font-corps dans globals.css. À retirer
-// dès que src/_ancien/ est supprimé et que les pages légales sont reprises
-// dans la nouvelle charte — voir Architecture_site.md.
-const anton = Anton({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-anton",
-  display: "swap",
-});
-
-const workSans = Work_Sans({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-  variable: "--font-work-sans",
-  display: "swap",
-});
+// Anton et Work Sans, les polices de l'ancienne charte, ont été retirées le
+// 18/09/2026 : les pages légales sont passées à la charte v1.0 et plus aucune
+// page servie n'en dépend. Elles pesaient 61 Ko sur chaque chargement.
+// globals.css reste importé pour son reset (box-sizing, marges), dont les
+// pages neuves dépendent ; seules ses variables de couleur sont obsolètes.
 
 // Titre et description repris de l'accroche validée de l'Accueil
-// (CONTENU/Regista_accueil.md). L'image de partage (og-image.jpg) porte
-// encore l'ancienne charte visuelle : à refaire avec les nouveaux tokens
-// avant mise en ligne (voir Architecture_site.md, point en suspens n°2).
+// (CONTENU/Regista_accueil.md). L'image de partage (og-image.jpg) est
+// une capture de la page /og, donc à la charte v1.0 : pour la régénérer
+// après un changement d'accroche, voir CONTENU/Image_de_partage.md.
 const titre = "Regista — Agence football";
 const description =
   "Regista fait sortir les structures du football de leur sphère. Communication, financement, tech — pour les ligues, les districts, les clubs et les académies.";
@@ -69,7 +54,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="fr"
-      className={`${anton.variable} ${workSans.variable} ${archivo.variable} ${newsreader.variable}`}
+      className={`${archivo.variable} ${newsreader.variable}`}
     >
       {/* rg-racine applique le fond, le texte et la police de la NOUVELLE
           charte (tokens.css / components.css). Le Footer archivé et les

@@ -43,40 +43,34 @@ export default function PolitiqueConfidentialitePage() {
           {"La simple consultation du site ne nécessite pas la création de compte et le site ne comporte aucun formulaire. Comme tout site web, notre hébergeur (Vercel) enregistre toutefois des données techniques de connexion (adresse IP, type de navigateur, pages consultées) à des fins de fonctionnement et de sécurité. Ces journaux sont conservés pour une durée limitée."}
         </p>
         <p className={styles.p}>
-          {"Une action entraîne un traitement de données que vous fournissez vous-même : la prise de rendez-vous. Elle s'effectue via le service tiers Calendly, chargé uniquement après un clic de votre part. Lors d'une réservation, vous communiquez notamment :"}
+          {`Aucune autre donnée n'est collectée par le site : il ne comporte ni formulaire, ni réservation en ligne, ni création de compte. Si vous nous écrivez ou nous appelez, les coordonnées et les informations que vous nous transmettez sont utilisées uniquement pour traiter votre demande, et conservées pendant ${legal.dureeConservation}.`}
         </p>
-        <ul className={styles.list}>
-          <li>{"votre nom ;"}</li>
-          <li>{"votre adresse e-mail ;"}</li>
-          <li>{"le créneau choisi et, le cas échéant, les réponses aux questions du formulaire de réservation."}</li>
-        </ul>
         <p className={styles.p}>
-          {"La prise de rendez-vous est destinée aux personnes majeures (dirigeants, responsables, entraîneurs…). Si vous êtes mineur, merci de faire réserver le créneau par un parent ou un responsable légal."}
+          {"Regista s'adresse à des structures et à leurs représentants majeurs. L'agence ne collecte pas sciemment de données concernant des mineurs et ne travaille pas en direct avec eux."}
         </p>
       </section>
 
       <section className={styles.section}>
         <h2 className={styles.h2}>3. Finalités et base légale</h2>
         <p className={styles.p}>
-          {"Ces données sont utilisées uniquement pour organiser et confirmer l'entretien que vous avez réservé, puis pour assurer le suivi de votre demande. La base légale est l'exécution de mesures précontractuelles prises à votre demande, et notre intérêt légitime à répondre aux personnes qui nous sollicitent."}
+          {"Ces données sont utilisées uniquement pour répondre à votre demande et en assurer le suivi. La base légale est l'exécution de mesures précontractuelles prises à votre demande, et notre intérêt légitime à répondre aux personnes qui nous sollicitent."}
         </p>
       </section>
 
       <section className={styles.section}>
         <h2 className={styles.h2}>4. Destinataires et sous-traitants</h2>
         <p className={styles.p}>
-          {"Vos données de réservation sont traitées par Calendly, qui agit en qualité de prestataire. Elles ne sont ni vendues, ni cédées à des tiers à des fins commerciales. Le site est par ailleurs hébergé par Vercel Inc."}
+          {"Vos données ne sont ni vendues, ni cédées à des tiers à des fins commerciales. Le seul prestataire destinataire de données techniques est notre hébergeur, Vercel Inc."}
         </p>
         <p className={styles.p}>
-          {"Ces prestataires étant susceptibles d'être établis en dehors de l'Union européenne (notamment aux États-Unis), les transferts de données correspondants sont encadrés par les garanties prévues par le RGPD (clauses contractuelles types ou mécanismes équivalents)."}
+          {"Ce prestataire étant établi en dehors de l'Union européenne (aux États-Unis), les transferts de données correspondants sont encadrés par les garanties prévues par le RGPD (clauses contractuelles types ou mécanismes équivalents)."}
         </p>
       </section>
 
       <section className={styles.section}>
         <h2 className={styles.h2}>5. Durée de conservation</h2>
         <p className={styles.p}>
-          {`Les données liées à une demande de rendez-vous sont conservées le temps nécessaire au traitement de votre demande, puis pendant ${legal.dureeConservation}`}
-          {". Les données gérées via Calendly sont conservées conformément aux paramètres de notre compte et à la politique de Calendly."}
+          {`Les informations que vous nous transmettez par e-mail ou par téléphone sont conservées le temps nécessaire au traitement de votre demande, puis pendant ${legal.dureeConservation}.`}
         </p>
       </section>
 
@@ -99,7 +93,7 @@ export default function PolitiqueConfidentialitePage() {
       <section className={styles.section}>
         <h2 className={styles.h2}>7. Cookies</h2>
         <p className={styles.p}>
-          {"Le site n'utilise pas de cookies de mesure d'audience ou de publicité. Le widget Calendly, lorsqu'il est utilisé, peut déposer des cookies strictement nécessaires à son fonctionnement."}
+          {"Le site ne dépose aucun cookie : ni mesure d'audience, ni publicité, ni service tiers. Les polices de caractères sont hébergées sur nos propres serveurs, et aucune ressource n'est chargée depuis un site extérieur."}
         </p>
       </section>
 
