@@ -736,11 +736,26 @@ main.rg-focusable:focus-visible {
   transform-origin: left;
 }
 
+/* Intitulé de chapitre centré (décision de Landry du 18/09/2026 : « ce sont
+   des intitulés de nouveaux blocs ») : l'étiquette au centre, le numéro
+   « 0X / 07 » reste calé à droite. Trois colonnes plutôt qu'un numéro en
+   position absolue : la colonne du numéro garde toujours sa largeur, donc
+   l'étiquette et le numéro ne peuvent jamais se chevaucher, même à 320 px. */
 .entete-chapitre__ligne {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: baseline;
-  justify-content: space-between;
   gap: var(--e-4);
+}
+
+.entete-chapitre__ligne > :first-child {
+  grid-column: 2;
+  text-align: center;
+}
+
+.entete-chapitre__ligne > .entete-chapitre__numero {
+  grid-column: 3;
+  justify-self: end;
 }
 
 .entete-chapitre__numero {
@@ -754,20 +769,36 @@ main.rg-focusable:focus-visible {
 /* Taille Titre 2 partout (CONTENU/Plan_one_page.md, section 7.3) : à la
    différence de .titre-page (Titre 1, réservé au h1 de la 404), qui restait
    du temps des cinq pages séparées. */
+/* Centré sur tous les écrans, lignes équilibrées (text-wrap: balance) ; en
+   grand écran, assez large pour tenir en deux lignes au plus plutôt qu'en
+   un bloc étroit (décision de Landry du 18/09/2026). */
 .titre-chapitre {
-  margin: var(--e-4) 0 0;
+  margin: var(--e-4) auto 0;
   font-family: var(--font-titre);
   font-size: var(--taille-mobile-h2);
   line-height: 1.15;
   font-weight: 700;
   font-variation-settings: "wdth" 118;
+  text-align: center;
+  text-wrap: balance;
 }
 
 @media (min-width: 768px) {
   .titre-chapitre {
     font-size: var(--taille-h2);
-    max-width: 20ch;
+    max-width: 52ch;
   }
+}
+
+/* La courte introduction qui suit l'intitulé (Offres, À propos, Contact)
+   fait partie de l'intitulé : centrée elle aussi, dans sa largeur de
+   lecture habituelle (62ch). */
+.entete-chapitre + .chapo,
+.entete-chapitre + .paragraphe {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  text-wrap: pretty;
 }
 
 /* --- Offres : pôles en grille auto-adaptative ------------------------------ */
@@ -886,6 +917,35 @@ main.rg-focusable:focus-visible {
   height: 10px;
   flex-shrink: 0;
   background: var(--texte);
+}
+
+/* --- Contact centré ------------------------------------------------------- */
+/* Tout le chapitre de fin s'aligne sur son intitulé centré (décision de
+   Landry du 18/09/2026) : coordonnées, arrivée et note. La dernière passe
+   (M4) se pose sur la même ligne que « Votre projet », juste avant le point :
+   elle vient le toucher, au lieu de flotter au-dessus. */
+#contact .coordonnees {
+  align-items: center;
+  text-align: center;
+}
+
+#contact .arrivee-passe {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e-2);
+  margin-top: var(--e-6);
+}
+
+#contact .arrivee-passe .point-arrivee {
+  margin-top: 0;
+}
+
+/* .rg-note est une colonne flex dont le texte est plafonné à 62ch : on
+   centre le bloc de texte lui-même, pas seulement ses lignes. */
+#contact .rg-note {
+  align-items: center;
+  text-align: center;
 }
 
 /* --- Liste des cinq étapes -------------------------------------------------- */

@@ -183,6 +183,11 @@ public/
   chapitres 03, 05 et 06 alternent gauche puis droite, sous-titre toujours
   au-dessus du texte ; l'alternance est écrite explicitement dans
   `page.tsx` et repart à gauche à chaque chapitre.
+- **Intitulés de chapitre centrés** (décision de Landry du 18/09), sur tous
+  les écrans : étiquette, titre h2 (deux lignes au plus en grand écran,
+  lignes équilibrées) et courte introduction ; le numéro « 0X / 07 » reste
+  calé à droite. Le chapitre 07 Contact est entièrement centré
+  (coordonnées, arrivée de la passe sur « Votre projet », note).
 - `src/app/globals.css` ne sert plus qu'à son reset (box-sizing, marges),
   au décalage des ancres sous l'en-tête collant (`scroll-padding-top`) et au
   défilement doux (`html.defilement-doux`, posé après le chargement). Ses
