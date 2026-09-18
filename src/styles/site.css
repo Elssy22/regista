@@ -257,10 +257,14 @@
   transition: opacity 150ms ease;
 }
 
+/* La trajectoire se DESSINE, elle n'apparaît pas en fondu. Le trait étant une
+   forme pleine et effilée (et non un trait tracé), on la révèle par balayage
+   du haut vers le bas : le geste part des trois pôles et arrive chez le
+   client. Le sens compte autant que le mouvement — la charte dit que la
+   trajectoire indique toujours une direction. */
 .rg-schema .rg-pt-trait {
-  opacity: 0;
-  transition: opacity 1000ms ease-in-out;
-  transition-delay: 150ms;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1000ms ease-in-out 150ms;
 }
 
 .rg-schema--visible .rg-pt-point {
@@ -268,7 +272,7 @@
 }
 
 .rg-schema--visible .rg-pt-trait {
-  opacity: 1;
+  clip-path: inset(0 0 0 0);
 }
 
 /* Le quadrillage de la section haute de l'Accueil, qui se remplit case par
@@ -286,11 +290,33 @@
   border-right: var(--trait-1) solid var(--quadrillage);
   border-bottom: var(--trait-1) solid var(--quadrillage);
   opacity: 0;
-  transition: opacity 220ms ease-out;
 }
 
+/* Une case qui passe de l'invisible au presque invisible ne se voit pas. Le
+   balayage marque donc chaque case avec --bordure-discrete (une valeur déjà
+   présente dans la palette, le même bleu à une opacité supérieure), avant de
+   la laisser retomber à la pâleur que la charte prescrit pour le quadrillage.
+   On voit le dispositif se mettre en place, puis il s'efface. */
 .rg-grille-animee--visible .rg-grille-animee__case {
-  opacity: 1;
+  animation: rg-case-se-pose 1100ms ease-out both;
+}
+
+@keyframes rg-case-se-pose {
+  0% {
+    opacity: 0;
+    border-right-color: var(--bordure-discrete);
+    border-bottom-color: var(--bordure-discrete);
+  }
+  30% {
+    opacity: 1;
+    border-right-color: var(--bordure-discrete);
+    border-bottom-color: var(--bordure-discrete);
+  }
+  100% {
+    opacity: 1;
+    border-right-color: var(--quadrillage);
+    border-bottom-color: var(--quadrillage);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -299,14 +325,20 @@
     transition: none !important;
   }
 
-  .rg-schema .rg-pt-point,
-  .rg-schema .rg-pt-trait {
+  .rg-schema .rg-pt-point {
     opacity: 1 !important;
     transition: none !important;
   }
 
+  .rg-schema .rg-pt-trait {
+    clip-path: none !important;
+    transition: none !important;
+  }
+
+  .rg-grille-animee--visible .rg-grille-animee__case,
   .rg-grille-animee__case {
     opacity: 1 !important;
+    animation: none !important;
     transition: none !important;
   }
 }
@@ -398,4 +430,59 @@
 
 .rg-inverse .cas-principal__detail {
   color: var(--texte-inverse);
+}
+
+
+/* --- Les verrouillages du logo ----------------------------------------- */
+/* La charte réserve le R seul aux avatars et aux favicons. Sur le site, le
+   nom se lit : dans l'en-tête à côté du R, et en entier au pied de page. */
+
+.rg-marque {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-2);
+  color: var(--texte);
+}
+
+.rg-marque__nom {
+  font-family: var(--font-titre);
+  font-variation-settings: "wdth" 125;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.rg-signature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--e-2);
+  padding: var(--e-8) 0 var(--e-7);
+  color: var(--texte);
+}
+
+.rg-signature__nom {
+  font-family: var(--font-titre);
+  font-variation-settings: "wdth" 125;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: var(--e-2) 0 0;
+}
+
+.rg-signature__ligne {
+  font-family: var(--font-texte);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--texte-secondaire);
+  margin: 0;
+  max-width: 34ch;
 }

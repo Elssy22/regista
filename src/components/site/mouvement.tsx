@@ -91,7 +91,7 @@ export function GrilleAnimee({ cases = 96 }: { cases?: number }) {
         <span
           key={i}
           className="rg-grille-animee__case"
-          style={{ transitionDelay: `${Math.min(i * 45, 860)}ms` }}
+          style={{ animationDelay: `${Math.min(i * 45, 860)}ms` }}
         />
       ))}
     </div>

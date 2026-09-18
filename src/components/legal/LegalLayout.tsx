@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Monogramme, PiedDePage } from "@/components/design-system";
+import { PiedDePage } from "@/components/design-system";
+import { Marque, Signature } from "@/components/site/Marque";
 import styles from "./LegalLayout.module.css";
 
 // Styles partagés réexportés pour que les pages composent leurs sections
@@ -37,7 +38,7 @@ export default function LegalLayout({
     <div className={styles.page}>
       <div className={styles.topbar}>
         <Link href="/" className={styles.logoLink} aria-label="Regista — accueil">
-          <Monogramme hauteur={30} />
+          <Marque hauteur={26} />
         </Link>
         <Link href="/" className={styles.backLink}>
           Retour à l&apos;accueil
@@ -51,6 +52,7 @@ export default function LegalLayout({
       </main>
 
       <div className={styles.pied}>
+        <Signature />
         <PiedDePage section={title} page="—" />
       </div>
     </div>

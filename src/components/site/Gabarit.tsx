@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { PiedDePage } from '@/components/design-system'
 import { NavigationPrincipale } from './NavigationPrincipale'
+import { Signature } from './Marque'
 
 export type GabaritProps = {
   /** Étiquette de gauche du pied de page système. */
@@ -25,6 +26,7 @@ export function Gabarit({ section, page, children }: GabaritProps) {
       </div>
       <main>{children}</main>
       <div className="enveloppe">
+        <Signature />
         <div className="pied">
           <PiedDePage section={section} page={page} />
         </div>

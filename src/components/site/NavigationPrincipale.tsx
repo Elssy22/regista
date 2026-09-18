@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Navigation } from '@/components/design-system'
 import { navLinks } from '@/lib/site-config'
+import { Marque } from './Marque'
 
 /**
  * Navigation principale, branchée sur le routage Next.js (next/link) via la
@@ -26,6 +27,7 @@ export function NavigationPrincipale() {
   return (
     <Navigation
       liens={liens}
+      marque={<Marque />}
       rendreLien={(lien, className) => (
         <Link href={lien.href} className={className} aria-current={lien.actif ? 'page' : undefined}>
           {lien.texte}

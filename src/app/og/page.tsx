@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Monogramme, Quadrillage, Trajectoire } from "@/components/design-system";
+import { Quadrillage, Trajectoire } from "@/components/design-system";
+import { Marque } from "@/components/site/Marque";
 
 /**
  * Gabarit de l'image de partage (Open Graph), rendu à 1200 x 630.
@@ -40,7 +41,7 @@ export default function GabaritPartage() {
       <Quadrillage />
 
       <div style={{ position: "relative", display: "flex", alignItems: "center", gap: "var(--e-4)" }}>
-        <Monogramme hauteur={44} />
+        <Marque hauteur={44} />
         <span className="etiquette">Communication · Financement · Tech</span>
       </div>
 

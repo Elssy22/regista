@@ -184,6 +184,10 @@ export type NavigationProps = {
   intitule?: string
   /** Rend chaque lien avec un composant de routage plutôt qu'un <a>. */
   rendreLien?: (lien: LienNav, className: string) => ReactNode
+  /** Remplace le monogramme seul par un autre verrouillage du logo.
+   *  La charte réserve le R seul aux avatars : sur le site, on passe ici
+   *  la version avec le nom (voir components/site/Marque.tsx). */
+  marque?: ReactNode
 }
 
 export function Navigation({
@@ -192,11 +196,12 @@ export function Navigation({
   accueil = '/',
   intitule = 'Navigation principale',
   rendreLien,
+  marque,
 }: NavigationProps) {
   return (
     <nav className={'rg-nav' + (large ? ' rg-nav--large' : '')} aria-label={intitule}>
       <a className="rg-nav__marque" href={accueil} aria-label="Regista, accueil">
-        <Monogramme hauteur={24} />
+        {marque ?? <Monogramme hauteur={24} />}
       </a>
       <ul className="rg-nav__liste">
         {liens.map((lien) => {
