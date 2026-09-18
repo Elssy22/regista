@@ -3,7 +3,7 @@
  * Coordonnées, liens Calendly et routes vivent ici :
  * on ne recopie jamais ces valeurs en dur dans les composants.
  *
- * ⚠️ À FOURNIR AVANT MISE EN LIGNE :
+ * ATTENTION — À FOURNIR AVANT MISE EN LIGNE :
  *  - le numéro de téléphone (masqué tant qu'il vaut null),
  *  - les URLs des réseaux sociaux LinkedIn / Instagram (masquées tant qu'elles valent null).
  * Les informations légales viennent de l'extrait KBis à jour au 18/06/2026 ; seul le
@@ -74,15 +74,32 @@ export const siteConfig = {
 } as const;
 
 /**
- * Liens de la navigation principale — cinq pages, routage Next.js réel
- * (et non plus des ancres d'une seule page). Ordre repris de la carte des
- * écrans (CONTENU/UX_site.md, section 3) ; à confirmer par le développeur
- * front-end / la maquette avant intégration définitive.
+ * Les sept chapitres de la page unique (CONTENU/Plan_one_page.md, section 2),
+ * dans l'ordre de défilement. Source commune à l'indicateur « 0X / 07 » de
+ * l'en-tête (NavigationPrincipale.tsx, suivi par IntersectionObserver) et au
+ * sommaire mobile — un seul endroit où ajouter un chapitre si la page évolue.
+ */
+export const chapitres = [
+  { id: "accueil", numero: "01", nomMenu: "Accueil" },
+  { id: "offres", numero: "02", nomMenu: "Offres" },
+  { id: "methode", numero: "03", nomMenu: "Méthode" },
+  { id: "preuve", numero: "04", nomMenu: "Ce que ça donne" },
+  { id: "deroule", numero: "05", nomMenu: "Comment ça se passe" },
+  { id: "a-propos", numero: "06", nomMenu: "À propos" },
+  { id: "contact", numero: "07", nomMenu: "Contact" },
+] as const;
+
+export type IdChapitre = (typeof chapitres)[number]["id"];
+
+/**
+ * Liens du menu principal — ancres absolues vers la page unique (et non plus
+ * des routes séparées, voir CONTENU/Plan_one_page.md section 7.1). Chaque
+ * lien porte la liste des chapitres qui le gardent actif (« Méthode » reste
+ * actif sur 03, 04 et 05 — le principe, la preuve, le déroulé).
  */
 export const navLinks = [
-  { libelle: "Accueil", href: "/" },
-  { libelle: "Méthode", href: "/methode" },
-  { libelle: "Offres", href: "/offres" },
-  { libelle: "À propos", href: "/a-propos" },
-  { libelle: "Contact", href: "/contact" },
-] as const;
+  { libelle: "Offres", href: "/#offres", chapitres: ["offres"] },
+  { libelle: "Méthode", href: "/#methode", chapitres: ["methode", "preuve", "deroule"] },
+  { libelle: "À propos", href: "/#a-propos", chapitres: ["a-propos"] },
+  { libelle: "Contact", href: "/#contact", chapitres: ["contact"] },
+] as const satisfies readonly { libelle: string; href: string; chapitres: readonly IdChapitre[] }[];

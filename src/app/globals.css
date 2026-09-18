@@ -23,7 +23,6 @@
   /* Mise en page */
   --largeur-max-contenu: 1360px;
   --gouttiere-contenu: 32px;
-  --hauteur-header: 124px;
 
   /* Rayons */
   --rayon-pilule: 999px;
@@ -43,10 +42,28 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scrollbar-gutter: stable both-edges;
-  /* Décale les ancres pour ne pas passer sous le header fixe */
-  scroll-padding-top: var(--hauteur-header);
+  /* Décale les ancres pour ne pas passer sous l'en-tête collant : la
+     variable --hauteur-entete (56 / 64 px) est déclarée dans site.css,
+     avec le reste de la mise en page du nouvel en-tête. */
+  scroll-padding-top: var(--hauteur-entete);
+}
+
+/* scroll-behavior:smooth ne s'applique qu'une fois la classe posée par le
+   script de layout.tsx (corrections mouvement, point 7) : un chargement
+   COMPLET avec une ancre déjà dans l'adresse (/#contact, rechargement,
+   anciennes adresses qui redirigent vers /#…) doit arriver directement au
+   chapitre, sans long défilement doux — mesuré : SANS ce garde-fou, le
+   navigateur applique déjà "smooth" à SON PROPRE défilement natif vers
+   l'ancre, avant même que React ne démarre. Le défilement doux reste pour
+   les clics DANS la page (menu, sommaire, boutons, M8) : la classe est posée
+   dès que la page a fini de charger (évènement "load"), donc bien avant le
+   moindre clic possible, et seulement si l'appareil n'a pas demandé de
+   réduire les animations. */
+@media (prefers-reduced-motion: no-preference) {
+  html.defilement-doux {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -72,32 +89,3 @@ h4 {
   margin: 0;
 }
 
-/* --------------------------------------------------------------------------
-   Reveal au scroll — piloté par IntersectionObserver (composant Reveal)
-   État initial masqué, visible à l'entrée. Décalage géré inline (transition-delay).
-   -------------------------------------------------------------------------- */
-[data-rv] {
-  opacity: 0;
-  transform: translateY(26px);
-  transition:
-    opacity 0.75s cubic-bezier(0.22, 0.61, 0.36, 1),
-    transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1);
-  will-change: opacity, transform;
-}
-
-[data-rv].rv-in {
-  opacity: 1;
-  transform: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  [data-rv] {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-}

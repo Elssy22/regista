@@ -1,11 +1,14 @@
-/* Regista — mise en page des cinq pages du site.
+/* Regista — mise en page de la page unique du site et de ses sept chapitres.
    Fichier NON généré (à la différence de tokens.css / components.css) :
    c'est ici que le développeur front-end compose les pages. Couleurs et
    espacements viennent des tokens ; les tailles de texte viennent de
    l'échelle déclarée juste en dessous. Mobile d'abord, une seule requête de média sur --rupture-large
    (768px) : jamais de max-width, jamais de deuxième rupture — puisqu'il n'y
    a pas de conteneur à largeur fixe, un bandeau ou un hero pleine largeur
-   n'a besoin d'aucune marge négative : il suffit de ne pas l'envelopper. */
+   n'a besoin d'aucune marge négative : il suffit de ne pas l'envelopper.
+   Deux exceptions validées par Landry le 18/09/2026, pour les très petits
+   téléphones seulement (chiffres en or sous 360 px, en-tête sous 400 px) :
+   voir CLAUDE.md, section « Les styles ». N'en ajouter aucune autre. */
 
 /* --- L'échelle typographique ------------------------------------------ */
 /* Recopie exacte de l'échelle figée par la charte (tokens.json, clé typo).
@@ -27,6 +30,20 @@
   /* Paliers mobiles, repris du prototype de référence regista-site */
   --taille-mobile-titre: 44px;
   --taille-mobile-h2: 26px;
+}
+
+/* --- Anneau de focus sur <main> ----------------------------------------- */
+/* .rg-focusable:focus-visible (components.css, généré) pose un anneau à
+   outline-offset positif (à l'EXTÉRIEUR du cadre) : sur <main>, qui touche
+   les deux bords de l'écran et commence juste sous l'en-tête collant, cet
+   anneau est invisible (bord haut sous l'en-tête, qui a un fond opaque et un
+   z-index plus élevé ; bords latéraux hors écran). Un décalage NÉGATIF (à
+   l'INTÉRIEUR du cadre) reste toujours dans la zone visible, sous l'en-tête
+   — mêmes jetons que partout ailleurs (--focus), seul le placement change
+   (corrections mouvement, point 9). Sélecteur plus spécifique que la règle
+   générique du design system : l'emporte sans la modifier. */
+main.rg-focusable:focus-visible {
+  outline-offset: -3px;
 }
 
 .enveloppe {
@@ -70,10 +87,6 @@
   font-variation-settings: "wdth" 112;
 }
 
-.entete {
-  margin-top: var(--e-5);
-}
-
 /* --- Texte ------------------------------------------------------------- */
 
 .chapo,
@@ -87,6 +100,23 @@
 .chapo--gras,
 .paragraphe strong {
   font-weight: 600;
+}
+
+/* Constat du chapitre 03 : « La matière ne manque pas. Le temps, si. » en
+   gras et en grande taille (CONTENU/Plan_one_page.md, section 2). Taille
+   Titre 2, comme les h2 de chapitre. */
+.paragraphe--marquant {
+  font-family: var(--font-titre);
+  font-size: var(--taille-mobile-h2);
+  line-height: 1.3;
+  font-weight: 700;
+  font-variation-settings: "wdth" 112;
+}
+
+@media (min-width: 768px) {
+  .paragraphe--marquant {
+    font-size: var(--taille-h2);
+  }
 }
 
 .legende {
@@ -137,8 +167,14 @@
 
 .hero {
   position: relative;
-  overflow: hidden;
-  padding: var(--e-7) var(--e-4) var(--e-8);
+  /* Pas de overflow:hidden (ROBUSTE-2) : le tronçon du coup d'envoi (M2)
+     doit pouvoir se poursuivre visuellement au-delà de .hero, jusqu'au point
+     du chapitre 02 — inutile pour les deux calques de quadrillage (M1,
+     ::before/::after), qui sont tous les deux en inset:0. */
+  /* Marge gauche élargie sur mobile (voir .marge-passe plus bas) : le
+     dispositif se prépare dès la couverture, pas seulement à partir du
+     chapitre 02. */
+  padding: var(--e-7) var(--e-4) var(--e-8) var(--e-6);
 }
 
 .hero__contenu {
@@ -149,13 +185,29 @@
 /* Le bandeau inversé est l'équivalent web de la double page en miroir :
    une section entière qui touche les deux bords de l'écran. */
 .bandeau {
-  padding: var(--e-7) var(--e-4);
+  padding: var(--e-7) var(--e-4) var(--e-7) var(--e-6);
   background: var(--fond-inverse);
   color: var(--texte-inverse);
 }
 
 .bandeau .rg-etiquette {
   color: var(--creme-logo);
+}
+
+/* --- Correctif des fonds bleus (CONTENU/Plan_one_page.md, section 7.2) ---
+   Sans ça, un bouton, un anneau de focus ou un filet posés sur .bandeau
+   restent bleus sur bleu : on redéfinit localement les jetons de texte grâce
+   aux valeurs DÉJÀ prévues pour le thème sombre dans tokens.css (aucune
+   couleur nouvelle, voir [data-theme="sombre"]). --fond-inverse et
+   --texte-inverse ne changent pas : c'est déjà ce qui fait le bandeau bleu
+   avec du texte crème. */
+.rg-inverse,
+.bandeau {
+  --texte: var(--creme);
+  --fond: var(--bleu);
+  --focus: var(--creme);
+  --texte-secondaire: var(--creme-logo);
+  --bordure: var(--filet-inv);
 }
 
 .schema {
@@ -175,11 +227,25 @@
 .cas-principal__chiffres {
   margin: var(--e-4) 0 0;
   font-family: var(--font-titre);
-  font-size: var(--taille-mobile-h2);
-  line-height: 1.15;
+  /* Taille Titre 1 (CONTENU/Plan_one_page.md, section 2, chapitre 04) :
+     48 px en grand écran, avec le même palier mobile que les vrais h1. */
+  font-size: var(--taille-mobile-titre);
+  line-height: 1.05;
   font-weight: 700;
   font-variation-settings: "wdth" 118;
   color: var(--accent);
+}
+
+/* En dessous de 360 px, ces deux lignes (en 44 px) peuvent dépasser la
+   largeur disponible et provoquer un défilement horizontal (ROBUSTE-9,
+   mesuré : débordement réel jusqu'à 359 px, jamais à 360 px et plus). Palier
+   Titre 2 (32 px, déjà de l'échelle) plutôt qu'une coupure en syllabes au
+   milieu d'un mot (corrections mouvement, point 3) : le texte ne change pas,
+   seule sa taille descend d'un cran de plus sur les très petits écrans. */
+@media (max-width: 359px) {
+  .cas-principal__chiffres {
+    font-size: var(--taille-h2);
+  }
 }
 
 .cas-duo {
@@ -196,10 +262,8 @@
 
 /* Seul le résultat du client (cas 1 du bloc de preuve) porte l'or — jamais
    Regista elle-même (voir Brief_design_site.md, section 1, « la règle de
-   l'or »). */
-.carte-preuve--or .rg-carte__titre {
-  color: var(--accent);
-}
+   l'or ») — porté par .cas-principal__chiffres ci-dessus, sur fond bleu
+   (interdit n°2 de CLAUDE.md). */
 
 /* --- Liste « les règles du jeu » ---------------------------------------- */
 
@@ -256,114 +320,16 @@
   line-height: 1.2;
   font-weight: 700;
   font-variation-settings: "wdth" 112;
+  /* Le numéro et l'adresse mail ne doivent jamais forcer un débordement
+     horizontal (CONTENU/Plan_one_page.md, section 2, chapitre 07). */
+  overflow-wrap: anywhere;
 }
 
-/* ========================================================================
-   Le mouvement — trajectoires qui se tracent à l'entrée dans le champ de
-   vision, une seule fois, jamais rejouées (Brief_design_site.md, section 4).
-   ======================================================================== */
-
-.rg-trace {
-  display: inline-block;
-  overflow: hidden;
-  max-width: 0;
-  transition: max-width 1000ms ease-in-out;
-}
-
-.rg-trace--visible {
-  max-width: var(--rg-trace-largeur, 100%);
-}
-
-.rg-schema .rg-pt-point {
-  opacity: 0;
-  transition: opacity 150ms ease;
-}
-
-/* La trajectoire se DESSINE, elle n'apparaît pas en fondu. Le trait étant une
-   forme pleine et effilée (et non un trait tracé), on la révèle par balayage
-   du haut vers le bas : le geste part des trois pôles et arrive chez le
-   client. Le sens compte autant que le mouvement — la charte dit que la
-   trajectoire indique toujours une direction. */
-.rg-schema .rg-pt-trait {
-  clip-path: inset(0 0 100% 0);
-  transition: clip-path 1000ms ease-in-out 150ms;
-}
-
-.rg-schema--visible .rg-pt-point {
-  opacity: 1;
-}
-
-.rg-schema--visible .rg-pt-trait {
-  clip-path: inset(0 0 0 0);
-}
-
-/* Le quadrillage de la section haute de l'Accueil, qui se remplit case par
-   case au chargement. */
-.rg-grille-animee {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, var(--quadrillage-pas));
-  grid-auto-rows: var(--quadrillage-pas);
-  pointer-events: none;
-}
-
-.rg-grille-animee__case {
-  border-right: var(--trait-1) solid var(--quadrillage);
-  border-bottom: var(--trait-1) solid var(--quadrillage);
-  opacity: 0;
-}
-
-/* Une case qui passe de l'invisible au presque invisible ne se voit pas. Le
-   balayage marque donc chaque case avec --bordure-discrete (une valeur déjà
-   présente dans la palette, le même bleu à une opacité supérieure), avant de
-   la laisser retomber à la pâleur que la charte prescrit pour le quadrillage.
-   On voit le dispositif se mettre en place, puis il s'efface. */
-.rg-grille-animee--visible .rg-grille-animee__case {
-  animation: rg-case-se-pose 1100ms ease-out both;
-}
-
-@keyframes rg-case-se-pose {
-  0% {
-    opacity: 0;
-    border-right-color: var(--bordure-discrete);
-    border-bottom-color: var(--bordure-discrete);
-  }
-  30% {
-    opacity: 1;
-    border-right-color: var(--bordure-discrete);
-    border-bottom-color: var(--bordure-discrete);
-  }
-  100% {
-    opacity: 1;
-    border-right-color: var(--quadrillage);
-    border-bottom-color: var(--quadrillage);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .rg-trace {
-    max-width: var(--rg-trace-largeur, 100%) !important;
-    transition: none !important;
-  }
-
-  .rg-schema .rg-pt-point {
-    opacity: 1 !important;
-    transition: none !important;
-  }
-
-  .rg-schema .rg-pt-trait {
-    clip-path: none !important;
-    transition: none !important;
-  }
-
-  .rg-grille-animee--visible .rg-grille-animee__case,
-  .rg-grille-animee__case {
-    opacity: 1 !important;
-    animation: none !important;
-    transition: none !important;
-  }
-}
+/* Le mouvement (M1 à M9) est composé plus bas, dans la section « Page unique
+   — mouvement » en fin de fichier : la grille CSS morte (GrilleAnimee),
+   TraceEnScene et SchemaEnScene ont été retirés avec les Trajectoire et
+   PointsTrajectoires qu'ils animaient (CONTENU/Plan_one_page.md, section 4 —
+   plus aucune trajectoire isolée sur la page, seule reste la « passe »). */
 
 /* --- Au-delà du point de rupture ----------------------------------------- */
 
@@ -437,7 +403,7 @@
   }
 
   .cas-principal__chiffres {
-    font-size: var(--taille-h2);
+    font-size: var(--taille-h1);
   }
 
   .coordonnees__lien {
@@ -529,4 +495,760 @@
 .rg-liens-legaux a:focus-visible {
   color: var(--texte);
   border-bottom-color: var(--accent);
+}
+
+/* ==========================================================================
+   Page unique — en-tête collant, chapitres (CONTENU/Plan_one_page.md,
+   section 2, 6 et 7). Tout ce bloc est composé pour src/app/page.tsx et
+   src/components/site/NavigationPrincipale.tsx.
+   ========================================================================== */
+
+/* --- En-tête collant ----------------------------------------------------- */
+
+:root {
+  --hauteur-entete: 56px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --hauteur-entete: 64px;
+  }
+}
+
+.rg-entete {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--fond);
+}
+
+/* Lien d'évitement : invisible tant qu'il n'est pas atteint au clavier
+   (Tab), au-dessus de tout le reste dès qu'il reçoit le focus. */
+.rg-evitement {
+  position: absolute;
+  top: var(--e-2);
+  left: var(--e-2);
+  z-index: 40;
+  padding: var(--e-2) var(--e-4);
+  background: var(--fond);
+  color: var(--texte);
+  border: var(--trait-1) solid var(--texte);
+  font-family: var(--font-texte);
+  font-size: var(--taille-petit);
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.rg-evitement:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rg-evitement {
+    transition: transform 150ms ease;
+  }
+}
+
+/* Barre du logotype, du menu et de l'indicateur — mêmes valeurs de padding
+   que .enveloppe, mais déclarées à part : le logotype reste le repère fixe
+   (l'aplomb du R) même si .enveloppe change pour le contenu, voir
+   .marge-passe plus bas. */
+.rg-entete__barre {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-4);
+  height: var(--hauteur-entete);
+  padding: 0 var(--e-4);
+  border-bottom: var(--trait-1) solid var(--bordure);
+}
+
+.rg-entete__nav {
+  display: none;
+}
+
+.rg-entete__liste {
+  display: flex;
+  align-items: center;
+  gap: var(--e-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rg-entete__indicateur {
+  font-family: var(--font-texte);
+  font-size: var(--taille-petit);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--texte-secondaire);
+  /* Ne casse jamais sur plusieurs lignes (corrections mouvement, point 5) :
+     sans ça, un flex item texte peut se réduire en dessous de sa largeur
+     naturelle en enroulant son texte, au lieu de forcer ses voisins à
+     partager l'espace restant. */
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.rg-entete__bouton-sommaire {
+  border: var(--trait-1) solid var(--texte);
+  background: transparent;
+  color: var(--texte);
+  padding: var(--e-1) var(--e-3);
+  font-family: var(--font-texte);
+  font-size: var(--taille-petit);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* En dessous de 400 px, logotype (largeur fixe) + indicateur (désormais
+   protégé du retour à la ligne) + bouton Sommaire ne tiennent plus sur une
+   ligne avec les espacements et le bouton pleine taille (mesuré : le retour
+   à la ligne de l'indicateur apparaît de 320 à 352 px). Resserre les seuls
+   espacements et la taille du bouton — jamais le logotype, jamais le texte
+   de l'indicateur — jusqu'à ce que tout tienne (mesuré : une ligne, sans
+   débordement, de 320 à 399 px ; à 400 px et plus, l'espacement d'origine
+   suffit déjà). --taille-etiquette est déjà un jeton de l'échelle, pas une
+   taille nouvelle (corrections mouvement, point 5). */
+@media (max-width: 399px) {
+  .rg-entete__barre {
+    gap: var(--e-2);
+    padding-left: var(--e-3);
+    padding-right: var(--e-3);
+  }
+
+  .rg-entete__bouton-sommaire {
+    padding: var(--e-1) var(--e-2);
+    font-size: var(--taille-etiquette);
+  }
+}
+
+.rg-entete__bouton-sommaire:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.rg-sommaire {
+  border-bottom: var(--trait-1) solid var(--bordure);
+  padding: var(--e-4);
+}
+
+.rg-sommaire__liste {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-4);
+}
+
+.rg-sommaire__liste a {
+  display: flex;
+  gap: var(--e-3);
+  color: var(--texte);
+  font-family: var(--font-texte);
+  font-size: var(--taille-texte);
+  text-decoration: none;
+}
+
+.rg-sommaire__liste a span {
+  color: var(--texte-secondaire);
+  font-variant-numeric: tabular-nums;
+}
+
+.rg-sommaire__liste a:hover,
+.rg-sommaire__liste a:focus-visible {
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .rg-entete__barre {
+    padding: 0 var(--e-8);
+  }
+
+  .rg-entete__nav {
+    display: block;
+  }
+
+  .rg-entete__bouton-sommaire {
+    display: none;
+  }
+
+  /* Filet de sécurité (ROBUSTE-6) : même si le panneau était ouvert avant
+     d'agrandir la fenêtre (l'observateur de largeur de NavigationPrincipale
+     referme aussi l'état React, mais toujours après ce point de rupture),
+     il ne peut jamais s'afficher au-delà du format mobile. */
+  .rg-sommaire {
+    display: none;
+  }
+}
+
+/* --- Marge de la passe --------------------------------------------------- */
+/* Réserve, à gauche du contenu des chapitres, la place d'un futur trait
+   vertical (la « passe », étape Mouvement — Plan_one_page.md section 2 et
+   3, point de vigilance sur la largeur de texte mobile). Sur grand écran,
+   la marge reste celle du repère fixe du logotype (--e-8, voir
+   .rg-entete__barre) : rien ne change. Sur mobile, elle s'élargit de --e-4
+   à --e-6 : la colonne de texte perd environ 16 px, c'est attendu. */
+.marge-passe {
+  padding-left: var(--e-6);
+}
+
+@media (min-width: 768px) {
+  .marge-passe {
+    padding-left: var(--e-8);
+  }
+}
+
+/* --- Bloc d'ouverture de chapitre ----------------------------------------- */
+/* En tête des chapitres 02 à 07 : un filet, l'étiquette du chapitre, sa
+   position « 0X / 07 ». Marquage STATIQUE : l'étape Mouvement (M5) fera
+   plus tard tracer .entete-chapitre__filet de gauche à droite à l'arrivée
+   sur le chapitre (transform-origin est déjà posé pour ça, il suffira
+   d'animer scaleX). */
+.entete-chapitre {
+  /* position: relative posée plus bas, dans le bloc groupé avec
+     .bandeau__coeur (CODE-1 : une seule règle ; voir aussi .hero, qui porte
+     la sienne dans « Sections pleine largeur »). */
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-3);
+  margin-top: var(--e-8);
+}
+
+/* Le h2 peut être passé en enfant du bloc d'ouverture (voir OuvertureChapitre,
+   page.tsx) pour rester dans la même zone que le point de la passe (M3) :
+   sa propre marge (.titre-chapitre) doublerait alors le `gap` du flex. */
+.entete-chapitre > .titre-chapitre {
+  margin-top: 0;
+}
+
+.entete-chapitre__filet {
+  display: block;
+  height: var(--trait-1);
+  background: var(--bordure);
+  transform-origin: left;
+}
+
+.entete-chapitre__ligne {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--e-4);
+}
+
+.entete-chapitre__numero {
+  font-family: var(--font-texte);
+  font-size: var(--taille-petit);
+  color: var(--texte-secondaire);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Titre de chapitre (h2) ------------------------------------------------ */
+/* Taille Titre 2 partout (CONTENU/Plan_one_page.md, section 7.3) : à la
+   différence de .titre-page (Titre 1, réservé au h1 de la 404), qui restait
+   du temps des cinq pages séparées. */
+.titre-chapitre {
+  margin: var(--e-4) 0 0;
+  font-family: var(--font-titre);
+  font-size: var(--taille-mobile-h2);
+  line-height: 1.15;
+  font-weight: 700;
+  font-variation-settings: "wdth" 118;
+}
+
+@media (min-width: 768px) {
+  .titre-chapitre {
+    font-size: var(--taille-h2);
+    max-width: 20ch;
+  }
+}
+
+/* --- Offres : pôles en grille auto-adaptative ------------------------------ */
+/* Une seule grille, sans deuxième rupture de mise en page : elle se replie
+   d'elle-même selon la place disponible (CONTENU/Plan_one_page.md, section
+   2, chapitre 02). */
+.poles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--e-6);
+  margin-top: var(--e-7);
+}
+
+.pole {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-3);
+  padding-top: var(--e-5);
+  border-top: var(--trait-1) solid var(--bordure);
+}
+
+/* Habille le h3 posé autour du badge et de l'étiquette d'un pôle sans
+   changer sa mise en page : display:contents le retire de la boîte, seule
+   sa sémantique de titre reste. */
+.pole__titre {
+  display: contents;
+}
+
+/* --- Le principe : schéma du tournage groupé ------------------------------- */
+/* Formes à angle droit, bleu, sans or et sans flèche (CONTENU/Plan_one_page.md,
+   section 2, chapitre 03). État final (rempli) affiché directement ; sous
+   "html.mvt", le remplissage (M6) part vide et se pose bloc par bloc — voir
+   la section « Page unique — mouvement » en fin de fichier.
+   Deux couches par bloc (ROBUSTE-3, MOI-2) : la couche « vide », toujours en
+   place (le <span class="schema-tournage__texte">, seul lu par les lecteurs
+   d'écran, libellé bleu nuit sur bord bleu) ; la couche « pleine » (le
+   <span class="schema-tournage__remplissage">, aria-hidden, aplat bleu +
+   même libellé en crème) se révèle par-dessus, de gauche à droite. Comme la
+   révélation est un clip-path (tout ou rien, jamais une couleur qui se
+   mélange), le texte reste toujours lisible : bleu sur bord bleu là où la
+   couche pleine n'est pas encore arrivée, crème sur bleu là où elle l'est
+   déjà — jamais bleu sur bleu. Hauteur des barres par padding uniquement :
+   pas de hauteur fixe, le libellé le plus long tient à toutes les largeurs. */
+.schema-tournage {
+  margin-top: var(--e-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-3);
+  max-width: 46ch;
+}
+
+.schema-tournage__mois {
+  display: flex;
+  gap: var(--e-3);
+}
+
+.schema-tournage__bloc {
+  position: relative;
+  flex: none;
+  border: var(--trait-1) solid var(--texte);
+  padding: var(--e-3) var(--e-4);
+  font-family: var(--font-texte);
+  font-size: var(--taille-petit);
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--texte);
+}
+
+/* Largeurs égales des trois mois UNIQUEMENT (REG-RENDU-2) : `flex:1 1 0`
+   combiné à `overflow:hidden` (retiré ci-dessus) désactivait la hauteur
+   minimale automatique d'un item flex en colonne, et écrasait la barre
+   « 1 OU 2 JOURNÉES » (flex item direct de .schema-tournage, en colonne)
+   bien en dessous de son contenu (MOI-2) — cette barre garde donc sa
+   hauteur naturelle (flex:none ci-dessus) ; seuls les trois mois, en ligne,
+   se partagent la largeur ici. */
+.schema-tournage__mois > .schema-tournage__bloc {
+  flex: 1 1 0;
+}
+
+/* Couche « pleine » : mêmes police et padding que la couche « vide » (plus
+   1 px, voir inset ci-dessous), posée pile par-dessus pour que les deux
+   libellés se superposent exactement. inset:-1px plutôt que inset:0 : la
+   couche recouvre alors aussi la bordure de son bloc, sans quoi un liseré
+   d'un pixel de la couleur de fond de la page restait visible entre le
+   remplissage et la bordure à certaines densités d'écran (REG-RENDU-2).
+   Toujours révélée en entier par défaut (état final, sans JavaScript) ; sous
+   "html.mvt", part masquée (clip-path) et se révèle de gauche à droite (M6,
+   voir plus bas). */
+.schema-tournage__remplissage {
+  position: absolute;
+  inset: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--e-3) + 1px) calc(var(--e-4) + 1px);
+  background: var(--texte);
+  color: var(--fond);
+}
+
+/* --- Contact : point d'arrivée --------------------------------------------- */
+/* Toujours en bleu nuit, jamais en or (interdit n°2 de CLAUDE.md) — libellé
+   de la charte p.12. Marquage STATIQUE, préparé pour l'arrivée de la
+   dernière passe (M4). */
+.point-arrivee {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  margin-top: var(--e-6);
+}
+
+.point-arrivee__point {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  background: var(--texte);
+}
+
+/* --- Liste des cinq étapes -------------------------------------------------- */
+/* Remplace la grille de CarteProfil : une liste numérotée à filets, dont le
+   numéro (« Étape 0X ») reste du texte normal, lu par les lecteurs d'écran
+   (CONTENU/Plan_one_page.md, section 2, chapitre 05). list-style:none fait
+   perdre la sémantique de liste à Safari/VoiceOver sans role="list" explicite
+   (posé sur le <ol> dans page.tsx, ROBUSTE-10). */
+.etapes {
+  margin: var(--e-6) 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-6);
+}
+
+.etapes__item {
+  display: flex;
+  gap: var(--e-4);
+  padding-top: var(--e-5);
+  border-top: var(--trait-1) solid var(--bordure);
+}
+
+.etapes__numero {
+  flex-shrink: 0;
+  font-family: var(--font-titre);
+  font-size: var(--taille-h3);
+  font-weight: 700;
+  font-variation-settings: "wdth" 112;
+  color: var(--texte-secondaire);
+  font-variant-numeric: tabular-nums;
+}
+
+.etapes__phrase {
+  font-weight: 600;
+}
+
+.etapes__mots {
+  margin-top: var(--e-2);
+  color: var(--texte-secondaire);
+}
+
+/* --- Blocs titrés en zigzag (chapitres 03, 05, 06) --------------------------
+   Décision de Landry du 18/09/2026 (CONTENU/Plan_one_page.md) : en grand
+   écran, tous les blocs de texte tenaient dans une colonne calée à gauche, la
+   moitié droite de l'écran restant vide. Corrigé en zigzag (et non en miroir,
+   écarté par Landry : « on dirait que les titres sont des citations ») — le
+   sous-titre (.titre-bloc) reste TOUJOURS au-dessus de son contenu, dans le
+   même ordre de lecture qu'aujourd'hui ; seul le bloc ENTIER (sous-titre +
+   contenu) change de côté, un bloc sur deux, en repartant à gauche au premier
+   bloc titré de chaque chapitre.
+
+   .bloc-zigzag / .bloc-zigzag--droite sont posées à la main dans page.tsx,
+   bloc par bloc (jamais de :nth-of-type ici : un bloc SANS sous-titre peut
+   s'intercaler, comme la carte « Postes » d'À propos, et fausserait un
+   comptage automatique). Largeur fluide (clamp), sans deuxième rupture : 58 %
+   de la colonne, plafonnée à 62ch (même longueur de ligne que .paragraphe),
+   plancher à 40ch pour rester lisible à 768px.
+
+   font-size posé ICI (mesuré : sans lui, .section hérite du corps de page à
+   16px, pas des 17px de .paragraphe — un « ch » calculé à la mauvaise taille
+   sous-évaluait la largeur réelle de 40 caractères de texte). Chaque enfant
+   (.titre-bloc, .paragraphe…) garde sa propre taille explicite : ceci ne
+   change aucun texte affiché, seulement l'unité "ch" utilisée ci-dessous. */
+@media (min-width: 768px) {
+  .bloc-zigzag {
+    font-size: var(--taille-texte);
+    width: clamp(40ch, 58%, 62ch);
+  }
+
+  /* margin-left:auto pousse le bloc à droite, qu'il soit en display:block
+     (.section) ou en flex item d'un conteneur flex-direction:column
+     (.etapes__item, voir .etapes) : dans les deux cas, un bloc plus étroit
+     que son parent se cale sur son bord droit. */
+  .bloc-zigzag--droite {
+    margin-left: auto;
+  }
+}
+
+/* --- Bandeau de preuve : liseré motif maison -------------------------------- */
+.bandeau__liseré {
+  margin-top: var(--e-7);
+}
+
+.bandeau__liseré svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ==========================================================================
+   Page unique — mouvement (CONTENU/Plan_one_page.md, section 3 ; détail
+   exact dans CONTENU/.analyse-one-page.json, clé synthese.catalogue_mouvements
+   M1 à M6). Option A validée par Landry : un seul geste en or qui traverse la
+   page (M2 + M3 + M4 = LA trajectoire de la page), et trois mouvements
+   autour (M1, M5, M6). Titres, paragraphes et chiffres en or ne bougent
+   jamais. Tout ce qui suit ne cache un état "avant animation" que sous
+   "html.mvt" (posée par le script de src/app/layout.tsx, seulement si
+   JavaScript tourne et si l'appareil n'a pas demandé de réduire les
+   animations) : sans cette classe, chaque règle ci-dessous est absente et
+   l'état final (déjà écrit plus haut dans ce fichier) reste affiché tel quel.
+   ========================================================================== */
+
+/* --- M1 : le quadrillage se pose en vague ---------------------------------
+   Deux calques en pseudo-éléments de .hero (aucun DOM, aucun JavaScript :
+   départ au chargement sans attendre React). Le premier (::before), toujours
+   présent, reprend le tracé de .rg-quadrillage (components.css) à la pâleur
+   --quadrillage. Le second (::after), au jeton --filet, n'est visible qu'à
+   travers une bande diagonale qui balaie une fois le coin haut-gauche vers
+   le coin bas-droit : chaque case s'allume à son passage, puis retombe à la
+   pâleur du premier calque une fois la bande passée. */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, currentColor var(--trait-1), transparent var(--trait-1)),
+    linear-gradient(to bottom, currentColor var(--trait-1), transparent var(--trait-1));
+  background-size: var(--quadrillage-pas) var(--quadrillage-pas);
+}
+
+.hero::before {
+  color: var(--quadrillage);
+}
+
+.hero::after {
+  color: var(--filet);
+  opacity: 0;
+  mask-image: linear-gradient(135deg, transparent 35%, black 48%, black 52%, transparent 65%);
+  mask-size: 340% 340%;
+  mask-position: -120% -120%;
+  /* Sans no-repeat, le masque se répète en tuiles au-delà de la bande
+     diagonale : des bandes plus foncées (--filet) restaient visibles après
+     le passage de la vague, au lieu de retomber uniformément à --quadrillage
+     (MOI-1). */
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+}
+
+html.mvt .hero::after {
+  opacity: 1;
+  animation: rg-vague 1600ms cubic-bezier(0.22, 1, 0.36, 1) 1 both;
+}
+
+@keyframes rg-vague {
+  from {
+    mask-position: -120% -120%;
+  }
+  to {
+    mask-position: 120% 120%;
+  }
+}
+
+/* --- La passe : marge, points et tronçons (M2, M3) -------------------------
+   Chaque tronçon relie EXACTEMENT le point de son chapitre au point du
+   chapitre suivant (hero → 02 → 03 → 04 → 05 ; rien sur 06), quelle que soit
+   la quantité de texte entre les deux (ROBUSTE-2, REG-RENDU-1) : .hero,
+   .entete-chapitre et .bandeau__coeur sont tous les trois position:relative,
+   et chacun pose son point à SA propre position top:0 — le tronçon qui en
+   part est toujours mesuré (TraitVersPoint, src/components/site/Passe.tsx),
+   au montage puis à chaque redimensionnement, jamais deviné en CSS pur : dès
+   que la cible dépend du texte (donc de la largeur d'écran), même deux blocs
+   qui semblent adjacents à l'œil (l'entête du chapitre 04 et son point réel,
+   plus bas dans .bandeau__coeur) ne le sont pas forcément d'une largeur à
+   l'autre.
+
+   Trait et points vivent DANS la marge, à gauche de la colonne de texte
+   (MOI-3, ROBUSTE-8), jamais collés au bord ni à la première lettre :
+   --marge-passe est la largeur de cette marge, déjà partagée par .hero,
+   .bandeau et .marge-passe (même valeur à chaque palier) ; --x-passe-locale
+   place l'AXE du trait/point (leur centre commun, voir .passe-piste plus bas
+   pour le trait) avec un écart net vers le texte à chaque palier : au milieu
+   de la marge en mobile (16 px de marge ⇒ 8 px de part et d'autre) ; en
+   grand écran, le plus près possible du bord gauche du logotype (qui partage
+   le bord gauche de la colonne de texte, --marge-passe) sans descendre sous
+   16 px d'écart avec ce texte — voir le second bloc @media plus bas
+   (corrections mouvement, point 4). */
+:root {
+  --marge-passe: var(--e-6);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --marge-passe: var(--e-8);
+  }
+}
+
+/* .hero EST la boîte padée (sa marge gauche est son propre padding) : x = 0
+   de son repère de positionnement correspond déjà au bord de la section. */
+.hero {
+  --x-passe-locale: calc(var(--marge-passe) / 2);
+}
+
+/* .entete-chapitre et .bandeau__coeur sont des enfants DÉJÀ décalés par le
+   padding de .marge-passe / .bandeau (même valeur à chaque palier) : on
+   retranche ce décalage pour retomber sur la même position ABSOLUE que dans
+   .hero, depuis le bord réel de la section plutôt que depuis leur propre
+   bord. */
+.entete-chapitre,
+.bandeau__coeur {
+  position: relative;
+  --x-passe-locale: calc(-1 * var(--marge-passe) / 2);
+}
+
+/* En grand écran, l'axe se rapproche du bord gauche du logotype (même bord
+   que la colonne de texte, --marge-passe) au lieu de rester au milieu de la
+   marge comme en mobile — sans jamais descendre sous 16 px d'écart avec le
+   texte, règle prioritaire (corrections mouvement, point 4). Le trait fait
+   5 px (épaisseur par défaut de <Passe>) : son bord droit (axe + 2,5 px)
+   doit donc s'arrêter 18,5 px avant le bord gauche du texte, soit un axe à
+   « marge-passe - 18.5px ». Pour .entete-chapitre/.bandeau__coeur, déjà
+   décalés de +marge-passe par leur propre padding, cela retombe sur la
+   constante -18.5px (le terme --marge-passe s'annule dans la soustraction) —
+   même axe partout, pour tous les tronçons et points de la chaîne. Comme le
+   bord gauche du logotype coïncide avec --marge-passe (--e-8 sert aux deux,
+   voir .rg-entete__barre), l'écart obtenu avec le logotype vaut alors, lui
+   aussi, exactement 16 px. */
+@media (min-width: 768px) {
+  .hero {
+    --x-passe-locale: calc(var(--marge-passe) - 18.5px);
+  }
+
+  .entete-chapitre,
+  .bandeau__coeur {
+    --x-passe-locale: -18.5px;
+  }
+}
+
+.passe-piste,
+.point-passe {
+  position: absolute;
+  top: 0;
+  left: var(--x-passe-locale);
+}
+
+.passe-piste {
+  /* Centre le VISUEL du trait sur l'axe, comme le point (translate(-50%,-50%)
+     ci-dessous) : `left` ne positionne que son bord GAUCHE sur l'axe, pas son
+     centre — un décalage constant de la moitié de son épaisseur (2,5 px pour
+     les 5 px par défaut de <Passe>), mesuré et confirmé en direct (écart de
+     2,5 px entre l'axe du trait et le centre des points, corrections
+     mouvement point 2). */
+  transform: translateX(-50%);
+  /* Repli sans JavaScript (corrections mouvement, point 8) : hauteur nulle
+     tant qu'aucune mesure réelle n'est posée, plutôt que de remplir la
+     hauteur de SON PROPRE conteneur (top:0 + bottom:0) — cet ancien repli
+     produisait un trait qui flottait seul dans la marge, jamais relié au
+     point suivant (qui vit souvent plus bas, dans un autre bloc). Un trait
+     non mesuré (JavaScript inactif ou pas encore monté) ne doit jamais
+     s'afficher ; les points, eux, gardent leur taille fixe (8×8), insensible
+     à cette règle. <TraitVersPoint /> (Passe.tsx) pose une hauteur en ligne
+     dès qu'il a mesuré la vraie distance jusqu'au point suivant, puis la
+     tient à jour (REG-RENDU-3) ; cette valeur EN LIGNE l'emporte alors sur ce
+     0 (CSS de base, moins spécifique). */
+  height: 0;
+}
+
+.point-passe {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  transform: translate(-50%, -50%);
+}
+
+.passe {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* --- M2 (le coup d'envoi) et M3 (les passes de chapitre) : révélation ------
+   Le point se remplit d'abord (240 ms, ease-out sans dépassement) — il
+   marque l'arrivée à ce chapitre — puis le tronçon se dessine de haut en bas
+   par clip-path (150 ms plus tard) : il part vers le chapitre suivant. Sa
+   durée (--duree-passe) est posée en ligne par <TraitVersPoint>,
+   proportionnelle à sa vraie longueur mesurée (bornée entre 900 et 2 200 ms) ;
+   la règle est générique (.est-visible .passe), peu importe l'ancêtre qui
+   porte la classe (.hero__trace, .entete-chapitre ou .bandeau__coeur). */
+html.mvt .passe {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path var(--duree-passe, 1200ms) cubic-bezier(0.65, 0, 0.35, 1) 150ms;
+}
+
+html.mvt .point-passe {
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 240ms ease-out;
+}
+
+html.mvt .est-visible .passe {
+  clip-path: inset(0 0 0% 0);
+}
+
+html.mvt .entete-chapitre.est-visible .point-passe,
+html.mvt .bandeau__coeur.est-visible .point-passe {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* --- M5 : le filet d'ouverture des chapitres 02 à 07 ----------------------- */
+html.mvt .entete-chapitre__filet {
+  transform: scaleX(0);
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html.mvt .entete-chapitre.est-visible .entete-chapitre__filet {
+  transform: scaleX(1);
+}
+
+/* --- M6 : le tournage groupé se remplit -------------------------------------
+   « 1 OU 2 JOURNÉES » (300 ms), puis les trois mois en série (3 × 500 ms).
+   Seule la couche « pleine » (.schema-tournage__remplissage) anime, par
+   clip-path (gauche → droite) : la couche « vide » (.schema-tournage__bloc /
+   __texte) ne change JAMAIS de couleur ni de fond (ROBUSTE-3) — c'est ce qui
+   garantit qu'un libellé reste toujours lisible, jamais bleu sur bleu. */
+html.mvt .schema-tournage__remplissage {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 500ms ease-in-out;
+}
+
+html.mvt .schema-tournage > .schema-tournage__bloc .schema-tournage__remplissage {
+  transition-duration: 300ms;
+}
+
+html.mvt .schema-tournage__mois > .schema-tournage__bloc:nth-child(1) .schema-tournage__remplissage {
+  transition-delay: 300ms;
+}
+html.mvt .schema-tournage__mois > .schema-tournage__bloc:nth-child(2) .schema-tournage__remplissage {
+  transition-delay: 800ms;
+}
+html.mvt .schema-tournage__mois > .schema-tournage__bloc:nth-child(3) .schema-tournage__remplissage {
+  transition-delay: 1300ms;
+}
+
+html.mvt .schema-tournage.est-visible .schema-tournage__remplissage {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* --- M4 : l'arrivée sur « Votre projet » (chapitre 07 uniquement) ---------
+   Reprend <Trajectoire> (design-system/primitives.tsx) telle quelle, sans le
+   bug max-width:100% de l'ancien TraceEnScene : ici, seul clip-path anime,
+   la largeur du SVG ne bouge jamais. */
+.arrivee-passe__trait {
+  display: block;
+  width: fit-content;
+}
+
+html.mvt .arrivee-passe__trait {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 950ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+html.mvt .point-arrivee__point {
+  transform: scale(0);
+  transition: transform 240ms ease-out;
+  transition-delay: 700ms;
+}
+
+html.mvt .arrivee-passe.est-visible .arrivee-passe__trait {
+  clip-path: inset(0 0 0 0);
+}
+
+html.mvt .arrivee-passe.est-visible .point-arrivee__point {
+  transform: scale(1);
 }
