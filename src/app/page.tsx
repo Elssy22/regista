@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import type { CSSProperties } from "react";
 import {
   Badge,
   Bouton,
@@ -14,7 +16,7 @@ import { Gabarit } from "@/components/site/Gabarit";
 import { HeroTrace } from "@/components/site/HeroTrace";
 import { EnScene } from "@/components/site/mouvement";
 import { OuvertureChapitre } from "@/components/site/OuvertureChapitre";
-import { chapitres, siteConfig } from "@/lib/site-config";
+import { chapitres, references, siteConfig } from "@/lib/site-config";
 
 // L'adresse officielle du site est désormais "/" (page unique) : les autres
 // routes qui existaient (voir next.config.ts) sont des redirections, jamais
@@ -379,6 +381,30 @@ export default function AccueilPage() {
             <strong>«&nbsp;Notre meilleur travail, personne ne sait que c&rsquo;est nous.&nbsp;»</strong>
           </p>
 
+          {/* Les références (décision de Landry du 18/09/2026, accord écrit de
+              chacune) : logos en une seule couleur, crème sur le bleu. Liste
+              dans src/lib/site-config.ts. */}
+          <div className="references">
+            <Etiquette texte="Ils travaillent avec nous" />
+            <ul
+              className="references__liste"
+              role="list"
+              style={{ "--nb-references": references.length } as CSSProperties}
+            >
+              {references.map((reference) => (
+                <li key={reference.nom}>
+                  <Image
+                    src={reference.fichier}
+                    alt={reference.nom}
+                    width={reference.largeur}
+                    height={reference.hauteur}
+                    className="references__logo"
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+
           <div className="actions" style={{ justifyContent: "center" }}>
             <Bouton texte="Parler du projet" href="/#contact" />
           </div>
@@ -480,8 +506,27 @@ export default function AccueilPage() {
               18/09/2026) : bloc 1 du chapitre, calé à gauche. Le paragraphe
               d'intro juste au-dessus n'a pas de sous-titre : il ne compte pas
               dans l'alternance et ne change pas. */}
-          <div className="section bloc-zigzag">
+          {/* Portrait de Landry (choix de Landry du 18/09/2026, couleurs
+              naturelles, logo Rosyne du sweat gardé à sa demande) : le seul
+              visage du site, ici et nulle part ailleurs — là où Regista parle
+              d'elle-même, jamais en haut de page. Sur téléphone, entre le
+              sous-titre et le texte ; à partir de 768 px, à droite du texte
+              (voir .bloc-portrait dans site.css). */}
+          <div className="section bloc-zigzag bloc-portrait">
             <h3 className="titre-bloc">Pourquoi l&rsquo;agence existe</h3>
+            <figure className="portrait">
+              <Image
+                src="/equipe/landry-celina.jpg"
+                alt="Portrait de Landry Célina"
+                width={800}
+                height={1000}
+                sizes="(min-width: 768px) 340px, 70vw"
+                className="portrait__image"
+              />
+              <figcaption>
+                <Etiquette texte="Landry Célina — Fondateur" />
+              </figcaption>
+            </figure>
             <p className="paragraphe" style={{ marginTop: "var(--e-4)" }}>
               Landry Célina a cofondé un média lifestyle — football, cinéma, mode, cuisine, art, et
               plus d&rsquo;un million d&rsquo;abonnés cumulés. Il y a été rédacteur et animateur,

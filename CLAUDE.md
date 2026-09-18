@@ -74,7 +74,15 @@ et leur gabarit), quelle que soit la demande — signaler plutôt qu'exécuter.
 11. **Ne pas ajouter d'emoji**, dans le code comme dans les textes.
 12. **Ne pas utiliser d'image de mineur identifiable**, de joueur
     professionnel, de personnalité, de marque, d'équipementier ou d'écusson
-    de club.
+    de club. **Seule exception** (décision de Landry du 18/09/2026) : le
+    bandeau « Ils travaillent avec nous » du chapitre 04, qui montre les
+    logos des clients et partenaires ayant donné leur **accord écrit**, tous
+    en une seule couleur (crème, `public/references/`, liste dans
+    `references` de `site-config.ts`). Aucun logo sans accord, aucun logo en
+    couleurs d'origine, aucun autre emplacement. **Et** le portrait de
+    Landry (`public/equipe/landry-celina.jpg`, couleurs naturelles, logo
+    Rosyne du sweat gardé à sa demande), dans le bloc « Pourquoi l'agence
+    existe » du chapitre 06 uniquement — jamais en haut de page.
 
 Les règles de mention (parcours, périmètre juridique « Regista n'est pas
 agent sportif », prix) et le ton (français à 100 %, vouvoiement, phrases

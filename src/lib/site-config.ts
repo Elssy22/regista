@@ -103,3 +103,21 @@ export const navLinks = [
   { libelle: "À propos", href: "/#a-propos", chapitres: ["a-propos"] },
   { libelle: "Contact", href: "/#contact", chapitres: ["contact"] },
 ] as const satisfies readonly { libelle: string; href: string; chapitres: readonly IdChapitre[] }[];
+
+/**
+ * Les références du bandeau « Ils travaillent avec nous » (chapitre 04, sous
+ * les trois cas). Décision de Landry du 18/09/2026 : exception à l'interdit 12
+ * de CLAUDE.md, limitée aux logos des clients et partenaires qui ont donné
+ * leur accord écrit pour cet affichage, tous en une seule couleur (crème de
+ * la charte, fichiers dans public/references/). Pour en ajouter un : le
+ * fichier PNG (crème sur fond transparent, 240 px de haut) et une ligne ici,
+ * JAMAIS sans l'accord de l'entreprise concernée.
+ */
+export const references = [
+  { nom: "FC Rocquancourt", fichier: "/references/fc-rocquancourt.png", largeur: 240, hauteur: 240 },
+  { nom: "The Football Market", fichier: "/references/the-football-market.png", largeur: 226, hauteur: 240 },
+  { nom: "All Parisian Games", fichier: "/references/all-parisian-games.png", largeur: 187, hauteur: 240 },
+  { nom: "Panagon", fichier: "/references/panagon.png", largeur: 184, hauteur: 240 },
+  { nom: "Doki Doki", fichier: "/references/doki-doki.png", largeur: 334, hauteur: 240 },
+  { nom: "Carré Croix", fichier: "/references/carre-croix.png", largeur: 158, hauteur: 240 },
+] as const;

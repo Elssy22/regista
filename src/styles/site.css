@@ -260,6 +260,53 @@ main.rg-focusable:focus-visible {
   text-align: center;
 }
 
+/* --- Références « Ils travaillent avec nous » (chapitre 04) --------------- */
+/* Exception à l'interdit 12 décidée par Landry le 18/09/2026 (voir
+   CLAUDE.md) : logos des clients et partenaires qui ont donné leur accord,
+   en une seule couleur (fichiers crème de public/references/), centrés sous
+   la citation. Hauteur commune, largeur libre : chaque logo garde ses
+   proportions. Aucune animation. */
+.references {
+  margin-top: var(--e-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--e-5);
+}
+
+/* Grille plutôt que retour à la ligne libre : jamais de logo orphelin sur une
+   rangée. Trois par rangée sur téléphone ; à partir de 768 px, tous sur une
+   ligne (--nb-references, posé dans page.tsx), avec un écart fluide pour
+   tenir dès la tablette. */
+.references__liste {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  gap: var(--e-6) var(--e-7);
+}
+
+.references__logo {
+  display: block;
+  width: auto;
+  height: 44px;
+}
+
+@media (min-width: 768px) {
+  .references__liste {
+    grid-template-columns: repeat(var(--nb-references, 6), auto);
+    column-gap: clamp(24px, 4vw, 64px);
+  }
+
+  .references__logo {
+    height: 60px;
+  }
+}
+
 /* Seul le résultat du client (cas 1 du bloc de preuve) porte l'or — jamais
    Regista elle-même (voir Brief_design_site.md, section 1, « la règle de
    l'or ») — porté par .cas-principal__chiffres ci-dessus, sur fond bleu
@@ -1023,6 +1070,49 @@ main.rg-focusable:focus-visible {
      que son parent se cale sur son bord droit. */
   .bloc-zigzag--droite {
     margin-left: auto;
+  }
+}
+
+/* --- Portrait de Landry (chapitre 06, bloc « Pourquoi l'agence existe ») ---
+   Décision de Landry du 18/09/2026 : le seul visage du site, en couleurs
+   naturelles. Sur téléphone, entre le sous-titre et le texte (ordre du
+   HTML) ; à partir de 768 px, le bloc prend toute la largeur : texte à
+   gauche (même largeur qu'un bloc du zigzag), portrait calé à droite sur la
+   hauteur du texte. Aucun arrondi, aucune ombre (interdit 8). */
+.portrait {
+  margin: var(--e-5) 0 0;
+  width: min(70%, 320px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-3);
+}
+
+.portrait__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .bloc-portrait {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 62ch) minmax(0, clamp(180px, 30%, 340px));
+    grid-template-rows: auto auto 1fr;
+    justify-content: space-between;
+    column-gap: var(--e-8);
+    align-items: start;
+  }
+
+  .bloc-portrait > :not(.portrait) {
+    grid-column: 1;
+  }
+
+  .bloc-portrait > .portrait {
+    grid-column: 2;
+    grid-row: 1 / 4;
+    width: 100%;
+    margin-top: 0;
   }
 }
 
