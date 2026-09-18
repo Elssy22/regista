@@ -1,42 +1,69 @@
 import Link from 'next/link'
-import { Monogramme } from '@/components/design-system'
+import type { CSSProperties } from 'react'
 import { siteConfig } from '@/lib/site-config'
 
 /**
  * Les verrouillages du logo, tels que la charte les définit (section 3).
  *
- * Quatre versions existent. Le R seul est réservé à l'avatar, à la favicon,
- * au merch et aux signatures discrètes — PAS au site. La charte attribue
- * explicitement au site la version avec le nom et la ligne descriptive.
+ * Le R seul est réservé à l'avatar, à la favicon, au merch et aux signatures
+ * discrètes — pas au site. Le site porte le logotype horizontal, où le R
+ * stylisé EST la première lettre de REGISTA : il se lit « Regista », jamais
+ * « R Regista ».
  *
- * D'où les deux composants ci-dessous :
- * - `Marque` (R + REGISTA) dans l'en-tête, pour que le nom soit lu tout de suite ;
- * - `Signature` (R + REGISTA + ligne descriptive) en pied de page, qui ferme
- *   la page comme la charte ferme ses documents.
- *
- * Le bloc texte est repris mot pour mot de la charte : il ne se réécrit pas.
+ * Tracé repris de public/brand/regista-horizontal-currentcolor.svg, fourni
+ * par Landry. Il ne se redessine pas et ne se recompose pas dans une police :
+ * toute retouche repart du fichier source.
  */
+const LOGOTYPE =
+  'M0 0.8c0.5 0.5,15.1 6,32.4 12.2,63 22.6,86.1 31.1,131 48.5,41 15.8,64.7 25.4,100 40.3,157.3 66.4,246.5 122.9,284.5 180.2,27.4 41.2,30.6 77.4,12.1 138.2,-20.4 66.9,-73.7 151.5,-218.1 345.3,-17.3 23.2,-70 94.5,-80.6 109,-5.2 7.1,-14.6 20,-20.9 28.5,-6.2 8.5,-22 30.1,-34.9 47.9,-13 17.8,-25.2 34.5,-27.1 37.2,-1.9 2.6,-10.2 13.9,-18.4 25.1,-67.7 92,-107.4 148.8,-104.2 148.8,0.3 0,6.7 -5.1,14.2 -11.2,7.4 -6.2,16.6 -13.8,20.3 -16.8,7.8 -6.4,32.4 -27.2,33.1 -28,0.3 -0.3,7.9 -6.9,16.9 -14.5,12.8 -10.9,97.8 -85,145.1 -126.6,3.6 -3.1,11.9 -10.3,18.5 -16.1,35.5 -30.7,52.3 -45.6,112 -98.7,12.1 -10.8,27.6 -24.6,34.5 -30.6,6.9 -6.1,18.6 -16.4,26 -23,7.4 -6.7,20 -17.9,28 -25,228.4 -203.3,310.4 -288.2,349.3 -361.5,22.4 -42.2,30.6 -86.9,22.5 -121.7,-12.4 -52.9,-63.3 -92.2,-163.3 -126.3l-17 -5.8,25.5 -0.3c154.6 -1.7,262.5 3.4,322.4 15.2,62.5 12.3,107.1 48.6,103.2 83.9,-4.6 40.7,-40 88.5,-114.1 154.1,-33.9 30,-132.1 112.6,-164.5 138.4,-2.1 1.6,-10.7 8.6,-19.1 15.5,-8.5 6.8,-21 17,-27.9 22.5,-14.7 11.9,-44.2 35.8,-61.9 50.3,-13.2 10.8,-51.4 41.8,-63 51.2,-3.8 3,-10.2 8.2,-14.2 11.6,-4.1 3.3,-27.4 22.2,-51.9 42,-24.5 19.8,-51.1 41.4,-59.1 47.9,-28.9 23.7,-108.3 88.1,-115.8 94,-6.9 5.4,-27.4 22.2,-82.6 67.5,-10.4 8.6,-22.6 18.5,-27 22.1,-121.4 98.7,-143.3 118.5,-123.2 111.4,4.6 -1.6,36.6 -17.5,39.2 -19.5,0.6 -0.4,10 -5.7,21 -11.8,11 -6,23.4 -12.9,27.5 -15.2,4.1 -2.3,19 -10.5,33 -18.2,14 -7.7,32.3 -17.7,40.5 -22.3,8.3 -4.6,32.6 -18,54 -29.8,21.5 -11.8,60.4 -33.3,86.5 -47.9,26.1 -14.5,50.7 -28.2,54.5 -30.3,3.9 -2.1,10.4 -5.7,14.5 -8,4.1 -2.3,25.5 -14,47.5 -26,22 -11.9,44.7 -24.3,50.5 -27.5,5.8 -3.2,26.3 -14.2,45.5 -24.5,19.3 -10.3,42.2 -22.7,51 -27.5,47.5 -25.8,108.3 -56.6,109.4 -55.4,0.5 0.5,2.5 5.6,4.4 11.4,22.7 66.5,56.4 138,91.6 194,18.4 29.3,31.8 48.2,49.7 69.5,12.3 14.7,13.6 15.8,17.1 15.1,1.5 -0.3,9.6 -1.3,17.8 -2.1,14.5 -1.4,41.4 -4.5,75 -8.5,8.8 -1.1,24.3 -2.9,34.5 -4,10.2 -1.1,19.4 -2.2,20.5 -2.4,1.1 -0.3,6.7 -1,12.5 -1.6,29.8 -3.1,82.1 -9.5,118 -14.5,11.1 -1.5,23.2 -2.9,60.5 -7.1,12.7 -1.4,23.1 -2.7,23.3 -2.9,0.2 -0.1,-3.9 -2.4,-9 -5,-93.3 -47.7,-176.9 -144.8,-233.3 -271,-5 -11.2,-20.5 -47.6,-20.5 -48.1,0 -0.4,-2 -5.2,-4.4 -10.8,-4.3 -9.8,-14.7 -38.3,-16 -43.8,-0.6 -2.5,0.3 -3.3,12.2 -11.9,13.7 -9.9,16.3 -11.9,34.7 -25.4,179.4 -132.3,250.6 -230.2,250.9 -345,0.4 -106,-70.4 -166.5,-225.8 -193,-38.7 -6.5,-81.9 -9.8,-151.1 -11.5,-53.4 -1.2,-1061.4 -1.4,-1059.9 -0.2z M1679 988V54.4H2576.1V234.7H1905.2V424.4H2498.3V602.2H1905.2V807.7H2586.3V988Z M3310.4 1004.3Q3045.1 1004.3 2909.9 885.3Q2774.6 766.3 2774.6 521.6Q2774.6 361.1 2843 253.5Q2911.4 145.9 3041 92Q3170.6 38.1 3351.9 38.1Q3465.9 38.1 3562.4 59.3Q3658.8 80.5 3730.5 123.3Q3802.1 166.1 3841.5 231Q3880.9 296 3880.9 383.7H3659.2Q3659.2 340 3634.9 308.2Q3610.7 276.3 3568.7 256.5Q3526.7 236.7 3473.3 227.4Q3419.9 218.1 3360.8 218.1Q3280 218.1 3214.4 235.3Q3148.8 252.5 3102.3 288.1Q3055.8 323.7 3031.2 377.4Q3006.5 431.1 3006.5 503.4V538.5Q3006.5 639 3045.8 702Q3085.1 765 3159.8 794.6Q3234.4 824.3 3339.5 824.3Q3442.8 824.3 3514.1 803.1Q3585.5 782 3622.8 741.6Q3660.1 701.2 3660.1 645.7V636.3H3324.7V470.9H3881.9V988H3743L3721 874.7Q3672.6 919.5 3609.8 948.3Q3547 977 3471.9 990.7Q3396.8 1004.3 3310.4 1004.3Z M4137.5 988V54.4H4363.4V988Z M5071 1004.3Q4969.5 1004.3 4880.5 990.2Q4791.5 976.1 4724.3 941.9Q4657.2 907.7 4619.3 848.8Q4581.4 789.9 4581.4 700.6Q4581.4 696.7 4581.6 691.6Q4581.7 686.5 4582.8 682.9H4805.2Q4804.1 687.7 4803.6 694.6Q4803.1 701.5 4803.1 708.9Q4803.1 751.4 4834.8 778Q4866.6 804.7 4925.3 816.9Q4984.1 829.2 5062.7 829.2Q5099.7 829.2 5135.4 825.9Q5171.1 822.6 5202.4 815.8Q5233.8 809 5258 797.5Q5282.2 786 5295.9 769.3Q5309.6 752.6 5309.6 730.5Q5309.6 696.6 5280.1 676Q5250.6 655.4 5200.2 642.1Q5149.9 628.7 5087.1 618.6Q5024.3 608.5 4957.2 596.2Q4890.1 583.9 4827.2 563.9Q4764.4 543.8 4714.1 512.4Q4663.8 481 4634.3 431.8Q4604.7 382.7 4604.7 312Q4604.7 243.2 4637.2 191.8Q4669.7 140.3 4730.4 106.1Q4791.1 71.9 4875.6 55Q4960.2 38.1 5064 38.1Q5168 38.1 5250.5 55.7Q5333 73.3 5390.9 108Q5448.7 142.7 5479 193.7Q5509.3 244.7 5509.4 311.6V330.9H5289.7V316.8Q5289.7 285.6 5262.6 262Q5235.5 238.4 5186.9 224.6Q5138.4 210.9 5073.4 210.9Q4992.2 210.9 4939.7 222.1Q4887.2 233.2 4861.9 253.1Q4836.7 273 4836.7 298.3Q4836.7 328.7 4866.2 347.6Q4895.8 366.5 4946.1 378.4Q4996.4 390.4 5059.2 400.3Q5122 410.3 5189.1 422.9Q5256.2 435.5 5319.1 454.8Q5381.9 474 5432.2 505.6Q5482.5 537.3 5512.1 584.9Q5541.6 632.5 5541.6 701.5Q5541.6 810.8 5481.4 877.6Q5421.2 944.4 5315.1 974.4Q5208.9 1004.3 5071 1004.3Z M6048.6 988V245.1H5669V54.4H6654.3V245.1H6274.5V988Z M6739.8 988 7174.4 54.4H7434L7868.8 988H7623.3L7546 815.3H7049.2L6972.1 988ZM7127.1 639.2H7467.8L7373.1 421.4Q7367.1 407.3 7356.7 382Q7346.3 356.6 7335.6 328.7Q7324.8 300.8 7315.7 277.3Q7306.6 253.9 7303 244.5H7293.2Q7282.9 270.9 7269.3 305.1Q7255.7 339.4 7243.2 371.1Q7230.6 402.8 7221.8 422.2Z'
 
-export type MarqueProps = {
-  /** Hauteur du monogramme en px. 24 dans l'en-tête. */
+const RATIO = 7868.8 / 1162
+
+export type LogotypeProps = {
+  /** Hauteur en px. La largeur en découle. */
   hauteur?: number
+  /** Texte alternatif ; vide si un texte voisin nomme déjà l'agence. */
+  titre?: string
   className?: string
+  style?: CSSProperties
 }
 
-export function Marque({ hauteur = 24, className }: MarqueProps) {
+/** Le logotype horizontal. Hérite de currentColor. */
+export function Logotype({ hauteur = 20, titre = 'Regista', className, style }: LogotypeProps) {
+  return (
+    <svg
+      viewBox="0 0 7868.8 1162"
+      width={Math.round(RATIO * hauteur)}
+      height={hauteur}
+      role={titre ? 'img' : undefined}
+      aria-label={titre || undefined}
+      aria-hidden={titre ? undefined : true}
+      className={className}
+      style={{ display: 'block', overflow: 'visible', ...style }}
+    >
+      {titre ? <title>{titre}</title> : null}
+      <path d={LOGOTYPE} fill="currentColor" />
+    </svg>
+  )
+}
+
+/** En-tête : le logotype seul, lu avant tout le reste. */
+export function Marque({ hauteur = 20, className }: { hauteur?: number; className?: string }) {
   return (
     <span className={'rg-marque' + (className ? ' ' + className : '')}>
-      <Monogramme hauteur={hauteur} titre="" />
-      <span className="rg-marque__nom">Regista</span>
+      <Logotype hauteur={hauteur} />
     </span>
   )
 }
 
+/**
+ * Pied de page : le logotype et la ligne descriptive officielle, centrés.
+ * Le bloc texte est repris mot pour mot de la charte.
+ */
 export function Signature() {
   return (
     <div className="rg-signature">
-      <Monogramme hauteur={40} titre="" />
-      <p className="rg-signature__nom">Regista</p>
+      <Logotype hauteur={32} />
       <p className="rg-signature__ligne">
         Agence football — Communication · Financement · Tech
       </p>
@@ -50,8 +77,7 @@ export function Signature() {
  * Obligation, pas option : les mentions légales doivent être « facilement et
  * directement accessibles » (loi pour la confiance dans l'économie
  * numérique, article 6-III), et la politique de confidentialité aussi
- * (RGPD, articles 12 et 13). L'ancien pied de page les portait ; il a été
- * remplacé par la refonte, et ces liens avaient disparu avec lui.
+ * (RGPD, articles 12 et 13).
  */
 export function LiensLegaux() {
   const { mentionsLegalesUrl, politiqueConfidentialiteUrl } = siteConfig.legal

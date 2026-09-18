@@ -15,12 +15,16 @@ logo, de la palette ou de l'échelle typographique oblige à reprendre
 l'ensemble des supports déjà produits (plaquette, présentation, carte de
 visite, gabarits LinkedIn) — ce n'est jamais une décision de composant.
 
-État au 18/09/2026 : le **squelette** de la refonte est posé (structure des
-dossiers, styles, polices, cinq routes vides). **Le contenu, la mise en page
-et le mouvement des pages restent à construire** par le développeur
-front-end, à partir de `CONTENU/UX_site.md` et `CONTENU/Brief_design_site.md`
-(dossier `PROJETS CC/REGISTA/CONTENU/`, hors de ce dépôt). Le détail du
-portage est dans `PROJETS CC/REGISTA/CONTENU/Architecture_site.md`.
+État au 18/09/2026 : **la refonte est construite**. Les cinq pages portent
+leur contenu réel, le mouvement de la charte est implémenté, les pages
+légales sont à la charte et exactes, et l'ancien habillage vert a été
+supprimé. Le site vit sur la branche `refonte-2026`, en prévisualisation
+Vercel, indexation bloquée. Il n'est pas en production.
+
+Les spécifications et les textes de référence sont dans
+`PROJETS CC/REGISTA/CONTENU/`, hors de ce dépôt : `UX_site.md`,
+`Brief_design_site.md`, et les fichiers `Regista_*.md`, qui font foi pour
+tout texte affiché.
 
 ---
 
@@ -44,8 +48,12 @@ plutôt qu'exécuter.
    Newsreader italique) — un mot ou une phrase, jamais en texte courant.
 5. **Aucun prix, aucune fourchette, aucun taux, nulle part** sur le site.
 6. **Ne jamais citer d'ancien employeur, d'ancien média ni de personnalité.**
-7. **Ne pas redessiner le logo.** Les SVG de `public/brand/` sont la seule
-   source ; `Monogramme` inline le tracé exact.
+7. **Ne pas redessiner le logo, ni le recomposer dans une police.** Les SVG
+   de `public/brand/` sont la seule source. `Monogramme` inline le R seul,
+   `Logotype` (dans `components/site/Marque.tsx`) inline le logotype
+   horizontal, où le R stylisé EST l'initiale de REGISTA. La charte réserve
+   le R seul à l'avatar, à la favicon et aux signatures discrètes (comme le
+   pied de page système) : partout ailleurs sur le site, c'est le logotype.
 8. **Ne pas arrondir** (`--r-autre: 0`, seul le badge prend 2 px). Aucune
    ombre portée.
 9. **Ne pas introduire de police.** Archivo et Newsreader, rien d'autre —
@@ -70,11 +78,13 @@ pages `/`, `/offres`, `/methode`, `/a-propos`, `/contact`.
 ```
 src/
   app/                      routes Next.js (App Router)
-    page.tsx                Accueil — squelette, à construire
-    offres/page.tsx          idem
-    methode/page.tsx         idem
-    a-propos/page.tsx        idem
-    contact/page.tsx         idem
+    page.tsx                Accueil
+    methode/page.tsx         Méthode
+    offres/page.tsx          Offres — une page, trois pôles
+    a-propos/page.tsx        À propos
+    contact/page.tsx         Contact — mail et téléphone, sans formulaire
+    og/page.tsx              gabarit de l'image de partage, non indexé
+                             (voir CONTENU/Image_de_partage.md)
     mentions-legales/        page légale COMPLÈTE — ne pas toucher au texte
     politique-confidentialite/  idem
     layout.tsx               polices, métadonnées, imports globaux de styles
@@ -99,43 +109,29 @@ src/
     calendly/CalendlyInline.tsx  widget Calendly, chargé SEULEMENT après clic
                                (RGPD) — conserver ce comportement quoi qu'il
                                arrive, même si non utilisé pour l'instant
-  _ancien/                    ANCIEN habillage visuel (vert), archivé hors du
-                               routage : Header, Footer, les six sections
-                               (Hero, ConférenceDePresse, GestesTechniques,
-                               DerniersMatchs, NotreRegista, PrendreRDV), la
-                               page /football. Ne rien y construire ; sert
-                               juste à repêcher un texte si besoin. Le Footer
-                               y est encore importé par LegalLayout.tsx (les
-                               pages légales n'ont pas encore la nouvelle
-                               charte) — ne pas le supprimer avant d'avoir
-                               refait ces pages.
+
   lib/
     site-config.ts             coordonnées, routes de nav, Calendly — ne rien
                                recopier en dur ailleurs
     fonts.ts                   Archivo + Newsreader via next/font/local
 public/
-  brand/                       les 5 SVG du logo + la signature PNG (nouvelle
+  brand/                       les SVG du logo — R seul (5) et logotype
+                               horizontal (4) — + la signature PNG (nouvelle
                                charte)
 ```
 
-## Deux systèmes de styles cohabitent, temporairement
+## Les styles
 
-- `src/app/globals.css` porte encore l'**ancienne** charte (variables
-  `--vert-nocturne`, `--or-laiton`…) : uniquement pour que le Footer archivé
-  et les pages légales continuent de s'afficher à l'identique. **Ne pas y
-  toucher** sans vérifier l'impact sur `src/_ancien/components/layout/Footer.tsx`
-  et `src/components/legal/LegalLayout.tsx`.
-- `src/styles/tokens.css` et `src/styles/components.css` portent la
-  **nouvelle** charte, importés globalement dans `src/app/layout.tsx`. Tout
-  code neuf (les cinq pages) s'appuie dessus, jamais sur `globals.css`.
-- Les deux cohabitent sans collision de sélecteurs (vérifié) : `globals.css`
-  ne définit que des éléments bruts (`body`, `a`, `h1`…) et ses propres
-  variables ; `tokens.css`/`components.css` ne touchent qu'à des classes
-  `.rg-*` et leurs propres variables.
-- `<body>` porte la classe `rg-racine` (fond, texte, police de la nouvelle
-  charte). Une fois `_ancien/` supprimé et les pages légales reprises, ce
-  fichier `globals.css` peut être nettoyé et les polices Anton/Work Sans
-  retirées de `layout.tsx`.
+- `src/styles/tokens.css` et `src/styles/components.css` portent la charte
+  v1.0 — générés depuis le design system, à ne pas éditer à la main.
+- `src/styles/site.css` compose les pages. L'échelle typographique de la
+  charte y est déclarée une fois, en variables (`--taille-*`) : aucune taille
+  ne s'écrit en dur. Règle, reprise du prototype de référence : l'échelle
+  fait foi en grand écran, un titre peut descendre d'un cran en mobile.
+- `src/app/globals.css` ne sert plus qu'à son reset (box-sizing, marges).
+  Ses variables de couleur appartiennent à l'ancienne charte et ne sont plus
+  utilisées par aucune page.
+
 
 ## En cas de doute
 

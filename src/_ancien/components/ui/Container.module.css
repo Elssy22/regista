@@ -1,6 +1,0 @@
-.container {
-  width: 100%;
-  max-width: var(--largeur-max-contenu);
-  margin: 0 auto;
-  padding: 0 var(--gouttiere-contenu);
-}
