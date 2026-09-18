@@ -73,7 +73,7 @@ export default function AccueilPage() {
             trajectoire={false}
           />
           <CarteProfil
-            etiquette="Encaisser"
+            etiquette="Tenir le choc"
             titre="Un événement tenu en deux jours"
             donnees={["Stratégie d'urgence, coordination des équipes, objectif d'affluence atteint."]}
             trajectoire={false}

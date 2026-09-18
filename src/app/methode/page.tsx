@@ -74,7 +74,7 @@ export default function MethodePage() {
           <Etiquette numero="03" texte="Méthode" />
         </div>
 
-        <h1 className="titre-page">Vous jouez. On encaisse.</h1>
+        <h1 className="titre-page">Vous jouez. On absorbe le reste.</h1>
 
         <p className="chapo">Regista fait sortir les structures du football de leur sphère.</p>
 
@@ -177,7 +177,7 @@ export default function MethodePage() {
           />
           <div className="rg-carte">
             <div className="rg-carte__bandeau">
-              <Etiquette texte="Encaisser" />
+              <Etiquette texte="Tenir le choc" />
             </div>
             <div className="rg-carte__corps">
               <p className="rg-carte__titre">Un événement tenu en deux jours</p>
