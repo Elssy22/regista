@@ -502,7 +502,12 @@ main.rg-focusable:focus-visible {
   text-transform: uppercase;
   color: var(--texte-secondaire);
   margin: 0;
-  max-width: 34ch;
+}
+
+/* Une ligne par partie de la signature ; la seconde ne passe à la ligne
+   que si l'écran est trop étroit pour elle (très petits téléphones). */
+.rg-signature__ligne > span {
+  display: block;
 }
 
 /* --- Page introuvable --------------------------------------------------- */
@@ -1048,8 +1053,8 @@ main.rg-focusable:focus-visible {
 
    .bloc-zigzag / .bloc-zigzag--droite sont posées à la main dans page.tsx,
    bloc par bloc (jamais de :nth-of-type ici : un bloc SANS sous-titre peut
-   s'intercaler, comme la carte « Postes » d'À propos, et fausserait un
-   comptage automatique). Largeur fluide (clamp), sans deuxième rupture : 58 %
+   s'intercaler, comme le portrait ou un paragraphe d'introduction, et
+   fausserait un comptage automatique). Largeur fluide (clamp), sans deuxième rupture : 58 %
    de la colonne, plafonnée à 62ch (même longueur de ligne que .paragraphe),
    plancher à 40ch pour rester lisible à 768px.
 

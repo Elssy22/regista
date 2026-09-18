@@ -64,8 +64,11 @@ export function Signature() {
   return (
     <div className="rg-signature">
       <Logotype hauteur={32} />
+      {/* Deux lignes (demande de Landry du 18/09/2026) : le retour à la
+          ligne remplace le tiret qui séparait les deux parties. */}
       <p className="rg-signature__ligne">
-        Agence football — Communication · Financement · Tech
+        <span>Agence football</span>
+        <span>Communication · Financement · Tech</span>
       </p>
     </div>
   )

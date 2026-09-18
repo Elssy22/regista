@@ -571,14 +571,9 @@ export default function AccueilPage() {
             </p>
           </div>
 
-          <div className="section">
-            <CarteProfil
-              etiquette="Postes"
-              titre="Sur le terrain"
-              donnees={["Défenseur gauche", "Gardien", "Milieu relayeur"]}
-              trajectoire={false}
-            />
-          </div>
+          {/* La carte « Postes — Sur le terrain » a été retirée à la demande
+              de Landry (18/09/2026) ; les postes restent cités dans le texte
+              de « Pourquoi l'agence existe ». */}
         </div>
       </section>
 
