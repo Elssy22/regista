@@ -51,11 +51,15 @@ export default function LegalLayout({
         {children}
       </main>
 
-      <div className={styles.pied}>
+      {/* <footer> et non <div> depuis le 25/09/2026, comme sur la page
+          unique (critique Impeccable) : sans ce repère « contentinfo », un
+          lecteur d'écran ne peut pas sauter au pied de page. Le texte
+          encadré et le rendu ne changent pas. */}
+      <footer className={styles.pied}>
         <Signature />
         <LiensLegaux />
         <PiedDePage section={title} page="—" />
-      </div>
+      </footer>
     </div>
   );
 }

@@ -102,6 +102,15 @@ main.rg-focusable:focus-visible {
   font-weight: 600;
 }
 
+/* La liste des occasions à couvrir, en tête du constat (chapitre 03). Elle
+   était composée en <Etiquette> alors qu'elle porte du contenu : repassée en
+   casse normale le 25/09/2026 (critique Impeccable). Couleur secondaire
+   (5,99:1 sur crème, conforme AA) : elle énumère, elle n'affirme pas. */
+.liste-occasions {
+  margin-top: var(--e-4);
+  color: var(--texte-secondaire);
+}
+
 /* Constat du chapitre 03 : « La matière ne manque pas. Le temps, si. » en
    gras et en grande taille (CONTENU/Plan_one_page.md, section 2). Taille
    Titre 2, comme les h2 de chapitre. */
@@ -290,10 +299,16 @@ main.rg-focusable:focus-visible {
   gap: var(--e-6) var(--e-7);
 }
 
+/* Compensation optique (critique Impeccable du 25/09/2026) : à hauteur
+   strictement égale, un logo à traits fins ou de forme ronde paraît plus
+   petit qu'un aplat plein, et la rangée semble mal réglée. --echelle-logo
+   est mesurée par logo dans site-config.ts (part d'encre opaque, plus le
+   bonus classique des marques rondes) et bornée à ±12 % : on corrige ce que
+   l'œil voit, on ne redessine rien. */
 .references__logo {
   display: block;
   width: auto;
-  height: 56px;
+  height: calc(56px * var(--echelle-logo, 1));
 }
 
 @media (min-width: 768px) {
@@ -303,7 +318,7 @@ main.rg-focusable:focus-visible {
   }
 
   .references__logo {
-    height: 76px;
+    height: calc(76px * var(--echelle-logo, 1));
   }
 }
 
@@ -361,14 +376,39 @@ main.rg-focusable:focus-visible {
   gap: var(--e-5);
 }
 
-.coordonnees__lien {
+/* Le second chemin de contact, sous le bouton (critique Impeccable du
+   25/09/2026, P0) : la phrase reste du texte courant discret, l'adresse
+   elle-même remonte d'un cran et se sélectionne d'un seul clic — elle doit
+   pouvoir être recopiée ou transférée à un collègue sans passer par un
+   client mail. */
+/* La promesse tenue sous le bouton : même corps que le texte courant, en
+   gras, pour qu'elle se lise avant le repli par l'adresse. */
+.coordonnees__reponse {
+  margin: calc(-1 * var(--e-1)) 0 0;
+  font-size: var(--taille-texte);
+  line-height: 1.55;
+  font-weight: 600;
+}
+
+.coordonnees__adresse {
+  margin: 0;
+  font-size: var(--taille-petit);
+  line-height: 1.55;
+  color: var(--texte-secondaire);
+}
+
+.coordonnees__valeur {
+  display: inline-block;
   font-family: var(--font-titre);
-  font-size: var(--taille-mobile-h2);
+  font-size: var(--taille-h3);
   line-height: 1.2;
   font-weight: 700;
   font-variation-settings: "wdth" 112;
-  /* Le numéro et l'adresse mail ne doivent jamais forcer un débordement
-     horizontal (CONTENU/Plan_one_page.md, section 2, chapitre 07). */
+  color: var(--texte);
+  /* Un clic suffit à sélectionner l'adresse entière. */
+  user-select: all;
+  /* L'adresse mail ne doit jamais forcer un débordement horizontal
+     (CONTENU/Plan_one_page.md, section 2, chapitre 07). */
   overflow-wrap: anywhere;
 }
 
@@ -422,9 +462,14 @@ main.rg-focusable:focus-visible {
     max-width: 14ch;
   }
 
-  .titre-bloc {
-    font-size: var(--taille-h2);
-  }
+  /* Critique Impeccable du 25/09/2026, problème P1 (accord de Landry le même
+     jour) : .titre-bloc montait ici à --taille-h2, EXACTEMENT la taille de
+     .titre-chapitre — 17 des 22 titres de la page faisaient alors 32 px, et
+     le chapitre 05 alignait sept titres de taille identique. Un lecteur
+     pressé balaie les gros caractères pour se repérer : si tout est gros,
+     rien ne ressort. Les sous-titres restent donc à --taille-h3 (20 px, la
+     valeur du mobile) à toutes les largeurs ; seuls les titres de chapitre
+     portent --taille-h2. Ne pas rétablir cette règle. */
 
   .grille {
     display: grid;
@@ -522,11 +567,15 @@ main.rg-focusable:focus-visible {
 
 /* --- Liens légaux -------------------------------------------------------- */
 
+/* Sur téléphone, les deux liens tiennent rarement sur une ligne : en
+   `flex-wrap`, le séparateur « · » restait orphelin en fin de première ligne
+   (critique Impeccable du 25/09/2026). Ils se rangent donc en colonne sous
+   768 px, séparateur masqué, et reprennent la ligne au-dessus. */
 .rg-liens-legaux {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--e-2) var(--e-3);
+  flex-direction: column;
+  align-items: center;
+  gap: var(--e-2);
   padding-bottom: var(--e-6);
   font-family: var(--font-texte);
   font-size: var(--taille-etiquette);
@@ -536,17 +585,96 @@ main.rg-focusable:focus-visible {
   color: var(--texte-secondaire);
 }
 
+.rg-liens-legaux > span {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .rg-liens-legaux {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--e-2) var(--e-3);
+  }
+
+  .rg-liens-legaux > span {
+    display: inline;
+  }
+}
+
 .rg-liens-legaux a {
   color: var(--texte-secondaire);
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  padding-bottom: 2px;
+  /* Confort tactile (critique Impeccable du 25/09/2026) : ces deux liens
+     faisaient 17 px de haut. Le creux se prend au-dessus du texte pour que
+     le filet de survol reste collé au mot. */
+  padding-top: var(--e-5);
+  padding-bottom: var(--e-2);
 }
 
 .rg-liens-legaux a:hover,
 .rg-liens-legaux a:focus-visible {
   color: var(--texte);
   border-bottom-color: var(--accent);
+}
+
+/* Ces deux liens étaient les seuls de la page à afficher l'anneau de focus
+   par défaut de Chrome (bleu vif) au lieu de celui de la charte : ils ne
+   posaient qu'une couleur et un filet, jamais d'`outline` (mesuré le
+   25/09/2026 sur les 11 arrêts du parcours clavier). */
+.rg-liens-legaux a:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Confort tactile et survol — retouches aux classes du design system
+   (critique Impeccable du 25/09/2026, accord de Landry le même jour).
+
+   components.css est GÉNÉRÉ et ne s'édite pas à la main : ces trois règles
+   corrigent donc ici ce qui a été mesuré en direct sur la page, et doivent
+   être REPORTÉES dans le design system source (regista-site/) à la
+   prochaine génération, faute de quoi elles seront perdues.
+
+   Mesures du 25/09/2026 en 390 × 844 : TOUTES les cibles cliquables de la
+   page faisaient moins de 44 px de haut — bouton 40,4 px, logotype 20 px,
+   entrées du menu ~20 px. 24 × 24 px est le minimum WCAG 2.2 AA (tenu),
+   44 × 44 px le seuil de confort au pouce (manqué partout). Aucune taille
+   de texte ne change : seul l'espacement vertical monte d'un cran, et les
+   éléments de l'en-tête compensent ce creux par une marge négative pour
+   que la barre garde exactement sa hauteur.
+   ========================================================================== */
+
+.rg-bouton {
+  /* 14,4 px de texte + 2 × 16 px + 2 px de filet = 48 px. */
+  padding-block: var(--e-4);
+}
+
+/* Le survol du bouton principal ne changeait qu'un filet BAS en or, posé
+   sur un aplat bleu nuit : quasiment invisible (critique du 25/09/2026).
+   Le filet fait désormais le tour. Aucune couleur nouvelle — c'est l'or de
+   la charte, déjà utilisé par l'état « actif ». */
+.rg-bouton:hover {
+  border-color: var(--accent);
+}
+
+.rg-nav__marque,
+.rg-nav__lien {
+  padding-top: var(--e-3);
+  padding-bottom: var(--e-3);
+  margin-top: calc(-1 * var(--e-3));
+  margin-bottom: calc(-1 * var(--e-3));
+}
+
+/* .rg-nav__lien porte son soulignement d'état courant en `border-bottom` :
+   son creux bas reste celui du design system (--e-1) pour que le filet
+   demeure collé au mot ; seul le haut s'ouvre. Il reste donc à ~31 px, au
+   dessus du minimum AA de 24 px : c'est un menu de grand écran, pointé à la
+   souris, jamais au pouce. */
+.rg-nav__lien {
+  padding-bottom: var(--e-1);
+  margin-bottom: 0;
 }
 
 /* ==========================================================================
@@ -581,7 +709,8 @@ main.rg-focusable:focus-visible {
   top: var(--e-2);
   left: var(--e-2);
   z-index: 40;
-  padding: var(--e-2) var(--e-4);
+  /* Confort tactile (critique Impeccable du 25/09/2026) : 33 px de haut. */
+  padding: var(--e-4);
   background: var(--fond);
   color: var(--texte);
   border: var(--trait-1) solid var(--texte);
@@ -649,7 +778,11 @@ main.rg-focusable:focus-visible {
   border: var(--trait-1) solid var(--texte);
   background: transparent;
   color: var(--texte);
-  padding: var(--e-1) var(--e-3);
+  /* Confort tactile (critique Impeccable du 25/09/2026) : 24 px de haut,
+     c'est le minimum WCAG 2.2 AA tenu de justesse, très loin des 44 px
+     confortables au pouce — et c'est le seul bouton de navigation du
+     téléphone. Le creux vertical passe de --e-1 à --e-4 (48 px). */
+  padding: var(--e-4) var(--e-3);
   font-family: var(--font-texte);
   font-size: var(--taille-petit);
   font-weight: 600;
@@ -676,7 +809,9 @@ main.rg-focusable:focus-visible {
   }
 
   .rg-entete__bouton-sommaire {
-    padding: var(--e-1) var(--e-2);
+    /* Seule la largeur se resserre sous 400 px : la hauteur cliquable reste
+       celle de la règle de base (critique Impeccable du 25/09/2026). */
+    padding: var(--e-4) var(--e-2);
     font-size: var(--taille-etiquette);
   }
 }
@@ -697,12 +832,18 @@ main.rg-focusable:focus-visible {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--e-4);
+  /* L'écart entre deux entrées passe dans la hauteur cliquable de chaque
+     lien (voir ci-dessous) : la liste ne s'allonge donc presque pas, mais
+     chaque cible devient réellement atteignable au pouce. */
+  gap: var(--e-1);
 }
 
+/* Confort tactile (critique Impeccable du 25/09/2026) : ces sept liens — le
+   SEUL accès à la navigation sur téléphone — faisaient 19 px de haut. */
 .rg-sommaire__liste a {
   display: flex;
   gap: var(--e-3);
+  padding-block: var(--e-3);
   color: var(--texte);
   font-family: var(--font-texte);
   font-size: var(--taille-texte);
@@ -755,6 +896,20 @@ main.rg-focusable:focus-visible {
 @media (min-width: 768px) {
   .marge-passe {
     padding-left: var(--e-8);
+  }
+
+  /* Les chapitres 06 et 07 n'ont plus ni point ni tronçon (Plan_one_page.md,
+     section 3) : leur marge gauche ne réserve donc rien, et le creux à
+     gauche (64 px) contre 16 px à droite décalait leurs intitulés
+     « centrés » de 24 px vers la droite — visible surtout au chapitre 07,
+     entièrement centré (critique Impeccable du 25/09/2026). On rend le
+     creux symétrique : le bord gauche du texte reste aligné sur les autres
+     chapitres, et ce qui est centré l'est vraiment. En mobile, le décalage
+     n'est que de 8 px et la largeur de texte compte davantage : rien ne
+     change. */
+  #a-propos .marge-passe,
+  #contact .marge-passe {
+    padding-right: var(--e-8);
   }
 }
 
@@ -979,6 +1134,17 @@ main.rg-focusable:focus-visible {
 #contact .coordonnees {
   align-items: center;
   text-align: center;
+  /* Le bouton et l'adresse forment un seul geste : ils se serrent (--e-3)
+     au lieu de garder l'écart de bloc à bloc (--e-5). */
+  gap: var(--e-3);
+}
+
+/* .actions porte sa propre respiration quand il suit un paragraphe (hero,
+   chapitre 04) ; ici il est le premier enfant de .coordonnees, qui gère
+   déjà l'écart au chapô. */
+#contact .coordonnees .actions {
+  margin-top: 0;
+  justify-content: center;
 }
 
 #contact .arrivee-passe {
@@ -994,10 +1160,17 @@ main.rg-focusable:focus-visible {
 }
 
 /* .rg-note est une colonne flex dont le texte est plafonné à 62ch : on
-   centre le bloc de texte lui-même, pas seulement ses lignes. */
+   centre le bloc de texte lui-même, pas seulement ses lignes.
+   Critique Impeccable du 25/09/2026 : son filet or s'étirait sur toute la
+   largeur de la page (1 310 px) alors que la note tient sur deux lignes —
+   le dernier geste en or du site soulignait une phrase administrative.
+   `width: fit-content` ramène le filet à la largeur du texte. */
 #contact .rg-note {
   align-items: center;
   text-align: center;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
 }
 
 /* --- Liste des cinq étapes -------------------------------------------------- */
@@ -1041,15 +1214,26 @@ main.rg-focusable:focus-visible {
   color: var(--texte-secondaire);
 }
 
-/* --- Blocs titrés en zigzag (chapitres 03, 05, 06) --------------------------
+/* --- Blocs titrés, et décalage à droite (chapitres 03, 05, 06) --------------
    Décision de Landry du 18/09/2026 (CONTENU/Plan_one_page.md) : en grand
    écran, tous les blocs de texte tenaient dans une colonne calée à gauche, la
    moitié droite de l'écran restant vide. Corrigé en zigzag (et non en miroir,
    écarté par Landry : « on dirait que les titres sont des citations ») — le
    sous-titre (.titre-bloc) reste TOUJOURS au-dessus de son contenu, dans le
    même ordre de lecture qu'aujourd'hui ; seul le bloc ENTIER (sous-titre +
-   contenu) change de côté, un bloc sur deux, en repartant à gauche au premier
-   bloc titré de chaque chapitre.
+   contenu) change de côté.
+
+   REVU le 25/09/2026 (critique Impeccable, problème P1, accord de Landry) :
+   l'alternance systématique un bloc sur deux laissait 50 à 60 % de plusieurs
+   écrans vides, avec des vides verticaux de ~280 px entre blocs liés — les
+   éléments liés devenaient plus éloignés que les éléments sans rapport, et
+   le regard traversait 1 440 px sept fois dans le seul chapitre 05.
+   .bloc-zigzag--droite n'est donc plus posée QUE sur un bloc qui porte un
+   OBJET à regarder : le schéma du tournage groupé (03). Le portrait (06)
+   garde son décalage par .bloc-portrait. Tout le reste — les cinq étapes,
+   « Les règles du jeu », « Comment nous travaillons », « Notre principe » —
+   se lit en colonne unique à gauche. Ne pas rétablir l'alternance
+   automatique sur du texte seul.
 
    .bloc-zigzag / .bloc-zigzag--droite sont posées à la main dans page.tsx,
    bloc par bloc (jamais de :nth-of-type ici : un bloc SANS sous-titre peut
@@ -1096,6 +1280,11 @@ main.rg-focusable:focus-visible {
   display: block;
   width: 100%;
   height: auto;
+  /* Le fond de la photo est un gris-blanc froid, posé sans cadre sur le
+     crème chaud : sa limite haute et gauche se lisait comme un rectangle
+     plus froid, pas comme une image (critique Impeccable du 25/09/2026).
+     Un filet de la charte suffit à la poser — zéro arrondi, zéro ombre. */
+  border: var(--trait-1) solid var(--bordure);
 }
 
 @media (min-width: 768px) {

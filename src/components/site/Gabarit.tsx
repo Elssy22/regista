@@ -44,13 +44,18 @@ export function Gabarit({ section, page, indicateurChapitres = true, children }:
       <main id="contenu" className="rg-focusable rg-quadrillage" tabIndex={-1}>
         {children}
       </main>
-      <div className="enveloppe">
+      {/* <footer> et non <div> depuis le 25/09/2026 (critique Impeccable,
+          accord de Landry) : mesuré en direct, la page ne portait AUCUN
+          repère « contentinfo » — un lecteur d'écran ne pouvait donc pas
+          sauter directement au pied de page, alors que <main> et <header>
+          existaient bien. Le rendu ne change pas d'un pixel. */}
+      <footer className="enveloppe">
         <Signature />
         <LiensLegaux />
         <div className="pied">
           <PiedDePage section={section} page={page} />
         </div>
-      </div>
+      </footer>
     </div>
   )
 }

@@ -15,16 +15,26 @@ logo, de la palette ou de l'échelle typographique oblige à reprendre
 l'ensemble des supports déjà produits (plaquette, présentation, carte de
 visite, gabarits LinkedIn) — ce n'est jamais une décision de composant.
 
-État au 18/09/2026 : **le site est une page unique** (décision de Landry du
+État au 25/09/2026 : **le site est une page unique EN PRODUCTION** sur
+`https://www.regista-a.com` (décision de Landry du 18/09, mise en ligne le
 18/09). Tout le contenu (Accueil, Offres, Méthode, À propos, Contact) vit sur
 `/`, en sept chapitres numérotés `#accueil`, `#offres`, `#methode`,
 `#preuve`, `#deroule`, `#a-propos`, `#contact` ; les anciennes adresses
-`/methode`, `/offres`, `/a-propos`, `/contact` redirigent vers leur chapitre
-(`next.config.ts`, redirections temporaires jusqu'au lancement). Seules les
+`/methode`, `/offres`, `/a-propos`, `/contact` et `/football` redirigent
+**en permanent (308)** vers leur chapitre (`next.config.ts`). Seules les
 pages légales restent séparées. Le mouvement de la charte (« la passe »,
 voir plus bas) est implémenté, les pages légales sont à la charte et
-exactes, l'ancien habillage vert a été supprimé. Le site vit sur la branche
-`refonte-2026`, indexation bloquée. Il n'est pas en production.
+exactes, l'ancien habillage vert a été supprimé. Indexation **ouverte**
+(`robots.txt` en `Allow: /`, sitemap déclaré, carte de partage en place).
+
+La branche de production est `main` ; `refonte-2026` pointe sur le même
+commit. **Tout `push` sur `main` déploie en production** : jamais sans
+l'accord explicite de Landry.
+
+Une critique UX complète a été passée le 25/09/2026
+(`.impeccable/critique/`, note 25/40). Les corrections décidées ce jour-là
+sont signalées par le commentaire « critique Impeccable du 25/09/2026 » dans
+le code : ne pas les défaire sans savoir ce qu'elles corrigent.
 
 Les spécifications et les textes de référence sont dans
 `PROJETS CC/REGISTA/CONTENU/`, hors de ce dépôt. **`Plan_one_page.md` fait
@@ -74,15 +84,29 @@ et leur gabarit), quelle que soit la demande — signaler plutôt qu'exécuter.
 11. **Ne pas ajouter d'emoji**, dans le code comme dans les textes.
 12. **Ne pas utiliser d'image de mineur identifiable**, de joueur
     professionnel, de personnalité, de marque, d'équipementier ou d'écusson
-    de club. **Seule exception** (décision de Landry du 18/09/2026) : le
-    bandeau « Ils travaillent avec nous » du chapitre 04, qui montre les
-    logos des clients et partenaires ayant donné leur **accord écrit**, tous
-    en une seule couleur (crème, `public/references/`, liste dans
-    `references` de `site-config.ts`). Aucun logo sans accord, aucun logo en
-    couleurs d'origine, aucun autre emplacement. **Et** le portrait de
-    Landry (`public/equipe/landry-celina.jpg`, couleurs naturelles, logo
-    Rosyne du sweat gardé à sa demande), dans le bloc « Pourquoi l'agence
-    existe » du chapitre 06 uniquement — jamais en haut de page.
+    de club. **Trois exceptions, et pas une de plus :**
+    - le bandeau « Ils travaillent avec nous » du chapitre 04 (décision de
+      Landry du 18/09/2026), qui montre les logos des clients et partenaires
+      ayant donné leur **accord écrit**, tous en une seule couleur (crème,
+      `public/references/`, liste dans `references` de `site-config.ts`).
+      Aucun logo sans accord, aucun logo en couleurs d'origine, aucun autre
+      emplacement ;
+    - le portrait de Landry (`public/equipe/landry-celina.jpg`, couleurs
+      naturelles, logo Rosyne du sweat gardé à sa demande), dans le bloc
+      « Pourquoi l'agence existe » du chapitre 06 uniquement — jamais en
+      haut de page ;
+    - **les images de preuve du métier** (décision de Landry du 25/09/2026,
+      après la critique Impeccable : cinq chapitres sur sept ne montraient
+      aucune image alors que l'agence vend de la production vidéo et photo).
+      Sont autorisés : les **objets** produits ou couverts (maillot à plat,
+      double page de magazine, écran de montage, matériel de tournage) et
+      les **plans de tournage où aucun adulte n'est identifiable** (mains,
+      silhouettes, dos, de trois quarts arrière). Restent interdits, sans
+      exception : tout mineur, tout joueur professionnel, toute
+      personnalité, tout visage reconnaissable, toute marque, tout
+      équipementier, tout écusson de club. **Les droits à l'image doivent
+      être vérifiés avant publication** pour chaque plan où une personne
+      apparaît, même non identifiable.
 
 Les règles de mention (parcours, périmètre juridique « Regista n'est pas
 agent sportif », prix) et le ton (français à 100 %, vouvoiement, phrases
@@ -186,11 +210,30 @@ public/
   descendent à `--taille-h2` (sinon ils débordent, et une taille
   intermédiaire sortirait de l'échelle) ; sous 400 px, l'en-tête se resserre
   pour que « 0X / 07 » tienne sur une ligne. N'en ajouter aucune autre.
-- Disposition en **zigzag** (décision de Landry du 18/09) : à partir de
-  768 px, les blocs titrés (`.bloc-zigzag`, `.bloc-zigzag--droite`) des
-  chapitres 03, 05 et 06 alternent gauche puis droite, sous-titre toujours
-  au-dessus du texte ; l'alternance est écrite explicitement dans
-  `page.tsx` et repart à gauche à chaque chapitre.
+- Disposition en **zigzag** (décision de Landry du 18/09), **resserrée le
+  25/09/2026** après la critique Impeccable : l'alternance systématique
+  laissait 50 à 60 % de plusieurs écrans vides et éloignait les blocs liés
+  plus que les blocs sans rapport. `.bloc-zigzag--droite` ne se pose plus
+  que sur un bloc qui porte un **objet à regarder** — aujourd'hui le seul
+  schéma du tournage groupé (03) ; le portrait (06) garde son décalage par
+  `.bloc-portrait`. Tout le reste (les cinq étapes, « Les règles du jeu »,
+  « Comment nous travaillons », « Notre principe ») se lit en colonne unique
+  à gauche. `.bloc-zigzag` garde son rôle de largeur de colonne. Ne pas
+  rétablir l'alternance automatique sur du texte seul.
+- **Échelle des titres** (25/09/2026) : `.titre-bloc` (h3) reste à
+  `--taille-h3` à **toutes** les largeurs. Il montait à `--taille-h2` au-delà
+  de 768 px, exactement la taille de `.titre-chapitre` : 17 titres sur 22
+  faisaient alors 32 px et plus rien ne ressortait. Ne pas rétablir.
+- **Confort tactile** (25/09/2026) : toutes les cibles cliquables tenaient
+  sous 44 px de haut en mobile (de 17 à 40 px). Les creux verticaux ont été
+  ouverts d'un cran, sans toucher à une seule taille de texte. Trois de ces
+  règles corrigent des classes de `components.css`, qui est **généré** :
+  elles vivent dans le bloc « Confort tactile et survol » de `site.css` et
+  doivent être **reportées dans `regista-site/`** à la prochaine génération,
+  sinon elles seront perdues (`.rg-bouton` à 48 px, son survol en filet
+  complet, `.rg-nav__marque` / `.rg-nav__lien`).
+- Le pied de page est un `<footer>` (repère « contentinfo »), pas un `<div>` :
+  sans lui, aucun lecteur d'écran ne pouvait sauter au pied de page.
 - **Intitulés de chapitre centrés** (décision de Landry du 18/09), sur tous
   les écrans : étiquette, titre h2 (deux lignes au plus en grand écran,
   lignes équilibrées) et courte introduction ; le numéro « 0X / 07 » reste

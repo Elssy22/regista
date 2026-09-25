@@ -6,7 +6,6 @@ import {
   Bouton,
   CarteProfil,
   Etiquette,
-  Lien,
   MotifMaison,
   Note,
   Trajectoire,
@@ -228,8 +227,18 @@ export default function AccueilPage() {
               18/09/2026) : bloc 1 du chapitre, calé à gauche. */}
           <div className="section bloc-zigzag">
             <h3 className="titre-bloc">Le constat</h3>
-            <p className="paragraphe" style={{ marginTop: "var(--e-4)" }}>
-              <Etiquette texte="Compétitions · Finales · Remises de maillots · Soirées de tirage · Formations · Parcours de bénévoles" />
+            {/* Cette ligne est du CONTENU — la liste de ce que Regista sait
+                couvrir — et non l'intitulé d'une section. En <Etiquette>
+                (capitales de 12 px, interlettrage 0,18 em, interligne 1,20)
+                elle faisait 101 caractères sur trois lignes serrées en
+                mobile : le format qu'un dirigeant de district de 55 ans ne
+                lit pas (critique Impeccable du 25/09/2026, accord de Landry
+                le même jour). Elle repasse en casse normale, à la taille du
+                texte courant. Les points médians et l'ordre des mots ne
+                changent pas. */}
+            <p className="paragraphe liste-occasions">
+              Compétitions · Finales · Remises de maillots · Soirées de tirage · Formations ·
+              Parcours de bénévoles
             </p>
             <p className="paragraphe paragraphe--marquant">
               La matière ne manque pas. Le temps, si.
@@ -400,6 +409,7 @@ export default function AccueilPage() {
                     width={reference.largeur}
                     height={reference.hauteur}
                     className="references__logo"
+                    style={{ "--echelle-logo": reference.echelle } as CSSProperties}
                   />
                 </li>
               ))}
@@ -450,18 +460,15 @@ export default function AccueilPage() {
           </div>
 
           <ol className="etapes" role="list">
-            {/* Chaque étape compte comme un bloc titré et continue l'alternance
-                du chapitre : après le bloc 1 ci-dessus (gauche), l'étape
-                d'index pair (01, 03, 05) tombe sur un rang pair → droite ;
-                l'étape d'index impair (02, 04) tombe sur un rang impair →
-                gauche (site.css, .bloc-zigzag). */}
-            {ETAPES.map((etape, index) => (
-              <li
-                key={etape.numero}
-                className={
-                  "etapes__item bloc-zigzag" + (index % 2 === 0 ? " bloc-zigzag--droite" : "")
-                }
-              >
+            {/* Les cinq étapes SORTENT de l'alternance (critique Impeccable du
+                25/09/2026, problème P1, accord de Landry le même jour) : elles
+                alternaient gauche/droite, ce qui faisait traverser 1 440 px au
+                regard sept fois dans ce seul chapitre, avec des vides
+                verticaux de ~280 px entre des blocs pourtant liés — les
+                éléments liés se retrouvaient plus éloignés que les éléments
+                sans rapport. Une suite ordonnée se lit en colonne. */}
+            {ETAPES.map((etape) => (
+              <li key={etape.numero} className="etapes__item bloc-zigzag">
                 <span className="etapes__numero">Étape {etape.numero}</span>
                 <div>
                   <h3 className="titre-bloc">{etape.titre}</h3>
@@ -543,8 +550,13 @@ export default function AccueilPage() {
             </p>
           </div>
 
-          {/* Bloc 2 du chapitre : calé à droite (zigzag). */}
-          <div className="section bloc-zigzag bloc-zigzag--droite">
+          {/* Bloc 2 du chapitre : calé à gauche lui aussi depuis la critique
+              Impeccable du 25/09/2026 (P1, accord de Landry le même jour).
+              L'alternance ne reste que là où un bloc porte un OBJET à
+              regarder — le schéma du tournage groupé (03) et le portrait
+              ci-dessus : le décalage sert alors à poser l'objet, il ne
+              déplace plus du texte pour remplir du vide. */}
+          <div className="section bloc-zigzag">
             <h3 className="titre-bloc">Comment nous travaillons</h3>
             <p className="paragraphe" style={{ marginTop: "var(--e-4)" }}>
               Vous avez un interlocuteur unique, du premier appel à la livraison. Derrière lui, un
@@ -593,10 +605,30 @@ export default function AccueilPage() {
 
           {/* Le numéro de téléphone n'est plus affiché ici (demande de Landry
               du 18/09/2026) : le contact se fait par e-mail. Il reste dans
-              siteConfig pour les mentions légales, où la loi l'exige. */}
+              siteConfig pour les mentions légales, où la loi l'exige.
+
+              Critique Impeccable du 25/09/2026, problème P0 (accord de Landry
+              le même jour) : le bouton plein disparaissait à l'endroit exact
+              où il faut agir — le chapitre 07 n'offrait qu'un lien texte de
+              28 px de haut, et un « mailto: » échoue EN SILENCE sur un poste
+              sans client mail configuré (cas courant dans un district). Les
+              deux chemins coexistent donc désormais : le bouton pour ceux qui
+              ont un client mail, l'adresse en clair juste dessous pour les
+              autres — sélectionnable d'un seul clic (.coordonnees__adresse,
+              site.css). */}
           <div className="coordonnees">
-            <p className="coordonnees__lien">
-              <Lien texte={email} href={`mailto:${email}`} />
+            <div className="actions">
+              <Bouton texte="Écrire à Landry" href={`mailto:${email}`} />
+            </div>
+            {/* La réassurance au moment d'agir (critique Impeccable du
+                25/09/2026) : rien, sur la page, ne disait au visiteur ce qui
+                se passe après son mail. Délai donné par Landry le
+                25/09/2026 — à corriger ici, et nulle part ailleurs, s'il
+                change. */}
+            <p className="coordonnees__reponse">Réponse sous 24 heures.</p>
+            <p className="coordonnees__adresse">
+              Ou copiez l&rsquo;adresse&nbsp;:{" "}
+              <span className="coordonnees__valeur">{email}</span>
             </p>
           </div>
 

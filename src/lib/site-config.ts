@@ -113,11 +113,21 @@ export const navLinks = [
  * fichier PNG (crème sur fond transparent, 240 px de haut) et une ligne ici,
  * JAMAIS sans l'accord de l'entreprise concernée.
  */
+/**
+ * `echelle` : compensation optique du bandeau « Ils travaillent avec nous »
+ * (critique Impeccable du 25/09/2026, accord de Landry). À hauteur
+ * rigoureusement égale, un logo à traits fins paraît plus petit qu'un aplat
+ * plein, et une marque ronde plus petite qu'une marque rectangulaire : la
+ * rangée semblait mal réglée. Le facteur vient de la part de pixels opaques
+ * de chaque fichier (mesurée : 14,6 % pour The Football Market, 65,5 % pour
+ * Panagon), corrigée du bonus habituel des marques rondes, et borné à ±12 %
+ * pour que rien ne paraisse redessiné. Aucun fichier n'est modifié.
+ */
 export const references = [
-  { nom: "FC Rocquancourt", fichier: "/references/fc-rocquancourt.png", largeur: 240, hauteur: 240 },
-  { nom: "The Football Market", fichier: "/references/the-football-market.png", largeur: 226, hauteur: 240 },
-  { nom: "All Parisian Games", fichier: "/references/all-parisian-games.png", largeur: 187, hauteur: 240 },
-  { nom: "Panagon", fichier: "/references/panagon.png", largeur: 184, hauteur: 240 },
-  { nom: "Doki Doki", fichier: "/references/doki-doki.png", largeur: 334, hauteur: 240 },
-  { nom: "Carré Croix", fichier: "/references/carre-croix.png", largeur: 158, hauteur: 240 },
+  { nom: "FC Rocquancourt", fichier: "/references/fc-rocquancourt.png", largeur: 240, hauteur: 240, echelle: 0.95 },
+  { nom: "The Football Market", fichier: "/references/the-football-market.png", largeur: 226, hauteur: 240, echelle: 1.12 },
+  { nom: "All Parisian Games", fichier: "/references/all-parisian-games.png", largeur: 187, hauteur: 240, echelle: 1.12 },
+  { nom: "Panagon", fichier: "/references/panagon.png", largeur: 184, hauteur: 240, echelle: 0.88 },
+  { nom: "Doki Doki", fichier: "/references/doki-doki.png", largeur: 334, hauteur: 240, echelle: 0.9 },
+  { nom: "Carré Croix", fichier: "/references/carre-croix.png", largeur: 158, hauteur: 240, echelle: 1.12 },
 ] as const;
