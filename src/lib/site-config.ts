@@ -114,6 +114,27 @@ export const navLinks = [
  * JAMAIS sans l'accord de l'entreprise concernée.
  */
 /**
+ * Les photos du cas principal du chapitre 04 (décision de Landry du
+ * 25/09/2026, après la critique Impeccable : l'agence vendait de la
+ * production vidéo et photo sans montrer une seule image de son travail).
+ * Ce sont de VRAIES photos de la sortie de maillot du FC Rocquancourt,
+ * client ayant donné son accord écrit — jamais des images générées, qui
+ * seraient une fausse preuve. L'écusson du club, son sponsor et
+ * l'équipementier apparaissent tels qu'ils sont sur le vêtement réel
+ * (voir l'interdit n°12 de CLAUDE.md, quatrième exception).
+ */
+export const casImages = [
+  {
+    fichier: "/cas/maillot-rocquancourt.jpg",
+    alt: "Le maillot du FC Rocquancourt porté : rayures grenat, écusson du club et nom de son sponsor.",
+  },
+  {
+    fichier: "/cas/maillot-noir-rocquancourt-porte.jpg",
+    alt: "Le maillot noir du FC Rocquancourt, porté : grande inscription ton sur ton, en relief brillant.",
+  },
+] as const;
+
+/**
  * `echelle` : compensation optique du bandeau « Ils travaillent avec nous »
  * (critique Impeccable du 25/09/2026, accord de Landry). À hauteur
  * rigoureusement égale, un logo à traits fins paraît plus petit qu'un aplat

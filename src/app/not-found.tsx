@@ -19,7 +19,7 @@ export const metadata: Metadata = {
  */
 export default function NotFound() {
   return (
-    <Gabarit section="Page introuvable" page="404" indicateurChapitres={false}>
+    <Gabarit indicateurChapitres={false}>
       <div className="enveloppe">
         <section className="page-introuvable">
           <Etiquette texte="Erreur 404" />

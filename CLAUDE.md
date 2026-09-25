@@ -84,7 +84,7 @@ et leur gabarit), quelle que soit la demande — signaler plutôt qu'exécuter.
 11. **Ne pas ajouter d'emoji**, dans le code comme dans les textes.
 12. **Ne pas utiliser d'image de mineur identifiable**, de joueur
     professionnel, de personnalité, de marque, d'équipementier ou d'écusson
-    de club. **Trois exceptions, et pas une de plus :**
+    de club. **Les exceptions ci-dessous, et pas une de plus :**
     - le bandeau « Ils travaillent avec nous » du chapitre 04 (décision de
       Landry du 18/09/2026), qui montre les logos des clients et partenaires
       ayant donné leur **accord écrit**, tous en une seule couleur (crème,
@@ -98,15 +98,33 @@ et leur gabarit), quelle que soit la demande — signaler plutôt qu'exécuter.
     - **les images de preuve du métier** (décision de Landry du 25/09/2026,
       après la critique Impeccable : cinq chapitres sur sept ne montraient
       aucune image alors que l'agence vend de la production vidéo et photo).
-      Sont autorisés : les **objets** produits ou couverts (maillot à plat,
-      double page de magazine, écran de montage, matériel de tournage) et
-      les **plans de tournage où aucun adulte n'est identifiable** (mains,
-      silhouettes, dos, de trois quarts arrière). Restent interdits, sans
-      exception : tout mineur, tout joueur professionnel, toute
-      personnalité, tout visage reconnaissable, toute marque, tout
-      équipementier, tout écusson de club. **Les droits à l'image doivent
-      être vérifiés avant publication** pour chaque plan où une personne
-      apparaît, même non identifiable.
+      Sont autorisés : les **objets** produits ou couverts (maillot, page de
+      magazine, écran de montage, matériel de tournage) et les **plans de
+      tournage où aucun adulte n'est identifiable** (mains, silhouettes,
+      dos, de trois quarts arrière) ;
+    - **les photos réelles du travail fait pour un client**, prises sur ses
+      propres objets et son propre terrain (décision de Landry du
+      25/09/2026, seconde passe). L'écusson du club, son sponsor et son
+      équipementier y apparaissent **tels qu'ils sont sur l'objet réel** :
+      photographier le vrai maillot d'un client n'est ni une contrefaçon ni
+      une revendication de partenariat, et c'est la seule preuve honnête du
+      travail. Aujourd'hui : `public/cas/` (FC Rocquancourt, accord écrit),
+      dans le cas principal du chapitre 04 seulement, liste dans `casImages`
+      de `site-config.ts`.
+    - **Landry en tournage** (`public/metier/tournage-landry.jpg`, décision
+      de Landry du 25/09/2026, c'est lui sur la photo) : sous le tournage
+      groupé du chapitre 03, de trois quarts dos. Recadrée pour retirer le
+      public, marque du micro floutée, logo du pantalon coupé — garder ces
+      retouches si la photo est remplacée.
+
+    Restent interdits partout, sans exception : tout mineur, tout joueur
+    professionnel, toute personnalité, tout visage reconnaissable, et la
+    marque, l'écusson ou l'équipementier d'une structure **qui n'est pas
+    cliente et n'a pas donné son accord**. Les **droits à l'image** doivent
+    être vérifiés avant publication pour chaque plan où une personne
+    apparaît, même non identifiable. Et jamais d'image **générée** dans le
+    chapitre 04 : ce chapitre porte la preuve, une image inventée y serait
+    une fausse pièce à conviction.
 
 Les règles de mention (parcours, périmètre juridique « Regista n'est pas
 agent sportif », prix) et le ton (français à 100 %, vouvoiement, phrases
@@ -214,10 +232,12 @@ public/
   25/09/2026** après la critique Impeccable : l'alternance systématique
   laissait 50 à 60 % de plusieurs écrans vides et éloignait les blocs liés
   plus que les blocs sans rapport. `.bloc-zigzag--droite` ne se pose plus
-  que sur un bloc qui porte un **objet à regarder** — aujourd'hui le seul
-  schéma du tournage groupé (03) ; le portrait (06) garde son décalage par
-  `.bloc-portrait`. Tout le reste (les cinq étapes, « Les règles du jeu »,
-  « Comment nous travaillons », « Notre principe ») se lit en colonne unique
+  que sur un bloc qui porte un **objet à regarder** — aujourd'hui plus
+  aucun : depuis le 25/09/2026 (décision de Landry), « Le constat » et
+  « Le tournage groupé » (03) sont côte à côte dans `.methode-duo`, alignés
+  en haut, avec un seul déclencheur d'animation pour les deux ; le portrait
+  (06) garde son décalage par `.bloc-portrait`. Tout le reste (les cinq étapes,
+  « Notre principe ») se lit en colonne unique
   à gauche. `.bloc-zigzag` garde son rôle de largeur de colonne. Ne pas
   rétablir l'alternance automatique sur du texte seul.
 - **Échelle des titres** (25/09/2026) : `.titre-bloc` (h3) reste à
@@ -232,6 +252,17 @@ public/
   doivent être **reportées dans `regista-site/`** à la prochaine génération,
   sinon elles seront perdues (`.rg-bouton` à 48 px, son survol en filet
   complet, `.rg-nav__marque` / `.rg-nav__lien`).
+- **Largeur plafond de 1440 px** (décision de Landry du 25/09/2026) : `.page`
+  (en-tête, chapitres, pied) ne dépasse jamais 1440 px et se centre ; au-delà,
+  tout s'étirait (textes calés à gauche, portrait et numéros au bord droit).
+  Le filet de l'en-tête, lui, traverse tout l'écran (`.rg-entete::after`).
+  En dessous de 1440 px, rien ne change. Ce n'est pas une rupture de mise en
+  page : ne pas y ajouter de requête média.
+- Équilibre des colonnes (même jour) : chapitre 03, constat | tournage groupé
+  (`.methode-duo`) avec la photo centrée dessous ; chapitre 04, le chiffre en
+  or en tête puis contexte | presse (`.cas-principal__textes`) ; chapitre 05,
+  texte | phrase-clé en grand (`.solution-duo`) ; chapitre 06, le portrait
+  collé au texte (`justify-content: start`), plus au bord droit.
 - Le pied de page est un `<footer>` (repère « contentinfo »), pas un `<div>` :
   sans lui, aucun lecteur d'écran ne pouvait sauter au pied de page.
 - **Intitulés de chapitre centrés** (décision de Landry du 18/09), sur tous

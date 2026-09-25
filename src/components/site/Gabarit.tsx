@@ -1,23 +1,19 @@
 import type { ReactNode } from 'react'
-import { PiedDePage } from '@/components/design-system'
+import { Monogramme } from '@/components/design-system'
 import { NavigationPrincipale } from './NavigationPrincipale'
 import { FocusAncres } from './FocusAncres'
 import { LiensLegaux, Signature } from './Marque'
 import { SocleMouvement } from './mouvement'
 
 export type GabaritProps = {
-  /** Étiquette de gauche du pied de page système. */
-  section: string
-  /** Numéro affiché à droite du pied de page (ex. « 07 / 07 »). */
-  page: string
   /** Faux sur la page 404 : ni indicateur de chapitre, ni « actif » de menu. */
   indicateurChapitres?: boolean
   children: ReactNode
 }
 
 /**
- * Gabarit commun à la page unique et à la 404 : en-tête collant, pied de
- * page système en bas (CONTENU/Plan_one_page.md, section 2, 6 et 7). Le
+ * Gabarit commun à la page unique et à la 404 : en-tête collant, petit R
+ * de signature en bas (CONTENU/Plan_one_page.md, section 2, 6 et 7). Le
  * contenu (`children`) n'est pas enveloppé dans un conteneur à largeur
  * fixe : chaque page compose elle-même ses blocs padés (`.enveloppe`) et
  * ses sections pleine largeur (`.hero`, `.bandeau`) — voir src/styles/site.css.
@@ -35,7 +31,7 @@ export type GabaritProps = {
  * explicitement. Jamais sur l'en-tête ni le pied de page (tous deux HORS de
  * <main>, voir plus bas), ni sur les pages légales (gabarit à part).
  */
-export function Gabarit({ section, page, indicateurChapitres = true, children }: GabaritProps) {
+export function Gabarit({ indicateurChapitres = true, children }: GabaritProps) {
   return (
     <div className="page">
       <SocleMouvement />
@@ -52,8 +48,13 @@ export function Gabarit({ section, page, indicateurChapitres = true, children }:
       <footer className="enveloppe">
         <Signature />
         <LiensLegaux />
-        <div className="pied">
-          <PiedDePage section={section} page={page} />
+        {/* Seul le petit R, centré (décision de Landry du 25/09/2026) :
+            l'ancien pied de page système affichait « CONTACT … 07 / 07 »,
+            un reste du site à plusieurs pages qui ne voulait plus rien dire
+            sur une page unique. Signature discrète : l'usage du R seul que
+            la charte autorise (interdit n°7 de CLAUDE.md). */}
+        <div className="pied pied--signature">
+          <Monogramme hauteur={16} />
         </div>
       </footer>
     </div>

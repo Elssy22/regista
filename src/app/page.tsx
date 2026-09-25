@@ -15,7 +15,7 @@ import { Gabarit } from "@/components/site/Gabarit";
 import { HeroTrace } from "@/components/site/HeroTrace";
 import { EnScene } from "@/components/site/mouvement";
 import { OuvertureChapitre } from "@/components/site/OuvertureChapitre";
-import { chapitres, references, siteConfig } from "@/lib/site-config";
+import { casImages, references, siteConfig } from "@/lib/site-config";
 
 // L'adresse officielle du site est désormais "/" (page unique) : les autres
 // routes qui existaient (voir next.config.ts) sont des redirections, jamais
@@ -24,8 +24,6 @@ import { chapitres, references, siteConfig } from "@/lib/site-config";
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
-
-const TOTAL_CHAPITRES = chapitres.length.toString().padStart(2, "0");
 
 const ETAPES = [
   {
@@ -60,23 +58,30 @@ const ETAPES = [
   },
 ] as const;
 
-const REGLES: { mot: string; texte: string }[] = [
-  {
-    mot: "Vous choisissez",
-    texte: "Publier vous-même, ou nous confier la publication. C’est votre décision, jamais la nôtre.",
-  },
-  { mot: "Trois allers-retours", texte: "Sur chaque bloc de livrables." },
-  { mot: "Trois mois", texte: "Durée minimale d’un accompagnement." },
-  { mot: "Un interlocuteur", texte: "Le même du premier appel à la livraison." },
-  {
-    mot: "Délais",
-    texte: "Variables selon le projet. Une livraison dans la journée est possible quand l’événement l’exige.",
-  },
-  {
-    mot: "Aucune signature",
-    texte: "Regista n’appose jamais son nom sur vos livrables. Le travail vous appartient.",
-  },
-];
+// Données des schémas animés (décision de Landry du 25/09/2026). Chaque
+// libellé reprend mot pour mot le texte qu'il remplace (CONTENU/Regista_*.md) :
+// un schéma ne dit rien de plus que la phrase d'origine.
+const POLES_SCHEMA = [
+  { sigle: "COM", action: "Mieux raconter,", effet: "c’est être vu plus loin." },
+  { sigle: "FIN", action: "Accéder aux bons circuits,", effet: "c’est financer plus grand." },
+  { sigle: "TECH", action: "S’outiller,", effet: "c’est durer." },
+] as const;
+
+const OCCASIONS = [
+  "Compétitions",
+  "Finales",
+  "Remises de maillots",
+  "Soirées de tirage",
+  "Formations",
+  "Parcours de bénévoles",
+] as const;
+
+const CHIFFRES_CONSTAT = [
+  { nombre: "3", libelle: "personnes en communication" },
+  { nombre: "12", libelle: "districts" },
+  { nombre: "250 km", libelle: "entre les deux sièges" },
+  { nombre: "1", libelle: "magazine à faire paraître chaque trimestre" },
+] as const;
 
 /**
  * Accueil, Offres, Méthode, Ce que ça donne, Comment ça se passe, À propos
@@ -100,7 +105,7 @@ export default function AccueilPage() {
   const { email } = siteConfig.contact;
 
   return (
-    <Gabarit section="Contact" page={`${TOTAL_CHAPITRES} / ${TOTAL_CHAPITRES}`}>
+    <Gabarit>
       {/* 01 — Accueil (CONTENU/Regista_accueil.md, « L'accroche »).
           M1 (le quadrillage se pose en vague) est du CSS pur sur .hero
           (voir site.css) : il n'a besoin d'aucun balisage ici. */}
@@ -142,35 +147,50 @@ export default function AccueilPage() {
             </h2>
           </OuvertureChapitre>
 
-          <p className="chapo">
-            Mieux raconter, c&rsquo;est être vu plus loin. Accéder aux bons circuits, c&rsquo;est
-            financer plus grand. S&rsquo;outiller, c&rsquo;est durer. Nous ne vendons pas trois
-            métiers séparés, nous en tirons une seule ligne.
+          <p className="chapo chapo--gras">
+            Nous ne vendons pas trois métiers séparés, nous en tirons une seule ligne.
           </p>
 
+          {/* Les pôles portent chacun leur accroche (les trois phrases de
+              l'ancien chapô, mot pour mot) et un filet bleu qui se trace de
+              gauche à droite, d'un pôle au suivant : les trois filets forment
+              « une seule ligne » (décision de Landry du 25/09/2026, qui
+              fusionne l'ancien schéma COM/FIN/TECH avec les pôles pour ne
+              plus répéter les trois sigles deux fois). Le filet n'est pas une
+              trajectoire (droit, bleu, sans point) : la passe reste la seule. */}
           <div className="poles">
-            <div className="pole">
+            <EnScene className="pole" seuil={0.35} style={{ "--i": 0 } as CSSProperties}>
+              <span className="pole__filet" aria-hidden="true" />
               <div className="offre-section__entete">
                 <Badge texte="COM" />
                 <h3 className="pole__titre">
                   <Etiquette numero="01" texte="Communication" />
                 </h3>
               </div>
+              <p className="pole__accroche">
+                <span className="pole__action">{POLES_SCHEMA[0].action}</span>{" "}
+                {POLES_SCHEMA[0].effet}
+              </p>
               <p className="paragraphe">
                 Raconter votre structure de façon qu&rsquo;elle soit vue au-delà de ceux qui la
                 connaissent déjà. Stratégie éditoriale, production vidéo et photo, formats pour
                 les réseaux, relations avec les médias, couverture de vos temps forts, création
                 d&rsquo;événements.
               </p>
-            </div>
+            </EnScene>
 
-            <div className="pole">
+            <EnScene className="pole" seuil={0.35} style={{ "--i": 1 } as CSSProperties}>
+              <span className="pole__filet" aria-hidden="true" />
               <div className="offre-section__entete">
                 <Badge texte="FIN" />
                 <h3 className="pole__titre">
                   <Etiquette numero="02" texte="Financement" />
                 </h3>
               </div>
+              <p className="pole__accroche">
+                <span className="pole__action">{POLES_SCHEMA[1].action}</span>{" "}
+                {POLES_SCHEMA[1].effet}
+              </p>
               <p className="paragraphe">
                 Monter les dossiers de subvention, identifier les partenaires, construire les
                 argumentaires, relancer et suivre.
@@ -185,15 +205,20 @@ export default function AccueilPage() {
                 etiquette="Périmètre"
                 texte="Regista n’est pas agent sportif. L’agence ne négocie aucun contrat de joueur et ne perçoit aucune rémunération sur ces contrats. Elle facture ses prestations — communication, contenus, dossiers, outils — et ne travaille pas en direct avec des mineurs."
               />
-            </div>
+            </EnScene>
 
-            <div className="pole">
+            <EnScene className="pole" seuil={0.35} style={{ "--i": 2 } as CSSProperties}>
+              <span className="pole__filet" aria-hidden="true" />
               <div className="offre-section__entete">
                 <Badge texte="TECH" />
                 <h3 className="pole__titre">
                   <Etiquette numero="03" texte="Tech" />
                 </h3>
               </div>
+              <p className="pole__accroche">
+                <span className="pole__action">{POLES_SCHEMA[2].action}</span>{" "}
+                {POLES_SCHEMA[2].effet}
+              </p>
               <p className="paragraphe">
                 Sites, applications, outils de suivi, automatisations. Ce qui permet à une
                 structure de tenir dans la durée sans y passer ses soirées.
@@ -203,7 +228,7 @@ export default function AccueilPage() {
                 dans leur quotidien. Il est en construction&nbsp;: nous en parlons volontiers, nous
                 ne le vendons pas encore.
               </p>
-            </div>
+            </EnScene>
           </div>
         </div>
       </section>
@@ -223,9 +248,13 @@ export default function AccueilPage() {
             </h2>
           </OuvertureChapitre>
 
-          {/* Zigzag à partir de 768px (site.css, décision de Landry du
-              18/09/2026) : bloc 1 du chapitre, calé à gauche. */}
-          <div className="section bloc-zigzag">
+          {/* « Le constat » et « Le tournage groupé » côte à côte à partir de
+              768 px, alignés en haut (décision de Landry du 25/09/2026 : ils
+              étaient en zigzag, le second très bas à droite). Un SEUL
+              déclencheur pour les deux : leurs animations partent ensemble
+              et finissent ensemble (voir M7 et M6 dans site.css). */}
+          <EnScene className="methode-duo" seuil={0.35}>
+          <div className="section">
             <h3 className="titre-bloc">Le constat</h3>
             {/* Cette ligne est du CONTENU — la liste de ce que Regista sait
                 couvrir — et non l'intitulé d'une section. En <Etiquette>
@@ -236,25 +265,39 @@ export default function AccueilPage() {
                 le même jour). Elle repasse en casse normale, à la taille du
                 texte courant. Les points médians et l'ordre des mots ne
                 changent pas. */}
-            <p className="paragraphe liste-occasions">
-              Compétitions · Finales · Remises de maillots · Soirées de tirage · Formations ·
-              Parcours de bénévoles
-            </p>
+            {/* Schéma animé (décision de Landry du 25/09/2026) : la liste
+                des occasions devient six cases qui s'empilent une à une — la
+                matière qui s'accumule, juste avant « La matière ne manque
+                pas ». Mêmes six mots, même ordre. */}
+            <ul className="schema-anime schema-occasions" role="list">
+              {OCCASIONS.map((occasion, i) => (
+                <li key={occasion} className="case" style={{ "--i": i } as CSSProperties}>
+                  {occasion}
+                </li>
+              ))}
+            </ul>
             <p className="paragraphe paragraphe--marquant">
               La matière ne manque pas. Le temps, si.
             </p>
-            <p className="paragraphe">
-              Trois personnes en communication pour douze districts. Deux sièges distants de deux
-              cent cinquante kilomètres. Un magazine à faire paraître chaque trimestre.
-            </p>
+            {/* Schéma animé (même décision) : les trois phrases chiffrées
+                deviennent quatre cases, lues comme du texte (« 3 personnes en
+                communication »…). Chiffres en bleu nuit, jamais en or. */}
+            <EnScene as="ul" className="schema-anime schema-chiffres" role="list" seuil={0.35}>
+              {CHIFFRES_CONSTAT.map((item, i) => (
+                <li key={item.libelle} className="schema-chiffres__case" style={{ "--i": i } as CSSProperties}>
+                  <span className="schema-chiffres__nombre">{item.nombre}</span>{" "}
+                  <span className="schema-chiffres__libelle">{item.libelle}</span>
+                </li>
+              ))}
+            </EnScene>
             <p className="paragraphe">
               Nous ne remplaçons pas votre équipe. Nous absorbons ce qu&rsquo;elle ne peut pas
               faire en plus.
             </p>
           </div>
 
-          {/* Bloc 2 du chapitre : calé à droite (zigzag). */}
-          <div className="section bloc-zigzag bloc-zigzag--droite">
+          {/* Bloc 2 du chapitre : colonne de droite. */}
+          <div className="section">
             <h3 className="titre-bloc">Le tournage groupé</h3>
             <p className="paragraphe" style={{ marginTop: "var(--e-4)" }}>
               <strong>
@@ -264,7 +307,9 @@ export default function AccueilPage() {
             </p>
 
             {/* M6 — le tournage groupé se remplit : « 1 OU 2 JOURNÉES »
-                d'abord, puis les trois mois en série (site.css, seuil 0.4).
+                d'abord, puis les trois mois en série (site.css). À partir de
+                768 px, déclenché par .methode-duo en même temps que le
+                constat ; en mobile (blocs empilés), à sa propre arrivée.
                 aria-label reconstruit avec les seuls libellés validés
                 (CONTENU/Plan_one_page.md, section 6) — jamais de phrase
                 inventée (CHARTE-3). */}
@@ -317,7 +362,29 @@ export default function AccueilPage() {
             <p className="paragraphe">
               Vos équipes sont mobilisées une fois. Pas tous les week-ends.
             </p>
+
           </div>
+          </EnScene>
+
+          {/* Image de preuve du métier (interdit n°12 de CLAUDE.md, décision
+              de Landry du 25/09/2026) : Landry lui-même en tournage, de
+              trois quarts arrière (profil visible) — droit à l'image acquis. Recadrée pour
+              retirer le public (visages, mineurs possibles) et le logo
+              d'équipementier du pantalon ; la marque du micro est floutée. Sortie
+              des deux colonnes et centrée dessous (25/09/2026) : dans la
+              colonne du tournage, elle la rendait 300 px plus longue que celle
+              du constat. */}
+          <figure className="photo-metier">
+            <Image
+              src="/metier/tournage-landry.jpg"
+              alt="Le fondateur de Regista en tournage, au pied d’une scène."
+              width={588}
+              height={425}
+              sizes="(min-width: 768px) 460px, 90vw"
+              className="photo-metier__image"
+            />
+            <figcaption className="legende">En tournage, au pied de la scène.</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -343,15 +410,20 @@ export default function AccueilPage() {
         <BandeauCoeur>
           <div className="cas-principal">
             <Etiquette texte="Faire exister" />
-            <p className="paragraphe" style={{ marginTop: "var(--e-3)" }}>
+            {/* Le résultat en tête, puis le contexte et la presse côte à côte
+                à partir de 768 px (décision de Landry du 25/09/2026 : en
+                grand écran, une colonne de texte à gauche laissait la moitié
+                droite du cadre vide). « Trois millions de vues, tous relais
+                confondus. » retiré à la demande de Landry (18/09/2026) : un
+                seul résultat en or. */}
+            <p className="cas-principal__chiffres">Cinq cents maillots vendus sur la collection.</p>
+            <div className="cas-principal__textes">
+            <p className="paragraphe">
               Un club de district. Une sortie de maillot. Aucun budget publicitaire. Stratégie,
               calendrier, contenus, mise en relation avec des personnalités&nbsp;: porté par un rappeur
               à large audience, un ancien joueur professionnel devenu animateur, remarqué par un
               ancien designer de maillots.
             </p>
-            {/* « Trois millions de vues, tous relais confondus. » retiré à la
-                demande de Landry (18/09/2026) : un seul résultat en or. */}
-            <p className="cas-principal__chiffres">Cinq cents maillots vendus sur la collection.</p>
             <p className="cas-principal__detail">
               <strong>
                 Repris par la presse nationale — quotidien sportif, radios, journal télévisé — sans
@@ -361,6 +433,32 @@ export default function AccueilPage() {
               connus dans le monde entier pour leurs maillots. D&rsquo;autres clubs ont depuis
               repris la recette.
             </p>
+            </div>
+
+            {/* La preuve en images (décision de Landry du 25/09/2026, après la
+                critique Impeccable : cinq chapitres sur sept ne montraient
+                aucune image alors que l'agence vend de la production vidéo et
+                photo). Vraies photos du cas raconté juste au-dessus, jamais
+                d'image générée — une image générée ici serait une fausse
+                pièce à conviction. Liste dans site-config.ts. */}
+            <figure className="cas-images">
+              <div className="cas-images__grille">
+                {casImages.map((image) => (
+                  <Image
+                    key={image.fichier}
+                    src={image.fichier}
+                    alt={image.alt}
+                    width={1400}
+                    height={933}
+                    sizes="(min-width: 768px) 620px, 90vw"
+                    className="cas-images__photo"
+                  />
+                ))}
+              </div>
+              <figcaption className="legende cas-images__legende">
+                La sortie de maillot du FC Rocquancourt.
+              </figcaption>
+            </figure>
           </div>
 
           <div className="cas-duo">
@@ -426,7 +524,9 @@ export default function AccueilPage() {
         </BandeauCoeur>
       </section>
 
-      {/* 05 — Comment ça se passe : solution budget, cinq étapes, règles du jeu
+      {/* 05 — Comment ça se passe : solution budget, cinq étapes. « Les règles du
+          jeu » retirées le 25/09/2026 à la demande de Landry : c'est le discours
+          à tenir en rendez-vous, pas sur le site.
           (src/app/methode/page.tsx, CONTENU/Regista_methode.md §3, §5, §6) */}
       <section id="deroule" aria-labelledby="deroule-titre">
         <div className="enveloppe marge-passe">
@@ -443,7 +543,12 @@ export default function AccueilPage() {
 
           {/* Zigzag à partir de 768px (site.css, décision de Landry du
               18/09/2026) : bloc 1 du chapitre, calé à gauche. */}
-          <div className="section bloc-zigzag">
+          {/* Deux colonnes à partir de 768 px (décision de Landry du
+              25/09/2026) : le texte à gauche, la phrase-clé en grand à droite,
+              au lieu d'une colonne étroite au-dessus d'une frise pleine
+              largeur. Même traitement que « La matière ne manque pas ». */}
+          <div className="section solution-duo">
+            <div>
             <h3 className="titre-bloc">Il y a toujours une solution</h3>
             <p className="paragraphe" style={{ marginTop: "var(--e-4)" }}>
               Une structure nous dit rarement «&nbsp;je n&rsquo;ai pas d&rsquo;idée&nbsp;». Elle nous
@@ -452,10 +557,9 @@ export default function AccueilPage() {
               maillot cher. C&rsquo;est la raison pour laquelle nous parlons de votre enveloppe dès
               le premier appel.
             </p>
-            <p className="paragraphe">
-              <strong>
-                Nous n&rsquo;adaptons pas votre ambition à votre budget. Nous adaptons les moyens.
-              </strong>
+            </div>
+            <p className="paragraphe paragraphe--marquant solution-duo__phrase">
+              Nous n&rsquo;adaptons pas votre ambition à votre budget. Nous adaptons les moyens.
             </p>
           </div>
 
@@ -467,29 +571,35 @@ export default function AccueilPage() {
                 verticaux de ~280 px entre des blocs pourtant liés — les
                 éléments liés se retrouvaient plus éloignés que les éléments
                 sans rapport. Une suite ordonnée se lit en colonne. */}
-            {ETAPES.map((etape) => (
-              <li key={etape.numero} className="etapes__item bloc-zigzag">
-                <span className="etapes__numero">Étape {etape.numero}</span>
+            {/* Frise animée (décision de Landry du 25/09/2026) : chaque
+                « Étape 0X » devient une case qui se remplit de gauche à
+                droite, sur le modèle du tournage groupé (deux couches, voir
+                .schema-tournage). En grand écran, les cinq cases forment une
+                frise qui se remplit dans l'ordre ; en mobile, chacune se
+                remplit en arrivant à l'écran. */}
+            {ETAPES.map((etape, i) => (
+              <EnScene
+                as="li"
+                key={etape.numero}
+                className="etapes__item"
+                seuil={0.3}
+                style={{ "--i": i } as CSSProperties}
+              >
+                <span className="etapes__numero">
+                  <span className="etapes__numero-texte">Étape {etape.numero}</span>
+                  <span className="etapes__numero-remplissage" aria-hidden="true">
+                    Étape {etape.numero}
+                  </span>
+                </span>
                 <div>
                   <h3 className="titre-bloc">{etape.titre}</h3>
                   <p className="paragraphe etapes__phrase">{etape.phrase}</p>
                   <p className="petit etapes__mots">{etape.motsCles.join(" · ")}</p>
                 </div>
-              </li>
+              </EnScene>
             ))}
           </ol>
 
-          {/* Bloc 7 du chapitre (après les 5 étapes) : rang impair → gauche. */}
-          <div className="section bloc-zigzag">
-            <h3 className="titre-bloc">Les règles du jeu</h3>
-            <ul className="regles" role="list">
-              {REGLES.map((regle) => (
-                <li key={regle.mot}>
-                  <strong>{regle.mot}</strong> — {regle.texte}
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
       </section>
 
@@ -550,25 +660,8 @@ export default function AccueilPage() {
             </p>
           </div>
 
-          {/* Bloc 2 du chapitre : calé à gauche lui aussi depuis la critique
-              Impeccable du 25/09/2026 (P1, accord de Landry le même jour).
-              L'alternance ne reste que là où un bloc porte un OBJET à
-              regarder — le schéma du tournage groupé (03) et le portrait
-              ci-dessus : le décalage sert alors à poser l'objet, il ne
-              déplace plus du texte pour remplir du vide. */}
-          <div className="section bloc-zigzag">
-            <h3 className="titre-bloc">Comment nous travaillons</h3>
-            <p className="paragraphe" style={{ marginTop: "var(--e-4)" }}>
-              Vous avez un interlocuteur unique, du premier appel à la livraison. Derrière lui, un
-              réseau de partenaires&nbsp;: deux studios de production, une société de développement pour
-              les projets techniques, et des professionnels avec qui nous travaillons
-              régulièrement. L&rsquo;équipe se forme selon le projet. C&rsquo;est ce qui permet
-              d&rsquo;absorber une campagne complète sans vous imposer de coordonner six
-              prestataires.
-            </p>
-          </div>
-
-          {/* Bloc 3 du chapitre : rang impair, calé à gauche. */}
+          {/* « Comment nous travaillons » (interlocuteur unique, réseau de
+              partenaires) retiré le 25/09/2026 à la demande de Landry. */}
           <div className="section bloc-zigzag">
             <h3 className="titre-bloc">Notre principe</h3>
             <p className="paragraphe" style={{ marginTop: "var(--e-4)" }}>

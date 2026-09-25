@@ -3,9 +3,11 @@
    c'est ici que le développeur front-end compose les pages. Couleurs et
    espacements viennent des tokens ; les tailles de texte viennent de
    l'échelle déclarée juste en dessous. Mobile d'abord, une seule requête de média sur --rupture-large
-   (768px) : jamais de max-width, jamais de deuxième rupture — puisqu'il n'y
-   a pas de conteneur à largeur fixe, un bandeau ou un hero pleine largeur
-   n'a besoin d'aucune marge négative : il suffit de ne pas l'envelopper.
+   (768px) : jamais de requête max-width, jamais de deuxième rupture. Une
+   seule largeur plafond, sur .page (1440 px, décision de Landry du
+   25/09/2026) : au-delà, tout s'étirait — colonnes de texte calées à gauche,
+   portrait et numéros repoussés au bord droit. En dessous de 1440 px, rien
+   ne change.
    Deux exceptions validées par Landry le 18/09/2026, pour les très petits
    téléphones seulement (chiffres en or sous 360 px, en-tête sous 400 px) :
    voir CLAUDE.md, section « Les styles ». N'en ajouter aucune autre. */
@@ -46,6 +48,14 @@ main.rg-focusable:focus-visible {
   outline-offset: -3px;
 }
 
+/* La page entière (en-tête, chapitres, pied) plafonne à 1440 px et se
+   centre : sur un écran de 1920 px, elle se présente exactement comme sur
+   un écran de 1440 px, le fond crème de .rg-racine remplit les côtés. */
+.page {
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
 .enveloppe {
   padding: 0 var(--e-4);
 }
@@ -56,6 +66,12 @@ main.rg-focusable:focus-visible {
 
 .pied {
   padding: var(--e-6) 0 var(--e-7);
+}
+
+.pied--signature {
+  display: flex;
+  justify-content: center;
+  color: var(--texte);
 }
 
 /* --- Titres --------------------------------------------------------- */
@@ -100,15 +116,6 @@ main.rg-focusable:focus-visible {
 .chapo--gras,
 .paragraphe strong {
   font-weight: 600;
-}
-
-/* La liste des occasions à couvrir, en tête du constat (chapitre 03). Elle
-   était composée en <Etiquette> alors qu'elle porte du contenu : repassée en
-   casse normale le 25/09/2026 (critique Impeccable). Couleur secondaire
-   (5,99:1 sur crème, conforme AA) : elle énumère, elle n'affirme pas. */
-.liste-occasions {
-  margin-top: var(--e-4);
-  color: var(--texte-secondaire);
 }
 
 /* Constat du chapitre 03 : « La matière ne manque pas. Le temps, si. » en
@@ -219,12 +226,6 @@ main.rg-focusable:focus-visible {
   --bordure: var(--filet-inv);
 }
 
-.schema {
-  display: flex;
-  justify-content: center;
-  margin-top: var(--e-5);
-}
-
 /* --- Le cas principal du bloc de preuve --------------------------------- */
 
 .cas-principal {
@@ -255,6 +256,43 @@ main.rg-focusable:focus-visible {
   .cas-principal__chiffres {
     font-size: var(--taille-h2);
   }
+}
+
+/* --- La preuve en images (chapitre 04) ------------------------------------ */
+/* Décision de Landry du 25/09/2026 (critique Impeccable) : cinq chapitres sur
+   sept ne montraient aucune image alors que l'agence vend de la production
+   vidéo et photo, et le cas fort du site était raconté sans qu'on voie
+   l'objet. Vraies photos, jamais d'image générée à cet endroit : ce chapitre
+   porte la preuve, pas l'illustration. Format commun 3:2 paysage : en 4:5,
+   la paire dépassait la hauteur d'un écran et écrasait le texte du cas ;
+   filet de la charte, zéro arrondi, zéro ombre ;
+   aucune animation (l'or et le mouvement restent réservés au reste). */
+.cas-images {
+  margin: var(--e-6) 0 0;
+}
+
+.cas-images__grille {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--e-4);
+}
+
+@media (min-width: 768px) {
+  .cas-images__grille {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--e-5);
+  }
+}
+
+.cas-images__photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: var(--trait-1) solid var(--filet-inv);
+}
+
+.cas-images__legende {
+  text-align: center;
 }
 
 .cas-duo {
@@ -326,28 +364,6 @@ main.rg-focusable:focus-visible {
    Regista elle-même (voir Brief_design_site.md, section 1, « la règle de
    l'or ») — porté par .cas-principal__chiffres ci-dessus, sur fond bleu
    (interdit n°2 de CLAUDE.md). */
-
-/* --- Liste « les règles du jeu » ---------------------------------------- */
-
-.regles {
-  margin: var(--e-6) 0 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--e-4);
-}
-
-.regles li {
-  padding-top: var(--e-3);
-  border-top: var(--trait-1) solid var(--bordure-discrete);
-  font-size: var(--taille-texte);
-  line-height: 1.65;
-}
-
-.regles strong {
-  font-weight: 600;
-}
 
 /* --- Offres : sections numérotées --------------------------------------- */
 
@@ -505,6 +521,24 @@ main.rg-focusable:focus-visible {
 
 /* Le détail du cas principal suit les chiffres en or, mais en texte courant :
    l'or reste un accent rare, il ne porte jamais un paragraphe entier. */
+/* Contexte et presse côte à côte sous le chiffre, à partir de 768 px. */
+.cas-principal__textes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--e-4) var(--e-8);
+  margin-top: var(--e-5);
+}
+
+@media (min-width: 768px) {
+  .cas-principal__textes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.cas-principal__textes > p {
+  margin-top: 0;
+}
+
 .cas-principal__detail {
   margin: var(--e-4) 0 0;
   font-size: var(--taille-texte);
@@ -587,6 +621,10 @@ main.rg-focusable:focus-visible {
 
 .rg-liens-legaux > span {
   display: none;
+  /* Mêmes creux que les liens (voir .rg-liens-legaux a) : sans eux, le
+     point séparateur remontait au-dessus de la ligne des deux liens. */
+  padding-top: var(--e-5);
+  padding-bottom: var(--e-2);
 }
 
 @media (min-width: 768px) {
@@ -702,6 +740,22 @@ main.rg-focusable:focus-visible {
   background: var(--fond);
 }
 
+/* Le filet sous l'en-tête traverse tout l'écran, même au-delà des 1440 px
+   de .page (25/09/2026) : arrêté aux bords de la page, il dessinait un
+   cadre sur les écrans larges. Il remplace la bordure de .rg-entete__barre,
+   rendue transparente pour garder la même hauteur. */
+.rg-entete::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 100vw;
+  height: var(--trait-1);
+  background: var(--bordure);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
 /* Lien d'évitement : invisible tant qu'il n'est pas atteint au clavier
    (Tab), au-dessus de tout le reste dès qu'il reçoit le focus. */
 .rg-evitement {
@@ -744,7 +798,7 @@ main.rg-focusable:focus-visible {
   gap: var(--e-4);
   height: var(--hauteur-entete);
   padding: 0 var(--e-4);
-  border-bottom: var(--trait-1) solid var(--bordure);
+  border-bottom: var(--trait-1) solid transparent;
 }
 
 .rg-entete__nav {
@@ -1014,17 +1068,64 @@ main.rg-focusable:focus-visible {
    2, chapitre 02). */
 .poles {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--e-6);
   margin-top: var(--e-7);
 }
 
+/* Trois colonnes fixes dès 768 px (relecture du 25/09/2026) : en grille
+   auto-adaptative, les pôles se cassaient en 2 + 1 entre 768 et ~830 px, et
+   le filet continu (voir .pole__filet) n'aurait plus fait une seule ligne. */
+@media (min-width: 768px) {
+  .poles {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 .pole {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--e-3);
   padding-top: var(--e-5);
-  border-top: var(--trait-1) solid var(--bordure);
+}
+
+/* Le filet de tête de chaque pôle (2 px, bleu nuit). À partir de 768 px, il
+   déborde de la largeur de la gouttière vers le pôle suivant : les trois
+   filets se touchent et forment « une seule ligne » (le chapô juste
+   au-dessus). Animé en M7 (fin de fichier). */
+.pole__filet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--texte);
+  transform-origin: left center;
+}
+
+@media (min-width: 768px) {
+  .pole:not(:last-child) .pole__filet {
+    right: calc(-1 * var(--e-6));
+  }
+}
+
+/* L'accroche de chaque pôle : les trois phrases de l'ancien chapô, mot pour
+   mot (« Mieux raconter, c'est être vu plus loin. »…). */
+.pole__accroche {
+  margin: var(--e-2) 0 0;
+  font-size: var(--taille-texte);
+  line-height: 1.5;
+}
+
+.pole__action {
+  display: block;
+  margin-bottom: var(--e-1);
+  font-family: var(--font-titre);
+  font-size: var(--taille-h3);
+  line-height: 1.25;
+  font-weight: 700;
+  font-variation-settings: "wdth" 112;
 }
 
 /* Habille le h3 posé autour du badge et de l'étiquette d'un pôle sans
@@ -1086,6 +1187,13 @@ main.rg-focusable:focus-visible {
    se partagent la largeur ici. */
 .schema-tournage__mois > .schema-tournage__bloc {
   flex: 1 1 0;
+  /* Moins d'espace intérieur que la barre des journées : dans la colonne
+     de .methode-duo (tablette), « MOIS 01 » passait sur deux lignes. */
+  padding-inline: var(--e-2);
+}
+
+.schema-tournage__mois .schema-tournage__remplissage {
+  padding-inline: calc(var(--e-2) + 1px);
 }
 
 /* Couche « pleine » : mêmes police et padding que la couche « vide » (plus
@@ -1174,35 +1282,81 @@ main.rg-focusable:focus-visible {
 }
 
 /* --- Liste des cinq étapes -------------------------------------------------- */
-/* Remplace la grille de CarteProfil : une liste numérotée à filets, dont le
-   numéro (« Étape 0X ») reste du texte normal, lu par les lecteurs d'écran
-   (CONTENU/Plan_one_page.md, section 2, chapitre 05). list-style:none fait
-   perdre la sémantique de liste à Safari/VoiceOver sans role="list" explicite
-   (posé sur le <ol> dans page.tsx, ROBUSTE-10). */
+/* Une liste numérotée dont le numéro (« Étape 0X ») reste du texte normal, lu
+   par les lecteurs d'écran (CONTENU/Plan_one_page.md, section 2, chapitre
+   05). list-style:none fait perdre la sémantique de liste à Safari/VoiceOver
+   sans role="list" explicite (posé sur le <ol> dans page.tsx, ROBUSTE-10).
+   Frise animée depuis le 25/09/2026 (décision de Landry) : chaque numéro est
+   une case à deux couches, comme le tournage groupé — la couche « vide »
+   (bord bleu, libellé bleu, seule lue) et la couche « pleine » (aplat bleu,
+   libellé crème, aria-hidden) révélée par-dessus en clip-path. Grille
+   auto-adaptative, sans rupture de mise en page supplémentaire : une colonne
+   en mobile, jusqu'à cinq côte à côte en grand écran. */
 .etapes {
-  margin: var(--e-6) 0 0;
+  margin: var(--e-7) 0 0;
   padding: 0;
   list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--e-6);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--e-6) var(--e-3);
+}
+
+/* Les cinq étapes toujours sur une seule ligne à partir de 768 px : en
+   grille auto-adaptative, la frise se cassait en 4 + 1 à 1024 px et en
+   3 + 2 à 800 px (relecture du 25/09/2026). */
+@media (min-width: 768px) {
+  .etapes {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
 }
 
 .etapes__item {
   display: flex;
+  flex-direction: column;
   gap: var(--e-4);
-  padding-top: var(--e-5);
-  border-top: var(--trait-1) solid var(--bordure);
 }
 
 .etapes__numero {
-  flex-shrink: 0;
-  font-family: var(--font-titre);
-  font-size: var(--taille-h3);
-  font-weight: 700;
-  font-variation-settings: "wdth" 112;
-  color: var(--texte-secondaire);
+  position: relative;
+  display: block;
+  border: var(--trait-1) solid var(--texte);
+  padding: var(--e-3) var(--e-4);
+  font-family: var(--font-texte);
+  font-size: var(--taille-petit);
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--texte);
   font-variant-numeric: tabular-nums;
+}
+
+/* Même principe que .schema-tournage__remplissage (inset:-1px pour couvrir
+   aussi la bordure, REG-RENDU-2). */
+.etapes__numero-remplissage {
+  position: absolute;
+  inset: -1px;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--e-3) + 1px) calc(var(--e-4) + 1px);
+  background: var(--texte);
+  color: var(--fond);
+}
+
+/* Cinq colonnes étroites à partir de 768 px : un cran d'espace intérieur
+   en moins, pour que « ÉTAPE 0X » tienne sur une ligne dès 800 px. */
+@media (min-width: 768px) {
+  .etapes__numero {
+    padding-inline: var(--e-3);
+  }
+
+  .etapes__numero-remplissage {
+    padding-inline: calc(var(--e-3) + 1px);
+  }
+}
+
+.etapes__item .titre-bloc {
+  margin-top: 0;
 }
 
 .etapes__phrase {
@@ -1211,6 +1365,126 @@ main.rg-focusable:focus-visible {
 
 .etapes__mots {
   margin-top: var(--e-2);
+  color: var(--texte-secondaire);
+}
+
+/* --- Photo du métier sous le tournage groupé (25/09/2026) ------------------
+   Même traitement que le portrait : un filet --bordure pour que la photo ne
+   flotte pas sur le crème, aucun arrondi, aucune ombre. */
+.photo-metier {
+  /* Dernier élément du chapitre 03, centrée sous les deux colonnes, juste
+     avant le bandeau bleu : sa marge basse l'empêche de coller au bandeau. */
+  margin: var(--e-7) auto;
+  max-width: 460px;
+}
+
+.photo-metier .legende {
+  text-align: center;
+}
+
+.photo-metier__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: var(--trait-1) solid var(--bordure);
+}
+
+/* --- Chapitre 05 : la solution sur deux colonnes (25/09/2026) -------------
+   Le texte à gauche, la phrase-clé en grand à droite, centrée verticalement
+   sur le texte. Une colonne en mobile. */
+.solution-duo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: var(--e-8);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .solution-duo {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .solution-duo__phrase {
+    margin-top: 0;
+  }
+}
+
+/* --- Chapitre 03 : constat et tournage groupé côte à côte (25/09/2026) ----
+   Décision de Landry : les deux blocs au même niveau, alignés en haut, au
+   lieu du zigzag qui renvoyait le tournage groupé très bas à droite. Une
+   colonne en mobile, deux à partir de 768 px. */
+.methode-duo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: var(--e-8);
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .methode-duo {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* --- Schémas animés (décision de Landry du 25/09/2026) ----------------------
+   Trois blocs de texte remplacés par du mouvement au défilement : les
+   filets et accroches des trois pôles (02), les occasions et les chiffres du
+   constat (03). Formes à angle
+   droit, bleu nuit et crème seulement, aucun or, aucune flèche, aucun
+   point. État final affiché directement ; l'état « avant » ne vit que sous
+   html.mvt (section « Page unique — mouvement », M7). */
+.schema-anime {
+  margin: var(--e-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case {
+  border: var(--trait-1) solid var(--texte);
+  padding: var(--e-3) var(--e-4);
+  font-family: var(--font-texte);
+  font-size: var(--taille-petit);
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--texte);
+}
+
+/* 03 — les occasions s'empilent. */
+.schema-occasions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+}
+
+/* 03 — les chiffres du constat. */
+.schema-chiffres {
+  display: grid;
+  /* 120 px : 4 côte à côte dans la colonne du constat sur ordinateur, 2 × 2
+     sur tablette et téléphone (jamais une colonne de 4). */
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--e-3);
+}
+
+.schema-chiffres__case {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-1);
+  padding-top: var(--e-3);
+  border-top: 2px solid var(--texte);
+}
+
+.schema-chiffres__nombre {
+  font-family: var(--font-titre);
+  font-size: var(--taille-h2);
+  line-height: 1.1;
+  font-weight: 700;
+  font-variation-settings: "wdth" 112;
+  font-variant-numeric: tabular-nums;
+}
+
+.schema-chiffres__libelle {
+  font-size: var(--taille-petit);
+  line-height: 1.45;
   color: var(--texte-secondaire);
 }
 
@@ -1228,14 +1502,14 @@ main.rg-focusable:focus-visible {
    écrans vides, avec des vides verticaux de ~280 px entre blocs liés — les
    éléments liés devenaient plus éloignés que les éléments sans rapport, et
    le regard traversait 1 440 px sept fois dans le seul chapitre 05.
-   .bloc-zigzag--droite n'est donc plus posée QUE sur un bloc qui porte un
-   OBJET à regarder : le schéma du tournage groupé (03). Le portrait (06)
-   garde son décalage par .bloc-portrait. Tout le reste — les cinq étapes,
-   « Les règles du jeu », « Comment nous travaillons », « Notre principe » —
-   se lit en colonne unique à gauche. Ne pas rétablir l'alternance
-   automatique sur du texte seul.
+   Le décalage à droite (.bloc-zigzag--droite) a été retiré le 25/09/2026 :
+   plus aucun bloc ne le portait depuis que le constat et le tournage groupé
+   (03) sont côte à côte dans .methode-duo. Le portrait (06) garde son
+   décalage par .bloc-portrait. Tout le reste — « Il y a toujours une
+   solution », « Notre principe » — se lit en colonne unique à gauche. Ne
+   pas rétablir l'alternance automatique sur du texte seul.
 
-   .bloc-zigzag / .bloc-zigzag--droite sont posées à la main dans page.tsx,
+   .bloc-zigzag est posée à la main dans page.tsx,
    bloc par bloc (jamais de :nth-of-type ici : un bloc SANS sous-titre peut
    s'intercaler, comme le portrait ou un paragraphe d'introduction, et
    fausserait un comptage automatique). Largeur fluide (clamp), sans deuxième rupture : 58 %
@@ -1251,14 +1525,6 @@ main.rg-focusable:focus-visible {
   .bloc-zigzag {
     font-size: var(--taille-texte);
     width: clamp(40ch, 58%, 62ch);
-  }
-
-  /* margin-left:auto pousse le bloc à droite, qu'il soit en display:block
-     (.section) ou en flex item d'un conteneur flex-direction:column
-     (.etapes__item, voir .etapes) : dans les deux cas, un bloc plus étroit
-     que son parent se cale sur son bord droit. */
-  .bloc-zigzag--droite {
-    margin-left: auto;
   }
 }
 
@@ -1293,7 +1559,9 @@ main.rg-focusable:focus-visible {
     display: grid;
     grid-template-columns: minmax(0, 62ch) minmax(0, clamp(180px, 30%, 340px));
     grid-template-rows: auto auto 1fr;
-    justify-content: space-between;
+    /* start et non space-between (25/09/2026) : en grand écran, le portrait
+       partait au bord droit, à 350 px et plus du texte qu'il illustre. */
+    justify-content: start;
     column-gap: var(--e-8);
     align-items: start;
   }
@@ -1566,6 +1834,98 @@ html.mvt .schema-tournage__mois > .schema-tournage__bloc:nth-child(3) .schema-to
 }
 
 html.mvt .schema-tournage.est-visible .schema-tournage__remplissage {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* --- M7 : les schémas animés (décision de Landry du 25/09/2026) -----------
+   Chaque case se pose à son tour (--i, posé dans page.tsx) : fondu et
+   légère montée de 8 px, en transform et opacity seulement, sans rebond.
+   Le filet des pôles se trace ensuite de gauche à droite. Les étapes
+   reprennent le remplissage du tournage groupé (clip-path). */
+html.mvt .schema-anime .case,
+html.mvt .pole__accroche,
+html.mvt .schema-chiffres__case {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 450ms ease-out,
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i, 0) * 140ms);
+}
+
+/* Les pôles : le filet se trace (500 ms, linéaire), puis l'accroche se
+   pose. En mobile, chaque pôle part à sa propre arrivée à l'écran ; à partir
+   de 768 px, les trois sont sur la même ligne et partent ensemble : les
+   délais enchaînent les trois filets en un seul trait continu, de gauche à
+   droite. */
+html.mvt .pole__filet {
+  transform: scaleX(0);
+  transition: transform 500ms linear;
+}
+
+html.mvt .pole__accroche {
+  transition-delay: 350ms;
+}
+
+@media (min-width: 768px) {
+  html.mvt .pole__filet {
+    transition-delay: calc(var(--i, 0) * 500ms);
+  }
+
+  html.mvt .pole__accroche {
+    transition-delay: calc(var(--i, 0) * 500ms + 350ms);
+  }
+}
+
+html.mvt .pole.est-visible .pole__filet {
+  transform: none;
+}
+
+html.mvt .schema-anime.est-visible .case,
+html.mvt .methode-duo.est-visible .case,
+html.mvt .pole.est-visible .pole__accroche,
+html.mvt .schema-chiffres.est-visible .schema-chiffres__case {
+  opacity: 1;
+  transform: none;
+}
+
+
+/* Chapitre 03, à partir de 768 px (blocs côte à côte) : un seul
+   déclencheur, .methode-duo, pour le constat et le tournage groupé. Les
+   chiffres attendent que les six occasions soient posées (6 × 140 ms), pour
+   que la colonne du constat finisse avec le remplissage du tournage groupé
+   (~1,8 s). En mobile, les blocs sont empilés : chiffres et tournage gardent
+   leur propre déclencheur (leur EnScene), sinon ils s'animeraient hors de
+   l'écran. */
+@media (min-width: 768px) {
+  html.mvt .methode-duo .schema-chiffres__case {
+    transition-delay: calc(800ms + var(--i, 0) * 140ms);
+  }
+
+  html.mvt .methode-duo.est-visible .schema-chiffres__case {
+    opacity: 1;
+    transform: none;
+  }
+
+  html.mvt .methode-duo.est-visible .schema-tournage__remplissage {
+    clip-path: inset(0 0% 0 0);
+  }
+}
+
+html.mvt .etapes__numero-remplissage {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 500ms ease-in-out;
+}
+
+@media (min-width: 768px) {
+  /* En grand écran, les cases sont côte à côte et entrent en vue ensemble :
+     le décalage fait avancer la frise dans l'ordre. */
+  html.mvt .etapes__numero-remplissage {
+    transition-delay: calc(var(--i, 0) * 350ms);
+  }
+}
+
+html.mvt .etapes__item.est-visible .etapes__numero-remplissage {
   clip-path: inset(0 0% 0 0);
 }
 
