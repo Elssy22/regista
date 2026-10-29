@@ -1,5 +1,21 @@
 @AGENTS.md
 
+> **Nouvelle version en cours (branche `claude/cool-carson-nr4tdd`, décision
+> de Landry du 29/10/2026).** Landry a demandé d'oublier la charte Regista
+> v1.0 décrite plus bas : la nouvelle version suit la DA du deck
+> « Présentation agence 2026 ». Ce qui fait foi sur cette branche :
+> - **Couleurs** : `#f3efe0` (crème) et `#16284a` (bleu nuit) en dominantes,
+>   `#b8924a` (or) pour les détails. Rien d'autre.
+> - **Typographie** : Sanserata, en plusieurs graisses et tailles.
+> - **Logos** : `public/brand/2026/` (R seul bleu et crème, logotype complet
+>   bleu et crème). Le logotype crème est le bleu recoloré, tracé inchangé.
+> - Les règles de la charte v1.0 (Archivo/Newsreader, une seule trajectoire,
+>   « récit », or interdit en texte, etc.) **ne s'appliquent plus** à cette
+>   branche. Les règles de contenu et de droit (pas de prix, droits à
+>   l'image, mineurs, personnalités, « Regista n'est pas agent sportif »)
+>   restent valables tant que Landry ne dit pas le contraire.
+> - `main` reste la production : rien n'y part sans son accord.
+
 # Regista — site vitrine, refonte 2026
 
 Dépôt Next.js (App Router, React 19, TypeScript, CSS Modules) du site
