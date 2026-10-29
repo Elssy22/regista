@@ -1,0 +1,59 @@
+.pied {
+  border-top: 1px solid var(--creme-trait);
+}
+
+.barre {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px 24px;
+  padding-block: 28px;
+}
+
+.signature {
+  font-size: var(--t-petit);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.liens {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 24px;
+  padding: 0;
+  list-style: none;
+}
+
+.liens a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: var(--t-petit);
+  letter-spacing: 0.06em;
+  color: var(--creme-texte);
+  text-decoration: none;
+}
+
+.liens a:hover {
+  color: var(--or);
+}
+
+.r {
+  width: 40px;
+  height: auto;
+  color: var(--creme);
+}
+
+@media (min-width: 768px) {
+  .barre {
+    grid-template-columns: 1fr auto auto;
+    gap: 40px;
+  }
+
+  .liens {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}

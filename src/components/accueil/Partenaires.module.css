@@ -1,0 +1,76 @@
+.partenaires {
+  overflow: hidden;
+}
+
+.courbe {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  color: var(--creme);
+  transform: scaleX(-1);
+}
+
+.grille {
+  display: grid;
+  gap: 16px;
+  margin-top: clamp(40px, 6vw, 72px);
+  padding: 0;
+  list-style: none;
+}
+
+.case {
+  display: flex;
+}
+
+.carte {
+  flex: 1;
+  padding: clamp(28px, 3vw, 36px);
+  background: var(--creme-doux);
+  border: 1px solid var(--creme-trait);
+  border-radius: var(--rayon);
+}
+
+.nom {
+  font-size: var(--t-h3);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.role {
+  margin-top: 6px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--creme-trait);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--or);
+}
+
+.question {
+  margin-top: 18px;
+  font-weight: 700;
+  color: var(--or);
+}
+
+.texte {
+  margin-top: 8px;
+  color: var(--creme-texte);
+}
+
+@media (min-width: 768px) {
+  .grille {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .case:nth-child(-n + 2) {
+    grid-column: span 3;
+  }
+
+  .case:nth-child(n + 3) {
+    grid-column: span 2;
+  }
+}

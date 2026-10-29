@@ -1,38 +1,55 @@
-/* ==========================================================================
-   Regista — variables globales (design tokens) + reset
-   Palette validée V-final : #254222 / #C9A227 / #F7F5F0 / #ECE2B1
-   ========================================================================== */
+/*
+ * Regista — nouvelle version (DA du deck « Présentation agence 2026 »).
+ *
+ * Trois couleurs, rien d'autre : crème et bleu nuit en dominantes, or pour
+ * les détails. Les variantes « -doux » sont ces mêmes couleurs en
+ * transparence, pas des teintes nouvelles.
+ *
+ * Contraste : l'or sur crème ne se lit pas assez (2,6:1), il n'y porte
+ * donc que des traits et des formes. Sur bleu (5:1), il peut porter du texte.
+ */
 
 :root {
-  /* Couleurs — noms de tokens stables, on ne met jamais de couleur en dur */
-  --vert-nocturne: #254222; /* fond sombre, titres, texte principal */
-  --or-laiton: #c9a227; /* accents, CTA, hover liens, filet sous les titres */
-  --blanc-atelier: #f7f5f0; /* fond de page, texte sur vert */
-  --creme-titre: #ece2b1; /* titres sur bandeau vert, liens menu mobile */
-  --blanc-carte: #ffffff; /* fond des cartes services */
-  --brun-herite: #9a6735; /* mentions secondaires (hérité) */
+  --creme: #f3efe0;
+  --bleu: #16284a;
+  --or: #b8924a;
 
-  /* Opacités récurrentes */
-  --op-texte: 0.85;
-  --op-texte-secondaire: 0.8;
+  --bleu-doux: rgb(22 40 74 / 0.06);
+  --bleu-trait: rgb(22 40 74 / 0.16);
+  --bleu-texte: rgb(22 40 74 / 0.78);
+  --creme-doux: rgb(243 239 224 / 0.06);
+  --creme-trait: rgb(243 239 224 / 0.16);
+  --creme-texte: rgb(243 239 224 / 0.8);
 
-  /* Polices (déclarées via next/font dans layout.tsx) */
-  --font-titres: var(--font-anton), "Arial Narrow", sans-serif;
-  --font-corps: var(--font-work-sans), system-ui, sans-serif;
+  /*
+   * Sanserata : en attente des fichiers de police. Dès qu'ils sont dans
+   * src/fonts/, src/lib/polices.ts les charge et remplit --font-sanserata.
+   */
+  --police: var(--font-sanserata, "Sanserata"), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
 
-  /* Mise en page */
-  --largeur-max-contenu: 1360px;
-  --gouttiere-contenu: 32px;
+  --largeur: 1320px;
+  --marge: 20px;
+  --rayon: 16px;
+  --entete: 72px;
 
-  /* Rayons */
-  --rayon-pilule: 999px;
-  --rayon-carte: 16px;
-  --rayon-video: 18px;
-  --rayon-photo: 12px;
+  --t-geant: clamp(2.6rem, 12.5vw, 11rem);
+  --t-h1: clamp(2.6rem, 7vw, 6.25rem);
+  --t-h2: clamp(2.1rem, 5.2vw, 4.5rem);
+  --t-manifeste: clamp(1.45rem, 2.7vw, 2.4rem);
+  --t-h3: 1.375rem;
+  --t-chiffre: clamp(2.6rem, 5vw, 4.25rem);
+  --t-texte: 1.0625rem;
+  --t-petit: 0.8125rem;
 
-  /* Ombres */
-  --ombre-carte: 0 10px 28px rgba(37, 66, 34, 0.1);
-  --ombre-calendly: 0 26px 60px rgba(37, 66, 34, 0.22), 0 6px 16px rgba(37, 66, 34, 0.12);
+  --courbe: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --marge: 48px;
+    --entete: 88px;
+  }
 }
 
 *,
@@ -41,51 +58,224 @@
   box-sizing: border-box;
 }
 
-html {
-  scrollbar-gutter: stable both-edges;
-  /* Décale les ancres pour ne pas passer sous l'en-tête collant : la
-     variable --hauteur-entete (56 / 64 px) est déclarée dans site.css,
-     avec le reste de la mise en page du nouvel en-tête. */
-  scroll-padding-top: var(--hauteur-entete);
+* {
+  margin: 0;
 }
 
-/* scroll-behavior:smooth ne s'applique qu'une fois la classe posée par le
-   script de layout.tsx (corrections mouvement, point 7) : un chargement
-   COMPLET avec une ancre déjà dans l'adresse (/#contact, rechargement,
-   anciennes adresses qui redirigent vers /#…) doit arriver directement au
-   chapitre, sans long défilement doux — mesuré : SANS ce garde-fou, le
-   navigateur applique déjà "smooth" à SON PROPRE défilement natif vers
-   l'ancre, avant même que React ne démarre. Le défilement doux reste pour
-   les clics DANS la page (menu, sommaire, boutons, M8) : la classe est posée
-   dès que la page a fini de charger (évènement "load"), donc bien avant le
-   moindre clic possible, et seulement si l'appareil n'a pas demandé de
-   réduire les animations. */
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: var(--entete);
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  html.defilement-doux {
+  html {
     scroll-behavior: smooth;
   }
 }
 
 body {
-  margin: 0;
-  max-width: 100vw;
-  overflow-x: hidden;
-  background: var(--blanc-atelier);
-  color: var(--vert-nocturne);
-  font-family: var(--font-corps);
+  background: var(--creme);
+  color: var(--bleu);
+  font-family: var(--police);
+  font-size: var(--t-texte);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
 }
 
 a {
   color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--or);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--bleu);
+  color: var(--creme);
+}
+
+/* ——— Mise en page ——— */
+
+.conteneur {
+  width: 100%;
+  max-width: calc(var(--largeur) + 2 * var(--marge));
+  margin-inline: auto;
+  padding-inline: var(--marge);
+}
+
+.section {
+  position: relative;
+  padding-block: clamp(80px, 11vw, 150px);
+  isolation: isolate;
+}
+
+.fond-creme {
+  background: var(--creme);
+  color: var(--bleu);
+}
+
+.fond-bleu {
+  background: var(--bleu);
+  color: var(--creme);
+}
+
+/* Le grain du papier du deck, posé en calque sous le contenu. */
+.texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url("/texture-papier.jpg") 0 0 / 900px auto repeat;
+  pointer-events: none;
+}
+
+.fond-creme.texture::before {
+  mix-blend-mode: multiply;
+  opacity: 0.09;
+}
+
+.fond-bleu.texture::before {
+  mix-blend-mode: soft-light;
+  opacity: 0.18;
+}
+
+/* ——— Typographie ——— */
+
+.titre-section {
+  font-size: var(--t-h2);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.surtitre {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  font-size: var(--t-petit);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Sur crème, le surtitre reste bleu et l'or ne fait que le trait. */
+.surtitre::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  background: var(--or);
+}
+
+.fond-bleu .surtitre {
+  color: var(--or);
+}
+
+.chapo {
+  max-width: 46ch;
+  margin-top: 20px;
+  font-size: 1.125rem;
+  color: var(--bleu-texte);
+}
+
+.fond-bleu .chapo {
+  color: var(--creme-texte);
+}
+
+.visuellement-cache {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ——— Boutons ——— */
+
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 0 30px;
+  border: 1px solid currentColor;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   text-decoration: none;
+  transition:
+    background-color 0.3s var(--courbe),
+    color 0.3s var(--courbe);
 }
 
-h1,
-h2,
-h3,
-h4 {
-  margin: 0;
+.bouton svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s var(--courbe);
 }
 
+.bouton:hover svg {
+  transform: translate(3px, -3px);
+}
+
+.bouton--plein {
+  background: var(--bleu);
+  border-color: var(--bleu);
+  color: var(--creme);
+}
+
+.bouton--plein:hover {
+  background: transparent;
+  color: var(--bleu);
+}
+
+.fond-bleu .bouton--plein {
+  background: var(--creme);
+  border-color: var(--creme);
+  color: var(--bleu);
+}
+
+.fond-bleu .bouton--plein:hover {
+  background: transparent;
+  color: var(--creme);
+}
+
+/* ——— Apparition au défilement ———
+ * L'état « caché » n'existe que sous html.anim, posé par un script en tête
+ * de page quand l'appareil accepte les animations. Sans JavaScript, ou avec
+ * « réduire les animations », tout s'affiche directement.
+ */
+
+html.anim [data-apparait] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s var(--courbe),
+    transform 0.9s var(--courbe);
+  transition-delay: var(--delai, 0s);
+}
+
+html.anim [data-apparait].est-visible {
+  opacity: 1;
+  transform: none;
+}

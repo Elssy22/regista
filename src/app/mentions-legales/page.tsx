@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import LegalLayout, { legalStyles as styles, ToDo } from "@/components/legal/LegalLayout";
+import Link from "next/link";
+import { PageLegale, legal as styles } from "@/components/legal/PageLegale";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Mentions légales — Regista",
+  title: "Mentions légales",
   description: "Mentions légales du site Regista.",
 };
 
@@ -11,7 +12,7 @@ export default function MentionsLegalesPage() {
   const { contact, legal } = siteConfig;
 
   return (
-    <LegalLayout title="Mentions légales" updated="Dernière mise à jour : août 2026">
+    <PageLegale titre="Mentions légales" miseAJour="Dernière mise à jour : août 2026">
       <section className={styles.section}>
         <h2 className={styles.h2}>1. Éditeur du site</h2>
         <div className={styles.dl}>
@@ -51,11 +52,7 @@ export default function MentionsLegalesPage() {
 
           <span className={styles.dt}>{"Téléphone"}</span>
           <p className={styles.dd}>
-            {contact.telephoneLien && contact.telephoneAffiche ? (
-              <a href={`tel:${contact.telephoneLien}`}>{contact.telephoneAffiche}</a>
-            ) : (
-              <ToDo>numéro de téléphone</ToDo>
-            )}
+            <a href={`tel:${contact.telephoneLien}`}>{contact.telephoneAffiche}</a>
           </p>
         </div>
       </section>
@@ -63,7 +60,9 @@ export default function MentionsLegalesPage() {
       <section className={styles.section}>
         <h2 className={styles.h2}>2. Directeur de la publication</h2>
         <p className={styles.p}>
-          {"Le directeur de la publication du site est Landry Célina, représentant légal de "}
+          {"Le directeur de la publication du site est "}
+          {legal.directeurPublication}
+          {", représentant légal de "}
           {legal.raisonSociale}
           {"."}
         </p>
@@ -106,7 +105,7 @@ export default function MentionsLegalesPage() {
         </p>
         <p className={styles.p}>
           {"Pour en savoir plus sur le traitement de vos données et vos droits, consultez notre "}
-          <a href="/politique-confidentialite">politique de confidentialité</a>
+          <Link href="/politique-confidentialite">politique de confidentialité</Link>
           {"."}
         </p>
       </section>
@@ -127,6 +126,6 @@ export default function MentionsLegalesPage() {
           {" ne maîtrise pas le contenu et ne saurait être tenue responsable."}
         </p>
       </section>
-    </LegalLayout>
+    </PageLegale>
   );
 }

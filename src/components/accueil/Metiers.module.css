@@ -1,0 +1,105 @@
+.grille {
+  display: grid;
+  gap: 16px;
+  margin-top: clamp(40px, 6vw, 72px);
+  padding: 0;
+  list-style: none;
+}
+
+.case {
+  display: flex;
+}
+
+.carte {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(28px, 3vw, 40px);
+  background: var(--bleu-doux);
+  border: 1px solid var(--bleu-trait);
+  border-radius: var(--rayon);
+  transition:
+    background-color 0.4s var(--courbe),
+    color 0.4s var(--courbe);
+}
+
+/* Au survol, la carte passe en bleu : le numéro et le filet passent à l'or. */
+.carte:hover {
+  background: var(--bleu);
+  color: var(--creme);
+}
+
+.numero {
+  align-self: flex-start;
+  padding: 2px 10px;
+  border: 1px solid var(--or);
+  border-radius: 6px;
+  font-size: var(--t-petit);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.carte:hover .numero {
+  color: var(--or);
+}
+
+.titre {
+  margin-top: clamp(32px, 4vw, 48px);
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--bleu-trait);
+  font-size: var(--t-h3);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.carte:hover .titre {
+  border-bottom-color: var(--or);
+}
+
+.texte {
+  margin-top: 18px;
+  font-size: 1rem;
+  color: var(--bleu-texte);
+  transition: color 0.4s var(--courbe);
+}
+
+.carte:hover .texte {
+  color: var(--creme-texte);
+}
+
+/* Deux cartes en haut (large + étroite), trois en bas, comme le template. */
+@media (min-width: 768px) {
+  .grille {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .case:nth-child(1) {
+    grid-column: span 4;
+  }
+
+  .case:nth-child(2) {
+    grid-column: span 2;
+  }
+
+  .case:nth-child(n + 3) {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1099px) {
+  .case:nth-child(1),
+  .case:nth-child(2) {
+    grid-column: span 3;
+  }
+
+  .case:nth-child(3),
+  .case:nth-child(4) {
+    grid-column: span 3;
+  }
+
+  .case:nth-child(5) {
+    grid-column: span 6;
+  }
+}

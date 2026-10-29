@@ -1,0 +1,122 @@
+.methode {
+  overflow-x: clip;
+}
+
+.etapes {
+  --trait: repeating-linear-gradient(180deg, var(--or) 0 10px, transparent 10px 18px);
+  position: relative;
+  display: grid;
+  gap: 40px;
+  margin-top: clamp(48px, 7vw, 88px);
+  padding: 0 0 0 44px;
+  list-style: none;
+}
+
+/* La ligne pointillée (verticale sur mobile). */
+.etapes::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--trait);
+  transform-origin: top;
+}
+
+.etape {
+  position: relative;
+}
+
+.point {
+  position: absolute;
+  left: -44px;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  border: 4px solid var(--or);
+  border-radius: 50%;
+  background: var(--creme);
+}
+
+.numero {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bleu-texte);
+}
+
+.titre {
+  margin-top: 4px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.texte {
+  margin-top: 10px;
+  max-width: 40ch;
+  color: var(--bleu-texte);
+}
+
+@media (min-width: 1024px) {
+  .etapes {
+    --trait: repeating-linear-gradient(90deg, var(--or) 0 14px, transparent 14px 24px);
+    grid-template-columns: repeat(5, 1fr);
+    gap: 32px;
+    padding: 64px 0 0;
+  }
+
+  .etapes::before {
+    left: -100vw;
+    right: -100vw;
+    top: 11px;
+    bottom: auto;
+    width: auto;
+    height: 2px;
+    transform-origin: left;
+  }
+
+  .point {
+    left: 0;
+    top: -64px;
+  }
+}
+
+/* La ligne se trace, puis les étapes apparaissent l'une après l'autre. */
+:global(html.anim) .etapes::before {
+  transform: scaleY(0);
+  transition: transform 1.4s var(--courbe);
+}
+
+:global(html.anim) .etapes:global(.est-visible)::before {
+  transform: none;
+}
+
+:global(html.anim) .etape {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.7s var(--courbe),
+    transform 0.7s var(--courbe);
+  transition-delay: calc(0.3s + var(--i) * 0.15s);
+}
+
+:global(html.anim) .etapes:global(.est-visible) .etape {
+  opacity: 1;
+  transform: none;
+}
+
+@media (min-width: 1024px) {
+  :global(html.anim) .etapes::before {
+    transform: scaleX(0);
+  }
+}
+
+/* La liste elle-même ne bouge pas : seules la ligne et les étapes s'animent. */
+:global(html.anim) .etapes[data-apparait] {
+  opacity: 1;
+  transform: none;
+}

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import LegalLayout, { legalStyles as styles } from "@/components/legal/LegalLayout";
+import { PageLegale, legal as styles } from "@/components/legal/PageLegale";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Politique de confidentialité — Regista",
+  title: "Politique de confidentialité",
   description:
     "Politique de confidentialité du site Regista : données collectées, finalités, droits (RGPD).",
 };
@@ -12,10 +12,7 @@ export default function PolitiqueConfidentialitePage() {
   const { contact, legal } = siteConfig;
 
   return (
-    <LegalLayout
-      title="Politique de confidentialité"
-      updated="Dernière mise à jour : août 2026"
-    >
+    <PageLegale titre="Politique de confidentialité" miseAJour="Dernière mise à jour : août 2026">
       <section className={styles.section}>
         <p className={styles.p}>
           {"La présente politique explique quelles données personnelles sont traitées dans le cadre de l'utilisation du site "}
@@ -105,6 +102,6 @@ export default function PolitiqueConfidentialitePage() {
           {"."}
         </p>
       </section>
-    </LegalLayout>
+    </PageLegale>
   );
 }
