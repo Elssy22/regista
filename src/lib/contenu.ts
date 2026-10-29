@@ -36,6 +36,12 @@ import ap01 from "@/assets/realisations/all-parisian/01.jpg";
 import ap02 from "@/assets/realisations/all-parisian/02.jpg";
 import ap03 from "@/assets/realisations/all-parisian/03.jpg";
 
+import logoCarreCroix from "@/assets/partenaires/carre-croix.jpg";
+import logoPartDokiDoki from "@/assets/partenaires/doki-doki.jpg";
+import logoAllMedia from "@/assets/partenaires/all-media-training.jpg";
+import logoCmr from "@/assets/partenaires/cmr-consulting.jpg";
+import logoSapha from "@/assets/partenaires/sapha-hamdani.jpg";
+
 export type Photo = { src: StaticImageData; alt: string };
 
 export const fondateur = {
@@ -137,27 +143,32 @@ export const methode = [
 export const partenaires = [
   {
     nom: "Carré Croix",
+    logo: logoCarreCroix,
     role: "Studio créatif",
     texte: "Créativité, passion, bosseur. Le studio créatif de vos créatifs préférés.",
   },
   {
     nom: "Doki Doki",
+    logo: logoPartDokiDoki,
     role: "Agence social média",
     texte: "Avec Doki Doki, faire battre le cœur de votre communauté est un jeu d'enfant.",
   },
   {
     nom: "All Média Training",
+    logo: logoAllMedia,
     role: "Media training · Animation d'événements",
     texte:
       "Isoline est la meilleure pour mettre à l'aise vos intervenants ou pour animer toutes les sortes d'événements.",
   },
   {
     nom: "CMR Consulting",
+    logo: logoCmr,
     role: "Développeur web & app",
     texte: "Créer un site internet, un logiciel de gestion ou une app mobile sur mesure : CMR est la solution.",
   },
   {
     nom: "Sapha Hamdani",
+    logo: logoSapha,
     role: "Juriste",
     texte: "Sapha est la meilleure pour assurer vos arrières sur le plan juridique.",
   },
@@ -167,6 +178,9 @@ export type Realisation = {
   slug: string;
   client: string;
   metier: string;
+  annee: string;
+  /** true quand l'année n'est pas confirmée par Landry (donnée fictive). */
+  anneeFictive?: boolean;
   /** Le résultat en une ligne, affiché sur la carte et dans la fiche. */
   resultat: string;
   description: string[];
@@ -179,6 +193,7 @@ export const realisations: Realisation[] = [
     slug: "fc-rocquancourt",
     client: "FC Rocquancourt",
     metier: "Pilotage",
+    annee: "2025",
     resultat: "500 maillots vendus en moins d'une semaine",
     description: [
       "Pour le club normand du FC Rocquancourt (D2), nous avons été consultés sur la stratégie d'amplification de la sortie de ses deux maillots, sortis chez l'équipementier Nike.",
@@ -200,6 +215,8 @@ export const realisations: Realisation[] = [
     slug: "doki-doki",
     client: "Doki Doki",
     metier: "Social média",
+    annee: "2025",
+    anneeFictive: true,
     resultat: "+1 500 abonnés en 3 mois",
     description: [
       "Pour l'agence Doki Doki, nous avons été missionnés pour gérer les réseaux sociaux de l'un de ses clients, Maison de la Literie. L'objectif était de créer une ligne éditoriale capable d'engager la communauté de l'entreprise et de faire évoluer le compte Instagram.",
@@ -224,6 +241,7 @@ export const realisations: Realisation[] = [
     slug: "all-parisian",
     client: "All Parisian",
     metier: "Événementiel",
+    annee: "2025",
     resultat: "Un événement complet",
     description: [
       "Pour la première édition du « All African Celebration », l'association All Parisian a fait appel à nos services afin de promouvoir l'événement sur les réseaux sociaux et de générer de la présence le jour de l'événement.",
@@ -242,4 +260,138 @@ export const realisations: Realisation[] = [
 
 export function trouverRealisation(slug: string) {
   return realisations.find((r) => r.slug === slug);
+}
+
+/* ————————————————————————————————————————————————————————————————
+ * CONTENU FICTIF
+ * Demandé par Landry le 29/10/2026 pour remplir le template en attendant
+ * les vraies informations. Tout ce qui suit est à remplacer.
+ * Garde-fou : tant qu'il en reste, la construction de PRODUCTION échoue
+ * (voir verifierContenuFictif, appelée dans app/layout.tsx), pour que ces
+ * données ne puissent jamais partir sur regista-a.com par erreur.
+ * ———————————————————————————————————————————————————————————————— */
+
+export type Temoignage = { nom: string; role: string; texte: string; fictif: true };
+
+export const temoignages: Temoignage[] = [
+  {
+    nom: "Thomas R.",
+    role: "Président de club · exemple",
+    texte:
+      "Regista a compris notre histoire avant même qu'on ait fini de la raconter. Nos réseaux n'ont jamais été aussi vivants.",
+    fictif: true,
+  },
+  {
+    nom: "Sarah B.",
+    role: "Directrice d'académie · exemple",
+    texte:
+      "Un seul interlocuteur, des réponses rapides et un dossier de financement monté de A à Z. Exactement ce qu'il nous fallait.",
+    fictif: true,
+  },
+  {
+    nom: "Karim L.",
+    role: "Responsable communication · exemple",
+    texte: "Le tournage s'est fait en une journée, les contenus ont tenu toute la saison.",
+    fictif: true,
+  },
+  {
+    nom: "Julie M.",
+    role: "Fondatrice de marque · exemple",
+    texte: "Des idées, de la rigueur et une vraie culture foot. On a lancé notre collection avec eux.",
+    fictif: true,
+  },
+  {
+    nom: "Mehdi A.",
+    role: "Organisateur de tournoi · exemple",
+    texte: "Avant, pendant, après : l'événement a été suivi et relayé du début à la fin.",
+    fictif: true,
+  },
+];
+
+export const avisClients = {
+  // Les trois pastilles du haut de page reprennent de vrais logos clients.
+  logos: [logoRocquancourt, logoDokiDoki, logoTfm],
+  titre: "8 clients",
+  detail: "nous font déjà confiance.",
+};
+
+export type Actualite = {
+  slug: string;
+  categorie: string;
+  date: string;
+  titre: string;
+  image: Photo;
+  paragraphes: string[];
+  fictif: true;
+};
+
+export const actualites: Actualite[] = [
+  {
+    slug: "raconter-histoire-club",
+    categorie: "Storytelling",
+    date: "Publié le 14 octobre 2026",
+    titre: "Pourquoi l'histoire de votre club vaut de l'or",
+    image: { src: ap01, alt: "Un joueur s'envole pour un dunk devant les tribunes pleines." },
+    paragraphes: [
+      "Article d'exemple, à remplacer. Chaque club a une histoire : ses fondateurs, ses saisons, ses visages. Bien racontée, elle devient le meilleur argument auprès des partenaires comme des supporters.",
+      "Dans cet article, nous verrons comment repérer les moments forts de votre structure et les transformer en contenus : portraits, formats courts, podcasts.",
+    ],
+    fictif: true,
+  },
+  {
+    slug: "reussir-sortie-maillot",
+    categorie: "Social média",
+    date: "Publié le 2 octobre 2026",
+    titre: "Réussir la sortie d'un maillot en cinq étapes",
+    image: { src: roc02, alt: "Le maillot noir du FC Rocquancourt porté." },
+    paragraphes: [
+      "Article d'exemple, à remplacer. Une sortie de maillot se prépare des semaines à l'avance : teasing, révélation, mise en avant des porteurs, puis suivi des ventes.",
+      "Nous détaillerons ici la méthode appliquée pour le FC Rocquancourt.",
+    ],
+    fictif: true,
+  },
+  {
+    slug: "financer-projets-academie",
+    categorie: "Financement",
+    date: "Publié le 18 septembre 2026",
+    titre: "Financer les projets de votre académie : par où commencer ?",
+    image: { src: lit05, alt: "Visuel « 3 critères » sur fond terracotta." },
+    paragraphes: [
+      "Article d'exemple, à remplacer. Subventions, mécénat, partenariats privés : les pistes sont nombreuses, encore faut-il choisir les bonnes et monter un dossier solide.",
+      "Nous verrons comment identifier les dispositifs adaptés à votre structure et construire un argumentaire qui fait la différence.",
+    ],
+    fictif: true,
+  },
+];
+
+export function trouverActualite(slug: string) {
+  return actualites.find((a) => a.slug === slug);
+}
+
+/** Réseaux sociaux : adresses à fournir. `null` = pas encore de lien. */
+export const reseaux: { nom: string; href: string | null; fictif: true }[] = [
+  { nom: "Instagram", href: null, fictif: true },
+  { nom: "LinkedIn", href: null, fictif: true },
+  { nom: "YouTube", href: null, fictif: true },
+  { nom: "TikTok", href: null, fictif: true },
+];
+
+/**
+ * Bloque la construction de production tant qu'il reste du contenu fictif.
+ * Les prévisualisations (branches) ne sont pas concernées.
+ */
+export function verifierContenuFictif() {
+  if (process.env.VERCEL_ENV !== "production") return;
+  const restes = [
+    temoignages.length && "témoignages",
+    actualites.length && "actualités",
+    reseaux.some((r) => r.fictif) && "réseaux sociaux",
+    realisations.some((r) => r.anneeFictive) && "année d'une réalisation",
+    clients.some((c) => c.aConfirmer) && "noms de clients à confirmer",
+  ].filter(Boolean);
+  if (restes.length) {
+    throw new Error(
+      `Contenu fictif encore présent (${restes.join(", ")}) : remplacez-le dans src/lib/contenu.ts avant la mise en production.`,
+    );
+  }
 }

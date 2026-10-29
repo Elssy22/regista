@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { realisations, trouverRealisation } from "@/lib/contenu";
 import { Entete } from "@/components/Entete";
 import { PiedDePage } from "@/components/PiedDePage";
-import { Contact } from "@/components/Contact";
-import { CarteRealisation } from "@/components/CarteRealisation";
-import { FlecheDroite } from "@/components/Icones";
+import { TitrePage } from "@/components/blocs/TitrePage";
+import { Galerie } from "@/components/blocs/Galerie";
 import styles from "./realisation.module.css";
 
-// Une page par réalisation, générée à la construction du site.
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -18,8 +15,7 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps<"/realisations/[slug]">): Promise<Metadata> {
-  const { slug } = await params;
-  const r = trouverRealisation(slug);
+  const r = trouverRealisation((await params).slug);
   if (!r) return {};
   return {
     title: `${r.metier} — ${r.client}`,
@@ -30,44 +26,26 @@ export async function generateMetadata({ params }: PageProps<"/realisations/[slu
 
 /** La fiche d'une réalisation (« Single project » du template). */
 export default async function PageRealisation({ params }: PageProps<"/realisations/[slug]">) {
-  const { slug } = await params;
-  const r = trouverRealisation(slug);
+  const r = trouverRealisation((await params).slug);
   if (!r) notFound();
-
-  const index = realisations.indexOf(r);
-  const suivante = realisations[(index + 1) % realisations.length];
 
   return (
     <>
       <Entete />
       <main id="contenu">
-        <section className={`fond-creme texture ${styles.tete}`} aria-labelledby="titre-realisation">
-          <div className="conteneur">
-            <Link href="/#realisations" className={styles.retour}>
-              <FlecheDroite />
-              Toutes les réalisations
-            </Link>
-            <p className={styles.metier}>{r.metier}</p>
-            <h1 id="titre-realisation" className={styles.titre}>
-              {r.client}
-            </h1>
-            <p className={styles.resultat}>{r.resultat}</p>
-          </div>
-        </section>
+        <TitrePage titre={r.client} texte={r.description[0]} />
 
         <div className={styles.couverture}>
-          <Image
-            src={r.couverture.src}
-            alt={r.couverture.alt}
-            placeholder="blur"
-            preload
-            sizes="100vw"
-          />
+          <Image src={r.couverture.src} alt={r.couverture.alt} placeholder="blur" preload sizes="100vw" />
         </div>
 
         <section className="section fond-bleu texture" aria-label="Le projet">
           <div className={`conteneur ${styles.fiche}`}>
-            <dl className={styles.infos}>
+            <dl className={styles.infos} data-apparait style={{ "--delai": "0.2s" } as React.CSSProperties}>
+              <div>
+                <dt>Année</dt>
+                <dd>{r.annee}</dd>
+              </div>
               <div>
                 <dt>Client</dt>
                 <dd>{r.client}</dd>
@@ -81,8 +59,8 @@ export default async function PageRealisation({ params }: PageProps<"/realisatio
                 <dd>{r.resultat}</dd>
               </div>
             </dl>
-            <div className={styles.description}>
-              <h2 className={styles.descriptionTitre}>Le projet</h2>
+            <div className={styles.description} data-apparait style={{ "--delai": "0.4s" } as React.CSSProperties}>
+              <h2>Le projet</h2>
               {r.description.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
@@ -90,30 +68,11 @@ export default async function PageRealisation({ params }: PageProps<"/realisatio
           </div>
 
           {r.galerie.length > 0 && (
-            <div className="conteneur">
-              <ul className={styles.galerie} data-nombre={r.galerie.length}>
-                {r.galerie.map((photo, i) => (
-                  <li key={i} data-apparait style={{ "--delai": `${(i % 3) * 0.08}s` } as React.CSSProperties}>
-                    <Image src={photo.src} alt={photo.alt} placeholder="blur" sizes="(min-width: 768px) 33vw, 50vw" />
-                  </li>
-                ))}
-              </ul>
+            <div className={`conteneur ${styles.galerie}`}>
+              <Galerie photos={r.galerie} />
             </div>
           )}
         </section>
-
-        {suivante && suivante.slug !== r.slug && (
-          <section className="section fond-creme texture" aria-labelledby="titre-suivante">
-            <div className={`conteneur ${styles.suivante}`}>
-              <h2 id="titre-suivante" className="surtitre">
-                Réalisation suivante
-              </h2>
-              <CarteRealisation realisation={suivante} />
-            </div>
-          </section>
-        )}
-
-        <Contact />
       </main>
       <PiedDePage />
     </>

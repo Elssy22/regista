@@ -1,0 +1,82 @@
+.grille {
+  display: grid;
+  gap: 30px;
+  margin-top: clamp(40px, 5vw, 60px);
+}
+
+.infos,
+.formulaire {
+  padding: 40px;
+  border-radius: 16px;
+  background: var(--bleu-doux);
+}
+
+.ligne {
+  padding-bottom: 20px;
+}
+
+.ligne + .ligne {
+  margin-top: 10px;
+}
+
+.ligne svg {
+  width: 28px;
+  height: 28px;
+}
+
+.ligne h3 {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ligne p {
+  color: var(--bleu-texte);
+}
+
+.ligne a {
+  text-decoration: none;
+}
+
+.ligne a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--or);
+}
+
+.reseaux {
+  display: flex;
+  gap: 20px;
+  margin-top: 15px;
+  padding: 0;
+  list-style: none;
+}
+
+.reseaux a,
+.reseaux span:not(:global(.visuellement-cache)) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--bleu-trait);
+  background: var(--creme);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.reseaux a:hover {
+  background: var(--bleu);
+  color: var(--creme);
+}
+
+@media (min-width: 992px) {
+  .grille {
+    grid-template-columns: 1fr 2fr;
+  }
+}

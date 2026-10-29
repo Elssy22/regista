@@ -1,0 +1,112 @@
+.grille {
+  display: grid;
+  gap: 30px;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .grille {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.vignette {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.vignette img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+/* ——— La fenêtre agrandie ——— */
+
+.popup {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 50px;
+  background: rgb(11 22 41 / 0.92);
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.figure {
+  position: relative;
+  margin: 0;
+  max-width: min(90vw, 1000px);
+}
+
+.grande {
+  width: auto;
+  height: calc(100vh - 120px);
+  max-width: 100%;
+  object-fit: contain;
+  margin-inline: auto;
+}
+
+.compteur {
+  margin-top: 8px;
+  color: var(--creme-texte);
+  font-size: 12px;
+  text-align: right;
+}
+
+.fermer,
+.nav {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: none;
+  color: var(--creme);
+  cursor: pointer;
+  opacity: 0.65;
+  transition: opacity 0.2s;
+}
+
+.fermer:hover,
+.nav:hover {
+  opacity: 1;
+}
+
+.fermer {
+  top: 0;
+  right: 0;
+  width: 44px;
+  height: 44px;
+  font-size: 28px;
+}
+
+.nav {
+  top: 50%;
+  width: 60px;
+  height: 110px;
+  margin-top: -55px;
+  font-size: 60px;
+  line-height: 1;
+}
+
+.precedent {
+  left: 0;
+}
+
+.suivant {
+  right: 0;
+}

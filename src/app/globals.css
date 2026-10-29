@@ -31,7 +31,7 @@
   --largeur: 1320px;
   --marge: 20px;
   --rayon: 16px;
-  --entete: 72px;
+  --entete: 84px;
 
   --t-geant: clamp(2.6rem, 12.5vw, 11rem);
   --t-h1: clamp(2.6rem, 7vw, 6.25rem);
@@ -48,7 +48,7 @@
 @media (min-width: 768px) {
   :root {
     --marge: 48px;
-    --entete: 88px;
+    --entete: 100px;
   }
 }
 
@@ -65,12 +65,6 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-padding-top: var(--entete);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
 }
 
 body {
@@ -260,22 +254,50 @@ a {
   color: var(--creme);
 }
 
-/* ——— Apparition au défilement ———
- * L'état « caché » n'existe que sous html.anim, posé par un script en tête
- * de page quand l'appareil accepte les animations. Sans JavaScript, ou avec
- * « réduire les animations », tout s'affiche directement.
+/* ——— Apparition au défilement (fadeInUp d'animate.css, comme le template) ———
+ * Le bloc reste caché tant qu'il n'est pas à l'écran, puis monte de toute
+ * sa hauteur en 1 s. Comme WOW.js (« mobile: false »), rien ne bouge sur
+ * écran tactile. Sans JavaScript, ou avec « réduire les animations »
+ * (pas de html.anim), tout s'affiche directement.
  */
 
-html.anim [data-apparait] {
-  opacity: 0;
-  transform: translateY(28px);
-  transition:
-    opacity 0.9s var(--courbe),
-    transform 0.9s var(--courbe);
-  transition-delay: var(--delai, 0s);
+@media (hover: hover) and (pointer: fine) {
+  html.anim [data-apparait]:not(.est-visible) {
+    visibility: hidden;
+  }
+
+  html.anim [data-apparait].est-visible {
+    animation: fadeInUp 1s ease both;
+    animation-delay: var(--delai, 0s);
+  }
 }
 
-html.anim [data-apparait].est-visible {
-  opacity: 1;
-  transform: none;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ——— Lenis (défilement doux) ——— */
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }

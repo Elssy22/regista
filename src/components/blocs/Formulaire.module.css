@@ -1,0 +1,83 @@
+.champs {
+  display: grid;
+  gap: 24px 30px;
+}
+
+.champ {
+  display: grid;
+  gap: 14px;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.saisie {
+  position: relative;
+}
+
+.saisie svg {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  margin-top: -9px;
+  pointer-events: none;
+}
+
+.champ input,
+.champ textarea {
+  width: 100%;
+  padding: 16px 50px 16px 20px;
+  border: 1px solid var(--bleu);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--bleu);
+  font: inherit;
+  text-transform: none;
+}
+
+.champ textarea {
+  padding-right: 20px;
+  resize: vertical;
+}
+
+.champ input::placeholder,
+.champ textarea::placeholder {
+  color: var(--bleu-texte);
+  opacity: 0.7;
+}
+
+.envoyer {
+  margin-top: 30px;
+}
+
+.envoyer svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Les messages apparaissent en fondu après un court délai (template). */
+.retour {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    opacity 1s 0.5s,
+    max-height 0s 0.5s;
+}
+
+.affiche {
+  max-height: 200px;
+  margin-top: 16px;
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .champs {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .large {
+    grid-column: 1 / -1;
+  }
+}

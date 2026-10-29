@@ -1,0 +1,48 @@
+.prechargement {
+  display: none;
+}
+
+/* N'existe que si le script de tête a posé html.anim (voir layout.tsx). */
+:global(html.anim) .prechargement {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  background: transparent;
+}
+
+.prechargement svg {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 110vh;
+  fill: var(--bleu);
+}
+
+.texte {
+  position: relative;
+  z-index: 1;
+  color: var(--creme);
+  font-size: 20px;
+  font-weight: 200;
+  letter-spacing: 15px;
+  text-transform: uppercase;
+}
+
+.texte span {
+  display: inline-block;
+  animation: clignote 1s infinite alternate;
+}
+
+@keyframes clignote {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

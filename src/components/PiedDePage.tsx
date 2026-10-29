@@ -1,22 +1,30 @@
 import Link from "next/link";
-import { Monogramme } from "./Logo";
 import styles from "./PiedDePage.module.css";
 
-/** Le pied de page reprend le bandeau bas des pages du deck. */
+/**
+ * Le pied de page du template, sur toutes les pages : « Un projet en tête ? »
+ * et le très grand appel, puis la ligne de bas de page.
+ */
 export function PiedDePage() {
   return (
-    <footer className={`fond-bleu ${styles.pied}`}>
-      <div className={`conteneur ${styles.barre}`}>
-        <p className={styles.signature}>Regista · Agence football · 2026</p>
-        <ul className={styles.liens}>
+    <footer className={`fond-creme texture ${styles.pied}`}>
+      <div className={`conteneur ${styles.haut}`}>
+        <p className={styles.question}>Un projet en tête ?</p>
+        <p className={styles.geant}>
+          <Link href="/contact">Parlons-en</Link>
+        </p>
+      </div>
+      <div className={`conteneur ${styles.bas}`}>
+        <p>Regista · Agence football</p>
+        <ul>
           <li>
             <Link href="/mentions-legales">Mentions légales</Link>
           </li>
           <li>
             <Link href="/politique-confidentialite">Confidentialité</Link>
           </li>
+          <li>© {new Date().getFullYear()} Regista</li>
         </ul>
-        <Monogramme className={styles.r} titre="Regista" />
       </div>
     </footer>
   );

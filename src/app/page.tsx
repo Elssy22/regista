@@ -1,18 +1,16 @@
 import { Entete } from "@/components/Entete";
 import { PiedDePage } from "@/components/PiedDePage";
-import { Contact } from "@/components/Contact";
 import { Ouverture } from "@/components/accueil/Ouverture";
-import { Clients } from "@/components/accueil/Clients";
 import { Agence } from "@/components/accueil/Agence";
 import { Metiers } from "@/components/accueil/Metiers";
-import { Realisations } from "@/components/accueil/Realisations";
-import { Methode } from "@/components/accueil/Methode";
-import { Partenaires } from "@/components/accueil/Partenaires";
+import { GrilleProjets } from "@/components/blocs/GrilleProjets";
+import { Temoignages } from "@/components/blocs/Temoignages";
+import { SectionActualites } from "@/components/blocs/SectionActualites";
+import { BlocContact } from "@/components/blocs/BlocContact";
 
 /**
- * La page d'accueil suit l'ordre du template Nino : ouverture, clients,
- * agence, métiers, réalisations, méthode, partenaires, contact.
- * Les fonds alternent crème et bleu, comme les pages du deck.
+ * L'accueil, dans l'ordre exact du template Nino : ouverture, clients et
+ * agence, métiers, réalisations, témoignages, actualités, contact.
  */
 export default function Accueil() {
   return (
@@ -20,13 +18,12 @@ export default function Accueil() {
       <Entete />
       <main id="contenu">
         <Ouverture />
-        <Clients />
         <Agence />
         <Metiers />
-        <Realisations />
-        <Methode />
-        <Partenaires />
-        <Contact />
+        <GrilleProjets />
+        <Temoignages />
+        <SectionActualites />
+        <BlocContact />
       </main>
       <PiedDePage />
     </>

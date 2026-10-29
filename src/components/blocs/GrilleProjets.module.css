@@ -1,0 +1,44 @@
+.section {
+  position: relative;
+  isolation: isolate;
+  padding-block: 100px;
+}
+
+/* Comme le template, la grille va presque d'un bord à l'autre. */
+.cadre {
+  padding-inline: 12px;
+}
+
+.etiquette {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 30px;
+  padding-left: 36px;
+  font-size: 1.05rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  rotate: -6deg;
+}
+
+.etiquette svg {
+  position: absolute;
+  left: -6px;
+  top: 14px;
+  width: 36px;
+  height: 46px;
+  color: var(--or);
+}
+
+.grille {
+  display: grid;
+  gap: 24px 30px;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .grille {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

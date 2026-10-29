@@ -1,99 +1,149 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { menu } from "@/lib/site-config";
+import { realisations } from "@/lib/contenu";
 import { Logotype } from "./Logo";
 import styles from "./Entete.module.css";
 
+const sousMenu = [
+  { libelle: "Toutes les réalisations", href: "/realisations" },
+  ...realisations.map((r) => ({ libelle: r.client, href: `/realisations/${r.slug}` })),
+];
+
 /**
- * En-tête collant : logo à gauche, menu à droite. Sur mobile, le menu
- * s'ouvre en plein écran sur fond bleu (Échap ou un lien le referment).
+ * L'en-tête du template : fixe en haut, transparent au départ. Après 100 px
+ * de défilement, il prend un fond, un filet, et se resserre. Sous 992 px,
+ * le menu passe dans un panneau qui glisse depuis la droite.
  */
 export function Entete() {
+  const [fixe, setFixe] = useState(false);
   const [ouvert, setOuvert] = useState(false);
-  const [defile, setDefile] = useState(false);
-  const bouton = useRef<HTMLButtonElement>(null);
+  const [sousOuvert, setSousOuvert] = useState(false);
+  const chemin = usePathname();
 
-  // Un filet apparaît sous l'en-tête dès qu'on a quitté le haut de page.
   useEffect(() => {
-    const surDefilement = () => setDefile(window.scrollY > 8);
-    surDefilement();
-    window.addEventListener("scroll", surDefilement, { passive: true });
-    return () => window.removeEventListener("scroll", surDefilement);
+    const maj = () => setFixe(window.scrollY >= 100);
+    maj();
+    window.addEventListener("scroll", maj, { passive: true });
+    return () => window.removeEventListener("scroll", maj);
   }, []);
 
   useEffect(() => {
     if (!ouvert) return;
-    document.body.style.overflow = "hidden";
-    const surTouche = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setOuvert(false);
-        bouton.current?.focus();
-      }
-    };
+    const surTouche = (e: KeyboardEvent) => e.key === "Escape" && setOuvert(false);
     window.addEventListener("keydown", surTouche);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", surTouche);
-    };
+    return () => window.removeEventListener("keydown", surTouche);
   }, [ouvert]);
 
-  const fermer = () => setOuvert(false);
+  const actif = (href: string) => (href === "/" ? chemin === "/" : chemin.startsWith(href));
 
   return (
-    <header className={`${styles.entete} ${defile ? styles.defile : ""}`}>
+    <>
       <a href="#contenu" className={styles.evitement}>
         Aller au contenu
       </a>
-      <div className={`conteneur ${styles.barre}`}>
-        <Link href="/" className={styles.logo} aria-label="Regista, retour à l'accueil" onClick={fermer}>
-          <Logotype className={styles.logotype} titre="Regista" />
-        </Link>
+      <header className={`${styles.entete} ${fixe ? styles.fixe : ""}`}>
+        <div className={`conteneur ${styles.barre}`}>
+          <Link href="/" className={styles.logo} aria-label="Regista, retour à l'accueil">
+            <Logotype className={styles.logotype} titre="Regista" />
+          </Link>
 
-        <nav aria-label="Menu principal" className={styles.navLarge}>
+          <nav aria-label="Menu principal" className={styles.menu}>
+            <ul>
+              {menu.map((lien) => (
+                <li key={lien.href} className={"sousMenu" in lien ? styles.aSousMenu : undefined}>
+                  <Link
+                    href={lien.href}
+                    className={styles.lien}
+                    aria-current={actif(lien.href) ? "page" : undefined}
+                  >
+                    {lien.libelle}
+                  </Link>
+                  {"sousMenu" in lien && (
+                    <ul className={styles.sousMenu}>
+                      {sousMenu.map((s) => (
+                        <li key={s.href}>
+                          <Link href={s.href}>{s.libelle}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <button
+            type="button"
+            className={styles.burger}
+            aria-expanded={ouvert}
+            aria-controls="panneau-menu"
+            onClick={() => setOuvert(true)}
+          >
+            <span className="visuellement-cache">Ouvrir le menu</span>
+            <span aria-hidden="true" className={styles.burgerTraits} />
+          </button>
+        </div>
+      </header>
+
+      {/* Le panneau mobile et son voile (sidebar__area + body-overlay du template). */}
+      <div
+        id="panneau-menu"
+        className={`${styles.panneau} ${ouvert ? styles.ouvert : ""}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu"
+        inert={!ouvert}
+        data-lenis-prevent
+      >
+        <button type="button" className={styles.fermer} onClick={() => setOuvert(false)}>
+          <span className="visuellement-cache">Fermer le menu</span>
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M3 3l10 10M13 3 3 13" stroke="currentColor" strokeWidth="1.5" />
+          </svg>
+        </button>
+        <nav aria-label="Menu principal" className={styles.navMobile}>
           <ul>
             {menu.map((lien) => (
               <li key={lien.href}>
-                <Link href={lien.href}>{lien.libelle}</Link>
+                <Link href={lien.href} onClick={() => setOuvert(false)}>
+                  {lien.libelle}
+                </Link>
+                {"sousMenu" in lien && (
+                  <>
+                    <button
+                      type="button"
+                      className={`${styles.deplier} ${sousOuvert ? styles.deplie : ""}`}
+                      aria-expanded={sousOuvert}
+                      onClick={() => setSousOuvert((v) => !v)}
+                    >
+                      <span className="visuellement-cache">Afficher les réalisations</span>
+                      <svg viewBox="0 0 12 12" aria-hidden="true">
+                        <path d="M6 1v10M1 6h10" stroke="currentColor" strokeWidth="1.4" />
+                      </svg>
+                    </button>
+                    <div className={`${styles.sousMobile} ${sousOuvert ? styles.sousMobileOuvert : ""}`}>
+                      <ul>
+                        {sousMenu.map((s) => (
+                          <li key={s.href}>
+                            <Link href={s.href} onClick={() => setOuvert(false)}>
+                              {s.libelle}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </>
+                )}
               </li>
             ))}
           </ul>
-          <Link href="/#contact" className={styles.contact}>
-            Contact
-          </Link>
         </nav>
-
-        <button
-          ref={bouton}
-          type="button"
-          className={styles.burger}
-          aria-expanded={ouvert}
-          aria-controls="menu-mobile"
-          onClick={() => setOuvert((v) => !v)}
-        >
-          <span className="visuellement-cache">{ouvert ? "Fermer le menu" : "Ouvrir le menu"}</span>
-          <span aria-hidden="true" className={styles.burgerTraits} data-ouvert={ouvert} />
-        </button>
       </div>
-
-      <nav
-        id="menu-mobile"
-        aria-label="Menu principal"
-        className={styles.navMobile}
-        data-ouvert={ouvert}
-        hidden={!ouvert}
-      >
-        <ul>
-          {[...menu, { libelle: "Contact", href: "/#contact" }].map((lien, i) => (
-            <li key={lien.href} style={{ "--i": i } as React.CSSProperties}>
-              <Link href={lien.href} onClick={fermer}>
-                {lien.libelle}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </header>
+      <div className={`${styles.voile} ${ouvert ? styles.voileVisible : ""}`} onClick={() => setOuvert(false)} aria-hidden="true" />
+    </>
   );
 }

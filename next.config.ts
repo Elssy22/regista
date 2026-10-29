@@ -12,10 +12,9 @@ const nextConfig: NextConfig = {
     return [
       { source: "/football", destination: "/", permanent: true },
       { source: "/football/:chemin*", destination: "/", permanent: true },
-      { source: "/methode", destination: "/#methode", permanent: true },
-      { source: "/offres", destination: "/#metiers", permanent: true },
-      { source: "/a-propos", destination: "/#agence", permanent: true },
-      { source: "/contact", destination: "/#contact", permanent: true },
+      // /a-propos et /contact existent de nouveau comme pages.
+      { source: "/methode", destination: "/a-propos", permanent: true },
+      { source: "/offres", destination: "/metiers", permanent: true },
     ];
   },
 };

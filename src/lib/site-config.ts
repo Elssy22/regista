@@ -39,11 +39,12 @@ export const siteConfig = {
   },
 } as const;
 
-/** Les sections de la page d'accueil, dans l'ordre de défilement. */
+/** Le menu principal, dans l'ordre du template (Home, About, Services, Projects, Blog, Contact). */
 export const menu = [
-  { libelle: "L'agence", href: "/#agence" },
-  { libelle: "Métiers", href: "/#metiers" },
-  { libelle: "Réalisations", href: "/#realisations" },
-  { libelle: "Méthode", href: "/#methode" },
-  { libelle: "Partenaires", href: "/#partenaires" },
+  { libelle: "Accueil", href: "/" },
+  { libelle: "À propos", href: "/a-propos" },
+  { libelle: "Métiers", href: "/metiers" },
+  { libelle: "Réalisations", href: "/realisations", sousMenu: true },
+  { libelle: "Actualités", href: "/actualites" },
+  { libelle: "Contact", href: "/contact" },
 ] as const;

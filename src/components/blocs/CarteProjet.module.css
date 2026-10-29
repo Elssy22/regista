@@ -1,0 +1,87 @@
+.boite {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 0.5em;
+  transform: translate3d(0, 0, 0);
+  aspect-ratio: 1200 / 1000;
+  color: var(--creme);
+}
+
+.boite::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background-image: linear-gradient(to top, rgb(22 40 74 / 0.55), transparent);
+  transition: opacity 0.4s;
+}
+
+.boite img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.boite:hover::after {
+  opacity: 1;
+}
+
+.boite:hover img {
+  transform: scale(1.04);
+  filter: blur(1.5px);
+}
+
+.categorie {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1;
+  padding: 0.5em 1em;
+  border-radius: 2em;
+  background: rgb(22 40 74 / 0.35);
+  backdrop-filter: blur(5px);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.legende {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 1;
+  margin-bottom: -6px;
+  padding: 0 30px 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: ease-out 0.5s;
+}
+
+.legende span {
+  font-size: clamp(1.4rem, 2.2vw, 1.875rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.boite:hover .legende,
+.boite:focus-visible .legende {
+  margin-bottom: 0;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Sur écran tactile, pas de survol : la légende reste visible. */
+@media (hover: none) {
+  .boite::after {
+    opacity: 1;
+  }
+
+  .legende {
+    margin-bottom: 0;
+    opacity: 1;
+    visibility: visible;
+  }
+}

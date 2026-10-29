@@ -1,35 +1,45 @@
-.entete {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: var(--creme);
-  transition: box-shadow 0.3s var(--courbe);
-}
-
-.defile {
-  box-shadow: 0 1px 0 var(--bleu-trait);
-}
-
 .evitement {
-  position: absolute;
+  position: fixed;
   left: 12px;
   top: -60px;
+  z-index: 2000;
   padding: 10px 16px;
   background: var(--bleu);
   color: var(--creme);
   font-size: var(--t-petit);
-  z-index: 60;
 }
 
 .evitement:focus {
   top: 12px;
 }
 
+/* ——— L'en-tête fixe ——— */
+
+.entete {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  border-bottom: 1px solid transparent;
+  transition: all 500ms ease;
+}
+
+.fixe {
+  background: var(--creme);
+  border-bottom-color: var(--bleu-trait);
+}
+
 .barre {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: var(--entete);
+  padding-block: 30px;
+  transition: all 500ms ease;
+}
+
+.fixe .barre {
+  padding-block: 15px;
 }
 
 .logo {
@@ -50,67 +60,122 @@
   }
 }
 
-.navLarge {
+/* ——— Menu grand écran ——— */
+
+.menu {
   display: none;
 }
 
-@media (min-width: 1024px) {
-  .navLarge {
-    display: flex;
-    align-items: center;
-    gap: 40px;
+@media (min-width: 992px) {
+  .menu {
+    display: block;
   }
 
-  .navLarge ul {
+  .menu > ul {
     display: flex;
-    gap: 32px;
+    gap: 34px;
     padding: 0;
     list-style: none;
   }
 
-  .navLarge a {
+  .menu li {
     position: relative;
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    text-decoration: none;
   }
 
-  .navLarge ul a::after {
+  .lien {
+    position: relative;
+    display: inline-block;
+    padding: 10px 0;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  /* Le soulignement du template (linkstyle) : il entre par la gauche et
+     repart par la droite. */
+  .lien::before {
     content: "";
     position: absolute;
     left: 0;
-    right: 0;
-    bottom: 10px;
-    height: 2px;
-    background: var(--or);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.35s var(--courbe);
-  }
-
-  .navLarge ul a:hover::after {
-    transform: scaleX(1);
-  }
-
-  .navLarge .contact {
-    padding: 0 22px;
+    top: 100%;
+    width: 100%;
+    height: 1px;
     background: var(--bleu);
-    color: var(--creme);
-    transition: background-color 0.3s var(--courbe);
+    pointer-events: none;
+    transform-origin: 100% 50%;
+    transform: scale3d(0, 1, 1);
+    transition: transform 0.3s;
   }
 
-  .navLarge .contact:hover {
-    background: var(--or);
-    color: var(--bleu);
+  .lien:hover::before,
+  .lien[aria-current="page"]::before {
+    transform-origin: 0% 50%;
+    transform: scale3d(1, 1, 1);
+  }
+
+  .aSousMenu > .lien {
+    padding-right: 18px;
+  }
+
+  .aSousMenu > .lien::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    margin-top: -5px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg);
+    transition: 0.3s;
+  }
+
+  /* Le sous-menu glisse et apparaît au survol (ou au clavier). */
+  .sousMenu {
+    position: absolute;
+    right: 0;
+    top: 110%;
+    z-index: 99;
+    min-width: 220px;
+    margin-top: 10px;
+    padding: 20px 0 15px;
+    list-style: none;
+    background: var(--bleu);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+  }
+
+  .aSousMenu:hover .sousMenu,
+  .aSousMenu:focus-within .sousMenu {
+    top: 100%;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .sousMenu a {
+    display: block;
+    padding: 5px 25px;
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--creme);
+    transition: 0.3s;
+  }
+
+  .sousMenu a:hover {
+    color: var(--or);
   }
 }
 
-/* ——— Mobile ——— */
+/* ——— Mobile : bouton et panneau latéral ——— */
 
 .burger {
   display: inline-flex;
@@ -119,15 +184,14 @@
   width: 48px;
   height: 48px;
   margin-right: -12px;
+  padding: 0;
   background: none;
   border: 0;
   color: var(--bleu);
   cursor: pointer;
-  position: relative;
-  z-index: 2;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 992px) {
   .burger {
     display: none;
   }
@@ -137,10 +201,9 @@
 .burgerTraits::before,
 .burgerTraits::after {
   display: block;
-  width: 26px;
+  width: 24px;
   height: 2px;
   background: currentColor;
-  transition: transform 0.35s var(--courbe), background-color 0.2s;
 }
 
 .burgerTraits {
@@ -155,77 +218,157 @@
 }
 
 .burgerTraits::before {
-  transform: translateY(-8px);
+  top: -7px;
 }
 
 .burgerTraits::after {
-  transform: translateY(8px);
+  top: 7px;
 }
 
-.burgerTraits[data-ouvert="true"] {
-  background: transparent;
-}
-
-.burgerTraits[data-ouvert="true"]::before {
-  transform: rotate(45deg);
-}
-
-.burgerTraits[data-ouvert="true"]::after {
-  transform: rotate(-45deg);
-}
-
-.entete:has(.navMobile[data-ouvert="true"]) .burger,
-.entete:has(.navMobile[data-ouvert="true"]) .logo {
+.panneau {
+  position: fixed;
+  top: 0;
+  right: -485px;
+  z-index: 1001;
+  width: 290px;
+  max-width: 100%;
+  height: 100%;
+  padding: 20px;
+  overflow-y: auto;
+  background: var(--bleu);
   color: var(--creme);
+  box-shadow: -5px 0 20px -5px rgb(0 0 0 / 0.5);
+  transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
-.entete:has(.navMobile[data-ouvert="true"]) .barre {
-  position: relative;
-  z-index: 2;
+@media (min-width: 576px) {
+  .panneau {
+    width: 465px;
+    padding: 45px;
+  }
+}
+
+.ouvert {
+  right: 0;
+}
+
+.fermer {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(0 0 0 / 0.35);
+  color: var(--creme);
+  cursor: pointer;
+}
+
+.fermer svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media (min-width: 576px) {
+  .fermer {
+    top: 35px;
+    right: 45px;
+  }
 }
 
 .navMobile {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  padding: calc(var(--entete) + 24px) var(--marge) 48px;
-  background: var(--bleu);
-  color: var(--creme);
+  margin-top: 70px;
 }
 
-.navMobile[hidden] {
-  display: none;
-}
-
-.navMobile ul {
-  display: grid;
-  gap: 8px;
+.navMobile > ul {
   padding: 0;
   list-style: none;
 }
 
+.navMobile li {
+  position: relative;
+}
+
 .navMobile a {
-  display: inline-flex;
-  min-height: 48px;
-  align-items: center;
-  font-size: clamp(2rem, 9vw, 3rem);
-  letter-spacing: 0.04em;
+  display: block;
+  padding: 10px 0;
+  border-top: 1px solid var(--creme-trait);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .navMobile li {
-    animation: entree 0.5s var(--courbe) both;
-    animation-delay: calc(var(--i) * 50ms);
-  }
+.navMobile > ul > li:first-child > a {
+  border-top: 0;
 }
 
-@keyframes entree {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
+.deplier {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--creme-trait);
+  background: none;
+  color: var(--creme);
+  cursor: pointer;
+}
+
+.deplier svg {
+  width: 12px;
+  height: 12px;
+  transition: transform 0.3s;
+}
+
+.deplie svg {
+  transform: rotate(45deg);
+}
+
+/* Le sous-menu s'ouvre en glissant (slideToggle de meanmenu). */
+.sousMobile {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s ease;
+}
+
+.sousMobileOuvert {
+  grid-template-rows: 1fr;
+}
+
+.sousMobile > ul {
+  min-height: 0;
+  overflow: hidden;
+  padding: 0;
+  list-style: none;
+}
+
+.sousMobile a {
+  padding-left: 10%;
+}
+
+.voile {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgb(22 40 74 / 0.7);
+  opacity: 0;
+  visibility: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.voileVisible {
+  opacity: 1;
+  visibility: visible;
 }

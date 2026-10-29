@@ -13,7 +13,7 @@ export default function PageIntrouvable() {
   return (
     <>
       <Entete />
-      <main id="contenu" className="section fond-creme texture" style={{ textAlign: "center" }}>
+      <main id="contenu" className="section fond-creme texture" style={{ textAlign: "center", paddingTop: "calc(var(--entete) + 80px)" }}>
         <div className="conteneur">
           <p className="surtitre">Erreur 404</p>
           <h1 className="titre-section">Cette page est hors-jeu.</h1>

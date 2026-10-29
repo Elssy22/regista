@@ -1,34 +1,21 @@
 import { metiers } from "@/lib/contenu";
+import { CarteMetier } from "../blocs/CarteMetier";
+import { TitreSection } from "../blocs/TitreSection";
 import styles from "./Metiers.module.css";
 
-/** Les cinq métiers, en grille de cartes (« Services » du template). */
-export function Metiers() {
+/** Les métiers en grille alternée (services du template). */
+export function Metiers({ avecTitre = true }: { avecTitre?: boolean }) {
   return (
-    <section id="metiers" className="section fond-creme texture" aria-labelledby="titre-metiers">
+    <section id="metiers" className="section fond-creme texture" aria-labelledby={avecTitre ? "titre-metiers" : undefined} aria-label={avecTitre ? undefined : "Nos métiers"}>
       <div className="conteneur">
-        <p className="surtitre" data-apparait>
-          Nos métiers
-        </p>
-        <h2 id="titre-metiers" className="titre-section" data-apparait>
-          Présents sur tous les terrains.
-        </h2>
-
-        <ol className={styles.grille}>
+        {avecTitre && <TitreSection id="titre-metiers">Nos métiers</TitreSection>}
+        <ul className={styles.grille}>
           {metiers.map((m, i) => (
-            <li
-              key={m.titre}
-              className={styles.case}
-              data-apparait
-              style={{ "--delai": `${(i % 3) * 0.08}s` } as React.CSSProperties}
-            >
-              <div className={styles.carte}>
-                <span className={styles.numero}>{String(i + 1).padStart(2, "0")}</span>
-                <h3 className={styles.titre}>{m.titre}</h3>
-                <p className={styles.texte}>{m.texte}</p>
-              </div>
+            <li key={m.titre}>
+              <CarteMetier numero={i + 1} titre={m.titre} texte={m.texte} delai={0.2 + (i % 4) * 0.2} />
             </li>
           ))}
-        </ol>
+        </ul>
       </div>
     </section>
   );

@@ -1,59 +1,60 @@
 .pied {
-  border-top: 1px solid var(--creme-trait);
+  position: relative;
+  isolation: isolate;
 }
 
-.barre {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 16px 24px;
-  padding-block: 28px;
+.haut {
+  padding-block: 100px;
+  text-align: center;
 }
 
-.signature {
-  font-size: var(--t-petit);
-  letter-spacing: 0.12em;
+.question {
+  font-size: clamp(1.1rem, 1.6vw, 1.25rem);
+}
+
+.geant {
+  font-size: clamp(3rem, 12.5vw, 11.25rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
-.liens {
-  grid-column: 1 / -1;
-  grid-row: 2;
+.geant a {
+  text-decoration: none;
+}
+
+.bas {
   display: flex;
   flex-wrap: wrap;
-  gap: 0 24px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding-block: 20px 30px;
+  font-size: 12px;
+}
+
+.bas ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 20px;
   padding: 0;
   list-style: none;
 }
 
-.liens a {
+.bas a {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  font-size: var(--t-petit);
-  letter-spacing: 0.06em;
-  color: var(--creme-texte);
   text-decoration: none;
 }
 
-.liens a:hover {
-  color: var(--or);
+.bas a:hover {
+  text-decoration: underline;
 }
 
-.r {
-  width: 40px;
-  height: auto;
-  color: var(--creme);
-}
-
-@media (min-width: 768px) {
-  .barre {
-    grid-template-columns: 1fr auto auto;
-    gap: 40px;
-  }
-
-  .liens {
-    grid-column: auto;
-    grid-row: auto;
-  }
+.bas li:last-child {
+  display: inline-flex;
+  align-items: center;
 }

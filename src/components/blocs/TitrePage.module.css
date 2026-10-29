@@ -1,0 +1,26 @@
+.titrePage {
+  position: relative;
+  isolation: isolate;
+  padding-top: calc(var(--entete) + clamp(48px, 7vw, 100px));
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+.titre {
+  padding-bottom: 20px;
+  margin-bottom: 15px;
+  font-size: clamp(2.4rem, 8.5vw, 9.375rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+.texte {
+  max-width: 760px;
+  margin-inline: auto;
+  font-size: 1rem;
+  line-height: 1.5;
+}

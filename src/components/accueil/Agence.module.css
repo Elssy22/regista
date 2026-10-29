@@ -1,76 +1,117 @@
 .agence {
+  position: relative;
+  isolation: isolate;
   overflow: hidden;
+  padding-bottom: clamp(80px, 9vw, 120px);
 }
 
-.courbe {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  color: var(--creme);
+/* ——— Bandeau des clients (« Company I worked with ») ——— */
+
+.clients {
+  padding-block: 100px clamp(60px, 7vw, 100px);
 }
 
-.grille {
+.clientsTitre {
+  margin-bottom: 30px;
+  padding-inline: var(--marge);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 5px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.defilant {
+  max-width: calc(var(--largeur) + 2 * var(--marge));
+  margin-inline: auto;
+  overflow: hidden;
+  mask: linear-gradient(90deg, transparent, #fff 20%, #fff 80%, transparent);
+}
+
+.piste {
+  display: flex;
+  gap: 5rem;
+  width: max-content;
+  padding: 0;
+  list-style: none;
+}
+
+/* Les logos clients sont en couleurs : posés sur une pastille crème pour
+   rester lisibles sur le bleu. */
+.piste li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 84px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: var(--creme);
+}
+
+.piste img {
+  width: auto;
+  height: 64px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .piste {
+    animation: defile 60s linear infinite;
+  }
+}
+
+@keyframes defile {
+  to {
+    transform: translate(calc(-50% - 2.5rem));
+  }
+}
+
+/* ——— À propos et chiffres ——— */
+
+.apropos {
   display: grid;
-  align-items: start;
-  gap: 8px;
+  gap: 24px;
 }
 
-.guillemet {
-  width: 56px;
-  height: auto;
-  margin-bottom: 28px;
-  color: var(--or);
+.etiquette {
+  font-size: 22px;
+  font-weight: 400;
 }
 
 .manifeste {
-  font-size: var(--t-manifeste);
-  line-height: 1.3;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-size: clamp(1.4rem, 2.2vw, 1.875rem);
+  line-height: 1.4;
 }
 
 .chiffres {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 40px 24px;
-  margin-top: clamp(64px, 8vw, 110px);
-  padding: clamp(40px, 5vw, 56px) 0 0;
-  border-top: 1px solid var(--creme-trait);
+  margin-top: 60px;
+  padding: 0;
   list-style: none;
 }
 
 .chiffres li {
   display: grid;
-  gap: 10px;
-  align-content: start;
+  gap: 8px;
+  text-align: center;
 }
 
 .valeur {
-  font-size: var(--t-chiffre);
+  font-size: 50px;
   font-weight: 700;
   line-height: 1;
-  letter-spacing: 0.02em;
   white-space: nowrap;
 }
 
 .libelle {
-  font-size: var(--t-petit);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--or);
 }
 
 @media (min-width: 768px) {
-  .grille {
+  .apropos {
     grid-template-columns: 1fr 3fr;
     gap: 48px;
-  }
-
-  .grille > :first-child {
-    margin-top: 78px;
   }
 
   .chiffres {

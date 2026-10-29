@@ -1,0 +1,66 @@
+.grille {
+  display: grid;
+  gap: 30px;
+  margin-top: clamp(40px, 5vw, 60px);
+  padding: 0;
+  list-style: none;
+}
+
+.carte {
+  padding: 20px;
+  border: 1px solid var(--bleu-trait);
+  border-radius: 16px;
+  background: var(--bleu-doux);
+  transition: 0.5s;
+}
+
+.carte:hover {
+  border-color: var(--bleu);
+}
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 25px;
+  border-radius: 50%;
+  background: var(--bleu);
+  color: var(--creme);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.texte {
+  margin: 0 0 30px;
+  color: var(--bleu-texte);
+}
+
+.nom {
+  margin-top: 20px;
+  font-size: clamp(1.4rem, 2.2vw, 1.875rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.role {
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--bleu-texte);
+}
+
+@media (min-width: 768px) {
+  .grille {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .carte:nth-child(-n + 2) {
+    grid-column: span 3;
+  }
+
+  .carte:nth-child(n + 3) {
+    grid-column: span 2;
+  }
+}

@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/site-config";
-import { Animations } from "@/components/Animations";
+import { verifierContenuFictif } from "@/lib/contenu";
+import { Animations } from "@/components/effets/Animations";
+import { Prechargement } from "@/components/effets/Prechargement";
+import { Curseur } from "@/components/effets/Curseur";
+import { RetourHaut } from "@/components/effets/RetourHaut";
+import { DefilementDoux } from "@/components/effets/DefilementDoux";
 import "./globals.css";
+
+// Empêche toute mise en production tant qu'il reste du contenu fictif.
+verifierContenuFictif();
 
 const titre = "Regista — Agence football : contenus, identités, financements";
 const description =
@@ -27,21 +35,25 @@ export const metadata: Metadata = {
 /*
  * Ce script s'exécute avant le premier affichage. Il pose la classe "anim"
  * (qui cache les blocs avant leur apparition) seulement si l'appareil
- * accepte les animations. Si React n'a pas démarré au bout de 3 s
+ * accepte les animations. Si React n'a pas démarré au bout de 4 s
  * (JavaScript en échec), il la retire : le contenu ne reste jamais caché.
  */
 const scriptAnimations =
-  "if(matchMedia('(prefers-reduced-motion: no-preference)').matches){var h=document.documentElement;h.classList.add('anim');setTimeout(function(){if(!h.hasAttribute('data-pret'))h.classList.remove('anim')},3000)}";
+  "if(matchMedia('(prefers-reduced-motion: no-preference)').matches){var h=document.documentElement;h.classList.add('anim');setTimeout(function(){if(!h.hasAttribute('data-pret'))h.classList.remove('anim')},4000)}";
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html lang="fr" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: scriptAnimations }} />
       </head>
       <body>
+        <Prechargement />
+        <Curseur />
         {children}
+        <RetourHaut />
         <Animations />
+        <DefilementDoux />
       </body>
     </html>
   );

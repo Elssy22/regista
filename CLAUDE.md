@@ -15,17 +15,19 @@ https://regista-git-claude-cool-carson-nr4tdd-registaa.vercel.app
 gardé de l'ancien site (charte v1.0, page en sept chapitres, Archivo et
 Newsreader, « la passe »). Seules exceptions : le texte des pages légales
 (complété depuis le KBis) et les redirections des anciennes adresses dans
-`next.config.ts`.
+`next.config.ts` (`/methode` et `/offres` ; `/a-propos` et `/contact`
+sont redevenues de vraies pages).
 
 ## Les références
 
 - **Direction artistique** : le deck « Présentation agence 2026 » de Landry.
   Tous les textes du site en viennent (`src/lib/contenu.ts`).
-- **Mise en page** : le template ThemeForest « Nino » (portfolio). Il est
-  reproduit en React et en CSS, sans jQuery ni Bootstrap : ouverture avec
-  le nom en très grand et une carte photo inclinée, bandeau de logos qui
-  défile, manifeste et chiffres, cartes de services, grille de projets,
-  page projet, grand appel final.
+- **Mise en page et animations** : le template ThemeForest « Nino »
+  (portfolio), reproduit page par page en React et CSS, sans jQuery ni
+  Bootstrap (décision de Landry du 29/10/2026 : « toutes les animations du
+  template à l'identique »). Pages : accueil, À propos, Métiers,
+  Réalisations (+ une page par réalisation), Actualités (+ articles),
+  Contact.
 
 ## La DA
 
@@ -47,11 +49,33 @@ Newsreader, « la passe »). Seules exceptions : le texte des pages légales
   redessiner le tracé ni recomposer « Regista » dans une police.
 - **Texture** : le grain du papier du deck (`public/texture-papier.jpg`),
   en calque discret (classe `.texture`).
-- **Mouvement** : apparition au défilement (`data-apparait`, une seule fois,
-  `src/components/Animations.tsx`), logo qui se dévoile, carte qui se pose,
-  bandeau de logos qui défile, ligne de la méthode qui se trace. Tout est
-  coupé avec « réduire les animations », et rien n'est caché sans
+- **Animations du template** (`src/components/effets/`) : écran de
+  chargement (lettres REGISTA, rideau courbe, GSAP, une fois par visite),
+  curseur rond qui suit la souris, bouton « remonter » avec cercle de
+  progression, défilement doux Lenis piloté par GSAP, apparitions fadeInUp
+  (`data-apparait` + `--delai`, 1 s, coupées sur écran tactile comme WOW.js),
+  chiffres qui défilent (3 s), bandeau de logos (60 s), en-tête fixe qui se
+  resserre après 100 px, soulignement des liens, sous-menu Réalisations,
+  panneau mobile latéral, survols des cartes (flou + légende des projets,
+  flèche des métiers, zoom des articles), galerie agrandie au clic
+  (`blocs/Galerie.tsx`, équivalent de Magnific Popup).
+  Tout est coupé avec « réduire les animations », et rien n'est caché sans
   JavaScript (`html.anim`, posé par le script de `layout.tsx`).
+
+## Contenu fictif (à remplacer avant la production)
+
+Landry a demandé de remplir le template avec des données fictives en
+attendant les vraies : témoignages, actualités (3 articles), liens des
+réseaux sociaux, année de la réalisation Doki Doki, noms de deux clients du
+bandeau. Tout est dans `src/lib/contenu.ts`, après le bandeau « CONTENU
+FICTIF ». **Garde-fou** : `verifierContenuFictif()` (appelée dans
+`layout.tsx`) fait échouer toute construction de production
+(`VERCEL_ENV=production`) tant qu'il en reste. Ne pas le désactiver pour
+« débloquer » une mise en ligne : remplacer le contenu.
+
+Le formulaire de contact n'envoie rien par le site : il ouvre la messagerie
+du visiteur (lien `mailto:`). Les mentions légales disent encore « aucun
+formulaire » : phrase à faire valider par Landry avant la production.
 
 ## Règles de contenu (toujours valables)
 
@@ -68,12 +92,15 @@ Newsreader, « la passe »). Seules exceptions : le texte des pages légales
 src/
   app/
     page.tsx                     l'accueil (sections dans components/accueil/)
-    realisations/[slug]/         une page par réalisation (générée au build)
+    a-propos/, metiers/, contact/, actualites/[slug]/
+    realisations/, realisations/[slug]/   liste et une page par réalisation
     mentions-legales/, politique-confidentialite/   texte légal inchangé
     layout.tsx, globals.css      métadonnées, script d'animation, styles de base
     not-found.tsx, robots.ts, sitemap.ts, icon.svg
-  components/                    Entete, PiedDePage, Contact, CarteRealisation,
-                                 Logo (généré), Icones, Animations, legal/
+  components/                    Entete, PiedDePage, Logo (généré), Icones, legal/
+    effets/                      les animations globales du template
+    blocs/                       blocs partagés (titre de page, cartes, galerie,
+                                 témoignages, contact, formulaire)
   assets/                        images importées (dimensions et flou auto)
   lib/
     site-config.ts               coordonnées, infos légales, menu
