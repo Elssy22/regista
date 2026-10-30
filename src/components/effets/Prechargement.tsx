@@ -2,13 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { Logotype } from "../Logo";
 import styles from "./Prechargement.module.css";
 
-const LETTRES = "REGISTA".split("");
-
 /**
- * L'écran de chargement du template : les lettres clignotent, remontent,
- * puis le rideau bleu se courbe et se lève. Une fois par visite (au premier
+ * L'écran de chargement du template : le logotype Regista clignote,
+ * remonte, puis le rideau bleu se courbe et se lève. Une fois par visite (au premier
  * chargement), jamais en naviguant d'une page à l'autre.
  * Sans JavaScript ou avec « réduire les animations », il n'existe pas.
  */
@@ -41,15 +40,11 @@ export function Prechargement() {
 
   return (
     <div ref={racine} className={styles.prechargement} aria-hidden="true">
-      <svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
+      <svg className={styles.rideau} viewBox="0 0 1000 1000" preserveAspectRatio="none">
         <path ref={courbe} d="M0,1005S175,995,500,995s500,5,500,5V0H0Z" />
       </svg>
       <div ref={texte} className={styles.texte}>
-        {LETTRES.map((l, i) => (
-          <span key={i} style={{ animationDelay: `${i * 0.1}s` }}>
-            {l}
-          </span>
-        ))}
+        <Logotype className={styles.logo} titre="Regista" />
       </div>
     </div>
   );

@@ -15,7 +15,8 @@
   background: transparent;
 }
 
-.prechargement svg {
+/* Le rideau seulement (pas le logo, qui est aussi un SVG). */
+.rideau {
   position: absolute;
   top: 0;
   width: 100vw;
@@ -23,18 +24,19 @@
   fill: var(--bleu);
 }
 
+/* La largeur est portée par le conteneur : sans elle, la règle globale
+   « svg { max-width: 100% } » réduirait le logo à zéro. */
 .texte {
   position: relative;
   z-index: 1;
+  width: clamp(180px, 22vw, 280px);
   color: var(--creme);
-  font-size: 20px;
-  font-weight: 200;
-  letter-spacing: 15px;
-  text-transform: uppercase;
 }
 
-.texte span {
-  display: inline-block;
+.logo {
+  display: block;
+  width: 100%;
+  height: auto;
   animation: clignote 1s infinite alternate;
 }
 
@@ -43,6 +45,6 @@
     opacity: 1;
   }
   to {
-    opacity: 0;
+    opacity: 0.25;
   }
 }

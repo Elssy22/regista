@@ -50,7 +50,7 @@ sont redevenues de vraies pages).
 - **Texture** : le grain du papier du deck (`public/texture-papier.jpg`),
   en calque discret (classe `.texture`).
 - **Animations du template** (`src/components/effets/`) : écran de
-  chargement (lettres REGISTA, rideau courbe, GSAP, une fois par visite),
+  chargement (logotype Regista qui clignote, rideau courbe, GSAP, une fois par visite),
   curseur rond qui suit la souris, bouton « remonter » avec cercle de
   progression, défilement doux Lenis piloté par GSAP, apparitions fadeInUp
   (`data-apparait` + `--delai`, 1 s, coupées sur écran tactile comme WOW.js),
