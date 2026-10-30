@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { menu } from "@/lib/site-config";
 import { realisations } from "@/lib/contenu";
-import { Logotype } from "./Logo";
 import styles from "./Entete.module.css";
 
 const sousMenu = [
@@ -15,8 +14,9 @@ const sousMenu = [
 
 /**
  * L'en-tête du template : fixe en haut, transparent au départ. Après 100 px
- * de défilement, il prend un fond, un filet, et se resserre. Sous 992 px,
- * le menu passe dans un panneau qui glisse depuis la droite.
+ * de défilement, il prend un fond, un filet, et se resserre. Sans logo
+ * (demande de Landry du 30/10/2026) : le menu est centré. Sous 992 px, il
+ * passe dans un panneau qui glisse depuis la droite.
  */
 export function Entete() {
   const [fixe, setFixe] = useState(false);
@@ -47,10 +47,6 @@ export function Entete() {
       </a>
       <header className={`${styles.entete} ${fixe ? styles.fixe : ""}`}>
         <div className={`conteneur ${styles.barre}`}>
-          <Link href="/" className={styles.logo} aria-label="Regista, retour à l'accueil">
-            <Logotype className={styles.logotype} titre="Regista" />
-          </Link>
-
           <nav aria-label="Menu principal" className={styles.menu}>
             <ul>
               {menu.map((lien) => (

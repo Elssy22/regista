@@ -30,34 +30,17 @@
   border-bottom-color: var(--bleu-trait);
 }
 
+/* Sans logo : le bouton du menu à droite sur mobile, le menu centré au-delà. */
 .barre {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding-block: 30px;
   transition: all 500ms ease;
 }
 
 .fixe .barre {
   padding-block: 15px;
-}
-
-.logo {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  color: var(--bleu);
-}
-
-.logotype {
-  width: 128px;
-  height: auto;
-}
-
-@media (min-width: 768px) {
-  .logotype {
-    width: 150px;
-  }
 }
 
 /* ——— Menu grand écran ——— */
@@ -67,6 +50,10 @@
 }
 
 @media (min-width: 992px) {
+  .barre {
+    justify-content: center;
+  }
+
   .menu {
     display: block;
   }
