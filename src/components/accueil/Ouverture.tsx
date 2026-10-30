@@ -14,7 +14,7 @@ export function Ouverture() {
     <section id="accueil" className={`fond-creme texture ${styles.ouverture}`} aria-labelledby="titre-accueil">
       <div className="conteneur">
         <h1 id="titre-accueil" className={styles.titre} data-apparait style={{ "--delai": "0.2s" } as React.CSSProperties}>
-          <span className="visuellement-cache">Regista, agence football : </span>
+          <span className="visuellement-cache">Regista — </span>
           {accroche.geante}
         </h1>
 

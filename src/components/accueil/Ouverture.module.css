@@ -8,7 +8,8 @@
 /* La phrase géante (le « Nino Walker » du template). */
 .titre {
   color: var(--bleu);
-  font-size: clamp(3rem, 10vw, 10.5rem);
+  /* 9.5vw : « COMMUNICATION » (13 lettres) tient sur une ligne dès 320 px. */
+  font-size: clamp(1.75rem, 9.5vw, 10.5rem);
   font-weight: 700;
   line-height: 0.95;
   letter-spacing: 0.01em;
@@ -77,8 +78,8 @@
   font-size: 1.0625rem;
 }
 
-/* Le R de Regista, à la place de la photo du template. Il ne pivote pas :
-   on ne déforme pas le logo, il glisse juste un peu au survol. */
+/* Le R de Regista, à la place de la photo du template : même geste,
+   incliné de 10°, il se redresse au survol (demande de Landry). */
 .photo {
   order: -1;
   width: min(70vw, 360px);
@@ -88,11 +89,18 @@
   width: 100%;
   height: auto;
   color: var(--bleu);
-  transition: transform 0.4s;
+  rotate: 10deg;
+  transition: rotate 0.4s;
 }
 
 .monogramme:hover {
-  transform: translate(6px, -6px);
+  rotate: 0deg;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .monogramme {
+    transition: none;
+  }
 }
 
 @media (min-width: 992px) {
@@ -118,8 +126,8 @@
   .photo {
     order: 0;
     justify-self: center;
-    width: min(100%, 340px);
-    margin-top: 20px;
+    width: min(100%, 320px);
+    margin-top: 60px;
   }
 
   .droite {

@@ -1,12 +1,15 @@
 .grille {
   display: grid;
+  /* minmax(0, …) : une adresse e-mail longue ne fait pas déborder l'écran. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 30px;
   margin-top: clamp(40px, 5vw, 60px);
 }
 
 .infos,
 .formulaire {
-  padding: 40px;
+  padding: clamp(24px, 6vw, 40px);
+  overflow-wrap: anywhere;
   border-radius: 16px;
   background: var(--bleu-doux);
 }

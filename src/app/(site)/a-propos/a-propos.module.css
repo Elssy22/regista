@@ -118,3 +118,61 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* Le fondateur : photo inclinée de 10° (celle de l'accueil du template),
+   qui se redresse au survol. */
+.fondateur {
+  display: grid;
+  gap: 50px;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.photo img {
+  width: min(72vw, 420px);
+  height: auto;
+  border: 3px solid var(--creme);
+  border-radius: 20px;
+  rotate: 10deg;
+  transition: rotate 0.4s;
+}
+
+.photo img:hover {
+  rotate: 0deg;
+}
+
+.nom {
+  margin-top: 24px;
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  font-weight: 700;
+}
+
+.fonction {
+  margin-top: 6px;
+  color: var(--bleu-texte);
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.bio {
+  max-width: 34em;
+  margin-top: 20px;
+  font-size: 1.125rem;
+}
+
+@media (min-width: 992px) {
+  .fondateur {
+    grid-template-columns: 5fr 7fr;
+    gap: 80px;
+    justify-items: start;
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo img {
+    transition: none;
+  }
+}

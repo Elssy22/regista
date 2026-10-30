@@ -59,11 +59,12 @@ export const fondateur = {
 export const accroche = {
   /**
    * La phrase géante du haut de page (à la place du logotype, demande de
-   * Landry du 30/10/2026). Les autres propositions : « Votre meneur de
-   * jeu. », « Faites briller votre histoire. », « Racontez votre jeu. »,
+   * Landry du 30/10/2026). En test : « Agence communication ». Les autres
+   * propositions : « La passe décisive. », « Votre meneur de jeu. »,
+   * « Faites briller votre histoire. », « Racontez votre jeu. »,
    * « Prenez le jeu en main. »
    */
-  geante: "La passe décisive.",
+  geante: "Agence communication",
   titre: "Le meneur qui fait briller vos projets.",
   resume: "Contenus, podcasts, identités, financements. Pour les clubs, les académies, les marques.",
   bouton: "Parlons de votre projet",

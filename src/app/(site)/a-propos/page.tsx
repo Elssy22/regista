@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { methode, partenaires, fondateur } from "@/lib/contenu";
+import { methode, partenaires, fondateur, manifeste } from "@/lib/contenu";
 import { Entete } from "@/components/Entete";
 import { PiedDePage } from "@/components/PiedDePage";
 import { TitrePage } from "@/components/blocs/TitrePage";
@@ -18,9 +18,30 @@ export default function APropos() {
     <>
       <Entete />
       <main id="contenu">
-        <TitrePage titre="À propos" texte={`${fondateur.nom} — ${fondateur.role}. ${fondateur.pointsForts}`} />
+        <TitrePage titre="À propos" texte={manifeste} />
 
-        <section className="section fond-creme texture" aria-labelledby="titre-methode" style={{ paddingTop: 40 }}>
+        {/* Le fondateur : la photo inclinée du template (elle se redresse au
+            survol), déplacée de l'accueil à la demande de Landry. */}
+        <section className="section fond-creme texture" aria-labelledby="titre-fondateur" style={{ paddingTop: 40 }}>
+          <div className={`conteneur ${styles.fondateur}`}>
+            <div className={styles.photo} data-apparait style={{ "--delai": "0.2s" } as React.CSSProperties}>
+              <Image
+                src={fondateur.photo.src}
+                alt={fondateur.photo.alt}
+                placeholder="blur"
+                sizes="(min-width: 992px) 420px, 80vw"
+              />
+            </div>
+            <div data-apparait style={{ "--delai": "0.4s" } as React.CSSProperties}>
+              <TitreSection id="titre-fondateur">Le fondateur</TitreSection>
+              <h3 className={styles.nom}>{fondateur.nom}</h3>
+              <p className={styles.fonction}>{fondateur.role}</p>
+              <p className={styles.bio}>{fondateur.pointsForts}</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="section fond-creme texture" aria-labelledby="titre-methode" style={{ paddingTop: 0 }}>
           <div className="conteneur">
             <TitreSection id="titre-methode">Notre méthode</TitreSection>
             <div className={styles.parcours}>
