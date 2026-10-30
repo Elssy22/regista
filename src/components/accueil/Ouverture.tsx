@@ -31,15 +31,15 @@ export function Ouverture() {
             <p className={styles.avis}>
               {avisClients.titre} <span>{avisClients.detail}</span>
             </p>
+            <Link href="/contact" className={`bouton bouton--plein ${styles.bouton}`}>
+              {accroche.bouton}
+              <Fleche />
+            </Link>
           </div>
 
           <div className={styles.droite} data-apparait style={{ "--delai": "0.4s" } as React.CSSProperties}>
             <p className={styles.accroche}>{accroche.titre}</p>
             <p className={styles.resume}>{accroche.resume}</p>
-            <Link href="/contact" className="bouton bouton--plein">
-              {accroche.bouton}
-              <Fleche />
-            </Link>
           </div>
         </div>
       </div>

@@ -93,12 +93,22 @@
   color: var(--bleu-texte);
 }
 
+/* Sur mobile, la description passe avant les avis : le bouton arrive en
+   dernier, une fois qu'on sait ce que fait l'agence. */
+.droite {
+  order: -1;
+}
+
 .accroche {
   font-size: 1.0625rem;
 }
 
 .resume {
-  margin: 8px 0 24px;
+  margin-top: 8px;
+}
+
+.bouton {
+  margin-top: 24px;
 }
 
 @media (min-width: 992px) {
@@ -116,6 +126,7 @@
   }
 
   .droite {
+    order: 0;
     justify-self: end;
   }
 }

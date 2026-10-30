@@ -17,7 +17,8 @@ export function Agence() {
   return (
     <section id="agence" className={`fond-bleu texture ${styles.agence}`} aria-labelledby="titre-agence">
       <div className={styles.clients}>
-        <h2 className={styles.clientsTitre}>Ils nous font confiance</h2>
+        {/* Titre retiré à l'écran (demande de Landry), gardé pour les lecteurs d'écran. */}
+        <h2 className="visuellement-cache">Ils nous font confiance</h2>
         <div className={styles.defilant}>
           <ul className={styles.piste}>
             {[0, 1].map((copie) =>
