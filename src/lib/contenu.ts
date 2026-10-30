@@ -58,7 +58,9 @@ export const fondateur = {
 
 export const accroche = {
   titre: "Le meneur qui fait briller vos projets.",
-  resume: "Contenus, podcasts, identités, financements. Pour les clubs, les académies, les marques.",
+  // Espaces insécables : « les académies, les marques. » ne se coupe pas et
+  // passe en entier à la ligne (demande de Landry).
+  resume: "Contenus, podcasts, identités, financements. Pour les clubs, les\u00a0académies,\u00a0les\u00a0marques.",
   bouton: "Parlons de votre projet",
 };
 
