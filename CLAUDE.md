@@ -69,10 +69,11 @@ intégré au site à l'adresse `/studio` (`src/app/studio/`, configuration
 dans `src/sanity/`, fiche « Article » dans `src/sanity/schemas/article.ts`,
 interface en français).
 
-- **Relier le projet** : la variable `NEXT_PUBLIC_SANITY_PROJECT_ID` (et
-  `NEXT_PUBLIC_SANITY_DATASET`, `production` par défaut) sur Vercel. Sans
-  elle, `/studio` affiche « Back office pas encore relié » et le blog
-  montre les articles d'exemple (jamais en production).
+- **Projet** : `xax83f5z`, jeu de données `production` (public), inscrits
+  dans `src/sanity/env.ts` (ce n'est pas un secret). Les variables
+  `NEXT_PUBLIC_SANITY_PROJECT_ID` / `NEXT_PUBLIC_SANITY_DATASET` sur
+  Vercel les remplacent si besoin. Tant qu'aucun article n'est publié, le
+  blog montre les articles d'exemple (jamais en production).
 - **Origines autorisées** (sanity.io/manage → API → CORS, avec
   « Allow credentials ») : l'adresse de prévisualisation de la branche,
   `https://www.regista-a.com`, `https://regista-a.com`,
