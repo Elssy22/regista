@@ -9,10 +9,13 @@
   padding-inline: 12px;
 }
 
+/* La flèche descend sous le titre : la marge du bas lui laisse la place
+   (sinon la première carte, dessinée après, cache sa pointe). */
 .etiquette {
   position: relative;
+  z-index: 1;
   display: inline-block;
-  margin-bottom: 30px;
+  margin: 0 0 56px 12px;
   padding-left: 36px;
   font-size: 1.05rem;
   font-weight: 400;
