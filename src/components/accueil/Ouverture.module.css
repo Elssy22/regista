@@ -5,13 +5,16 @@
   padding-bottom: clamp(60px, 7vw, 100px);
 }
 
+/* La phrase géante (le « Nino Walker » du template). */
 .titre {
   color: var(--bleu);
-}
-
-.logotype {
-  width: 100%;
-  height: auto;
+  font-size: clamp(3rem, 10vw, 10.5rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-align: center;
+  text-transform: uppercase;
+  text-wrap: balance;
 }
 
 .grille {
@@ -74,22 +77,22 @@
   font-size: 1.0625rem;
 }
 
-/* La photo inclinée du template : 10°, elle se redresse au survol. */
+/* Le R de Regista, à la place de la photo du template. Il ne pivote pas :
+   on ne déforme pas le logo, il glisse juste un peu au survol. */
 .photo {
   order: -1;
+  width: min(70vw, 360px);
 }
 
-.photo img {
-  width: min(80vw, 400px);
+.monogramme {
+  width: 100%;
   height: auto;
-  border: 3px solid var(--creme);
-  border-radius: 20px;
-  rotate: 10deg;
-  transition: 0.4s;
+  color: var(--bleu);
+  transition: transform 0.4s;
 }
 
-.photo img:hover {
-  rotate: 0deg;
+.monogramme:hover {
+  transform: translate(6px, -6px);
 }
 
 @media (min-width: 992px) {
@@ -110,14 +113,13 @@
     padding-top: 30px;
   }
 
+  /* Pas de chevauchement avec la phrase (contrairement à la photo du
+     template) : le R plein, bleu sur bleu, la rendrait illisible. */
   .photo {
     order: 0;
-    text-align: center;
-  }
-
-  .photo img {
-    margin-top: -100px;
-    margin-inline: auto;
+    justify-self: center;
+    width: min(100%, 340px);
+    margin-top: 20px;
   }
 
   .droite {
