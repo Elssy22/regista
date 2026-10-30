@@ -7,7 +7,8 @@ import styles from "./Ouverture.module.css";
 
 /**
  * Le haut de page du template : le logotype Regista en très grand (son R
- * penché se redresse au survol), les avis à gauche et l'accroche à droite.
+ * penché se redresse au survol) signé de l'accroche, les avis à gauche, la
+ * description et le bouton à droite.
  * La photo du template est sur la page À propos.
  */
 export function Ouverture() {
@@ -16,8 +17,11 @@ export function Ouverture() {
       <div className="conteneur">
         <h1 id="titre-accueil" className={styles.titre} data-apparait style={{ "--delai": "0.2s" } as React.CSSProperties}>
           <LogoAccroche />
-          <span className="visuellement-cache">, agence football. {accroche.titre}</span>
+          <span className="visuellement-cache">, agence football.</span>
         </h1>
+        <p className={styles.signature} data-apparait style={{ "--delai": "0.3s" } as React.CSSProperties}>
+          {accroche.titre}
+        </p>
 
         <div className={styles.grille}>
           <div className={styles.gauche} data-apparait style={{ "--delai": "0.2s" } as React.CSSProperties}>
@@ -31,15 +35,14 @@ export function Ouverture() {
             <p className={styles.avis}>
               {avisClients.titre} <span>{avisClients.detail}</span>
             </p>
-            <Link href="/contact" className={`bouton bouton--plein ${styles.bouton}`}>
-              {accroche.bouton}
-              <Fleche />
-            </Link>
           </div>
 
           <div className={styles.droite} data-apparait style={{ "--delai": "0.4s" } as React.CSSProperties}>
-            <p className={styles.accroche}>{accroche.titre}</p>
             <p className={styles.resume}>{accroche.resume}</p>
+            <Link href="/contact" className="bouton bouton--plein">
+              {accroche.bouton}
+              <Fleche />
+            </Link>
           </div>
         </div>
       </div>
