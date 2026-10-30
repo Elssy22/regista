@@ -8,8 +8,10 @@
 /* La phrase géante (le « Nino Walker » du template). */
 .titre {
   color: var(--bleu);
-  /* 9.5vw : « COMMUNICATION » (13 lettres) tient sur une ligne dès 320 px. */
-  font-size: clamp(1.75rem, 9.5vw, 10.5rem);
+  /* Proportionnel à la largeur, plafonné quand la page atteint sa largeur
+     maximale (1320 px) : une phrase qui tient sur une ligne en 390 px tient
+     sur une ligne partout. */
+  font-size: clamp(1.75rem, 9.5vw, 8.5rem);
   font-weight: 700;
   line-height: 0.95;
   letter-spacing: 0.01em;
