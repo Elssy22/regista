@@ -14,7 +14,7 @@ import styles from "./Ouverture.module.css";
 export function Ouverture() {
   return (
     <section id="accueil" className={`fond-creme texture ${styles.ouverture}`} aria-labelledby="titre-accueil">
-      <div className="conteneur">
+      <div className={`conteneur ${styles.haut}`}>
         <h1 id="titre-accueil" className={styles.titre} data-apparait style={{ "--delai": "0.2s" } as React.CSSProperties}>
           <LogoAccroche />
           <span className="visuellement-cache">, agence football.</span>

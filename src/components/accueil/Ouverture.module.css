@@ -5,6 +5,11 @@
   padding-bottom: clamp(60px, 7vw, 100px);
 }
 
+/* Repère de largeur (cqw) pour placer la signature sous le logo. */
+.haut {
+  container-type: inline-size;
+}
+
 .titre {
   color: var(--bleu);
 }
@@ -121,7 +126,10 @@
     justify-content: flex-start;
   }
 
+  /* Remontée sous la queue du « g » (5,4 % de la largeur du logo au-dessus
+     du bas du dessin, à cause du R qui descend plus bas), plus 14 px d'air. */
   .signature {
+    margin-top: calc(min(100cqw, 1180px) * -0.054 + 14px);
     text-align: right;
   }
 
