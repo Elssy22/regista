@@ -5,19 +5,41 @@
   padding-bottom: clamp(60px, 7vw, 100px);
 }
 
-/* La phrase géante (le « Nino Walker » du template). */
 .titre {
   color: var(--bleu);
-  /* Proportionnel à la largeur, plafonné quand la page atteint sa largeur
-     maximale (1320 px) : une phrase qui tient sur une ligne en 390 px tient
-     sur une ligne partout. */
-  font-size: clamp(1.75rem, 9.5vw, 8.5rem);
-  font-weight: 700;
-  line-height: 0.95;
-  letter-spacing: 0.01em;
-  text-align: center;
-  text-transform: uppercase;
-  text-wrap: balance;
+}
+
+/* Le logotype géant (le « Nino Walker » du template). */
+.cadreLogo {
+  display: block;
+  width: min(100%, 1180px);
+  margin: clamp(10px, 3vw, 40px) auto 0; /* la pointe du R penché remonte */
+}
+
+.logotype {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible; /* le R penché déborde un peu du cadre du dessin */
+}
+
+/* Le R penché vers l'arrière, qui se redresse : au survol à la souris,
+   et via data-droit sur écran tactile (LogoAccroche.tsx). Seulement avec
+   html.anim : sinon le logo reste tel qu'il est dessiné. Vers l'avant,
+   le R rentrerait dans le « e ». */
+.r {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: rotate 0.5s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+:global(html.anim) .r {
+  rotate: -10deg;
+}
+
+:global(html.anim) .r[data-droit],
+:global(html.anim) .cadreLogo:hover .r {
+  rotate: 0deg;
 }
 
 .grille {
@@ -80,37 +102,12 @@
   font-size: 1.0625rem;
 }
 
-/* Le R de Regista, à la place de la photo du template : même geste,
-   incliné de 10°, il se redresse au survol (demande de Landry). */
-.photo {
-  order: -1;
-  width: min(70vw, 360px);
-}
-
-.monogramme {
-  width: 100%;
-  height: auto;
-  color: var(--bleu);
-  rotate: 10deg;
-  transition: rotate 0.4s;
-}
-
-.monogramme:hover {
-  rotate: 0deg;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .monogramme {
-    transition: none;
-  }
-}
-
 @media (min-width: 992px) {
   .grille {
-    grid-template-columns: 3fr 4fr 3fr;
+    grid-template-columns: 1fr 1fr;
     align-items: start;
     gap: 30px;
-    margin-top: 0;
+    margin-top: 50px;
     text-align: left;
     justify-items: stretch;
   }
@@ -119,21 +116,7 @@
     justify-content: flex-start;
   }
 
-  .gauche {
-    padding-top: 30px;
-  }
-
-  /* Pas de chevauchement avec la phrase (contrairement à la photo du
-     template) : le R plein, bleu sur bleu, la rendrait illisible. */
-  .photo {
-    order: 0;
-    justify-self: center;
-    width: min(100%, 320px);
-    margin-top: 60px;
-  }
-
   .droite {
     justify-self: end;
-    padding-top: 30px;
   }
 }

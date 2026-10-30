@@ -55,7 +55,9 @@ sont redevenues de vraies pages).
   progression, défilement doux Lenis piloté par GSAP, apparitions fadeInUp
   (`data-apparait` + `--delai`, 1 s, coupées sur écran tactile comme WOW.js),
   chiffres qui défilent (3 s), bandeau de logos (60 s), en-tête fixe qui se
-  resserre après 100 px, soulignement des liens, sous-menu Réalisations,
+  resserre après 100 px, logotype géant de l'accueil dont le R penché (-10°,
+  vers l'arrière pour ne pas toucher le « e ») se redresse au survol, ou
+  après le rideau et au toucher sur écran tactile (`accueil/LogoAccroche.tsx`), soulignement des liens, sous-menu Réalisations,
   panneau mobile latéral, survols des cartes (flou + légende des projets,
   flèche des métiers, zoom des articles), galerie agrandie au clic
   (`blocs/Galerie.tsx`, équivalent de Magnific Popup).

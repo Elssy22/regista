@@ -22,7 +22,14 @@ export function Prechargement() {
     if (!document.documentElement.classList.contains("anim")) return;
     let tl: gsap.core.Timeline | undefined;
     const lancer = () => {
-      tl = gsap.timeline({ onComplete: () => setFini(true) });
+      tl = gsap.timeline({
+        onComplete: () => {
+          setFini(true);
+          // Signal pour le haut de l'accueil (le R du logo se redresse).
+          document.documentElement.setAttribute("data-rideau-leve", "");
+          window.dispatchEvent(new Event("rideau-leve"));
+        },
+      });
       tl.to(texte.current, { delay: 1.5, y: -100, opacity: 0 });
       tl.to(courbe.current, { duration: 0.5, attr: { d: "M0 502S175 272 500 272s500 230 500 230V0H0Z" }, ease: "power2.in" })
         .to(courbe.current, { duration: 0.5, attr: { d: "M0 2S175 1 500 1s500 1 500 1V0H0Z" }, ease: "power2.out" });
