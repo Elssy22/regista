@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/site-config";
 import { verifierContenuFictif } from "@/lib/contenu";
-import { Animations } from "@/components/effets/Animations";
-import { Prechargement } from "@/components/effets/Prechargement";
-import { Curseur } from "@/components/effets/Curseur";
-import { RetourHaut } from "@/components/effets/RetourHaut";
-import { DefilementDoux } from "@/components/effets/DefilementDoux";
-import "./globals.css";
 
 // Empêche toute mise en production tant qu'il reste du contenu fictif.
 verifierContenuFictif();
@@ -47,14 +41,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: scriptAnimations }} />
       </head>
-      <body>
-        <Prechargement />
-        <Curseur />
-        {children}
-        <RetourHaut />
-        <Animations />
-        <DefilementDoux />
-      </body>
+      {/* Les styles et les animations du site vivent dans (site)/layout.tsx :
+          le back office (/studio) n'en hérite pas. */}
+      <body>{children}</body>
     </html>
   );
 }

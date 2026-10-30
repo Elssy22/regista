@@ -12,6 +12,9 @@ import { BlocContact } from "@/components/blocs/BlocContact";
  * L'accueil, dans l'ordre exact du template Nino : ouverture, clients et
  * agence, métiers, réalisations, témoignages, actualités, contact.
  */
+// Les actualités viennent du back office : la page se met à jour toutes les minutes.
+export const revalidate = 60;
+
 export default function Accueil() {
   return (
     <>
@@ -22,7 +25,7 @@ export default function Accueil() {
         <Metiers />
         <GrilleProjets />
         <Temoignages />
-        <SectionActualites />
+        <SectionActualites limite={3} />
         <BlocContact />
       </main>
       <PiedDePage />

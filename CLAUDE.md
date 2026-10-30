@@ -62,12 +62,38 @@ sont redevenues de vraies pages).
   Tout est coupé avec « réduire les animations », et rien n'est caché sans
   JavaScript (`html.anim`, posé par le script de `layout.tsx`).
 
+## Le back office du blog (Sanity)
+
+Décision de Landry du 30/10/2026 : le blog se gère dans Sanity Studio,
+intégré au site à l'adresse `/studio` (`src/app/studio/`, configuration
+dans `src/sanity/`, fiche « Article » dans `src/sanity/schemas/article.ts`,
+interface en français).
+
+- **Relier le projet** : la variable `NEXT_PUBLIC_SANITY_PROJECT_ID` (et
+  `NEXT_PUBLIC_SANITY_DATASET`, `production` par défaut) sur Vercel. Sans
+  elle, `/studio` affiche « Back office pas encore relié » et le blog
+  montre les articles d'exemple (jamais en production).
+- **Origines autorisées** (sanity.io/manage → API → CORS, avec
+  « Allow credentials ») : l'adresse de prévisualisation de la branche,
+  `https://www.regista-a.com`, `https://regista-a.com`,
+  `http://localhost:3000`.
+- **Publication** : les pages du blog se rafraîchissent toutes les
+  minutes (`revalidate = 60`, `src/lib/blog.ts`). Un article programmé
+  (date future) n'apparaît qu'à sa date.
+- **Images** : servies par l'optimiseur du site (`next/image`,
+  `remotePatterns` cdn.sanity.io) : le visiteur ne charge rien depuis un
+  site tiers, ce que promettent les mentions légales.
+- **Isolation** : les pages publiques sont dans le groupe `app/(site)/`,
+  qui porte `globals.css` et les animations. Le back office n'en hérite
+  pas. `app/not-found.tsx` importe lui-même `globals.css`.
+
 ## Contenu fictif (à remplacer avant la production)
 
 Landry a demandé de remplir le template avec des données fictives en
 attendant les vraies : témoignages, actualités (3 articles), liens des
 réseaux sociaux, année de la réalisation Doki Doki, noms de deux clients du
-bandeau. Tout est dans `src/lib/contenu.ts`, après le bandeau « CONTENU
+bandeau. Les actualités d'exemple disparaissent d'elles-mêmes dès que le
+premier article est publié dans le back office. Tout est dans `src/lib/contenu.ts`, après le bandeau « CONTENU
 FICTIF ». **Garde-fou** : `verifierContenuFictif()` (appelée dans
 `layout.tsx`) fait échouer toute construction de production
 (`VERCEL_ENV=production`) tant qu'il en reste. Ne pas le désactiver pour
@@ -91,11 +117,14 @@ formulaire » : phrase à faire valider par Landry avant la production.
 ```
 src/
   app/
-    page.tsx                     l'accueil (sections dans components/accueil/)
-    a-propos/, metiers/, contact/, actualites/[slug]/
-    realisations/, realisations/[slug]/   liste et une page par réalisation
-    mentions-legales/, politique-confidentialite/   texte légal inchangé
-    layout.tsx, globals.css      métadonnées, script d'animation, styles de base
+    layout.tsx                   racine : métadonnées, script d'animation
+    globals.css                  styles de base (importés par (site) et la 404)
+    (site)/                      les pages publiques et leur gabarit d'animations
+      page.tsx                   l'accueil (sections dans components/accueil/)
+      a-propos/, metiers/, contact/, actualites/[slug]/
+      realisations/, realisations/[slug]/   liste et une page par réalisation
+      mentions-legales/, politique-confidentialite/   texte légal inchangé
+    studio/[[...outil]]/         le back office Sanity
     not-found.tsx, robots.ts, sitemap.ts, icon.svg
   components/                    Entete, PiedDePage, Logo (généré), Icones, legal/
     effets/                      les animations globales du template
@@ -105,6 +134,8 @@ src/
   lib/
     site-config.ts               coordonnées, infos légales, menu
     contenu.ts                   tous les textes et la liste des images
+    blog.ts                      lecture des articles (Sanity ou exemples)
+  sanity/                        configuration du back office
 public/                          brand/, texture-papier.jpg, og-image.jpg
 ```
 

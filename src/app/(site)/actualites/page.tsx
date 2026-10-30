@@ -6,9 +6,11 @@ import { SectionActualites } from "@/components/blocs/SectionActualites";
 
 export const metadata: Metadata = {
   title: "Actualités",
-  // Contenu fictif : pas d'indexation tant que les vrais articles ne sont pas là.
-  robots: { index: false, follow: true },
+  description: "Conseils, coulisses et nouvelles du terrain : le blog de Regista.",
 };
+
+// Les articles viennent du back office : la page se met à jour toutes les minutes.
+export const revalidate = 60;
 
 export default function PageActualites() {
   return (

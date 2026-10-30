@@ -4,6 +4,8 @@ const nextConfig: NextConfig = {
   images: {
     // Obligatoire depuis Next 16 : la liste des qualités autorisées.
     qualities: [75],
+    // Images des articles du back office : servies via l'optimiseur du site.
+    remotePatterns: [{ protocol: "https", hostname: "cdn.sanity.io", pathname: "/images/**" }],
   },
 
   // Les anciennes adresses du site, encore présentes dans des e-mails déjà

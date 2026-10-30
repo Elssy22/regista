@@ -1,12 +1,14 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site-config";
 import { realisations } from "@/lib/contenu";
+import { listerArticles } from "@/lib/blog";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const articles = (await listerArticles()).filter((a) => !a.fictif);
   const base = siteConfig.siteUrl;
   return [
     { url: base, changeFrequency: "monthly", priority: 1 },
-    ...["/a-propos", "/metiers", "/realisations", "/contact"].map((chemin) => ({
+    ...["/a-propos", "/metiers", "/realisations", "/actualites", "/contact"].map((chemin) => ({
       url: `${base}${chemin}`,
       changeFrequency: "monthly" as const,
       priority: 0.8,
@@ -15,6 +17,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${base}/realisations/${r.slug}`,
       changeFrequency: "yearly" as const,
       priority: 0.7,
+    })),
+    ...articles.map((a) => ({
+      url: `${base}/actualites/${a.slug}`,
+      changeFrequency: "yearly" as const,
+      priority: 0.6,
     })),
     { url: `${base}/mentions-legales`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${base}/politique-confidentialite`, changeFrequency: "yearly", priority: 0.3 },

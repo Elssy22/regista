@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Entete } from "@/components/Entete";
 import { PiedDePage } from "@/components/PiedDePage";
 import { Fleche } from "@/components/Icones";
+// La page 404 vit hors du groupe (site) : elle importe elle-même les styles.
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Page introuvable",

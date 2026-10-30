@@ -3,6 +3,7 @@
  * Une seule source : pour changer un texte, on le change ici.
  */
 import type { StaticImageData } from "next/image";
+import { sanityRelie } from "@/sanity/env";
 
 import landry from "@/assets/equipe/landry-celina.jpg";
 
@@ -364,10 +365,6 @@ export const actualites: Actualite[] = [
   },
 ];
 
-export function trouverActualite(slug: string) {
-  return actualites.find((a) => a.slug === slug);
-}
-
 /** Réseaux sociaux : adresses à fournir. `null` = pas encore de lien. */
 export const reseaux: { nom: string; href: string | null; fictif: true }[] = [
   { nom: "Instagram", href: null, fictif: true },
@@ -384,7 +381,9 @@ export function verifierContenuFictif() {
   if (process.env.VERCEL_ENV !== "production") return;
   const restes = [
     temoignages.length && "témoignages",
-    actualites.length && "actualités",
+    // Les actualités d'exemple ne s'affichent jamais en production quand le
+    // back office est relié ; sans lui, il n'y aurait que des exemples.
+    !sanityRelie && "actualités (back office Sanity non relié)",
     reseaux.some((r) => r.fictif) && "réseaux sociaux",
     realisations.some((r) => r.anneeFictive) && "année d'une réalisation",
     clients.some((c) => c.aConfirmer) && "noms de clients à confirmer",

@@ -1,16 +1,16 @@
-import Image from "next/image";
 import Link from "next/link";
-import type { Actualite } from "@/lib/contenu";
+import type { ArticleVue } from "@/lib/blog";
+import { ImageArticle } from "./ImageArticle";
 import { FlecheDroite } from "../Icones";
 import styles from "./CarteActualite.module.css";
 
 /** Un article en bandeau (blog-post-box du template). */
-export function CarteActualite({ actualite }: { actualite: Actualite }) {
+export function CarteActualite({ actualite }: { actualite: ArticleVue }) {
   const lien = `/actualites/${actualite.slug}`;
   return (
     <article className={styles.boite}>
       <Link href={lien} className={styles.image} tabIndex={-1} aria-hidden="true">
-        <Image src={actualite.image.src} alt="" placeholder="blur" sizes="(min-width: 768px) 45vw, 100vw" />
+        <ImageArticle image={actualite.image} decorative sizes="(min-width: 768px) 45vw, 100vw" />
         <span className={styles.categorie}>{actualite.categorie}</span>
       </Link>
       <div className={styles.legende}>

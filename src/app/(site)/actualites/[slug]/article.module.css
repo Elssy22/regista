@@ -1,0 +1,83 @@
+.article {
+  display: grid;
+  gap: 24px;
+  max-width: calc(860px + 2 * var(--marge));
+  font-size: 1.125rem;
+  color: var(--creme-texte);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1400 / 788;
+  object-fit: cover;
+  margin-bottom: 24px;
+  border-radius: 0.5em;
+}
+
+.retour {
+  justify-self: start;
+  margin-top: 24px;
+  color: var(--or);
+  text-decoration: none;
+}
+
+/* ——— Texte saisi dans le back office ——— */
+
+.texte {
+  display: grid;
+  gap: 20px;
+}
+
+.texte h2 {
+  margin-top: 24px;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--creme);
+}
+
+.texte h3 {
+  margin-top: 12px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--creme);
+}
+
+.texte blockquote {
+  margin: 8px 0;
+  padding-left: 24px;
+  border-left: 2px solid var(--or);
+  font-size: 1.25rem;
+  color: var(--creme);
+}
+
+.texte ul,
+.texte ol {
+  display: grid;
+  gap: 8px;
+  padding-left: 1.4em;
+}
+
+.texte a {
+  color: var(--creme);
+  text-decoration-color: var(--or);
+  text-underline-offset: 4px;
+}
+
+.figure {
+  margin: 16px 0;
+}
+
+.figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5em;
+}
+
+.figure figcaption {
+  margin-top: 8px;
+  font-size: 0.875rem;
+  color: var(--creme-texte);
+}
