@@ -134,15 +134,15 @@ a {
 }
 
 /*
- * Les fonds du deck (public/fonds/) : la forme du R, ton sur ton. L'image
- * est fixée à l'écran (calque en position fixe, découpé par la section
- * grâce à clip-path) : deux sections de même couleur à la suite montrent
- * un seul fond continu, sans raccord, et la forme garde la même taille
- * quelle que soit la hauteur de la section. Ça marche aussi sur iPhone,
- * contrairement à background-attachment: fixed.
- * Côté par défaut : crème à droite, bleu et or à gauche, ce qui fait
- * alterner la forme d'une section à l'autre. fond--gauche / fond--droite
- * changent de côté.
+ * Les fonds du deck (public/fonds/) : deux diapos collées, où la forme du R
+ * passe de l'une à l'autre. Un panorama par couleur, au même cadrage : d'une
+ * section à l'autre, le motif continue, seule la couleur change.
+ * Le calque est fixé à l'écran (position fixe, découpé par la section grâce
+ * à clip-path, ce qui marche aussi sur iPhone) et le panorama glisse de
+ * gauche à droite au fil de la page : on le traverse en entier en
+ * descendant. Défilement piloté par le navigateur (animation-timeline),
+ * sans script. Sans cette prise en charge, ou avec « réduire les
+ * animations », le panorama reste immobile, centré.
  */
 .fond-creme,
 .fond-bleu,
@@ -159,16 +159,33 @@ a {
   position: fixed;
   inset: 0;
   z-index: -2;
-  background: var(--fond-image) var(--fond-cote) center / cover no-repeat;
+  background: var(--fond-image) 50% center / cover no-repeat;
   pointer-events: none;
 }
 
-.fond-creme { --fond-image: url("/fonds/creme-droite.webp"); --fond-cote: right; }
-.fond-bleu { --fond-image: url("/fonds/bleu-gauche.webp"); --fond-cote: left; }
-.fond-or { --fond-image: url("/fonds/or-gauche.webp"); --fond-cote: left; }
-.fond-creme.fond--gauche { --fond-image: url("/fonds/creme-gauche.webp"); --fond-cote: left; }
-.fond-bleu.fond--droite { --fond-image: url("/fonds/bleu-droite.webp"); --fond-cote: right; }
-.fond-or.fond--droite { --fond-image: url("/fonds/or-droite.webp"); --fond-cote: right; }
+.fond-creme { --fond-image: url("/fonds/panorama-creme.webp"); }
+.fond-bleu { --fond-image: url("/fonds/panorama-bleu.webp"); }
+.fond-or { --fond-image: url("/fonds/panorama-or.webp"); }
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .fond-creme::after,
+    .fond-bleu::after,
+    .fond-or::after {
+      animation: fond-panorama linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+@keyframes fond-panorama {
+  from {
+    background-position-x: 0%;
+  }
+  to {
+    background-position-x: 100%;
+  }
+}
 
 /* ——— Typographie ——— */
 

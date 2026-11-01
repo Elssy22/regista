@@ -47,13 +47,15 @@ sont redevenues de vraies pages).
 - **Logos** : `public/brand/` (R seul et logotype complet, bleu et crème).
   `src/components/Logo.tsx` en est généré (`currentColor`) : ne jamais
   redessiner le tracé ni recomposer « Regista » dans une police.
-- **Fonds** (fournis par Landry le 01/11/2026, `public/fonds/`) : la forme
-  du R ton sur ton, en crème, bleu et or, côté gauche ou droit. Classes
-  `fond-creme`, `fond-bleu`, `fond-or` (+ `fond--gauche` / `fond--droite`
-  pour changer de côté). L'image est fixée à l'écran (calque `position:
-  fixed` découpé par `clip-path`) : pas de raccord entre deux sections de
-  même couleur. L'or sert de fond au pied de page, toujours avec du texte
-  bleu (5:1), jamais crème (2,5:1).
+- **Fonds** (deck de Landry, 01/11/2026, `public/fonds/`) : deux diapos
+  collées où la forme du R passe de l'une à l'autre, un panorama par
+  couleur (`panorama-creme/bleu/or.webp`), même cadrage pour les trois.
+  Classes `fond-creme`, `fond-bleu`, `fond-or`. Le calque est fixé à
+  l'écran (`position: fixed` découpé par `clip-path`) et glisse de gauche à
+  droite au fil de la page (`animation-timeline: scroll()`) : le motif
+  continue d'une section à l'autre, seule la couleur change. L'or sert de
+  fond au pied de page, toujours avec du texte bleu (5:1), jamais crème
+  (2,5:1).
 - **Animations du template** (`src/components/effets/`) : écran de
   chargement (logotype Regista qui clignote, rideau courbe, GSAP, une fois par visite),
   curseur rond qui suit la souris, bouton « remonter » avec cercle de
