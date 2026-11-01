@@ -21,7 +21,7 @@ export function PageLegale({
   return (
     <>
       <Entete />
-      <main id="contenu" className={`fond-creme texture ${styles.page}`}>
+      <main id="contenu" className={`fond-creme ${styles.page}`}>
         <div className={`conteneur ${styles.colonne}`}>
           <h1 className={styles.titre}>{titre}</h1>
           <p className={styles.date}>{miseAJour}</p>

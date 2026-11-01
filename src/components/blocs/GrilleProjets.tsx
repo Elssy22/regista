@@ -5,7 +5,7 @@ import styles from "./GrilleProjets.module.css";
 /** La grille des réalisations, sur fond bleu (« Some recent work » du template). */
 export function GrilleProjets() {
   return (
-    <section id="realisations" className={`fond-bleu texture ${styles.section}`} aria-labelledby="titre-projets">
+    <section id="realisations" className={`fond-bleu ${styles.section}`} aria-labelledby="titre-projets">
       <div className={styles.cadre}>
         <h2 id="titre-projets" className={styles.etiquette}>
           Nos dernières réalisations

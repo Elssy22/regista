@@ -15,7 +15,7 @@ function decouper(valeur: string) {
  */
 export function Agence() {
   return (
-    <section id="agence" className={`fond-bleu texture ${styles.agence}`} aria-labelledby="titre-agence">
+    <section id="agence" className={`fond-bleu ${styles.agence}`} aria-labelledby="titre-agence">
       <div className={styles.clients}>
         {/* Titre retiré à l'écran (demande de Landry), gardé pour les lecteurs d'écran. */}
         <h2 className="visuellement-cache">Ils nous font confiance</h2>

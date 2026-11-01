@@ -68,7 +68,7 @@ export default async function Article({ params }: PageProps<"/actualites/[slug]"
       <Entete />
       <main id="contenu">
         <TitrePage titre={a.titre} texte={`${a.categorie} · ${a.date}`} />
-        <section className="section fond-bleu texture" aria-label="Article">
+        <section className="section fond-bleu" aria-label="Article">
           <div className={`conteneur ${styles.article}`}>
             <ImageArticle image={a.image} sizes="(min-width: 900px) 860px, 100vw" className={styles.image} preload />
             {a.corps ? (

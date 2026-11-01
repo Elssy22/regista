@@ -8,7 +8,7 @@ import styles from "./BlocContact.module.css";
 export function BlocContact() {
   const { email, telephoneAffiche, telephoneLien } = siteConfig.contact;
   return (
-    <section id="contact" className="section fond-creme texture" aria-labelledby="titre-contact">
+    <section id="contact" className="section fond-creme" aria-labelledby="titre-contact">
       <div className="conteneur">
         <TitreSection id="titre-contact">Contactez-nous</TitreSection>
         <div className={styles.grille}>

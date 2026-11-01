@@ -47,8 +47,6 @@ sont redevenues de vraies pages).
 - **Logos** : `public/brand/` (R seul et logotype complet, bleu et crème).
   `src/components/Logo.tsx` en est généré (`currentColor`) : ne jamais
   redessiner le tracé ni recomposer « Regista » dans une police.
-- **Texture** : le grain du papier du deck (`public/texture-papier.jpg`),
-  en calque discret (classe `.texture`).
 - **Fonds** (fournis par Landry le 01/11/2026, `public/fonds/`) : la forme
   du R ton sur ton, en crème, bleu et or, côté gauche ou droit. Classes
   `fond-creme`, `fond-bleu`, `fond-or` (+ `fond--gauche` / `fond--droite`
@@ -146,7 +144,7 @@ src/
     contenu.ts                   tous les textes et la liste des images
     blog.ts                      lecture des articles (Sanity ou exemples)
   sanity/                        configuration du back office
-public/                          brand/, texture-papier.jpg, og-image.jpg
+public/                          brand/, fonds/, og-image.jpg
 ```
 
 ## Vérifier

@@ -22,7 +22,7 @@ export default function APropos() {
 
         {/* Le fondateur : la photo inclinée du template (elle se redresse au
             survol), déplacée de l'accueil à la demande de Landry. */}
-        <section className="section fond-creme texture" aria-labelledby="titre-fondateur" style={{ paddingTop: 40 }}>
+        <section className="section fond-creme" aria-labelledby="titre-fondateur" style={{ paddingTop: 40 }}>
           <div className={`conteneur ${styles.fondateur}`}>
             <div className={styles.photo} data-apparait style={{ "--delai": "0.2s" } as React.CSSProperties}>
               <Image
@@ -41,7 +41,7 @@ export default function APropos() {
           </div>
         </section>
 
-        <section className="section fond-creme texture" aria-labelledby="titre-methode" style={{ paddingTop: 0 }}>
+        <section className="section fond-creme" aria-labelledby="titre-methode" style={{ paddingTop: 0 }}>
           <div className="conteneur">
             <TitreSection id="titre-methode">Notre méthode</TitreSection>
             <div className={styles.parcours}>
@@ -62,7 +62,7 @@ export default function APropos() {
           </div>
         </section>
 
-        <section className="section fond-creme texture" aria-labelledby="titre-partenaires" style={{ paddingTop: 0 }}>
+        <section className="section fond-creme" aria-labelledby="titre-partenaires" style={{ paddingTop: 0 }}>
           <div className="conteneur">
             <TitreSection id="titre-partenaires">Nos partenaires</TitreSection>
             <p className="chapo">En fonction de vos besoins, nous faisons appel à des personnes compétentes et pertinentes.</p>

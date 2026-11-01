@@ -170,31 +170,6 @@ a {
 .fond-bleu.fond--droite { --fond-image: url("/fonds/bleu-droite.webp"); --fond-cote: right; }
 .fond-or.fond--droite { --fond-image: url("/fonds/or-droite.webp"); --fond-cote: right; }
 
-/* Le grain du papier du deck, posé en calque sous le contenu. */
-.texture::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: url("/texture-papier.jpg") 0 0 / 900px auto repeat;
-  pointer-events: none;
-}
-
-.fond-creme.texture::before {
-  mix-blend-mode: multiply;
-  opacity: 0.09;
-}
-
-.fond-or.texture::before {
-  mix-blend-mode: multiply;
-  opacity: 0.12;
-}
-
-.fond-bleu.texture::before {
-  mix-blend-mode: soft-light;
-  opacity: 0.18;
-}
-
 /* ——— Typographie ——— */
 
 .titre-section {

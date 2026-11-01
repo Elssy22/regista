@@ -7,7 +7,7 @@ import styles from "./PiedDePage.module.css";
  */
 export function PiedDePage() {
   return (
-    <footer className={`fond-or texture ${styles.pied}`}>
+    <footer className={`fond-or ${styles.pied}`}>
       <div className={`conteneur ${styles.haut}`}>
         <p className={styles.question}>Un projet en tête ?</p>
         <p className={styles.geant}>

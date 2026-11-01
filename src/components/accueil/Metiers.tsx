@@ -6,7 +6,7 @@ import styles from "./Metiers.module.css";
 /** Les métiers en grille alternée (services du template). */
 export function Metiers({ avecTitre = true }: { avecTitre?: boolean }) {
   return (
-    <section id="metiers" className="section fond-creme texture" aria-labelledby={avecTitre ? "titre-metiers" : undefined} aria-label={avecTitre ? undefined : "Nos métiers"}>
+    <section id="metiers" className="section fond-creme" aria-labelledby={avecTitre ? "titre-metiers" : undefined} aria-label={avecTitre ? undefined : "Nos métiers"}>
       <div className="conteneur">
         {avecTitre && <TitreSection id="titre-metiers">Nos métiers</TitreSection>}
         <ul className={styles.grille}>

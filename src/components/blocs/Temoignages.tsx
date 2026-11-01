@@ -5,7 +5,7 @@ import styles from "./Temoignages.module.css";
 /** Les témoignages (testimonials du template). Contenu fictif pour l'instant. */
 export function Temoignages() {
   return (
-    <section className="section fond-creme texture" aria-labelledby="titre-temoignages">
+    <section className="section fond-creme" aria-labelledby="titre-temoignages">
       <div className="conteneur">
         <TitreSection id="titre-temoignages">Témoignages</TitreSection>
         <ul className={styles.grille}>

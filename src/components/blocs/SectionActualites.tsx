@@ -10,14 +10,14 @@ export async function SectionActualites({ avecTitre = true, limite }: { avecTitr
   const articles = (await listerArticles()).slice(0, limite);
   if (!articles.length) {
     return avecTitre ? null : (
-      <section className="section fond-bleu texture" aria-label="Articles">
+      <section className="section fond-bleu" aria-label="Articles">
         <p className="conteneur">Les premiers articles arrivent bientôt.</p>
       </section>
     );
   }
   return (
     <section
-      className="section fond-bleu texture"
+      className="section fond-bleu"
       aria-labelledby={avecTitre ? "titre-actualites" : undefined}
       aria-label={avecTitre ? undefined : "Articles"}
     >
