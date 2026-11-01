@@ -125,6 +125,51 @@ a {
   color: var(--creme);
 }
 
+/* L'or porte du texte bleu (5:1), jamais crème (2,5:1). Les textes
+   atténués repassent en bleu plein pour garder ce contraste. */
+.fond-or {
+  --bleu-texte: var(--bleu);
+  background: var(--or);
+  color: var(--bleu);
+}
+
+/*
+ * Les fonds du deck (public/fonds/) : la forme du R, ton sur ton. L'image
+ * est fixée à l'écran (calque en position fixe, découpé par la section
+ * grâce à clip-path) : deux sections de même couleur à la suite montrent
+ * un seul fond continu, sans raccord, et la forme garde la même taille
+ * quelle que soit la hauteur de la section. Ça marche aussi sur iPhone,
+ * contrairement à background-attachment: fixed.
+ * Côté par défaut : crème à droite, bleu et or à gauche, ce qui fait
+ * alterner la forme d'une section à l'autre. fond--gauche / fond--droite
+ * changent de côté.
+ */
+.fond-creme,
+.fond-bleu,
+.fond-or {
+  position: relative;
+  isolation: isolate;
+  clip-path: inset(0);
+}
+
+.fond-creme::after,
+.fond-bleu::after,
+.fond-or::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: var(--fond-image) var(--fond-cote) center / cover no-repeat;
+  pointer-events: none;
+}
+
+.fond-creme { --fond-image: url("/fonds/creme-droite.webp"); --fond-cote: right; }
+.fond-bleu { --fond-image: url("/fonds/bleu-gauche.webp"); --fond-cote: left; }
+.fond-or { --fond-image: url("/fonds/or-gauche.webp"); --fond-cote: left; }
+.fond-creme.fond--gauche { --fond-image: url("/fonds/creme-gauche.webp"); --fond-cote: left; }
+.fond-bleu.fond--droite { --fond-image: url("/fonds/bleu-droite.webp"); --fond-cote: right; }
+.fond-or.fond--droite { --fond-image: url("/fonds/or-droite.webp"); --fond-cote: right; }
+
 /* Le grain du papier du deck, posé en calque sous le contenu. */
 .texture::before {
   content: "";
@@ -138,6 +183,11 @@ a {
 .fond-creme.texture::before {
   mix-blend-mode: multiply;
   opacity: 0.09;
+}
+
+.fond-or.texture::before {
+  mix-blend-mode: multiply;
+  opacity: 0.12;
 }
 
 .fond-bleu.texture::before {

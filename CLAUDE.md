@@ -49,6 +49,13 @@ sont redevenues de vraies pages).
   redessiner le tracé ni recomposer « Regista » dans une police.
 - **Texture** : le grain du papier du deck (`public/texture-papier.jpg`),
   en calque discret (classe `.texture`).
+- **Fonds** (fournis par Landry le 01/11/2026, `public/fonds/`) : la forme
+  du R ton sur ton, en crème, bleu et or, côté gauche ou droit. Classes
+  `fond-creme`, `fond-bleu`, `fond-or` (+ `fond--gauche` / `fond--droite`
+  pour changer de côté). L'image est fixée à l'écran (calque `position:
+  fixed` découpé par `clip-path`) : pas de raccord entre deux sections de
+  même couleur. L'or sert de fond au pied de page, toujours avec du texte
+  bleu (5:1), jamais crème (2,5:1).
 - **Animations du template** (`src/components/effets/`) : écran de
   chargement (logotype Regista qui clignote, rideau courbe, GSAP, une fois par visite),
   curseur rond qui suit la souris, bouton « remonter » avec cercle de
