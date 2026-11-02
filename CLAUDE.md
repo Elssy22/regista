@@ -48,7 +48,8 @@ sont redevenues de vraies pages).
   `src/components/Logo.tsx` en est généré (`currentColor`) : ne jamais
   redessiner le tracé ni recomposer « Regista » dans une police.
 - **Fonds** (deck de Landry, 01/11/2026, `public/fonds/`) : deux diapos
-  collées où la forme du R passe de l'une à l'autre, un panorama par
+  collées, la 2e du deck à gauche de la 1re (dans l'ordre du deck, les
+  formes se coupent net à la jonction : « collage »), un panorama par
   couleur (`panorama-creme/bleu/or.webp`), même cadrage pour les trois.
   Classes `fond-creme`, `fond-bleu`, `fond-or`. Le calque est fixé à
   l'écran (`position: fixed` découpé par `clip-path`) et glisse de gauche à

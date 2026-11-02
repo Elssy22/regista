@@ -134,9 +134,11 @@ a {
 }
 
 /*
- * Les fonds du deck (public/fonds/) : deux diapos collées, où la forme du R
- * passe de l'une à l'autre. Un panorama par couleur, au même cadrage : d'une
- * section à l'autre, le motif continue, seule la couleur change.
+ * Les fonds du deck (public/fonds/) : deux diapos collées, la 2e du deck
+ * à gauche de la 1re. Dans cet ordre, la jonction tombe sur deux bords unis
+ * et ne se voit pas (dans l'ordre du deck, les formes se coupent net).
+ * Un panorama par couleur, au même cadrage : d'une section à l'autre, le
+ * motif continue, seule la couleur change.
  * Le calque est fixé à l'écran (position fixe, découpé par la section grâce
  * à clip-path, ce qui marche aussi sur iPhone) et le panorama glisse de
  * gauche à droite au fil de la page : on le traverse en entier en
