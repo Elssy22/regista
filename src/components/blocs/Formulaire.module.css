@@ -81,3 +81,10 @@
     grid-column: 1 / -1;
   }
 }
+
+/* Sur or, les champs prennent un fond crème : ils se lisent comme des
+   cases à remplir et le texte d'exemple garde son contraste. */
+:global(.fond-or) .champ input,
+:global(.fond-or) .champ textarea {
+  background: var(--creme);
+}

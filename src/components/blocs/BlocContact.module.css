@@ -83,3 +83,8 @@
     grid-template-columns: 1fr 2fr;
   }
 }
+
+/* Sur or, le soulignement doré disparaîtrait : il passe en bleu. */
+:global(.fond-or) .ligne a:hover {
+  text-decoration-color: currentColor;
+}

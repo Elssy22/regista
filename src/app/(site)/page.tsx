@@ -27,10 +27,10 @@ export default function Accueil() {
         <GrilleProjets />
         <Temoignages />
         <SectionActualites limite={3} />
-        <AppelContact href="#contact" />
-        <BlocContact />
+        <AppelContact href="#contact" fond="creme" />
+        <BlocContact fond="or" />
       </main>
-      <PiedDePage appel={false} />
+      <PiedDePage appel={false} fond="or" />
     </>
   );
 }

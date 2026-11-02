@@ -4,11 +4,14 @@ import { TitreSection } from "./TitreSection";
 import { Formulaire } from "./Formulaire";
 import styles from "./BlocContact.module.css";
 
-/** La section contact du template : coordonnées à gauche, formulaire à droite. */
-export function BlocContact() {
+/**
+ * La section contact du template : coordonnées à gauche, formulaire à droite.
+ * Sur crème par défaut ; sur or à l'accueil, sous « Parlons-en » en crème.
+ */
+export function BlocContact({ fond = "creme" }: { fond?: "creme" | "or" }) {
   const { email, telephoneAffiche, telephoneLien } = siteConfig.contact;
   return (
-    <section id="contact" className="section fond-creme" aria-labelledby="titre-contact">
+    <section id="contact" className={`section fond-${fond}`} aria-labelledby="titre-contact">
       <div className="conteneur">
         <TitreSection id="titre-contact">Contactez-nous</TitreSection>
         <div className={styles.grille}>

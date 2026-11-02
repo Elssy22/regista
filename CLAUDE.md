@@ -59,7 +59,9 @@ sont redevenues de vraies pages).
   avec du texte bleu (5:1), jamais crème (2,5:1). Cet appel est en bas de
   chaque page (`PiedDePage`), sauf sur l'accueil, où il passe juste avant
   le formulaire et y descend (`#contact`), et sur la page Contact, où il
-  est inutile (`<PiedDePage appel={false} />`).
+  est inutile (`<PiedDePage appel={false} />`). Sur l'accueil, les
+  couleurs s'inversent (choix de Landry) : appel sur crème, formulaire et
+  bas de page sur or (champs du formulaire sur fond crème).
 - **Animations du template** (`src/components/effets/`) : écran de
   chargement (logotype Regista qui clignote, rideau courbe, GSAP, une fois par visite),
   curseur rond qui suit la souris, bouton « remonter » avec cercle de
