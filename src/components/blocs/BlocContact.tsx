@@ -2,6 +2,7 @@ import { siteConfig } from "@/lib/site-config";
 import { reseaux } from "@/lib/contenu";
 import { TitreSection } from "./TitreSection";
 import { Formulaire } from "./Formulaire";
+import { IconeReseau } from "../Icones";
 import styles from "./BlocContact.module.css";
 
 /**
@@ -49,12 +50,12 @@ export function BlocContact({ fond = "creme" }: { fond?: "creme" | "or" }) {
                   <li key={r.nom}>
                     {r.href ? (
                       <a href={r.href} target="_blank" rel="noopener noreferrer">
-                        {r.nom.slice(0, 2)}
+                        <IconeReseau nom={r.nom} />
                         <span className="visuellement-cache">{r.nom}</span>
                       </a>
                     ) : (
                       <span title={`${r.nom} : lien à venir`}>
-                        {r.nom.slice(0, 2)}
+                        <IconeReseau nom={r.nom} />
                         <span className="visuellement-cache">{r.nom} (lien à venir)</span>
                       </span>
                     )}

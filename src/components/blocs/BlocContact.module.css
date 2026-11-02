@@ -73,6 +73,11 @@
   transition: 0.3s;
 }
 
+.reseaux svg {
+  width: 20px;
+  height: 20px;
+}
+
 .reseaux a:hover {
   background: var(--bleu);
   color: var(--creme);
