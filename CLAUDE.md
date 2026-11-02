@@ -55,8 +55,11 @@ sont redevenues de vraies pages).
   l'écran (`position: fixed` découpé par `clip-path`) et glisse de gauche à
   droite au fil de la page (`animation-timeline: scroll()`) : le motif
   continue d'une section à l'autre, seule la couleur change. L'or sert de
-  fond au pied de page, toujours avec du texte bleu (5:1), jamais crème
-  (2,5:1).
+  fond au grand appel « Parlons-en » (`blocs/AppelContact.tsx`), toujours
+  avec du texte bleu (5:1), jamais crème (2,5:1). Cet appel est en bas de
+  chaque page (`PiedDePage`), sauf sur l'accueil, où il passe juste avant
+  le formulaire et y descend (`#contact`), et sur la page Contact, où il
+  est inutile (`<PiedDePage appel={false} />`).
 - **Animations du template** (`src/components/effets/`) : écran de
   chargement (logotype Regista qui clignote, rideau courbe, GSAP, une fois par visite),
   curseur rond qui suit la souris, bouton « remonter » avec cercle de

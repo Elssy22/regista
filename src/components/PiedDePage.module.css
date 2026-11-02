@@ -3,28 +3,6 @@
   isolation: isolate;
 }
 
-.haut {
-  padding-block: 100px;
-  text-align: center;
-}
-
-.question {
-  font-size: clamp(1.1rem, 1.6vw, 1.25rem);
-}
-
-.geant {
-  font-size: clamp(2.5rem, 12.5vw, 11.25rem);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.geant a {
-  text-decoration: none;
-}
-
 .bas {
   display: flex;
   flex-wrap: wrap;

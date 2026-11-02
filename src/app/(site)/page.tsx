@@ -6,6 +6,7 @@ import { Metiers } from "@/components/accueil/Metiers";
 import { GrilleProjets } from "@/components/blocs/GrilleProjets";
 import { Temoignages } from "@/components/blocs/Temoignages";
 import { SectionActualites } from "@/components/blocs/SectionActualites";
+import { AppelContact } from "@/components/blocs/AppelContact";
 import { BlocContact } from "@/components/blocs/BlocContact";
 
 /**
@@ -26,9 +27,10 @@ export default function Accueil() {
         <GrilleProjets />
         <Temoignages />
         <SectionActualites limite={3} />
+        <AppelContact href="#contact" />
         <BlocContact />
       </main>
-      <PiedDePage />
+      <PiedDePage appel={false} />
     </>
   );
 }

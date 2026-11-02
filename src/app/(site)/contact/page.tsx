@@ -20,7 +20,7 @@ export default function PageContact() {
         />
         <BlocContact />
       </main>
-      <PiedDePage />
+      <PiedDePage appel={false} />
     </>
   );
 }
