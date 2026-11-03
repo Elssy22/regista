@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { realisations, trouverRealisation } from "@/lib/contenu";
+import { realisations, trouverRealisation, titreRealisation } from "@/lib/contenu";
 import { Entete } from "@/components/Entete";
 import { PiedDePage } from "@/components/PiedDePage";
 import { TitrePage } from "@/components/blocs/TitrePage";
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: PageProps<"/realisations/[slu
   const r = trouverRealisation((await params).slug);
   if (!r) return {};
   return {
-    title: `${r.metier} — ${r.client}`,
+    title: `${r.metier} — ${titreRealisation(r)}`,
     description: r.description[0],
     openGraph: { images: [{ url: r.couverture.src.src, alt: r.couverture.alt }] },
   };
@@ -33,7 +33,7 @@ export default async function PageRealisation({ params }: PageProps<"/realisatio
     <>
       <Entete />
       <main id="contenu">
-        <TitrePage titre={r.client} texte={r.description[0]} />
+        <TitrePage titre={titreRealisation(r)} texte={r.description[0]} />
 
         <div className={styles.couverture}>
           <Image src={r.couverture.src} alt={r.couverture.alt} placeholder="blur" preload sizes="100vw" />
@@ -60,7 +60,7 @@ export default async function PageRealisation({ params }: PageProps<"/realisatio
               </div>
             </dl>
             <div className={styles.description} data-apparait style={{ "--delai": "0.4s" } as React.CSSProperties}>
-              <h2>{r.projet ?? "Le projet"}</h2>
+              <h2>Le projet</h2>
               {r.description.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}

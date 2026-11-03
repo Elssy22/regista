@@ -4,12 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { menu } from "@/lib/site-config";
-import { realisations } from "@/lib/contenu";
+import { realisations, titreRealisation } from "@/lib/contenu";
 import styles from "./Entete.module.css";
 
 const sousMenu = [
   { libelle: "Toutes les réalisations", href: "/realisations" },
-  ...realisations.map((r) => ({ libelle: r.client, href: `/realisations/${r.slug}` })),
+  ...realisations.map((r) => ({ libelle: titreRealisation(r), href: `/realisations/${r.slug}` })),
 ];
 
 /**

@@ -195,7 +195,7 @@ export type Realisation = {
   annee: string;
   /** true quand l'année n'est pas confirmée par Landry (donnée fictive). */
   anneeFictive?: boolean;
-  /** Titre du bloc de description (« Le projet » par défaut), ex. la marque du client final. */
+  /** Nom du projet quand il diffère du client (ex. la marque du client final) : titre de la page. */
   projet?: string;
   /** Le résultat en une ligne, affiché sur la carte et dans la fiche. */
   resultat: string;
@@ -273,6 +273,15 @@ export const realisations: Realisation[] = [
     ],
   },
 ];
+
+/**
+ * Le nom affiché d'une réalisation (titre de sa page, vignette, menu) : le
+ * projet s'il est précisé (ex. Maison de la Literie, client final de
+ * l'agence Doki Doki), sinon le client.
+ */
+export function titreRealisation(r: Realisation) {
+  return r.projet ?? r.client;
+}
 
 export function trouverRealisation(slug: string) {
   return realisations.find((r) => r.slug === slug);

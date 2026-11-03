@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Realisation } from "@/lib/contenu";
+import { titreRealisation, type Realisation } from "@/lib/contenu";
 import styles from "./CarteProjet.module.css";
 
 /**
@@ -9,7 +9,7 @@ import styles from "./CarteProjet.module.css";
  * glisse depuis le bas.
  */
 export function CarteProjet({ realisation, delai = 0 }: { realisation: Realisation; delai?: number }) {
-  const { slug, client, metier, couverture } = realisation;
+  const { slug, metier, couverture } = realisation;
   return (
     <Link
       href={`/realisations/${slug}`}
@@ -20,7 +20,7 @@ export function CarteProjet({ realisation, delai = 0 }: { realisation: Realisati
       <Image src={couverture.src} alt={couverture.alt} placeholder="blur" sizes="(min-width: 768px) 33vw, 100vw" />
       <span className={styles.categorie}>{metier}</span>
       <span className={styles.legende}>
-        <span>{client}</span>
+        <span>{titreRealisation(realisation)}</span>
       </span>
     </Link>
   );
