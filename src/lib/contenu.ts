@@ -205,30 +205,8 @@ export type Realisation = {
   galerie: Photo[];
 };
 
+/** Les réalisations, la plus récente en premier : c'est l'ordre de la grille et du menu. */
 export const realisations: Realisation[] = [
-  {
-    slug: "fc-rocquancourt",
-    client: "FC Rocquancourt",
-    metier: "Stratégie",
-    annee: "2025",
-    resultat: "500 maillots vendus en moins d'une semaine",
-    description: [
-      "Pour le club normand du FC Rocquancourt (D2), nous avons été consultés sur la stratégie d'amplification de la sortie de ses deux maillots, sortis chez l'équipementier Nike.",
-      "En collaboration avec les équipes du club, nous avons mis en place une stratégie de communication sur les réseaux sociaux ainsi qu'une liste de seeding. Résultat : 500 maillots vendus en moins d'une semaine.",
-    ],
-    couverture: {
-      src: roc00,
-      alt: "L'équipe du FC Rocquancourt, en maillots grenat « Pompette », fête un trophée dans le vestiaire.",
-    },
-    galerie: [
-      { src: roc01, alt: "Le maillot grenat à rayures du FC Rocquancourt porté, avec l'inscription « Pompette » et des colliers dorés." },
-      { src: roc02, alt: "Le maillot noir du FC Rocquancourt porté, inscription ton sur ton et collier doré." },
-      { src: roc03, alt: "Couverture de l'épisode « La pluie » de la série « Faire un maillot »." },
-      { src: roc04, alt: "Couverture de l'épisode « Pompette » de la série « Faire un maillot »." },
-      { src: roc05, alt: "Couverture de l'épisode « Le reveal » de la série « Faire un maillot »." },
-      { src: roc06, alt: "Couverture de l'épisode « Le débrief » de la série « Faire un maillot »." },
-    ],
-  },
   {
     slug: "doki-doki",
     client: "Doki Doki",
@@ -253,6 +231,29 @@ export const realisations: Realisation[] = [
       { src: lit07, alt: "Visuel Instagram « Bien dormir, c'est bien. Se faire désirer, c'est mieux ! »." },
       { src: lit08, alt: "Visuel Instagram « Et si mieux dormir passait aussi par la taille du lit ? »." },
       { src: lit09, alt: "Visuel Instagram d'un lit aux draps vert sauge." },
+    ],
+  },
+  {
+    slug: "fc-rocquancourt",
+    client: "FC Rocquancourt",
+    metier: "Stratégie",
+    annee: "2025",
+    resultat: "500 maillots vendus en moins d'une semaine",
+    description: [
+      "Pour le club normand du FC Rocquancourt (D2), nous avons été consultés sur la stratégie d'amplification de la sortie de ses deux maillots, sortis chez l'équipementier Nike.",
+      "En collaboration avec les équipes du club, nous avons mis en place une stratégie de communication sur les réseaux sociaux ainsi qu'une liste de seeding. Résultat : 500 maillots vendus en moins d'une semaine.",
+    ],
+    couverture: {
+      src: roc00,
+      alt: "L'équipe du FC Rocquancourt, en maillots grenat « Pompette », fête un trophée dans le vestiaire.",
+    },
+    galerie: [
+      { src: roc01, alt: "Le maillot grenat à rayures du FC Rocquancourt porté, avec l'inscription « Pompette » et des colliers dorés." },
+      { src: roc02, alt: "Le maillot noir du FC Rocquancourt porté, inscription ton sur ton et collier doré." },
+      { src: roc03, alt: "Couverture de l'épisode « La pluie » de la série « Faire un maillot »." },
+      { src: roc04, alt: "Couverture de l'épisode « Pompette » de la série « Faire un maillot »." },
+      { src: roc05, alt: "Couverture de l'épisode « Le reveal » de la série « Faire un maillot »." },
+      { src: roc06, alt: "Couverture de l'épisode « Le débrief » de la série « Faire un maillot »." },
     ],
   },
   {
