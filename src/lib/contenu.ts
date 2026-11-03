@@ -20,11 +20,9 @@ import logoClientProfil from "@/assets/clients/client-profil.png";
 import roc00 from "@/assets/realisations/fc-rocquancourt/00.jpg";
 import roc01 from "@/assets/realisations/fc-rocquancourt/01.jpg";
 import roc02 from "@/assets/realisations/fc-rocquancourt/02.jpg";
-import roc03 from "@/assets/realisations/fc-rocquancourt/03.jpg";
-import roc04 from "@/assets/realisations/fc-rocquancourt/04.jpg";
-import roc05 from "@/assets/realisations/fc-rocquancourt/05.jpg";
-import roc06 from "@/assets/realisations/fc-rocquancourt/06.jpg";
 import roc07 from "@/assets/realisations/fc-rocquancourt/07.jpg";
+import roc08 from "@/assets/realisations/fc-rocquancourt/08.jpg";
+import roc09 from "@/assets/realisations/fc-rocquancourt/09.jpg";
 
 import lit01 from "@/assets/realisations/maison-de-la-literie/01.jpg";
 import lit02 from "@/assets/realisations/maison-de-la-literie/02.jpg";
@@ -259,12 +257,11 @@ export const realisations: Realisation[] = [
     galerie: [
       { src: roc01, alt: "Le maillot grenat à rayures du FC Rocquancourt porté, avec l'inscription « Pompette » et des colliers dorés." },
       { src: roc02, alt: "Le maillot noir du FC Rocquancourt porté, inscription ton sur ton et collier doré." },
+      // Joueurs et modèle : accord pour la publication confirmé par Landry (03/11/2026).
+      { src: roc08, alt: "Trois joueurs du FC Rocquancourt posent en studio, en maillots grenat et noir, sur un tapis de feuilles d'automne." },
+      { src: roc09, alt: "Une jeune femme porte le maillot blanc du FC Rocquancourt devant un abri de terrain au toit bleu." },
       // Artiste : accord pour la publication confirmé par Landry (03/11/2026).
       { src: roc07, alt: "Un artiste, un cierge magique à la main, au milieu des invités d'une soirée." },
-      { src: roc03, alt: "Couverture de l'épisode « La pluie » de la série « Faire un maillot »." },
-      { src: roc04, alt: "Couverture de l'épisode « Pompette » de la série « Faire un maillot »." },
-      { src: roc05, alt: "Couverture de l'épisode « Le reveal » de la série « Faire un maillot »." },
-      { src: roc06, alt: "Couverture de l'épisode « Le débrief » de la série « Faire un maillot »." },
     ],
   },
   {
