@@ -4,8 +4,12 @@
   padding-block: 100px;
 }
 
-/* Comme le template, la grille va presque d'un bord à l'autre. */
+/* Bord à bord comme le template, mais plafonnée à la largeur des autres
+   sections : sur un écran de 1920 px, les vignettes gardent la taille de
+   la capture du template (environ 670 × 560) au lieu de 950 × 790. */
 .cadre {
+  max-width: calc(var(--largeur) + 2 * var(--marge));
+  margin-inline: auto;
   padding-inline: 12px;
 }
 
