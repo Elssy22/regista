@@ -17,6 +17,7 @@ import logoMaisonLiterie from "@/assets/clients/maison-de-la-literie.png";
 import logoBao from "@/assets/clients/bao-family.png";
 import logoClientProfil from "@/assets/clients/client-profil.png";
 
+import roc00 from "@/assets/realisations/fc-rocquancourt/00.jpg";
 import roc01 from "@/assets/realisations/fc-rocquancourt/01.jpg";
 import roc02 from "@/assets/realisations/fc-rocquancourt/02.jpg";
 import roc03 from "@/assets/realisations/fc-rocquancourt/03.jpg";
@@ -216,10 +217,11 @@ export const realisations: Realisation[] = [
       "En collaboration avec les équipes du club, nous avons mis en place une stratégie de communication sur les réseaux sociaux ainsi qu'une liste de seeding. Résultat : 500 maillots vendus en moins d'une semaine.",
     ],
     couverture: {
-      src: roc01,
-      alt: "Le maillot grenat à rayures du FC Rocquancourt porté, avec l'inscription « Pompette » et des colliers dorés.",
+      src: roc00,
+      alt: "L'équipe du FC Rocquancourt, en maillots grenat « Pompette », fête un trophée dans le vestiaire.",
     },
     galerie: [
+      { src: roc01, alt: "Le maillot grenat à rayures du FC Rocquancourt porté, avec l'inscription « Pompette » et des colliers dorés." },
       { src: roc02, alt: "Le maillot noir du FC Rocquancourt porté, inscription ton sur ton et collier doré." },
       { src: roc03, alt: "Couverture de l'épisode « La pluie » de la série « Faire un maillot »." },
       { src: roc04, alt: "Couverture de l'épisode « Pompette » de la série « Faire un maillot »." },
