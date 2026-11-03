@@ -41,6 +41,7 @@ import lit13 from "@/assets/realisations/maison-de-la-literie/maison-de-la-liter
 import ap01 from "@/assets/realisations/all-parisian/all-african-celebration-dunk-tribunes.jpg";
 import ap02 from "@/assets/realisations/all-parisian/all-african-celebration-maillots-africa-vestiaire.jpg";
 import ap03 from "@/assets/realisations/all-parisian/all-african-celebration-panneau-basket.jpg";
+import ap04 from "@/assets/realisations/all-parisian/all-african-celebration-manche-drapeaux.jpg";
 
 import logoCarreCroix from "@/assets/partenaires/carre-croix.jpg";
 import logoPartDokiDoki from "@/assets/partenaires/doki-doki.jpg";
@@ -281,6 +282,7 @@ export const realisations: Realisation[] = [
     galerie: [
       { src: ap02, alt: "Les maillots verts « Africa » du All African Celebration suspendus dans le vestiaire." },
       { src: ap03, alt: "Le panneau de basket habillé aux motifs colorés du All African Celebration." },
+      { src: ap04, alt: "Gros plan sur la manche blanche du sweat All African Celebration, ornée de drapeaux colorés, et un bracelet de perles." },
     ],
   },
 ];
