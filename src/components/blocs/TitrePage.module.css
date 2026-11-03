@@ -6,16 +6,30 @@
   text-align: center;
 }
 
+/* Repère de largeur (cqw) pour la taille du titre. */
+.cadre {
+  container-type: inline-size;
+}
+
+/*
+ * Taille du template (jusqu'à 150 px), réduite si besoin pour que le titre
+ * (ou son mot le plus long) tienne dans la largeur : une capitale occupe
+ * environ 0,7 em ; 0,78 laisse de la marge aux polices plus larges
+ * (Sanserata).
+ */
 .titre {
   padding-bottom: 20px;
   margin-bottom: 15px;
-  font-size: clamp(2.4rem, 8.5vw, 9.375rem);
+  font-size: min(clamp(2.4rem, 8.5vw, 9.375rem), calc(100cqw / (var(--lettres, 10) * 0.78)));
   font-weight: 400;
   line-height: 1;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  overflow-wrap: break-word;
   text-wrap: balance;
+}
+
+.uneLigne {
+  white-space: nowrap;
 }
 
 .texte {
