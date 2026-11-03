@@ -46,12 +46,6 @@ import ap05 from "@/assets/realisations/all-parisian/all-african-celebration-jou
 import ap06 from "@/assets/realisations/all-parisian/all-african-celebration-sweat-logo-2025.jpg";
 import ap07 from "@/assets/realisations/all-parisian/all-african-celebration-vainqueur-trophee.jpg";
 
-import logoCarreCroix from "@/assets/partenaires/carre-croix.jpg";
-import logoPartDokiDoki from "@/assets/partenaires/doki-doki.jpg";
-import logoAllMedia from "@/assets/partenaires/all-media-training.jpg";
-import logoCmr from "@/assets/partenaires/cmr-consulting.jpg";
-import logoSapha from "@/assets/partenaires/sapha-hamdani.jpg";
-
 export type Photo = { src: StaticImageData; alt: string };
 
 export const fondateur = {
@@ -159,40 +153,6 @@ export const methode = [
   {
     titre: "Livraison",
     texte: "On vous présente les créations.",
-  },
-] as const;
-
-export const partenaires = [
-  {
-    nom: "Carré Croix",
-    logo: logoCarreCroix,
-    role: "Studio créatif",
-    texte: "Créativité, passion, bosseur. Le studio créatif de vos créatifs préférés.",
-  },
-  {
-    nom: "Doki Doki",
-    logo: logoPartDokiDoki,
-    role: "Agence social média",
-    texte: "Avec Doki Doki, faire battre le cœur de votre communauté est un jeu d'enfant.",
-  },
-  {
-    nom: "All Média Training",
-    logo: logoAllMedia,
-    role: "Media training · Animation d'événements",
-    texte:
-      "Isoline est la meilleure pour mettre à l'aise vos intervenants ou pour animer toutes les sortes d'événements.",
-  },
-  {
-    nom: "CMR Consulting",
-    logo: logoCmr,
-    role: "Développeur web & app",
-    texte: "Créer un site internet, un logiciel de gestion ou une app mobile sur mesure : CMR est la solution.",
-  },
-  {
-    nom: "Sapha Hamdani",
-    logo: logoSapha,
-    role: "Juriste",
-    texte: "Sapha est la meilleure pour assurer vos arrières sur le plan juridique.",
   },
 ] as const;
 

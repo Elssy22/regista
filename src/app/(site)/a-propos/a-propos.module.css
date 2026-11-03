@@ -65,54 +65,6 @@
   color: var(--bleu-texte);
 }
 
-.competences {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 30px;
-  margin-top: 48px;
-  padding: 0;
-  list-style: none;
-}
-
-.competence {
-  padding: 40px 30px;
-  border: 1px solid transparent;
-  border-radius: 14px;
-  background: var(--bleu-doux);
-  text-align: center;
-  transition: 0.5s;
-}
-
-.competence:hover {
-  border-color: var(--bleu);
-}
-
-.logo {
-  margin-inline: auto;
-  border-radius: 8px;
-}
-
-.competence h3 {
-  margin-top: 20px;
-  margin-bottom: 8px;
-  font-size: 20px;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.role {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.texte {
-  margin-top: 12px;
-  font-size: 0.95rem;
-  color: var(--bleu-texte);
-}
-
 @media (min-width: 992px) {
   .parcours {
     grid-template-columns: 1fr 1fr;
