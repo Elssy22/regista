@@ -64,8 +64,7 @@ expliquer l'offre servent ce but, ils ne le remplacent pas.
 - Décidé : mise en page et animations reprises du template ThemeForest
   « Nino » ; direction artistique tirée du deck « Présentation agence
   2026 » (détails dans `CLAUDE.md`).
-- À décider ou à fournir : texte définitif de l'étape « Production »,
-  fichiers de la police Sanserata.
+- À fournir : fichiers de la police Sanserata.
 
 ## Brand Commitments
 

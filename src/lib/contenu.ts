@@ -203,10 +203,8 @@ export const methode = [
     texte: "Rien ne démarre tant que vous ne l'avez pas validé.",
   },
   {
-    // Le deck répète ici le texte du « Premier échange » : seule la première
-    // phrase est reprise, en attendant le texte définitif de Landry.
     titre: "Production",
-    texte: "Une stratégie qui ignore vos moyens ne sert à personne.",
+    texte: "Nous passons à l’action : contenus, dossiers, outils. Vous suivez l’avancée, nous gérons le reste.",
   },
   {
     titre: "Livraison",
