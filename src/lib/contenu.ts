@@ -209,7 +209,7 @@ export const realisations: Realisation[] = [
   {
     slug: "fc-rocquancourt",
     client: "FC Rocquancourt",
-    metier: "Pilotage",
+    metier: "Stratégie",
     annee: "2025",
     resultat: "500 maillots vendus en moins d'une semaine",
     description: [

@@ -14,7 +14,7 @@ export default function PageRealisations() {
     <>
       <Entete />
       <main id="contenu">
-        <TitrePage titre="Réalisations" texte="Une sélection de nos réalisations : pilotage, social média, événementiel." />
+        <TitrePage titre="Réalisations" texte="Une sélection de nos réalisations : stratégie, social média, événementiel." />
         <GrilleProjets />
       </main>
       <PiedDePage />
