@@ -32,6 +32,24 @@
   white-space: nowrap;
 }
 
+/* Titre à lignes imposées : sur mobile, taille du mot le plus long et retour
+   à la ligne libre ; à partir de 768 px, une ligne = un bloc, taille de la
+   plus longue. */
+.lignes {
+  font-size: min(clamp(2.4rem, 8.5vw, 9.375rem), calc(100cqw / (var(--lettres-mot, 10) * 0.78)));
+}
+
+@media (min-width: 768px) {
+  .lignes {
+    font-size: min(clamp(2.4rem, 8.5vw, 9.375rem), calc(100cqw / (var(--lettres-ligne, 10) * 0.78)));
+  }
+
+  .ligne {
+    display: block;
+    white-space: nowrap;
+  }
+}
+
 /* Le template laisse 200 px de chaque côté du conteneur : 920 px. */
 .texte {
   max-width: 920px;

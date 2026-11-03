@@ -49,6 +49,20 @@
   text-decoration-color: var(--or);
 }
 
+/* Le bouton de rendez-vous : un bouton du site, sans le soulignement des liens. */
+.ligne .rdv {
+  margin-top: 16px;
+}
+
+.ligne .rdv:hover {
+  text-decoration: none;
+}
+
+.ligne .rdv svg {
+  width: 16px;
+  height: 16px;
+}
+
 .reseaux {
   display: flex;
   gap: 20px;

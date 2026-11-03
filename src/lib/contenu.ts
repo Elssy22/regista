@@ -62,7 +62,8 @@ export const fondateur = {
 
 /** La page À propos (textes de Landry, 03/11/2026). */
 export const aPropos = {
-  titre: "Raconter, c’est déjà servir",
+  // « \n » : le titre tient sur deux lignes (demande de Landry).
+  titre: "Raconter,\nc’est déjà servir",
   intro:
     "Regista est une agence football. Le mot désigne, en italien, le chef d’orchestre. Sur un terrain, c’est le meneur de jeu : celui qui oriente le jeu et fait briller les autres.",
   pourquoi: "Pourquoi l’agence existe",

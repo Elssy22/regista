@@ -7,10 +7,13 @@ import styles from "./BlocContact.module.css";
 
 /**
  * La section contact du template : coordonnées à gauche, formulaire à droite.
+ * Ni e-mail ni téléphone affichés ici (choix de Landry, 03/11/2026) : ils
+ * restent dans les mentions légales, où la loi les demande, et le formulaire
+ * écrit à l'adresse de `siteConfig`.
  * Sur crème par défaut ; sur or à l'accueil, sous « Parlons-en » en crème.
  */
 export function BlocContact({ fond = "creme" }: { fond?: "creme" | "or" }) {
-  const { email, telephoneAffiche, telephoneLien } = siteConfig.contact;
+  const { rendezVous } = siteConfig.contact;
   return (
     <section id="contact" className={`section fond-${fond}`} aria-labelledby="titre-contact">
       <div className="conteneur">
@@ -27,21 +30,17 @@ export function BlocContact({ fond = "creme" }: { fond?: "creme" | "or" }) {
             </div>
             <div className={styles.ligne}>
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v5H4zM17 14h3v5h-3z" fill="none" stroke="currentColor" strokeWidth="1.6" />
+                <path d="M4 6h16v14H4zM4 10h16M8 3v5M16 3v5" fill="none" stroke="currentColor" strokeWidth="1.6" />
               </svg>
-              <h3>Téléphone :</h3>
-              <p>
-                <a href={`tel:${telephoneLien}`}>{telephoneAffiche}</a>
-              </p>
-            </div>
-            <div className={styles.ligne}>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M3 6h18v12H3zM3 6l9 7 9-7" fill="none" stroke="currentColor" strokeWidth="1.6" />
-              </svg>
-              <h3>E-mail :</h3>
-              <p>
-                <a href={`mailto:${email}`}>{email}</a>
-              </p>
+              <h3>Rendez-vous :</h3>
+              <p>30 minutes en visio, pour parler de votre projet.</p>
+              <a href={rendezVous} target="_blank" rel="noopener noreferrer" className={`bouton bouton--plein ${styles.rdv}`}>
+                Prendre rendez-vous
+                <span className="visuellement-cache"> (Calendly, nouvel onglet)</span>
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M4 12 12 4M5 4h7v7" fill="none" stroke="currentColor" strokeWidth="1.6" />
+                </svg>
+              </a>
             </div>
             <div className={styles.ligne}>
               <h3>Réseaux</h3>

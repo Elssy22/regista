@@ -19,6 +19,9 @@ export const siteConfig = {
     email: "landry@regista-a.com",
     telephoneAffiche: "07 68 17 69 80",
     telephoneLien: "+33768176980",
+    // Prise de rendez-vous : un lien vers la page Calendly (rien n'est chargé
+    // sur le site, donc ni cookie tiers ni bandeau de consentement).
+    rendezVous: "https://calendly.com/registaa",
   },
 
   // Informations légales issues de l'extrait KBis (juin 2026).
