@@ -108,6 +108,46 @@ export const clients: { nom: string; logo: StaticImageData; aConfirmer?: boolean
   { nom: "Faces Cachées Éditions", logo: logoFacesCachees },
 ];
 
+/**
+ * Les trois piliers de l'agence (page Métiers, textes de Landry du
+ * 03/11/2026) : le détail de ce que recouvrent les cinq métiers.
+ */
+export const piliers: {
+  titre: string;
+  suite: string;
+  paragraphes: string[];
+  note?: { titre: string; texte: string };
+}[] = [
+  {
+    titre: "Mieux raconter,",
+    suite: "c’est être vu plus loin.",
+    paragraphes: [
+      "Raconter votre structure de façon qu’elle soit vue au-delà de ceux qui la connaissent déjà. Stratégie éditoriale, production vidéo et photo, formats pour les réseaux, relations avec les médias, couverture de vos temps forts, création d’événements.",
+    ],
+  },
+  {
+    titre: "Accéder aux bons circuits,",
+    suite: "c’est financer plus grand.",
+    paragraphes: [
+      "Monter les dossiers de subvention, identifier les partenaires, construire les argumentaires, relancer et suivre.",
+      "Nous connaissons des circuits et des interlocuteurs qui restent invisibles de l’intérieur d’une structure.",
+    ],
+    note: {
+      titre: "Périmètre",
+      texte:
+        "Regista n’est pas agent sportif. L’agence ne négocie aucun contrat de joueur et ne perçoit aucune rémunération sur ces contrats. Elle facture ses prestations — communication, contenus, dossiers, outils — et ne travaille pas en direct avec des mineurs.",
+    },
+  },
+  {
+    titre: "S’outiller,",
+    suite: "c’est durer.",
+    paragraphes: [
+      "Sites, applications, outils de suivi, automatisations. Ce qui permet à une structure de tenir dans la durée sans y passer ses soirées.",
+      "Nous développons actuellement Vigie, un outil conçu pour accompagner les clubs dans leur quotidien. Il est en construction : nous en parlons volontiers, nous ne le vendons pas encore.",
+    ],
+  },
+];
+
 export const metiers = [
   {
     titre: "Storytelling",

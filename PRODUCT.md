@@ -51,6 +51,12 @@ expliquer l'offre servent ce but, ils ne le remplacent pas.
 
 - Next.js 16, déployé sur Vercel ; textes dans `src/lib/contenu.ts`.
 - Français, vouvoiement.
+- Périmètre (texte de Landry, page Métiers) : Regista n'est pas agent
+  sportif, ne négocie aucun contrat de joueur, ne perçoit rien sur ces
+  contrats, facture ses prestations et ne travaille pas en direct avec des
+  mineurs.
+- Vigie, l'outil pour les clubs, est en construction : on en parle, on ne
+  le vend pas. Ne jamais le présenter comme disponible.
 - Aucun prix, aucune fourchette, aucun taux.
 - Pas de mineur identifiable, pas de visage reconnaissable sans accord
   confirmé par Landry, pas de personnalité citée sans accord. Logos et
