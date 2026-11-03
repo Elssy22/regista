@@ -88,7 +88,7 @@ expliquer l'offre servent ce but, ils ne le remplacent pas.
   Le site ne nomme pas le média : garder ce choix.
 - Le principe de l'agence : Regista ne signe jamais les livrables de ses
   clients ; ses propres supports sont sa seule vitrine.
-- Bandeau de sept logos clients, tous nommés (`clients` dans
+- Bandeau de huit logos clients, tous nommés (`clients` dans
   `src/lib/contenu.ts`).
 - Absences à ne pas combler par de l'invention : aucun témoignage réel,
   aucun article publié, aucun chiffre au-delà de ceux ci-dessus.

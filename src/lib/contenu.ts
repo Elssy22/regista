@@ -15,6 +15,7 @@ import logoAllParisian from "@/assets/clients/all-parisian.png";
 import logoPanagon from "@/assets/clients/panagon.png";
 import logoMaisonLiterie from "@/assets/clients/maison-de-la-literie.png";
 import logoFacesCachees from "@/assets/clients/faces-cachees-editions.png";
+import logoCarreCroix from "@/assets/clients/carre-croix.png";
 
 import roc00 from "@/assets/realisations/fc-rocquancourt/fc-rocquancourt-equipe-trophee-vestiaire.jpg";
 import roc01 from "@/assets/realisations/fc-rocquancourt/fc-rocquancourt-maillot-grenat-pompette.jpg";
@@ -107,6 +108,7 @@ export const clients: { nom: string; logo: StaticImageData; aConfirmer?: boolean
   { nom: "Panagon", logo: logoPanagon },
   { nom: "Maison de la Literie", logo: logoMaisonLiterie },
   { nom: "Faces Cachées Éditions", logo: logoFacesCachees },
+  { nom: "Carré Croix", logo: logoCarreCroix },
 ];
 
 /**
