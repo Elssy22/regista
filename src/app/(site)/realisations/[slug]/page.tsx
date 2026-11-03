@@ -60,7 +60,7 @@ export default async function PageRealisation({ params }: PageProps<"/realisatio
               </div>
             </dl>
             <div className={styles.description} data-apparait style={{ "--delai": "0.4s" } as React.CSSProperties}>
-              <h2>Le projet</h2>
+              <h2>{r.projet ?? "Le projet"}</h2>
               {r.description.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}

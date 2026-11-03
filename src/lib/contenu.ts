@@ -195,6 +195,8 @@ export type Realisation = {
   annee: string;
   /** true quand l'année n'est pas confirmée par Landry (donnée fictive). */
   anneeFictive?: boolean;
+  /** Titre du bloc de description (« Le projet » par défaut), ex. la marque du client final. */
+  projet?: string;
   /** Le résultat en une ligne, affiché sur la carte et dans la fiche. */
   resultat: string;
   description: string[];
@@ -228,13 +230,13 @@ export const realisations: Realisation[] = [
   {
     slug: "doki-doki",
     client: "Doki Doki",
+    projet: "Maison de la Literie",
     metier: "Social média",
-    annee: "2025",
-    anneeFictive: true,
+    annee: "2026",
     resultat: "+1 500 abonnés en 3 mois",
     description: [
-      "Pour l'agence Doki Doki, nous avons été missionnés pour gérer les réseaux sociaux de l'un de ses clients, Maison de la Literie. L'objectif était de créer une ligne éditoriale capable d'engager la communauté de l'entreprise et de faire évoluer le compte Instagram.",
-      "Nous avons réalisé un calendrier éditorial sur 6 mois, créé des concepts de contenus et produit les visuels et vidéos publiés. Après 3 mois : +1 500 abonnés, une quarantaine de contenus par mois et une communauté chaque jour un peu plus réactive et engagée.",
+      "L'agence Doki Doki a fait appel à Regista pour intervenir sur les réseaux sociaux de l'un de ses clients, Maison de la Literie. Notre mission : créer une ligne éditoriale capable d'engager la communauté de la marque et de faire grandir son compte Instagram.",
+      "Pour le compte de Doki Doki, nous avons construit un calendrier éditorial sur 6 mois, imaginé les concepts de contenus et produit les visuels et vidéos publiés. Après 3 mois : +1 500 abonnés, une quarantaine de contenus par mois et une communauté chaque jour un peu plus réactive et engagée.",
     ],
     couverture: {
       src: lit01,
