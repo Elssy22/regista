@@ -1,7 +1,8 @@
 .carte {
+  --haut: clamp(36px, 4vw, 60px);
   position: relative;
   height: 100%;
-  padding: clamp(36px, 4vw, 60px) clamp(24px, 3vw, 40px);
+  padding: var(--haut) clamp(24px, 3vw, 40px);
   border: 1px solid var(--bleu-trait);
   border-radius: 20px;
   background: var(--bleu-doux);
@@ -14,7 +15,7 @@
 
 .numero {
   display: inline-block;
-  margin-bottom: clamp(36px, 4vw, 60px);
+  margin-bottom: var(--haut);
   padding: 4px 10px;
   border: 1px solid;
   border-radius: 6px;
@@ -29,10 +30,12 @@
   color: var(--creme);
 }
 
+/* Alignée sur le numéro, comme dans le template (18 % d'une carte de
+   335 px, soit la marge du haut). */
 .fleche {
   position: absolute;
-  top: 18%;
-  right: 6%;
+  top: calc(var(--haut) + 2px);
+  right: clamp(24px, 3vw, 40px);
   width: 26px;
   height: 26px;
   transition: 0.5s;
@@ -57,4 +60,25 @@
 
 .texte {
   color: var(--bleu-texte);
+}
+
+.lien {
+  text-decoration: none;
+}
+
+/* Le lien du titre couvre toute la carte. */
+.lien::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.lien:focus-visible {
+  outline: none;
+}
+
+.carte:has(.lien:focus-visible) {
+  outline: 2px solid var(--bleu);
+  outline-offset: 3px;
 }

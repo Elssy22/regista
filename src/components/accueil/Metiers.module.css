@@ -1,6 +1,8 @@
+/* Écarts du template : 24 px entre colonnes (gouttière Bootstrap), 30 px
+   entre lignes. */
 .grille {
   display: grid;
-  gap: 30px;
+  gap: 30px 24px;
   margin-top: clamp(40px, 5vw, 60px);
   padding: 0;
   list-style: none;

@@ -33,15 +33,40 @@
   color: var(--or);
 }
 
+/* La grille du template : bord à bord, 24 px d'écart (gouttière g-4),
+   vignettes au format 1200 × 1000. Une colonne sur mobile, des moitiés dès
+   768 px, puis deux moitiés et trois tiers dès 1200 px. */
 .grille {
   display: grid;
-  gap: 24px 30px;
+  gap: 24px;
   padding: 0;
   list-style: none;
 }
 
 @media (min-width: 768px) {
   .grille {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .grille > li {
+    grid-column: span 6;
+  }
+
+  .grille > li.seuleTablette {
+    grid-column: 4 / span 6;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grille > li.grande {
+    grid-column: span 6;
+  }
+
+  .grille > li.moyenne {
+    grid-column: span 4;
+  }
+
+  .grille > li.seuleGrandEcran {
+    grid-column: 4 / span 6;
   }
 }

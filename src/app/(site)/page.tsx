@@ -24,7 +24,7 @@ export default function Accueil() {
       <main id="contenu">
         <Ouverture />
         <Agence />
-        <Metiers />
+        <Metiers court />
         <GrilleProjets />
         {rubriques.temoignages && <Temoignages />}
         {rubriques.actualites && <SectionActualites limite={3} />}
