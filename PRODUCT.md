@@ -78,7 +78,7 @@ expliquer l'offre servent ce but, ils ne le remplacent pas.
     (événementiel, 2025) : événement complet.
 - Le parcours du fondateur : cofondateur et rédacteur en chef de Camino TV
   (2013-2025).
-- Bandeau de huit logos clients, tous nommés (`clients` dans
+- Bandeau de sept logos clients, tous nommés (`clients` dans
   `src/lib/contenu.ts`).
 - Absences à ne pas combler par de l'invention : aucun témoignage réel,
   aucun article publié, aucun chiffre au-delà de ceux ci-dessus.

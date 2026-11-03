@@ -14,7 +14,6 @@ import logoDokiDoki from "@/assets/clients/doki-doki.png";
 import logoAllParisian from "@/assets/clients/all-parisian.png";
 import logoPanagon from "@/assets/clients/panagon.png";
 import logoMaisonLiterie from "@/assets/clients/maison-de-la-literie.png";
-import logoBao from "@/assets/clients/bao-family.png";
 import logoFacesCachees from "@/assets/clients/faces-cachees-editions.png";
 
 import roc00 from "@/assets/realisations/fc-rocquancourt/fc-rocquancourt-equipe-trophee-vestiaire.jpg";
@@ -89,7 +88,6 @@ export const clients: { nom: string; logo: StaticImageData; aConfirmer?: boolean
   { nom: "All Parisian", logo: logoAllParisian },
   { nom: "Panagon", logo: logoPanagon },
   { nom: "Maison de la Literie", logo: logoMaisonLiterie },
-  { nom: "BAO Family", logo: logoBao },
   { nom: "Faces Cachées Éditions", logo: logoFacesCachees },
 ];
 
