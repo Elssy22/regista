@@ -1,3 +1,7 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 @AGENTS.md
 
 # Regista — site vitrine, nouvelle version (octobre 2026)
@@ -17,6 +21,21 @@ Newsreader, « la passe »). Seules exceptions : le texte des pages légales
 (complété depuis le KBis) et les redirections des anciennes adresses dans
 `next.config.ts` (`/methode` et `/offres` ; `/a-propos` et `/contact`
 sont redevenues de vraies pages).
+
+## Commandes
+
+```bash
+npm run dev                 # http://localhost:3000
+npx eslint src              # lint
+npx tsc --noEmit -p .       # types
+npx next build              # construction complète (pages statiques)
+npx next start -p 3100      # servir la construction pour la regarder
+```
+
+Pas de tests automatisés : on vérifie en construisant puis en regardant
+(voir « Vérifier »). Chaque `push` sur la branche crée une
+prévisualisation Vercel (équipe `registaa`, projet `regista`) : attendre
+qu'elle soit `READY` avant d'annoncer un changement en ligne.
 
 ## Les références
 
@@ -134,6 +153,33 @@ Le formulaire de contact n'envoie rien par le site : il ouvre la messagerie
 du visiteur (lien `mailto:`). Les mentions légales disent encore « aucun
 formulaire » : phrase à faire valider par Landry avant la production.
 
+## Les réalisations
+
+Une fiche par projet dans `realisations` (`src/lib/contenu.ts`), **la plus
+récente en premier** : l'ordre pilote la grille de l'accueil
+(`blocs/GrilleProjets.tsx`, groupes de cinq : deux grandes puis trois
+moyennes), le sous-menu et les pages `/realisations/[slug]`. Le titre
+affiché passe toujours par `titreRealisation()` (le `projet` quand il
+diffère du `client`, ex. Maison de la Literie pour le client Doki Doki).
+
+- **Images** : imports statiques depuis `src/assets/realisations/<slug>/`
+  (dimensions et flou automatiques). Noms de fichiers descriptifs,
+  préfixés du client ou de l'événement
+  (`fc-rocquancourt-equipe-trophee-vestiaire.jpg`) : Next garde ce nom dans
+  l'adresse servie, utile au référencement. Jamais `01.jpg`. Chaque photo a
+  un `alt` qui décrit ce qu'on voit.
+- **Formats** : JPEG ~1440 px de large, qualité 85, progressif. Les HEIC
+  envoyés par Landry se convertissent avec ImageMagick
+  (`convert "f.heic[0]" -auto-orient -strip -quality 90 f.jpg`). Quand il
+  renvoie une capture d'une photo déjà présente, garder la version la plus
+  grande.
+- **Couverture** : recadrée en 1200/1000 (`object-fit: cover`) sur la page et
+  sur la carte de l'accueil : vérifier que visages et sujet restent dans le
+  cadre, en 1440 et en 390 px.
+- **Personnes reconnaissables** : pas de publication avant que Landry
+  confirme accord et majorité ; un commentaire daté le note au-dessus de la
+  photo dans `contenu.ts`. En attendant, garder la photo hors du dépôt.
+
 ## Règles de contenu (toujours valables)
 
 - Aucun prix, aucune fourchette, aucun taux.
@@ -175,3 +221,10 @@ public/                          brand/, fonds/, og-image.jpg
 `npx next build` puis `npx next start`, et regarder dans un vrai navigateur,
 en 390 px et en 1440 px : la relecture du code ne suffit pas pour le
 mouvement.
+
+Dans les sessions cloud, Chromium et Playwright sont préinstallés
+(`require('playwright')`, `chromium.launch()` sans option) : captures en
+1440 et 390 px, en défilant la page avant de capturer (les apparitions et
+la frise dépendent du défilement), et une passe avec
+`reducedMotion: 'reduce'` pour vérifier l'état sans animation. Arrêter le
+serveur `next start` après la vérification.
