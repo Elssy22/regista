@@ -41,7 +41,36 @@
   font-size: 1.125rem;
 }
 
+.bio + .bio {
+  margin-top: 16px;
+}
+
+/* Notre principe : sur bleu, l'engagement en grand, la suite plus discrète. */
+.grillePrincipe {
+  display: grid;
+  gap: 24px;
+}
+
+.engagement {
+  max-width: 32em;
+  font-size: clamp(1.25rem, 2vw, 1.625rem);
+  line-height: 1.5;
+}
+
+.suite {
+  max-width: 36em;
+  margin-top: 24px;
+  color: var(--creme-texte);
+  font-size: 1.125rem;
+}
+
 @media (min-width: 992px) {
+  .grillePrincipe {
+    grid-template-columns: 5fr 7fr;
+    gap: 80px;
+    align-items: start;
+  }
+
   .fondateur {
     grid-template-columns: 5fr 7fr;
     gap: 80px;

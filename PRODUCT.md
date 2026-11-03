@@ -76,8 +76,12 @@ expliquer l'offre servent ce but, ils ne le remplacent pas.
   - FC Rocquancourt (stratégie) ;
   - All African Celebration, pour l'association All Parisian
     (événementiel, 2025) : événement complet.
-- Le parcours du fondateur : cofondateur et rédacteur en chef de Camino TV
-  (2013-2025).
+- Le parcours du fondateur (texte de Landry, page À propos) : cofondateur
+  d'un média lifestyle (plus d'un million d'abonnés cumulés), rédacteur,
+  animateur puis six ans à la tête de la rédaction ; formé en club amateur.
+  Le site ne nomme pas le média : garder ce choix.
+- Le principe de l'agence : Regista ne signe jamais les livrables de ses
+  clients ; ses propres supports sont sa seule vitrine.
 - Bandeau de sept logos clients, tous nommés (`clients` dans
   `src/lib/contenu.ts`).
 - Absences à ne pas combler par de l'invention : aucun témoignage réel,

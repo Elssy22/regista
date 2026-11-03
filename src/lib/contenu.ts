@@ -48,14 +48,31 @@ import ap07 from "@/assets/realisations/all-parisian/all-african-celebration-vai
 export type Photo = { src: StaticImageData; alt: string };
 
 export const fondateur = {
-  nom: "Landry « Elssy » Célina",
-  role: "Fondateur · Chef de projet · DA",
+  nom: "Landry Célina",
+  role: "Fondateur",
   photo: {
     src: landry,
-    alt: "Landry Célina, fondateur de Regista, en sweat gris, éclate de rire.",
+    alt: "Portrait de Landry Célina, fondateur de Regista, en sweat gris, qui éclate de rire.",
   } satisfies Photo,
-  pointsForts:
-    "Vision de jeu, altruisme, créativité, précision : il a toutes les qualités du Regista.",
+  bio: [
+    "Landry Célina a cofondé un média lifestyle — football, cinéma, mode, cuisine, art, et plus d’un million d’abonnés cumulés. Il y a été rédacteur et animateur, puis en a dirigé la rédaction pendant six ans. Il a été formé en club amateur, où il a joué défenseur gauche, gardien et milieu relayeur.",
+    "De ces deux histoires vient la même conviction : une structure de football produit en permanence de la matière — des parcours, des rencontres, des gens qui tiennent tout à bout de bras — et presque personne ne la raconte. Non par manque d’envie. Par manque de temps, et parce que raconter est un métier. Regista fait ce métier pour elles.",
+  ],
+};
+
+/** La page À propos (textes de Landry, 03/11/2026). */
+export const aPropos = {
+  titre: "Raconter, c’est déjà servir",
+  intro:
+    "Regista est une agence football. Le mot désigne, en italien, le chef d’orchestre. Sur un terrain, c’est le meneur de jeu : celui qui oriente le jeu et fait briller les autres.",
+  pourquoi: "Pourquoi l’agence existe",
+  principe: {
+    titre: "Notre principe",
+    paragraphes: [
+      "Regista n’appose jamais sa signature sur les livrables de ses clients. Le travail que nous produisons est le vôtre, et il porte votre nom. Nous nous mettons devant quand il faut encaisser : les démarches ingrates, les relances, les refus, la complexité administrative. Vous, vous jouez.",
+      "C’est aussi pour cette raison que nos propres supports sont les seuls que nous signons. Ils sont notre unique vitrine.",
+    ],
+  },
 };
 
 export const accroche = {
