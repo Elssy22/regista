@@ -279,8 +279,9 @@ export const realisations: Realisation[] = [
       "Le jour J, nous avons coordonné les équipes All Parisian pour que l'événement soit relayé en direct via différents canaux. Une mission couronnée de succès, avec un événement complet, une communication avant, pendant et après l'événement, ainsi qu'un accompagnement des jeunes de l'association.",
     ],
     couverture: {
-      src: ap01,
-      alt: "Un joueur en maillot vert « Africa » s'envole pour un dunk devant les tribunes pleines du gymnase.",
+      // Personnes reconnaissables : majeures, accord confirmé par Landry (03/11/2026).
+      src: ap07,
+      alt: "Deux hommes posent avec le trophée du All African Celebration, l'un en maillot vert « Africa », devant les tribunes du gymnase.",
     },
     galerie: [
       { src: ap02, alt: "Les maillots verts « Africa » du All African Celebration suspendus dans le vestiaire." },
@@ -289,7 +290,7 @@ export const realisations: Realisation[] = [
       { src: ap03, alt: "Le panneau de basket habillé aux motifs colorés du All African Celebration." },
       { src: ap06, alt: "Un jeune homme de profil, en sweat gris marqué du logo All African Celebration 2025, des drapeaux colorés sur la manche." },
       { src: ap04, alt: "Gros plan sur la manche blanche du sweat All African Celebration, ornée de drapeaux colorés, et un bracelet de perles." },
-      { src: ap07, alt: "Deux hommes posent avec le trophée du All African Celebration, l'un en maillot vert « Africa », devant les tribunes du gymnase." },
+      { src: ap01, alt: "Un joueur en maillot vert « Africa » s'envole pour un dunk devant les tribunes pleines du gymnase." },
     ],
   },
 ];
