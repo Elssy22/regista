@@ -1,17 +1,26 @@
+/* Disposition de single-project du template : bandeau de 30 px, image en
+   pleine largeur au format 1200 × 1000, puis infos (1/3) et description
+   (2/3), puis la galerie en deux colonnes, au même format. */
 .couverture {
+  padding-top: 30px;
   background: var(--bleu);
 }
 
 .couverture img {
+  display: block;
   width: 100%;
   height: auto;
-  max-height: 90vh;
+  aspect-ratio: 1200 / 1000;
   object-fit: cover;
+}
+
+.projet {
+  padding-block: 60px 40px;
 }
 
 .fiche {
   display: grid;
-  gap: 30px;
+  gap: 24px;
 }
 
 .infos,
@@ -52,11 +61,11 @@
 }
 
 .galerie {
-  margin-top: 30px;
+  margin-top: 60px;
 }
 
 @media (min-width: 992px) {
   .fiche {
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 2fr;
   }
 }

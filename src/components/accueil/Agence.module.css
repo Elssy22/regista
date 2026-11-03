@@ -32,15 +32,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 84px;
-  padding: 10px 18px;
+  height: 60px;
+  padding: 8px 14px;
   border-radius: 10px;
   background: var(--creme);
 }
 
 .piste img {
   width: auto;
-  height: 64px;
+  height: 44px;
 }
 
 @media (prefers-reduced-motion: no-preference) {

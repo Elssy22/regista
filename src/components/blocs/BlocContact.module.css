@@ -3,7 +3,7 @@
   /* minmax(0, …) : une adresse e-mail longue ne fait pas déborder l'écran. */
   grid-template-columns: minmax(0, 1fr);
   gap: 30px;
-  margin-top: clamp(40px, 5vw, 60px);
+  margin-top: 0;
 }
 
 .infos,

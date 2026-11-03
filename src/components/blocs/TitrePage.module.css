@@ -32,8 +32,9 @@
   white-space: nowrap;
 }
 
+/* Le template laisse 200 px de chaque côté du conteneur : 920 px. */
 .texte {
-  max-width: 760px;
+  max-width: 920px;
   margin-inline: auto;
   font-size: 1rem;
   line-height: 1.5;

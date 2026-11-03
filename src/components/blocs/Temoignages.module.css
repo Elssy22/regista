@@ -1,7 +1,7 @@
 .grille {
   display: grid;
   gap: 30px;
-  margin-top: clamp(40px, 5vw, 60px);
+  margin-top: 0;
   padding: 0;
   list-style: none;
 }

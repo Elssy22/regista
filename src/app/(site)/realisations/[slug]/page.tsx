@@ -39,7 +39,7 @@ export default async function PageRealisation({ params }: PageProps<"/realisatio
           <Image src={r.couverture.src} alt={r.couverture.alt} placeholder="blur" preload sizes="100vw" />
         </div>
 
-        <section className="section fond-bleu" aria-label="Le projet">
+        <section className={`fond-bleu ${styles.projet}`} aria-label="Le projet">
           <div className={`conteneur ${styles.fiche}`}>
             <dl className={styles.infos} data-apparait style={{ "--delai": "0.2s" } as React.CSSProperties}>
               <div>
