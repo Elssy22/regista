@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { methode, fondateur, manifeste } from "@/lib/contenu";
+import { fondateur, manifeste } from "@/lib/contenu";
 import { Entete } from "@/components/Entete";
 import { PiedDePage } from "@/components/PiedDePage";
 import { TitrePage } from "@/components/blocs/TitrePage";
@@ -9,10 +9,11 @@ import styles from "./a-propos.module.css";
 
 export const metadata: Metadata = {
   title: "À propos",
-  description: "Regista, l'agence qui se positionne au cœur de votre équipe : son fondateur et sa méthode.",
+  description: "Regista, l'agence qui se positionne au cœur de votre équipe : son manifeste et son fondateur.",
 };
 
-/** La page « About » du template : le fondateur, puis la méthode en cartes. */
+/** La page « About » du template : le manifeste, puis le fondateur. (La
+    méthode est sur l'accueil, en frise, dans le bloc « Parlons-en ».) */
 export default function APropos() {
   return (
     <>
@@ -37,27 +38,6 @@ export default function APropos() {
               <h3 className={styles.nom}>{fondateur.nom}</h3>
               <p className={styles.fonction}>{fondateur.role}</p>
               <p className={styles.bio}>{fondateur.pointsForts}</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="section fond-creme" aria-labelledby="titre-methode" style={{ paddingTop: 0 }}>
-          <div className="conteneur">
-            <TitreSection id="titre-methode">Notre méthode</TitreSection>
-            <div className={styles.parcours}>
-              {[0, 1].map((col) => (
-                <div key={col} className={styles.colonne} data-apparait style={{ "--delai": `${0.2 + col * 0.2}s` } as React.CSSProperties}>
-                  {methode.map((etape, i) =>
-                    i % 2 === col ? (
-                      <article key={etape.titre} className={styles.carte}>
-                        <span className={styles.date}>Étape {i + 1}</span>
-                        <h3>{etape.titre}</h3>
-                        <p>{etape.texte}</p>
-                      </article>
-                    ) : null,
-                  )}
-                </div>
-              ))}
             </div>
           </div>
         </section>

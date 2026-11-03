@@ -1,0 +1,234 @@
+/* La frise de la méthode.
+ * Sous 992 px : verticale, pastilles à gauche, trait vertical entre elles.
+ * À partir de 992 px : horizontale, cinq colonnes, trait horizontal.
+ * Chaque étape porte le tronçon de trait qui la relie à la suivante
+ * (::before = trait de fond, ::after = trait qui se dessine). */
+
+.cadre {
+  --point: 48px;
+  --ecart: 36px;
+
+  margin-top: clamp(70px, 9vw, 110px);
+}
+
+.titre {
+  margin-bottom: 40px;
+}
+
+.frise {
+  display: grid;
+  gap: var(--ecart);
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  view-timeline: --frise block;
+}
+
+.etape {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--point) 1fr;
+  column-gap: 20px;
+  align-content: start;
+  view-timeline: --etape block;
+}
+
+.point {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: var(--point);
+  height: var(--point);
+  border: 2px solid var(--bleu);
+  border-radius: 50%;
+  background: var(--bleu);
+  color: var(--creme);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.etape:not(:last-child)::before,
+.etape:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--point) + 8px);
+  left: calc(var(--point) / 2 - 1px);
+  width: 2px;
+  height: calc(100% + var(--ecart) - var(--point) - 16px);
+  border-radius: 2px;
+}
+
+.etape::before {
+  background: var(--bleu-trait);
+}
+
+.etape::after {
+  background: var(--bleu);
+  transform-origin: top;
+}
+
+.contenu {
+  padding-top: 4px;
+}
+
+.numero {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bleu-texte);
+}
+
+.contenu h3 {
+  margin: 6px 0 10px;
+  font-size: clamp(1.15rem, 1.6vw, 1.375rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.texte {
+  color: var(--bleu-texte);
+}
+
+@media (min-width: 992px) {
+  .cadre {
+    --point: 56px;
+    --ecart: 30px;
+  }
+
+  .titre {
+    margin-bottom: 60px;
+  }
+
+  .frise {
+    grid-template-columns: repeat(5, 1fr);
+    max-width: none;
+    text-align: center;
+  }
+
+  .etape {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    row-gap: 24px;
+  }
+
+  .etape:not(:last-child)::before,
+  .etape:not(:last-child)::after {
+    top: calc(var(--point) / 2 - 1px);
+    left: calc(50% + var(--point) / 2 + 8px);
+    width: calc(100% + var(--ecart) - var(--point) - 16px);
+    height: 2px;
+  }
+
+  .etape::after {
+    transform-origin: left;
+  }
+
+  .contenu {
+    padding-top: 0;
+  }
+}
+
+/* ——— L'animation, pilotée par le défilement ———
+ * Pas de JavaScript : animation-timeline lie chaque animation à la position
+ * de la frise dans l'écran. Remonter la page la « rembobine ».
+ * Mobile : chaque étape a sa propre chronologie (--etape) ; sa pastille
+ * s'allume quand elle arrive vers le bas de l'écran, puis le trait descend
+ * vers la suivante.
+ * Grand écran : les cinq étapes sont à la même hauteur, elles partagent donc
+ * la chronologie de la frise (--frise), décalée de 7 % par étape (--i).
+ * Navigateur sans cette fonction, « réduire les animations » ou pas de
+ * JavaScript (pas de html.anim) : la frise s'affiche complète, sans bouger. */
+@supports (animation-timeline: view()) {
+  .etape {
+    --plage-point: cover 16% cover 28%;
+    --plage-trait: cover 28% cover 52%;
+  }
+
+  :global(html.anim) .point {
+    animation: allume linear both;
+    animation-timeline: --etape;
+    animation-range: var(--plage-point);
+  }
+
+  :global(html.anim) .contenu {
+    animation: monte linear both;
+    animation-timeline: --etape;
+    animation-range: var(--plage-point);
+  }
+
+  :global(html.anim) .etape::after {
+    animation: trace-vertical linear both;
+    animation-timeline: --etape;
+    animation-range: var(--plage-trait);
+  }
+
+  @media (min-width: 992px) {
+    .etape {
+      --plage-point: cover calc(14% + var(--i) * 7%) cover calc(19% + var(--i) * 7%);
+      --plage-trait: cover calc(19% + var(--i) * 7%) cover calc(21% + var(--i) * 7%);
+    }
+
+    :global(html.anim) .point,
+    :global(html.anim) .contenu,
+    :global(html.anim) .etape::after {
+      animation-timeline: --frise;
+    }
+
+    :global(html.anim) .etape::after {
+      animation-name: trace-horizontal;
+    }
+  }
+}
+
+@keyframes allume {
+  from {
+    border-color: var(--bleu-trait);
+    background: var(--creme);
+    color: var(--bleu);
+    transform: scale(0.8);
+  }
+  70% {
+    transform: scale(1.12);
+  }
+  to {
+    border-color: var(--bleu);
+    background: var(--bleu);
+    color: var(--creme);
+    transform: scale(1);
+  }
+}
+
+@keyframes monte {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes trace-vertical {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes trace-horizontal {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}

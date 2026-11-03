@@ -28,7 +28,7 @@ export default function Accueil() {
         <GrilleProjets />
         {rubriques.temoignages && <Temoignages />}
         {rubriques.actualites && <SectionActualites limite={3} />}
-        <AppelContact href="#contact" fond="creme" />
+        <AppelContact href="#contact" fond="creme" methode />
         <BlocContact fond="or" />
       </main>
       <PiedDePage appel={false} fond="or" />

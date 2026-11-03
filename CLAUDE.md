@@ -62,6 +62,9 @@ sont redevenues de vraies pages).
   est inutile (`<PiedDePage appel={false} />`). Sur l'accueil, les
   couleurs s'inversent (choix de Landry) : appel sur crème, formulaire et
   bas de page sur or (champs du formulaire sur fond crème).
+  Sur l'accueil, l'appel porte aussi la méthode en frise chronologique
+  (`blocs/FriseMethode.tsx`, décision du 03/11/2026 : elle a quitté la page
+  À propos, comme la section « Nos partenaires », supprimée).
 - **Animations du template** (`src/components/effets/`) : écran de
   chargement (logotype Regista qui clignote, rideau courbe, GSAP, une fois par visite),
   curseur rond qui suit la souris, bouton « remonter » avec cercle de
@@ -73,7 +76,9 @@ sont redevenues de vraies pages).
   après le rideau et au toucher sur écran tactile (`accueil/LogoAccroche.tsx`), soulignement des liens, sous-menu Réalisations,
   panneau mobile latéral, survols des cartes (flou + légende des projets,
   flèche des métiers, zoom des articles), galerie agrandie au clic
-  (`blocs/Galerie.tsx`, équivalent de Magnific Popup).
+  (`blocs/Galerie.tsx`, équivalent de Magnific Popup). Ajout hors template : la frise de la
+  méthode, dont le trait se dessine et les pastilles s'allument au fil du
+  défilement (`animation-timeline`, CSS seul, aussi sur mobile).
   Tout est coupé avec « réduire les animations », et rien n'est caché sans
   JavaScript (`html.anim`, posé par le script de `layout.tsx`).
 
