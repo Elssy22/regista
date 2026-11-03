@@ -39,6 +39,19 @@ export const siteConfig = {
   },
 } as const;
 
+/**
+ * Les rubriques qu'on peut éteindre en attendant d'avoir assez de contenu
+ * (décision de Landry du 03/11/2026). Éteinte, une rubrique disparaît de
+ * l'accueil et du menu, ses pages répondent 404, elle sort du plan du site
+ * et son contenu fictif ne bloque plus la production. Rien n'est supprimé :
+ * passer à true suffit pour la remettre en ligne. Le back office (/studio)
+ * reste ouvert : les articles s'écrivent en attendant.
+ */
+export const rubriques = {
+  temoignages: false,
+  actualites: false,
+};
+
 /** Le menu principal, dans l'ordre du template (Home, About, Services, Projects, Blog, Contact). */
 export const menu = [
   { libelle: "Accueil", href: "/" },
@@ -47,4 +60,4 @@ export const menu = [
   { libelle: "Réalisations", href: "/realisations", sousMenu: true },
   { libelle: "Actualités", href: "/actualites" },
   { libelle: "Contact", href: "/contact" },
-] as const;
+].filter((lien) => lien.href !== "/actualites" || rubriques.actualites);

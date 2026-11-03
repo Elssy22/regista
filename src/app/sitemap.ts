@@ -1,14 +1,14 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/lib/site-config";
+import { siteConfig, rubriques } from "@/lib/site-config";
 import { realisations } from "@/lib/contenu";
 import { listerArticles } from "@/lib/blog";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const articles = (await listerArticles()).filter((a) => !a.fictif);
+  const articles = rubriques.actualites ? (await listerArticles()).filter((a) => !a.fictif) : [];
   const base = siteConfig.siteUrl;
   return [
     { url: base, changeFrequency: "monthly", priority: 1 },
-    ...["/a-propos", "/metiers", "/realisations", "/actualites", "/contact"].map((chemin) => ({
+    ...["/a-propos", "/metiers", "/realisations", ...(rubriques.actualites ? ["/actualites"] : []), "/contact"].map((chemin) => ({
       url: `${base}${chemin}`,
       changeFrequency: "monthly" as const,
       priority: 0.8,

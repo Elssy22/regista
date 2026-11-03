@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { PortableText, type PortableTextComponents } from "next-sanity";
 import Image from "next/image";
 import { listerArticles, trouverArticle } from "@/lib/blog";
+import { rubriques } from "@/lib/site-config";
 import { urlImage } from "@/sanity/client";
 import { Entete } from "@/components/Entete";
 import { PiedDePage } from "@/components/PiedDePage";
@@ -17,10 +18,12 @@ export const revalidate = 60;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
+  if (!rubriques.actualites) return [];
   return (await listerArticles()).map((a) => ({ slug: a.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps<"/actualites/[slug]">): Promise<Metadata> {
+  if (!rubriques.actualites) return {};
   const a = await trouverArticle((await params).slug);
   if (!a) return {};
   return {
@@ -61,6 +64,8 @@ const composants: PortableTextComponents = {
 };
 
 export default async function Article({ params }: PageProps<"/actualites/[slug]">) {
+  // Rubrique éteinte (site-config.ts) : aucun article n'est servi.
+  if (!rubriques.actualites) notFound();
   const a = await trouverArticle((await params).slug);
   if (!a) notFound();
   return (

@@ -4,6 +4,7 @@
  */
 import type { StaticImageData } from "next/image";
 import { sanityRelie } from "@/sanity/env";
+import { rubriques } from "./site-config";
 
 import landry from "@/assets/equipe/landry-celina.jpg";
 
@@ -382,10 +383,12 @@ export const reseaux: { nom: string; href: string | null; fictif: true }[] = [
 export function verifierContenuFictif() {
   if (process.env.VERCEL_ENV !== "production") return;
   const restes = [
-    temoignages.length && "témoignages",
+    // Une rubrique éteinte (site-config.ts, rubriques) ne s'affiche pas :
+    // son contenu fictif ne bloque pas.
+    rubriques.temoignages && temoignages.length && "témoignages",
     // Les actualités d'exemple ne s'affichent jamais en production quand le
     // back office est relié ; sans lui, il n'y aurait que des exemples.
-    !sanityRelie && "actualités (back office Sanity non relié)",
+    rubriques.actualites && !sanityRelie && "actualités (back office Sanity non relié)",
     reseaux.some((r) => r.fictif) && "réseaux sociaux",
     realisations.some((r) => r.anneeFictive) && "année d'une réalisation",
     clients.some((c) => c.aConfirmer) && "noms de clients à confirmer",

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { rubriques } from "@/lib/site-config";
 import { Entete } from "@/components/Entete";
 import { PiedDePage } from "@/components/PiedDePage";
 import { TitrePage } from "@/components/blocs/TitrePage";
@@ -13,6 +15,8 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 export default function PageActualites() {
+  // Rubrique éteinte (site-config.ts) : la page n'existe pas.
+  if (!rubriques.actualites) notFound();
   return (
     <>
       <Entete />

@@ -1,4 +1,5 @@
 import { Entete } from "@/components/Entete";
+import { rubriques } from "@/lib/site-config";
 import { PiedDePage } from "@/components/PiedDePage";
 import { Ouverture } from "@/components/accueil/Ouverture";
 import { Agence } from "@/components/accueil/Agence";
@@ -25,8 +26,8 @@ export default function Accueil() {
         <Agence />
         <Metiers />
         <GrilleProjets />
-        <Temoignages />
-        <SectionActualites limite={3} />
+        {rubriques.temoignages && <Temoignages />}
+        {rubriques.actualites && <SectionActualites limite={3} />}
         <AppelContact href="#contact" fond="creme" />
         <BlocContact fond="or" />
       </main>

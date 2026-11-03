@@ -103,6 +103,16 @@ interface en français).
   qui porte `globals.css` et les animations. Le back office n'en hérite
   pas. `app/not-found.tsx` importe lui-même `globals.css`.
 
+## Rubriques éteintes
+
+Décision de Landry du 03/11/2026 : **Témoignages** et **Actualités** (le
+blog) sont éteints en attendant plus de clients et de contenus. Interrupteur
+unique : `rubriques` dans `src/lib/site-config.ts`. Éteinte, une rubrique
+disparaît de l'accueil et du menu, ses pages répondent 404, elle sort du
+plan du site et son contenu fictif ne bloque plus la production. Rien n'est
+supprimé : passer la valeur à `true` la remet en ligne. Le back office
+`/studio` reste ouvert (articles écrits et programmés en attendant).
+
 ## Contenu fictif (à remplacer avant la production)
 
 Landry a demandé de remplir le template avec des données fictives en
