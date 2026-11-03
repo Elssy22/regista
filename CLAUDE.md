@@ -150,8 +150,10 @@ FICTIF ». **Garde-fou** : `verifierContenuFictif()` (appelée dans
 « débloquer » une mise en ligne : remplacer le contenu.
 
 Le formulaire de contact n'envoie rien par le site : il ouvre la messagerie
-du visiteur (lien `mailto:`). Les mentions légales disent encore « aucun
-formulaire » : phrase à faire valider par Landry avant la production.
+du visiteur (lien `mailto:`). La prise de rendez-vous est un simple lien
+vers Calendly (`siteConfig.contact.rendezVous`), pour ne rien charger de
+tiers sur le site. Mentions légales et politique de confidentialité le
+disent (phrases validées par Landry le 03/11/2026).
 
 ## Les réalisations
 

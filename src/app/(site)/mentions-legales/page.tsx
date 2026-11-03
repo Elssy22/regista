@@ -98,10 +98,10 @@ export default function MentionsLegalesPage() {
       <section className={styles.section}>
         <h2 className={styles.h2}>5. Données personnelles</h2>
         <p className={styles.p}>
-          {"Le site ne comporte aucun formulaire et ne collecte pas directement de données personnelles lors de la navigation."}
+          {"Le site ne collecte pas directement de données personnelles lors de la navigation. Son formulaire de contact n'envoie rien par lui-même : il ouvre votre logiciel de messagerie avec votre message prérempli, que vous restez libre d'envoyer."}
         </p>
         <p className={styles.p}>
-          {"Le site ne propose aucun formulaire et aucun service de réservation en ligne. Si vous nous écrivez ou nous appelez, les coordonnées que vous nous transmettez sont utilisées uniquement pour vous répondre."}
+          {"Si vous nous écrivez, nous appelez ou réservez un rendez-vous, les coordonnées que vous nous transmettez sont utilisées uniquement pour vous répondre. La prise de rendez-vous se fait sur Calendly, un service tiers soumis à sa propre politique de confidentialité."}
         </p>
         <p className={styles.p}>
           {"Pour en savoir plus sur le traitement de vos données et vos droits, consultez notre "}

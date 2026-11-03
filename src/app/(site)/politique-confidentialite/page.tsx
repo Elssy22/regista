@@ -37,10 +37,10 @@ export default function PolitiqueConfidentialitePage() {
       <section className={styles.section}>
         <h2 className={styles.h2}>2. Données que nous traitons</h2>
         <p className={styles.p}>
-          {"La simple consultation du site ne nécessite pas la création de compte et le site ne comporte aucun formulaire. Comme tout site web, notre hébergeur (Vercel) enregistre toutefois des données techniques de connexion (adresse IP, type de navigateur, pages consultées) à des fins de fonctionnement et de sécurité. Ces journaux sont conservés pour une durée limitée."}
+          {"La simple consultation du site ne nécessite pas la création de compte. Comme tout site web, notre hébergeur (Vercel) enregistre toutefois des données techniques de connexion (adresse IP, type de navigateur, pages consultées) à des fins de fonctionnement et de sécurité. Ces journaux sont conservés pour une durée limitée."}
         </p>
         <p className={styles.p}>
-          {`Aucune autre donnée n'est collectée par le site : il ne comporte ni formulaire, ni réservation en ligne, ni création de compte. Si vous nous écrivez ou nous appelez, les coordonnées et les informations que vous nous transmettez sont utilisées uniquement pour traiter votre demande, et conservées pendant ${legal.dureeConservation}.`}
+          {`Aucune autre donnée n'est collectée par le site lui-même. Le formulaire de contact prépare un e-mail dans votre messagerie, que vous envoyez vous-même. La prise de rendez-vous renvoie vers Calendly, service tiers soumis à sa propre politique de confidentialité : nous recevons alors les informations que vous y indiquez. Les coordonnées et informations que vous nous transmettez, par e-mail, par téléphone ou via Calendly, sont utilisées uniquement pour traiter votre demande, et conservées pendant ${legal.dureeConservation}.`}
         </p>
         <p className={styles.p}>
           {"Regista s'adresse à des structures et à leurs représentants majeurs. L'agence ne collecte pas sciemment de données concernant des mineurs et ne travaille pas en direct avec eux."}
