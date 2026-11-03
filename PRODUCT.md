@@ -59,7 +59,7 @@ expliquer l'offre servent ce but, ils ne le remplacent pas.
   « Nino » ; direction artistique tirée du deck « Présentation agence
   2026 » (détails dans `CLAUDE.md`).
 - À décider ou à fournir : texte définitif de l'étape « Production »,
-  liens des réseaux sociaux, noms de deux logos clients, fichiers de la
+  noms de deux logos clients, fichiers de la
   police Sanserata.
 
 ## Brand Commitments

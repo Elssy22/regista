@@ -370,12 +370,12 @@ export const actualites: Actualite[] = [
   },
 ];
 
-/** Réseaux sociaux : adresses à fournir. `null` = pas encore de lien. */
-export const reseaux: { nom: string; href: string | null; fictif: true }[] = [
-  { nom: "Instagram", href: null, fictif: true },
-  { nom: "LinkedIn", href: null, fictif: true },
-  { nom: "YouTube", href: null, fictif: true },
-  { nom: "TikTok", href: null, fictif: true },
+/** Réseaux sociaux de l'agence (liens donnés par Landry le 03/11/2026). */
+export const reseaux: { nom: string; href: string | null; fictif?: true }[] = [
+  { nom: "Instagram", href: "https://www.instagram.com/regista_agnc/" },
+  { nom: "LinkedIn", href: "https://www.linkedin.com/company/regista-a/" },
+  { nom: "Facebook", href: "https://www.facebook.com/profile.php?id=61596082326374" },
+  { nom: "X", href: "https://x.com/Regista_agnc" },
 ];
 
 /**
