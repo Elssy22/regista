@@ -57,17 +57,17 @@ export default function PolitiqueConfidentialitePage() {
       <section className={styles.section}>
         <h2 className={styles.h2}>4. Destinataires et sous-traitants</h2>
         <p className={styles.p}>
-          {"Vos données ne sont ni vendues, ni cédées à des tiers à des fins commerciales. Le seul prestataire destinataire de données techniques est notre hébergeur, Vercel Inc."}
+          {"Vos données ne sont ni vendues, ni cédées à des tiers à des fins commerciales. Le seul prestataire destinataire de données techniques est notre hébergeur, Vercel Inc. Lorsque vous réservez un rendez-vous, les informations que vous saisissez sont traitées pour notre compte par Calendly LLC."}
         </p>
         <p className={styles.p}>
-          {"Ce prestataire étant établi en dehors de l'Union européenne (aux États-Unis), les transferts de données correspondants sont encadrés par les garanties prévues par le RGPD (clauses contractuelles types ou mécanismes équivalents)."}
+          {"Ces deux prestataires étant établis en dehors de l'Union européenne (aux États-Unis), les transferts de données correspondants sont encadrés par les garanties prévues par le RGPD (clauses contractuelles types ou mécanismes équivalents)."}
         </p>
       </section>
 
       <section className={styles.section}>
         <h2 className={styles.h2}>5. Durée de conservation</h2>
         <p className={styles.p}>
-          {`Les informations que vous nous transmettez par e-mail ou par téléphone sont conservées le temps nécessaire au traitement de votre demande, puis pendant ${legal.dureeConservation}.`}
+          {`Les informations que vous nous transmettez par e-mail, par téléphone ou via Calendly sont conservées le temps nécessaire au traitement de votre demande, puis pendant ${legal.dureeConservation}.`}
         </p>
       </section>
 
