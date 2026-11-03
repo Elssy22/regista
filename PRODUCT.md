@@ -59,8 +59,7 @@ expliquer l'offre servent ce but, ils ne le remplacent pas.
   « Nino » ; direction artistique tirée du deck « Présentation agence
   2026 » (détails dans `CLAUDE.md`).
 - À décider ou à fournir : texte définitif de l'étape « Production »,
-  noms de deux logos clients, fichiers de la
-  police Sanserata.
+  fichiers de la police Sanserata.
 
 ## Brand Commitments
 
@@ -79,7 +78,8 @@ expliquer l'offre servent ce but, ils ne le remplacent pas.
     (événementiel, 2025) : événement complet.
 - Le parcours du fondateur : cofondateur et rédacteur en chef de Camino TV
   (2013-2025).
-- Bandeau de logos clients, dont deux encore à identifier.
+- Bandeau de huit logos clients, tous nommés (`clients` dans
+  `src/lib/contenu.ts`).
 - Absences à ne pas combler par de l'invention : aucun témoignage réel,
   aucun article publié, aucun chiffre au-delà de ceux ci-dessus.
 

@@ -140,9 +140,9 @@ supprimé : passer la valeur à `true` la remet en ligne. Le back office
 ## Contenu fictif (à remplacer avant la production)
 
 Landry a demandé de remplir le template avec des données fictives en
-attendant les vraies : témoignages, actualités (3 articles), noms de
-deux clients du bandeau. (Les liens des réseaux sociaux sont les vrais
-depuis le 03/11/2026 : Instagram, LinkedIn, Facebook, X.) Les actualités d'exemple disparaissent d'elles-mêmes dès que le
+attendant les vraies : témoignages et actualités (3 articles), tous deux
+éteints. Les liens des réseaux sociaux (Instagram, LinkedIn, Facebook, X) et
+les noms des clients du bandeau sont les vrais depuis le 03/11/2026. Les actualités d'exemple disparaissent d'elles-mêmes dès que le
 premier article est publié dans le back office. Tout est dans `src/lib/contenu.ts`, après le bandeau « CONTENU
 FICTIF ». **Garde-fou** : `verifierContenuFictif()` (appelée dans
 `layout.tsx`) fait échouer toute construction de production

@@ -12,10 +12,10 @@ import logoRocquancourt from "@/assets/clients/fc-rocquancourt.png";
 import logoTfm from "@/assets/clients/the-football-market.png";
 import logoDokiDoki from "@/assets/clients/doki-doki.png";
 import logoAllParisian from "@/assets/clients/all-parisian.png";
-import logoClientO from "@/assets/clients/client-o.png";
+import logoPanagon from "@/assets/clients/panagon.png";
 import logoMaisonLiterie from "@/assets/clients/maison-de-la-literie.png";
 import logoBao from "@/assets/clients/bao-family.png";
-import logoClientProfil from "@/assets/clients/client-profil.png";
+import logoFacesCachees from "@/assets/clients/faces-cachees-editions.png";
 
 import roc00 from "@/assets/realisations/fc-rocquancourt/fc-rocquancourt-equipe-trophee-vestiaire.jpg";
 import roc01 from "@/assets/realisations/fc-rocquancourt/fc-rocquancourt-maillot-grenat-pompette.jpg";
@@ -79,18 +79,18 @@ export const chiffres = [
 ] as const;
 
 /**
- * Logos des clients. Deux noms restent à confirmer par Landry : ils
- * apparaissent dans le deck sans être nommés (`aConfirmer: true`).
+ * Logos des clients (noms confirmés par Landry le 03/11/2026). Un logo
+ * ajouté sans nom connu prend `aConfirmer: true` : il bloque la production.
  */
 export const clients: { nom: string; logo: StaticImageData; aConfirmer?: boolean }[] = [
   { nom: "FC Rocquancourt", logo: logoRocquancourt },
   { nom: "The Football Market", logo: logoTfm },
   { nom: "Doki Doki", logo: logoDokiDoki },
   { nom: "All Parisian", logo: logoAllParisian },
-  { nom: "Client (nom à confirmer)", logo: logoClientO, aConfirmer: true },
+  { nom: "Panagon", logo: logoPanagon },
   { nom: "Maison de la Literie", logo: logoMaisonLiterie },
   { nom: "BAO Family", logo: logoBao },
-  { nom: "Client (nom à confirmer)", logo: logoClientProfil, aConfirmer: true },
+  { nom: "Faces Cachées Éditions", logo: logoFacesCachees },
 ];
 
 export const metiers = [
