@@ -5,7 +5,7 @@ import styles from "./Metiers.module.css";
 
 /**
  * Les métiers en grille alternée (services du template). Sur l'accueil
- * (court), chaque carte n'a que la première phrase, pour garder la taille
+ * (court), chaque carte n'a qu'un résumé de deux lignes, pour garder la taille
  * des cartes du template, et mène à la page Métiers, qui a les textes
  * complets.
  */

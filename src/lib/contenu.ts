@@ -94,36 +94,36 @@ export const clients: { nom: string; logo: StaticImageData; aConfirmer?: boolean
 export const metiers = [
   {
     titre: "Storytelling",
-    // Première phrase du texte : la carte de l'accueil (format du template).
-    resume: "Chaque club, joueur et créateur a une histoire qui mérite d'être racontée.",
+    // Résumé pour la carte de l'accueil : deux lignes au plus, comme le template.
+    resume: "Votre histoire mérite d'être racontée : interviews, articles, photos et vidéos, en formats courts et longs, pour la rendre vivante.",
     texte:
       "Chaque club, joueur et créateur a une histoire qui mérite d'être racontée. Regista la met en récit à travers des interviews, des articles, des formats courts et longs, et des contenus qui la rendent vivante : photos, vidéos, animations, sites internet et applications.",
   },
   {
     titre: "Social média",
-    // Première phrase du texte : la carte de l'accueil (format du template).
-    resume: "Une communauté se construit au quotidien, et votre structure mérite d'être connue de ses publics.",
+    // Résumé pour la carte de l'accueil : deux lignes au plus, comme le template.
+    resume: "Une présence cohérente pour faire connaître votre structure.",
     texte:
       "Une communauté se construit au quotidien, et votre structure mérite d'être connue de ses publics. Regista définit la stratégie éditoriale, gère les échanges et suit les tendances pour garder une présence cohérente et vivante. Elle conçoit aussi vos newsletters internes et partenaires et anime votre blog, pour relier votre structure à ceux qui la soutiennent.",
   },
   {
     titre: "Événementiel",
-    // Première phrase du texte : la carte de l'accueil (format du template).
-    resume: "Chaque temps fort mérite d'être célébré.",
+    // Résumé pour la carte de l'accueil : deux lignes au plus, comme le template.
+    resume: "Tournois, festivals, soirées : vos temps forts mis en valeur.",
     texte:
       "Chaque temps fort mérite d'être célébré. Regista imagine et met en valeur vos pop-up, festivals, tournois, merchandising, mais aussi les rendez-vous plus formels comme vos réunions administratives et soirées partenaires. Chaque moment devient une occasion de partager votre histoire, et d'en garder un souvenir fort.",
   },
   {
     titre: "Financement",
-    // Première phrase du texte : la carte de l'accueil (format du template).
-    resume: "Nous accompagnons les clubs, académies et structures dans la recherche de financements.",
+    // Résumé pour la carte de l'accueil : deux lignes au plus, comme le template.
+    resume: "Subventions, mécénat, partenariats : nous trouvons les bons dispositifs, montons vos dossiers et suivons chaque démarche.",
     texte:
       "Nous accompagnons les clubs, académies et structures dans la recherche de financements. Regista identifie les dispositifs adaptés, démarche les partenaires, monte le budget et suit le dossier. Pour les subventions et le mécénat, elle met aussi en relation et assure le suivi juridique. Elle rédige les dossiers aux couleurs de la structure et construit l'argumentaire qui fait la différence.",
   },
   {
     titre: "Digital",
-    // Première phrase du texte : la carte de l'accueil (format du template).
-    resume: "Un site internet fait connaître votre structure, une application lui fait gagner du temps.",
+    // Résumé pour la carte de l'accueil : deux lignes au plus, comme le template.
+    resume: "Sites vitrines, e-shops, blogs et applications web ou mobiles, pour gagner en visibilité et en productivité.",
     texte:
       "Un site internet fait connaître votre structure, une application lui fait gagner du temps. Regista conçoit des sites vitrines, e-shops, portfolios et blogs pour gagner en visibilité, ainsi que des applications sur Mac, Windows, Linux, en version web, sur iOS et Android, pour gagner en productivité.",
   },
