@@ -35,6 +35,10 @@ import lit06 from "@/assets/realisations/maison-de-la-literie/06.jpg";
 import lit07 from "@/assets/realisations/maison-de-la-literie/07.jpg";
 import lit08 from "@/assets/realisations/maison-de-la-literie/08.jpg";
 import lit09 from "@/assets/realisations/maison-de-la-literie/09.jpg";
+import lit10 from "@/assets/realisations/maison-de-la-literie/10.jpg";
+import lit11 from "@/assets/realisations/maison-de-la-literie/11.jpg";
+import lit12 from "@/assets/realisations/maison-de-la-literie/12.jpg";
+import lit13 from "@/assets/realisations/maison-de-la-literie/13.jpg";
 
 import ap01 from "@/assets/realisations/all-parisian/01.jpg";
 import ap02 from "@/assets/realisations/all-parisian/02.jpg";
@@ -224,6 +228,10 @@ export const realisations: Realisation[] = [
       alt: "Visuel Instagram : quatre parures de lit de couleurs différentes et l'étiquette « Une seule couleur à choisir… vous prenez laquelle ? ».",
     },
     galerie: [
+      { src: lit10, alt: "Visuel Instagram « Quand vient la nuit . 01 — La veille de la rentrée » : une femme endormie sous une couette orange." },
+      { src: lit11, alt: "Visuel Instagram « 3 conseils pour mieux dormir ce soir » sur fond terracotta." },
+      { src: lit12, alt: "Visuel Instagram « Les nuits changent de saison… » sur un lit aux draps taupe." },
+      { src: lit13, alt: "Visuel Instagram du sommier Somflex d'Onéa sur fond terracotta." },
       { src: lit02, alt: "Visuel Instagram du matelas Marcilly Medium dans une chambre bleu clair." },
       { src: lit03, alt: "Visuel Instagram du matelas Fontenay dans une chambre au parquet clair." },
       { src: lit04, alt: "Visuel Instagram : draps rose et bleu, jeu de couleurs croisées." },
