@@ -17,30 +17,30 @@ import logoMaisonLiterie from "@/assets/clients/maison-de-la-literie.png";
 import logoBao from "@/assets/clients/bao-family.png";
 import logoClientProfil from "@/assets/clients/client-profil.png";
 
-import roc00 from "@/assets/realisations/fc-rocquancourt/00.jpg";
-import roc01 from "@/assets/realisations/fc-rocquancourt/01.jpg";
-import roc02 from "@/assets/realisations/fc-rocquancourt/02.jpg";
-import roc07 from "@/assets/realisations/fc-rocquancourt/07.jpg";
-import roc08 from "@/assets/realisations/fc-rocquancourt/08.jpg";
-import roc09 from "@/assets/realisations/fc-rocquancourt/09.jpg";
+import roc00 from "@/assets/realisations/fc-rocquancourt/fc-rocquancourt-equipe-trophee-vestiaire.jpg";
+import roc01 from "@/assets/realisations/fc-rocquancourt/fc-rocquancourt-maillot-grenat-pompette.jpg";
+import roc02 from "@/assets/realisations/fc-rocquancourt/fc-rocquancourt-maillot-noir.jpg";
+import roc07 from "@/assets/realisations/fc-rocquancourt/fc-rocquancourt-soiree-artiste.jpg";
+import roc08 from "@/assets/realisations/fc-rocquancourt/fc-rocquancourt-joueurs-shooting-studio.jpg";
+import roc09 from "@/assets/realisations/fc-rocquancourt/fc-rocquancourt-maillot-blanc.jpg";
 
-import lit01 from "@/assets/realisations/maison-de-la-literie/01.jpg";
-import lit02 from "@/assets/realisations/maison-de-la-literie/02.jpg";
-import lit03 from "@/assets/realisations/maison-de-la-literie/03.jpg";
-import lit04 from "@/assets/realisations/maison-de-la-literie/04.jpg";
-import lit05 from "@/assets/realisations/maison-de-la-literie/05.jpg";
-import lit06 from "@/assets/realisations/maison-de-la-literie/06.jpg";
-import lit07 from "@/assets/realisations/maison-de-la-literie/07.jpg";
-import lit08 from "@/assets/realisations/maison-de-la-literie/08.jpg";
-import lit09 from "@/assets/realisations/maison-de-la-literie/09.jpg";
-import lit10 from "@/assets/realisations/maison-de-la-literie/10.jpg";
-import lit11 from "@/assets/realisations/maison-de-la-literie/11.jpg";
-import lit12 from "@/assets/realisations/maison-de-la-literie/12.jpg";
-import lit13 from "@/assets/realisations/maison-de-la-literie/13.jpg";
+import lit01 from "@/assets/realisations/maison-de-la-literie/maison-de-la-literie-parures-de-lit-une-seule-couleur.jpg";
+import lit02 from "@/assets/realisations/maison-de-la-literie/maison-de-la-literie-matelas-marcilly-medium.jpg";
+import lit03 from "@/assets/realisations/maison-de-la-literie/maison-de-la-literie-matelas-fontenay.jpg";
+import lit04 from "@/assets/realisations/maison-de-la-literie/maison-de-la-literie-draps-rose-et-bleu.jpg";
+import lit05 from "@/assets/realisations/maison-de-la-literie/maison-de-la-literie-3-criteres-choisir-matelas.jpg";
+import lit06 from "@/assets/realisations/maison-de-la-literie/maison-de-la-literie-sondage-matelas-ferme-dos.jpg";
+import lit07 from "@/assets/realisations/maison-de-la-literie/maison-de-la-literie-bien-dormir-se-faire-desirer.jpg";
+import lit08 from "@/assets/realisations/maison-de-la-literie/maison-de-la-literie-taille-du-lit.jpg";
+import lit09 from "@/assets/realisations/maison-de-la-literie/maison-de-la-literie-draps-vert-sauge.jpg";
+import lit10 from "@/assets/realisations/maison-de-la-literie/maison-de-la-literie-quand-vient-la-nuit-rentree.jpg";
+import lit11 from "@/assets/realisations/maison-de-la-literie/maison-de-la-literie-3-conseils-mieux-dormir.jpg";
+import lit12 from "@/assets/realisations/maison-de-la-literie/maison-de-la-literie-nuits-changent-de-saison.jpg";
+import lit13 from "@/assets/realisations/maison-de-la-literie/maison-de-la-literie-sommier-somflex-onea.jpg";
 
-import ap01 from "@/assets/realisations/all-parisian/01.jpg";
-import ap02 from "@/assets/realisations/all-parisian/02.jpg";
-import ap03 from "@/assets/realisations/all-parisian/03.jpg";
+import ap01 from "@/assets/realisations/all-parisian/all-african-celebration-dunk-tribunes.jpg";
+import ap02 from "@/assets/realisations/all-parisian/all-african-celebration-maillots-africa-vestiaire.jpg";
+import ap03 from "@/assets/realisations/all-parisian/all-african-celebration-panneau-basket.jpg";
 
 import logoCarreCroix from "@/assets/partenaires/carre-croix.jpg";
 import logoPartDokiDoki from "@/assets/partenaires/doki-doki.jpg";
@@ -222,12 +222,12 @@ export const realisations: Realisation[] = [
       "Pour le compte de Doki Doki, nous avons construit un calendrier éditorial sur 6 mois, imaginé les concepts de contenus et produit les visuels et vidéos publiés. Après 3 mois : +1 500 abonnés, une quarantaine de contenus par mois et une communauté chaque jour un peu plus réactive et engagée.",
     ],
     couverture: {
-      src: lit01,
-      alt: "Visuel Instagram : quatre parures de lit de couleurs différentes et l'étiquette « Une seule couleur à choisir… vous prenez laquelle ? ».",
+      src: lit11,
+      alt: "Visuel Instagram « 3 conseils pour mieux dormir ce soir » sur fond terracotta.",
     },
     galerie: [
       { src: lit10, alt: "Visuel Instagram « Quand vient la nuit . 01 — La veille de la rentrée » : une femme endormie sous une couette orange." },
-      { src: lit11, alt: "Visuel Instagram « 3 conseils pour mieux dormir ce soir » sur fond terracotta." },
+      { src: lit01, alt: "Visuel Instagram : quatre parures de lit de couleurs différentes et l'étiquette « Une seule couleur à choisir… vous prenez laquelle ? »." },
       { src: lit12, alt: "Visuel Instagram « Les nuits changent de saison… » sur un lit aux draps taupe." },
       { src: lit13, alt: "Visuel Instagram du sommier Somflex d'Onéa sur fond terracotta." },
       { src: lit02, alt: "Visuel Instagram du matelas Marcilly Medium dans une chambre bleu clair." },
