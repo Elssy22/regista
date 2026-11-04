@@ -130,9 +130,10 @@ interface en français).
 ## La page de liens (link in bio)
 
 `liens.regista-a.com`, pour les bios Instagram et LinkedIn (demande de
-Landry du 04/11/2026), façon Linktree : le site, puis les réseaux
-(`reseaux` de `contenu.ts`), rien d'autre ; tout tient sur un écran de
-téléphone. C'est la page `/liens` du site
+Landry du 04/11/2026), façon Linktree : le site, la prise de rendez-vous (Calendly,
+`siteConfig.contact.rendezVous`), puis les réseaux (`reseaux` de
+`contenu.ts`), rien d'autre ; tout tient sur un écran de téléphone
+(vérifié sur 390 × 664 px, iPhone avec la barre du navigateur). C'est la page `/liens` du site
 (`src/app/(liens)/`, son propre gabarit : styles du site, curseur et
 apparitions, sans écran de chargement ni défilement doux), affichée à la
 racine du sous-domaine par une réécriture `beforeFiles` avec condition

@@ -8,7 +8,7 @@ import styles from "./page.module.css";
 
 /*
  * La page de liens des réseaux sociaux (« link in bio », façon Linktree) :
- * le site, puis les réseaux. Servie à la racine de liens.regista-a.com
+ * le site, la prise de rendez-vous (Calendly), puis les réseaux. Servie à la racine de liens.regista-a.com
  * (réécriture dans next.config.ts) et aussi à www.regista-a.com/liens.
  * Pensée d'abord pour le téléphone : tout tient sur un écran.
  *
@@ -57,8 +57,27 @@ export default function PageLiens() {
                 <Fleche />
               </Link>
             </li>
+            <li data-apparait style={delai(0.4)}>
+              <a
+                href={siteConfig.contact.rendezVous}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`bouton bouton--plein ${styles.lien}`}
+              >
+                <span className={styles.icone}>
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M4 6h16v14H4zM4 10h16M8 3v5M16 3v5" fill="none" stroke="currentColor" strokeWidth="1.6" />
+                  </svg>
+                </span>
+                <span>
+                  Prendre rendez-vous
+                  <span className="visuellement-cache"> (Calendly, nouvel onglet)</span>
+                </span>
+                <Fleche />
+              </a>
+            </li>
             {comptes.map((r, i) => (
-              <li key={r.nom} data-apparait style={delai(0.4 + i * 0.1)}>
+              <li key={r.nom} data-apparait style={delai(0.5 + i * 0.1)}>
                 <a href={r.href} target="_blank" rel="noopener noreferrer" className={`bouton ${styles.lien}`}>
                   <span className={styles.icone}>
                     <IconeReseau nom={r.nom} />
