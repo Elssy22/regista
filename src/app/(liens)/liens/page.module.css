@@ -1,19 +1,22 @@
 /*
- * La page de liens. Mobile d'abord : une colonne, des cibles de 56 px et
- * plus, tout l'essentiel (logo, rendez-vous, liens) visible sans défiler
- * sur un téléphone. Au-delà de 560 px, la colonne garde sa largeur et se
- * centre. Mêmes couleurs, fonds, boutons et surtitres que le site.
+ * La page de liens, façon Linktree. Mobile d'abord : une colonne, un bouton
+ * du site par lien (56 px de haut au moins), tout visible sans défiler sur
+ * un téléphone. Au-delà, la colonne garde sa largeur et se centre. Mêmes
+ * couleurs, fond, logotype et boutons que le site.
  */
 
 .page {
-  padding-block: 40px 64px;
+  min-height: 100svh;
 }
 
 .colonne {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  max-width: calc(520px + 2 * var(--marge));
+  min-height: 100svh;
+  max-width: calc(480px + 2 * var(--marge));
   margin-inline: auto;
-  padding-inline: var(--marge);
+  padding: 36px var(--marge) 0;
 }
 
 /* ——— Le haut : logotype, accroche ——— */
@@ -27,7 +30,7 @@
 }
 
 .logotype {
-  width: min(100%, 360px);
+  width: min(100%, 320px);
   height: auto;
   margin-inline: auto;
   overflow: visible; /* le R penché déborde un peu du cadre du dessin */
@@ -39,7 +42,6 @@
 .r {
   transform-box: fill-box;
   transform-origin: center;
-  transition: rotate 0.5s cubic-bezier(0.34, 1.4, 0.64, 1);
 }
 
 :global(html.anim) .r {
@@ -61,230 +63,68 @@
 
 .signature {
   margin-top: 18px;
-  font-size: 1.25rem;
+  font-size: 1.1875rem;
   font-weight: 500;
   line-height: 1.3;
   text-wrap: balance;
 }
 
-.resume {
-  max-width: 34ch;
-  margin: 10px auto 0;
-  color: var(--bleu-texte);
-  font-size: 0.9375rem;
+/* ——— Les liens ——— */
+
+.liste {
+  display: grid;
+  gap: 12px;
+  margin-top: 36px;
+  padding: 0;
+  list-style: none;
 }
 
-/* ——— Rendez-vous et liens ——— */
-
-.rdv {
+/* Un bouton du site sur toute la largeur : l'icône à gauche, le nom au
+   centre, la flèche à droite. */
+.lien {
+  display: grid;
+  grid-template-columns: 24px 1fr 24px;
   width: 100%;
-  margin-top: 28px;
-}
-
-.rdvDetail {
-  margin-top: 8px;
-  color: var(--bleu-texte);
-  font-size: var(--t-petit);
+  padding: 0 20px;
   text-align: center;
 }
 
-.liste {
-  margin-top: 24px;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--bleu-trait);
-}
-
-.liste li {
-  border-bottom: 1px solid var(--bleu-trait);
-}
-
-/* Une ligne par lien : libellé en capitales, précision dessous, flèche à
-   droite. Le soulignement or du site au survol. */
-.lien {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  column-gap: 16px;
-  min-height: 72px;
-  padding-block: 14px;
-  text-decoration: none;
-}
-
-.libelle {
-  font-size: 1.0625rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-underline-offset: 5px;
-  transition: text-decoration-color 0.3s var(--courbe);
-}
-
-.detail {
-  grid-row: 2;
-  color: var(--bleu-texte);
-  font-size: 0.875rem;
-}
-
 .lien svg {
-  grid-row: 1 / 3;
-  grid-column: 2;
-  width: 18px;
-  height: 18px;
-  transition: transform 0.3s var(--courbe);
+  justify-self: end;
 }
 
-.lien:hover .libelle {
-  text-decoration-color: var(--or);
-}
-
-.lien:hover svg {
-  transform: translate(3px, -3px);
-}
-
-/* ——— Réalisations et réseaux ——— */
-
-.bloc {
-  margin-top: 48px;
-}
-
-.bloc :global(.surtitre) {
-  margin-bottom: 16px;
-}
-
-/* Les réalisations défilent sur le côté, une carte et le bord de la
-   suivante à l'écran : on comprend qu'il y en a d'autres. La rangée sort
-   des marges pour aller jusqu'au bord de l'écran. */
-.projets {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: min(72vw, 240px);
-  gap: 14px;
-  margin-inline: calc(-1 * var(--marge));
-  padding: 0 var(--marge) 8px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: var(--marge);
-  scrollbar-width: none;
-  list-style: none;
-}
-
-.projets::-webkit-scrollbar {
-  display: none;
-}
-
-.projets li {
-  scroll-snap-align: start;
-}
-
-/* Sur grand écran, pas de défilement sur le côté (peu pratique à la
-   souris) : les cartes se rangent en grille dans la colonne. */
-@media (min-width: 600px) {
-  .projets {
-    grid-auto-flow: row;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    margin-inline: 0;
-    padding: 0;
-    overflow: visible;
-  }
-}
-
-.projet {
-  display: block;
-  text-decoration: none;
-}
-
-/* La carte de l'accueil : même recadrage, étiquette du métier, zoom flou au
-   survol. */
-.vignette {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  border-radius: 0.5em;
-  aspect-ratio: 1200 / 1000;
-  transform: translate3d(0, 0, 0);
-  color: var(--creme);
-}
-
-.vignette img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.projet:hover .vignette img {
-  transform: scale(1.04);
-  filter: blur(1.5px);
-}
-
-.categorie {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 0.4em 0.9em;
-  border-radius: 2em;
-  background: rgb(22 40 74 / 0.35);
-  backdrop-filter: blur(5px);
-  font-size: 0.6875rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.nomProjet {
-  display: block;
-  margin-top: 12px;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.resultat {
-  display: block;
-  margin-top: 2px;
-  color: var(--bleu-texte);
-  font-size: 0.875rem;
-}
-
-.reseaux {
+.icone {
   display: flex;
-  gap: 12px;
-  padding: 0;
-  list-style: none;
 }
 
-.reseaux a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  height: 56px;
-  border: 1px solid var(--bleu-trait);
-  background: var(--creme);
-  transition: 0.3s;
-}
-
-.reseaux svg {
+/* Plus précis que « .bouton svg » du site : l'icône garde sa taille et ne
+   bouge pas au survol (seule la flèche se décale). */
+.lien .icone svg {
   width: 20px;
   height: 20px;
+  transform: none;
 }
 
-.reseaux a:hover {
+/* Le survol des boutons pleins du site, inversé pour les boutons en trait. */
+.lien:not(:global(.bouton--plein)):hover {
   background: var(--bleu);
   color: var(--creme);
 }
 
-/* ——— Bas de page, sur l'or de « Parlons-en » ——— */
+/* ——— Bas de page ——— */
+
+.pied {
+  margin-top: auto;
+  padding-top: 28px;
+}
 
 .pied ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0 20px;
-  padding: 0 var(--marge) 24px;
+  padding: 0 0 16px;
+  color: var(--bleu-texte);
   font-size: 12px;
   list-style: none;
 }
@@ -301,4 +141,5 @@
 
 .pied a:hover {
   text-decoration: underline;
+  text-decoration-color: var(--or);
 }
