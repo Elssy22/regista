@@ -127,6 +127,22 @@ interface en français).
   qui porte `globals.css` et les animations. Le back office n'en hérite
   pas. `app/not-found.tsx` importe lui-même `globals.css`.
 
+## La page de liens (link in bio)
+
+`liens.regista-a.com`, pour les bios Instagram et LinkedIn (demande de
+Landry du 04/11/2026), façon Linktree : le site, la prise de rendez-vous (Calendly,
+`siteConfig.contact.rendezVous`), puis les réseaux (`reseaux` de
+`contenu.ts`), rien d'autre ; tout tient sur un écran de téléphone
+(vérifié sur 390 × 664 px, iPhone avec la barre du navigateur). C'est la page `/liens` du site
+(`src/app/(liens)/`, son propre gabarit : styles du site, curseur et
+apparitions, sans écran de chargement ni défilement doux), affichée à la
+racine du sous-domaine par une réécriture `beforeFiles` avec condition
+`host` dans `next.config.ts` (nom du sous-domaine dans
+`siteConfig.liens`). Pensée d'abord pour le téléphone. Non indexée
+(`noindex`). En production, ses liens vers le site sont absolus (vers
+www) ; en prévisualisation, relatifs. Le sous-domaine doit être ajouté au
+projet Vercel (Settings → Domains) et dans les DNS du domaine.
+
 ## Rubriques éteintes
 
 Décision de Landry du 03/11/2026 : **Témoignages** et **Actualités** (le
@@ -203,6 +219,7 @@ src/
       a-propos/, metiers/, contact/, actualites/[slug]/
       realisations/, realisations/[slug]/   liste et une page par réalisation
       mentions-legales/, politique-confidentialite/   texte légal inchangé
+    (liens)/liens/               la page de liens (liens.regista-a.com)
     studio/[[...outil]]/         le back office Sanity
     not-found.tsx, robots.ts, sitemap.ts, icon.svg
   components/                    Entete, PiedDePage, Logo (généré), Icones, legal/

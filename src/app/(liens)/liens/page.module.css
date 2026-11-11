@@ -1,0 +1,145 @@
+/*
+ * La page de liens, façon Linktree. Mobile d'abord : une colonne, un bouton
+ * du site par lien (56 px de haut au moins), tout visible sans défiler sur
+ * un téléphone. Au-delà, la colonne garde sa largeur et se centre. Mêmes
+ * couleurs, fond, logotype et boutons que le site.
+ */
+
+.page {
+  min-height: 100svh;
+}
+
+.colonne {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100svh;
+  max-width: calc(480px + 2 * var(--marge));
+  margin-inline: auto;
+  padding: 36px var(--marge) 0;
+}
+
+/* ——— Le haut : logotype, accroche ——— */
+
+.haut {
+  text-align: center;
+}
+
+.titre {
+  color: var(--bleu);
+}
+
+.logotype {
+  width: min(100%, 260px);
+  height: auto;
+  margin-inline: auto;
+  overflow: visible; /* le R penché déborde un peu du cadre du dessin */
+}
+
+/* Le R penché vers l'arrière de l'accueil, qui se redresse ici tout seul à
+   l'arrivée (sur téléphone, pas de survol), puis au survol à la souris.
+   Seulement avec html.anim : sinon le logo reste tel qu'il est dessiné. */
+.r {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+:global(html.anim) .r {
+  animation: redresser 0.6s cubic-bezier(0.34, 1.4, 0.64, 1) 0.7s both;
+}
+
+:global(html.anim) .titre:hover .r {
+  animation: redresser 0.5s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+}
+
+@keyframes redresser {
+  from {
+    rotate: -10deg;
+  }
+  to {
+    rotate: 0deg;
+  }
+}
+
+.signature {
+  margin-top: 14px;
+  font-size: 1.1875rem;
+  font-weight: 500;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+/* ——— Les liens ——— */
+
+.liste {
+  display: grid;
+  gap: 10px;
+  margin-top: 28px;
+  padding: 0;
+  list-style: none;
+}
+
+/* Un bouton du site sur toute la largeur : l'icône à gauche, le nom au
+   centre, la flèche à droite. */
+.lien {
+  display: grid;
+  grid-template-columns: 24px 1fr 24px;
+  width: 100%;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.lien svg {
+  justify-self: end;
+}
+
+.icone {
+  display: flex;
+}
+
+/* Plus précis que « .bouton svg » du site : l'icône garde sa taille et ne
+   bouge pas au survol (seule la flèche se décale). */
+.lien .icone svg {
+  width: 20px;
+  height: 20px;
+  transform: none;
+}
+
+/* Le survol des boutons pleins du site, inversé pour les boutons en trait. */
+.lien:not(:global(.bouton--plein)):hover {
+  background: var(--bleu);
+  color: var(--creme);
+}
+
+/* ——— Bas de page ——— */
+
+.pied {
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.pied ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 20px;
+  padding: 0 0 16px;
+  color: var(--bleu-texte);
+  font-size: 12px;
+  list-style: none;
+}
+
+.pied li {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.pied a {
+  text-decoration: none;
+}
+
+.pied a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--or);
+}

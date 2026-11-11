@@ -6,6 +6,12 @@
 export const siteConfig = {
   nom: "Regista",
 
+  /**
+   * La page de liens (« link in bio », src/app/(liens)/) : servie à la
+   * racine de ce sous-domaine grâce à une réécriture dans next.config.ts.
+   */
+  liens: { hote: "liens.regista-a.com", url: "https://liens.regista-a.com" },
+
   /** URL de production, sans slash final. */
   siteUrl: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.regista-a.com").replace(/\/$/, ""),
 
