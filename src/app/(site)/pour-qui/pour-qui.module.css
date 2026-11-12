@@ -1,46 +1,31 @@
-/* Un public par bloc, séparés par un filet. */
-.public {
+/* Même grille que les métiers (écarts du template : 30 px entre lignes,
+   24 px entre colonnes), deux cartes par ligne sur grand écran. */
+.grille {
   display: grid;
-  gap: 24px;
-  padding-block: 48px;
-  border-top: 1px solid var(--bleu-trait);
+  gap: 30px 24px;
+  padding: 0;
+  list-style: none;
+}
+
+.place {
   scroll-margin-top: calc(var(--entete) + 20px);
 }
 
-.public:first-child {
-  border-top: 0;
-  padding-top: 0;
-}
-
-.titre {
-  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: 0.02em;
-  text-wrap: balance;
-}
-
-.enjeu {
-  max-width: 32em;
-  margin-top: 16px;
-  font-size: 1.125rem;
-  line-height: 1.6;
-  color: var(--bleu-texte);
-}
-
+/* Les offres, sous l'enjeu : un petit trait or devant chacune (un trait,
+   jamais du texte or). */
 .offres {
   display: grid;
-  gap: 16px;
-  padding: 0;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--bleu-trait);
   list-style: none;
-  font-size: 1.0625rem;
   line-height: 1.6;
 }
 
-/* Un petit trait or devant chaque offre (un trait, jamais du texte or). */
 .offres li {
   position: relative;
-  padding-left: 28px;
+  padding-left: 26px;
 }
 
 .offres li::before {
@@ -57,10 +42,8 @@
 }
 
 .note {
-  margin-top: 24px;
-  padding-top: 14px;
-  border-top: 1px solid var(--bleu-trait);
-  font-size: 0.95rem;
+  margin-top: 20px;
+  font-size: 0.9rem;
   color: var(--bleu-texte);
 }
 
@@ -81,6 +64,7 @@
 .lien svg {
   width: 14px;
   height: 14px;
+  flex: none;
   transition: transform 0.3s var(--courbe);
 }
 
@@ -89,13 +73,7 @@
 }
 
 @media (min-width: 992px) {
-  .public {
-    grid-template-columns: 5fr 7fr;
-    gap: 80px;
-    padding-block: 64px;
-  }
-
-  .droite {
-    padding-top: 6px;
+  .grille {
+    grid-template-columns: 1fr 1fr;
   }
 }
