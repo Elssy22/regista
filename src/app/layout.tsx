@@ -5,9 +5,10 @@ import { verifierContenuFictif } from "@/lib/contenu";
 // Empêche toute mise en production tant qu'il reste du contenu fictif.
 verifierContenuFictif();
 
-const titre = "Regista — Agence football : contenus, identités, financements";
+// Titres et descriptions Google validés par Landry le 12/11/2026.
+const titre = "Regista — Agence de communication football en Île-de-France";
 const description =
-  "Regista accompagne les clubs, les académies et les marques du football : storytelling, social média, événementiel, financement et digital.";
+  "Communication, réseaux sociaux, événementiel, financement et sites internet pour les clubs de foot, ligues, académies et joueurs. Agence basée en Île-de-France.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),

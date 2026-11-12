@@ -6,9 +6,9 @@ import { Metiers } from "@/components/accueil/Metiers";
 import { Piliers } from "@/components/blocs/Piliers";
 
 export const metadata: Metadata = {
-  title: "Métiers",
+  title: "Métiers — Communication, financement et digital football",
   description:
-    "Mieux raconter, accéder aux bons circuits de financement, s’outiller : ce que fait Regista, et ses cinq métiers (storytelling, social média, événementiel, financement, digital).",
+    "Storytelling, réseaux sociaux, événementiel, subventions et sponsors, sites internet : ce que Regista fait pour les clubs de foot et les structures du football.",
 };
 
 export default function PageMetiers() {

@@ -8,9 +8,9 @@ import { TitreSection } from "@/components/blocs/TitreSection";
 import styles from "./a-propos.module.css";
 
 export const metadata: Metadata = {
-  title: "À propos",
+  title: "À propos — Agence de communication football",
   description:
-    "Regista, agence football : pourquoi elle existe, qui l'a fondée et le principe qui la guide. Le travail que nous produisons est le vôtre.",
+    "Regista, agence de communication football fondée par Landry Célina, formé en club amateur et ancien rédacteur en chef d’un média : pourquoi l’agence existe.",
 };
 
 /** La page « About » du template : l'accroche, le fondateur (pourquoi

@@ -5,8 +5,9 @@ import { TitrePage } from "@/components/blocs/TitrePage";
 import { BlocContact } from "@/components/blocs/BlocContact";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Écrivez ou appelez Regista : réponse sous 24 h.",
+  title: "Contact — Parlons de votre projet football",
+  description:
+    "Un projet pour votre club, votre ligue ou votre académie ? Prenez rendez-vous ou écrivez à Regista, agence de communication football. Réponse sous 24 h.",
 };
 
 export default function PageContact() {

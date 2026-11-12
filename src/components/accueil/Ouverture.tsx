@@ -17,7 +17,8 @@ export function Ouverture() {
       <div className={`conteneur ${styles.haut}`}>
         <h1 id="titre-accueil" className={styles.titre} data-apparait style={{ "--delai": "0.2s" } as React.CSSProperties}>
           <LogoAccroche />
-          <span className="visuellement-cache">, agence football.</span>
+          {/* Le logotype est dessiné : le titre lu par Google et les lecteurs d’écran est ce texte. */}
+          <span className="visuellement-cache">Regista, agence football.</span>
         </h1>
         <p className={styles.signature} data-apparait style={{ "--delai": "0.3s" } as React.CSSProperties}>
           {accroche.titre}

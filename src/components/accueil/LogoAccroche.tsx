@@ -48,7 +48,7 @@ export function LogoAccroche() {
 
   return (
     <span ref={cadre} className={styles.cadreLogo}>
-      <Logotype className={styles.logotype} classeR={styles.r} titre="Regista" />
+      <Logotype className={styles.logotype} classeR={styles.r} titre="" />
     </span>
   );
 }

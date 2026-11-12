@@ -5,8 +5,9 @@ import { TitrePage } from "@/components/blocs/TitrePage";
 import { GrilleProjets } from "@/components/blocs/GrilleProjets";
 
 export const metadata: Metadata = {
-  title: "Réalisations",
-  description: "Une sélection des réalisations de Regista pour les clubs, les associations et les marques.",
+  title: "Réalisations — Projets pour clubs de foot et marques",
+  description:
+    "Stratégie pour le FC Rocquancourt, réseaux sociaux de Maison de la Literie, événement All African Celebration : les projets de Regista, agence football.",
 };
 
 export default function PageRealisations() {

@@ -23,7 +23,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "yearly" as const,
       priority: 0.6,
     })),
-    { url: `${base}/mentions-legales`, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${base}/politique-confidentialite`, changeFrequency: "yearly", priority: 0.3 },
+    // Pages légales absentes : elles sont en noindex (un plan du site ne liste que des pages à indexer).
   ];
 }
