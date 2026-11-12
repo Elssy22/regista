@@ -1,0 +1,101 @@
+/* Un public par bloc, séparés par un filet. */
+.public {
+  display: grid;
+  gap: 24px;
+  padding-block: 48px;
+  border-top: 1px solid var(--bleu-trait);
+  scroll-margin-top: calc(var(--entete) + 20px);
+}
+
+.public:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.titre {
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-wrap: balance;
+}
+
+.enjeu {
+  max-width: 32em;
+  margin-top: 16px;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--bleu-texte);
+}
+
+.offres {
+  display: grid;
+  gap: 16px;
+  padding: 0;
+  list-style: none;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+/* Un petit trait or devant chaque offre (un trait, jamais du texte or). */
+.offres li {
+  position: relative;
+  padding-left: 28px;
+}
+
+.offres li::before {
+  content: "";
+  position: absolute;
+  top: 0.8em;
+  left: 0;
+  width: 14px;
+  border-top: 2px solid var(--or);
+}
+
+.offres strong {
+  font-weight: 700;
+}
+
+.note {
+  margin-top: 24px;
+  padding-top: 14px;
+  border-top: 1px solid var(--bleu-trait);
+  font-size: 0.95rem;
+  color: var(--bleu-texte);
+}
+
+.lien {
+  margin-top: 24px;
+}
+
+.lien a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--or);
+  text-underline-offset: 4px;
+}
+
+.lien svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s var(--courbe);
+}
+
+.lien a:hover svg {
+  transform: translate(3px, -3px);
+}
+
+@media (min-width: 992px) {
+  .public {
+    grid-template-columns: 5fr 7fr;
+    gap: 80px;
+    padding-block: 64px;
+  }
+
+  .droite {
+    padding-top: 6px;
+  }
+}

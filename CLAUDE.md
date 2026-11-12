@@ -46,7 +46,9 @@ qu'elle soit `READY` avant d'annoncer un changement en ligne.
   Bootstrap (décision de Landry du 29/10/2026 : « toutes les animations du
   template à l'identique »). Pages : accueil, À propos, Métiers,
   Réalisations (+ une page par réalisation), Actualités (+ articles),
-  Contact.
+  Contact. Ajout hors template : « Pour qui » (`/pour-qui`, 12/11/2026), une
+  section par famille de clients, écrite pour le référencement (les mots
+  que chacun tape dans Google) ; textes dans `pourQui` de `contenu.ts`.
 
 ## La DA
 
@@ -216,7 +218,7 @@ src/
     globals.css                  styles de base (importés par (site) et la 404)
     (site)/                      les pages publiques et leur gabarit d'animations
       page.tsx                   l'accueil (sections dans components/accueil/)
-      a-propos/, metiers/, contact/, actualites/[slug]/
+      a-propos/, metiers/, pour-qui/, contact/, actualites/[slug]/
       realisations/, realisations/[slug]/   liste et une page par réalisation
       mentions-legales/, politique-confidentialite/   texte légal inchangé
     (liens)/liens/               la page de liens (liens.regista-a.com)

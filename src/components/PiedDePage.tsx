@@ -8,10 +8,18 @@ import styles from "./PiedDePage.module.css";
  * (accueil, Contact), l'appel est ailleurs ou inutile : la ligne prend la
  * couleur du formulaire de contact juste au-dessus (fond).
  */
-export function PiedDePage({ appel = true, fond = "creme" }: { appel?: boolean; fond?: "creme" | "or" }) {
+export function PiedDePage({
+  appel = true,
+  fond = "creme",
+  question,
+}: {
+  appel?: boolean;
+  fond?: "creme" | "or";
+  question?: string;
+}) {
   return (
     <>
-      {appel && <AppelContact />}
+      {appel && <AppelContact question={question} />}
       <footer className={`${appel ? "fond-or" : `fond-${fond}`} ${styles.pied}`}>
         <div className={`conteneur ${styles.bas}`}>
           <p>Regista · Agence football</p>

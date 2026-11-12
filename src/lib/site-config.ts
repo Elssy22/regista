@@ -66,6 +66,7 @@ export const menu = [
   { libelle: "Accueil", href: "/" },
   { libelle: "À propos", href: "/a-propos" },
   { libelle: "Métiers", href: "/metiers" },
+  { libelle: "Pour qui", href: "/pour-qui" },
   { libelle: "Réalisations", href: "/realisations", sousMenu: true },
   { libelle: "Actualités", href: "/actualites" },
   { libelle: "Contact", href: "/contact" },

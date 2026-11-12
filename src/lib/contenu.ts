@@ -212,6 +212,103 @@ export const methode = [
   },
 ] as const;
 
+/**
+ * La page « Pour qui » (textes validés par Landry le 12/11/2026) : une
+ * section par famille de clients, avec les mots qu'ils tapent dans Google.
+ * `realisation` : le slug d'un projet à montrer en lien.
+ */
+export const pourQui: {
+  titre: string;
+  intro: string;
+  publics: {
+    id: string;
+    titre: string;
+    enjeu: string;
+    /** `texte` commence par sa ponctuation : il suit le titre en gras. */
+    offres: { titre: string; texte: string }[];
+    note?: string;
+    realisation?: { slug: string; libelle: string };
+  }[];
+  fin: string;
+} = {
+  titre: "Pour qui",
+  intro:
+    "Du club de quartier aux instances du football, du joueur au média : Regista travaille pour celles et ceux qui font vivre le foot, sur le terrain comme en dehors.",
+  publics: [
+    {
+      id: "clubs",
+      // Trait d’union insécable (U+2011) : « semi‑pros » ne se coupe pas.
+      titre: "Clubs de foot : professionnels, semi‑pros et amateurs",
+      enjeu:
+        "Un club produit chaque semaine de la matière : des matchs, des parcours, des bénévoles qui tiennent tout à bout de bras. Ce qui manque, c’est le temps de le raconter, et les moyens de grandir.",
+      offres: [
+        { titre: "Communication du club", texte: " : ligne éditoriale, réseaux sociaux, photos et vidéos de vos matchs et de vos temps forts." },
+        { titre: "Financement", texte: " : recherche de sponsors et de partenaires, dossiers de subvention (Agence nationale du sport, collectivités), mécénat." },
+        { titre: "Outils", texte: " : site internet du club, boutique en ligne, outils de suivi." },
+      ],
+      realisation: { slug: "fc-rocquancourt", libelle: "Voir le projet FC Rocquancourt" },
+    },
+    {
+      id: "instances",
+      titre: "Ligues, districts et instances du football",
+      enjeu:
+        "Vous portez des compétitions, des dispositifs et des campagnes. Encore faut-il que les clubs et le public les voient.",
+      offres: [
+        { titre: "Campagnes de communication", texte: " et contenus pour vos réseaux." },
+        { titre: "Production vidéo et photo", texte: ", couverture de vos compétitions." },
+        { titre: "Événements", texte: " : tournois, finales, cérémonies, assemblées, mis en valeur avant, pendant et après." },
+      ],
+    },
+    {
+      id: "joueurs",
+      titre: "Joueurs et entraîneurs",
+      enjeu:
+        "Une carrière se joue aussi en dehors du terrain : votre image, votre parcours, ce que l’on trouve quand on tape votre nom.",
+      offres: [
+        { titre: "Image et réseaux sociaux", texte: " : stratégie, contenus, accompagnement au quotidien." },
+        { titre: "Portraits, interviews et vidéos", texte: " qui racontent votre parcours." },
+        { titre: "Site personnel", texte: " et dossier de présentation pour un club ou un partenaire." },
+      ],
+      note: "Regista n’est pas agent sportif : nous ne négocions aucun contrat.",
+    },
+    {
+      id: "pratiques",
+      titre: "Foot féminin et masculin, futsal, cécifoot : toutes les pratiques",
+      enjeu: "Ces pratiques grandissent vite, mais manquent souvent de visibilité et de moyens dédiés.",
+      offres: [
+        { titre: "Faire connaître", texte: " votre club ou votre section : contenus, réseaux, relations avec les médias." },
+        { titre: "Financer son développement", texte: " : dispositifs dédiés au football féminin, au handisport et aux nouvelles pratiques, partenariats." },
+        { titre: "Mettre en valeur vos événements", texte: " : tournois, journées découverte, rassemblements." },
+      ],
+    },
+    {
+      id: "academies",
+      titre: "Académies et stages de football",
+      enjeu: "Pour remplir un stage ou faire connaître une académie, il faut convaincre les familles et les partenaires.",
+      offres: [
+        { titre: "Communication de votre académie ou de vos stages", texte: " : présentation, réseaux, campagnes d’inscription." },
+        { titre: "Photos et vidéos de vos sessions", texte: ", dans le respect du droit à l’image des jeunes." },
+        { titre: "Site, inscriptions en ligne", texte: ", partenariats et financements." },
+      ],
+      note: "Nous travaillons avec les structures et leurs responsables, jamais en direct avec des mineurs.",
+    },
+    {
+      id: "medias",
+      titre: "Créateurs de contenu, médias foot et agences",
+      enjeu:
+        "Vous avez une audience, une ligne éditoriale ou un client : il vous faut des renforts qui connaissent le football.",
+      offres: [
+        { titre: "Production éditoriale", texte: " : écriture, interviews, formats courts et longs." },
+        { titre: "Tournage, montage", texte: ", formats pour les réseaux." },
+        { titre: "Pour les agences", texte: " : nous travaillons sous votre nom. Le travail est le vôtre, nous ne le signons pas." },
+      ],
+      realisation: { slug: "doki-doki", libelle: "Voir le projet Maison de la Literie (pour l’agence Doki Doki)" },
+    },
+  ],
+  // La question au-dessus du grand « Parlons-en » du bas de page.
+  fin: "Votre structure n’est pas dans la liste ?",
+};
+
 export type Realisation = {
   slug: string;
   client: string;
