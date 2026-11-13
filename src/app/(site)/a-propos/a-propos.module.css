@@ -45,6 +45,11 @@
   margin-top: 16px;
 }
 
+/* Le bouton vers le site de parcours de Landry, sous la bio. */
+.parcours {
+  margin-top: 32px;
+}
+
 /* Notre principe : sur bleu, l'engagement en grand, la suite plus discrète. */
 .grillePrincipe {
   display: grid;

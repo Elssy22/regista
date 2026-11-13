@@ -51,6 +51,8 @@ export type Photo = { src: StaticImageData; alt: string };
 export const fondateur = {
   nom: "Landry Célina",
   role: "Fondateur",
+  // Le parcours détaillé de Landry, sur son site personnel (bouton « En savoir plus »).
+  parcours: "https://monparcours.landrycelina.fr/",
   photo: {
     src: landry,
     alt: "Portrait de Landry Célina, fondateur de Regista, en sweat gris, qui éclate de rire.",

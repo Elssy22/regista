@@ -44,6 +44,13 @@ export default function APropos() {
                   {paragraphe}
                 </p>
               ))}
+              <a href={fondateur.parcours} target="_blank" rel="noopener noreferrer" className={`bouton bouton--plein ${styles.parcours}`}>
+                En savoir plus
+                <span className="visuellement-cache"> sur le parcours de Landry Célina (nouvel onglet)</span>
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M4 12 12 4M5 4h7v7" fill="none" stroke="currentColor" strokeWidth="1.6" />
+                </svg>
+              </a>
             </div>
           </div>
         </section>
