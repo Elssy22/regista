@@ -10,10 +10,17 @@ Dépôt Next.js 16 (App Router, React 19, TypeScript, CSS Modules) du site
 `regista-a.com`.
 
 **Branches.** `main` est la production : tout `push` sur `main` déploie
-`www.regista-a.com`. Jamais sans l'accord explicite de Landry. La nouvelle
-version se construit sur `claude/cool-carson-nr4tdd`, avec sa
-prévisualisation Vercel :
-https://regista-git-claude-cool-carson-nr4tdd-registaa.vercel.app
+`www.regista-a.com`. Jamais sans l'accord explicite de Landry. Chaque
+autre branche poussée a sa prévisualisation Vercel (privée, connexion
+Vercel requise) : `https://regista-git-<branche>-regista-a.vercel.app`.
+
+**Vercel (depuis le 19/11/2026).** L'ancienne équipe `registaa` a été
+perdue ; le projet `regista` vit dans l'équipe **Regista A**
+(`regista-a`, offre Hobby), relié au dépôt GitHub (branche de production
+`main`). Variable de production : `NEXT_PUBLIC_SITE_INDEXABLE=true`.
+Domaines : `www.regista-a.com` (principal), `regista-a.com` (redirige en
+308 vers www), `liens.regista-a.com`. DNS chez OVH : CNAME vers Vercel et
+TXT de vérification `_vercel` (à laisser en place).
 
 **Repartir de zéro (décision de Landry du 29/10/2026).** Rien n'a été
 gardé de l'ancien site (charte v1.0, page en sept chapitres, Archivo et
@@ -34,7 +41,7 @@ npx next start -p 3100      # servir la construction pour la regarder
 
 Pas de tests automatisés : on vérifie en construisant puis en regardant
 (voir « Vérifier »). Chaque `push` sur la branche crée une
-prévisualisation Vercel (équipe `registaa`, projet `regista`) : attendre
+prévisualisation Vercel (équipe `regista-a`, projet `regista`) : attendre
 qu'elle soit `READY` avant d'annoncer un changement en ligne.
 
 ## Les références
