@@ -51,6 +51,8 @@
 }
 
 .titre {
+  font-family: var(--police-titre);
+  font-synthesis: none;
   margin-block: 20px;
   font-size: clamp(1.4rem, 2.2vw, 1.875rem);
   font-weight: 600;

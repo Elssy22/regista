@@ -41,6 +41,17 @@
   resize: vertical;
 }
 
+/* Champ à compléter : bordure doublée (sans couleur nouvelle), le texte
+   d'erreur sous le formulaire dit ce qui manque. */
+.champ [aria-invalid="true"] {
+  border-width: 2px;
+  padding: 15px 49px 15px 19px;
+}
+
+.champ textarea[aria-invalid="true"] {
+  padding-right: 19px;
+}
+
 .champ input::placeholder,
 .champ textarea::placeholder {
   color: var(--bleu-texte);

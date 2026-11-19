@@ -359,3 +359,11 @@
   opacity: 1;
   visibility: visible;
 }
+
+/* Sur le bleu du sous-menu, du panneau mobile et du lien d'évitement, le
+   contour de focus passe en or (5:1) : le bleu global y serait invisible. */
+.sousMenu :focus-visible,
+.panneau :focus-visible,
+.evitement:focus-visible {
+  outline-color: var(--or);
+}

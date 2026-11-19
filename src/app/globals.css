@@ -22,11 +22,12 @@
   --creme-texte: rgb(243 239 224 / 0.8);
 
   /*
-   * Sanserata : en attente des fichiers de police. Dès qu'ils sont dans
-   * src/fonts/, src/lib/polices.ts les charge et remplit --font-sanserata.
+   * Les polices de la charte (src/lib/polices.ts) : TAN St. Canard pour les
+   * titres, Work Sans pour tout le reste. Hébergées par le site.
    */
-  --police: var(--font-sanserata, "Sanserata"), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+  --police: var(--font-texte, "Work Sans"), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
+  --police-titre: var(--font-titre, "TAN St. Canard"), Georgia, serif;
 
   --largeur: 1320px;
   --marge: 20px;
@@ -79,6 +80,11 @@ body {
   overflow-x: hidden;
 }
 
+/* Évite un mot seul sur la dernière ligne des paragraphes. */
+p {
+  text-wrap: pretty;
+}
+
 img,
 svg,
 video {
@@ -90,9 +96,15 @@ a {
   color: inherit;
 }
 
+/* Contour de focus en bleu sur crème et sur or (l'or n'y atteint pas le
+   3:1 demandé à un indicateur de focus), en or sur bleu (5:1). */
 :focus-visible {
-  outline: 2px solid var(--or);
+  outline: 2px solid var(--bleu);
   outline-offset: 3px;
+}
+
+.fond-bleu :focus-visible {
+  outline-color: var(--or);
 }
 
 ::selection {
@@ -200,6 +212,8 @@ a {
 
 /* Titre de section du template : 60 px sur 70, 20 px + 15 px dessous. */
 .titre-section {
+  font-family: var(--police-titre);
+  font-synthesis: none;
   padding-bottom: 20px;
   margin-bottom: 15px;
   font-size: var(--t-h2);
@@ -315,9 +329,12 @@ a {
  * (pas de html.anim), tout s'affiche directement.
  */
 
+/* Transparent plutôt que « visibility: hidden » : un bloc pas encore apparu
+   reste atteignable au clavier et lu par les lecteurs d'écran. Dès qu'il
+   reçoit le focus, il s'affiche (Animations.tsx l'y fait apparaître). */
 @media (hover: hover) and (pointer: fine) {
-  html.anim [data-apparait]:not(.est-visible) {
-    visibility: hidden;
+  html.anim [data-apparait]:not(.est-visible):not(:focus-within) {
+    opacity: 0;
   }
 
   html.anim [data-apparait].est-visible {

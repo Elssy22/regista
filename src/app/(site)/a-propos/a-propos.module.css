@@ -22,6 +22,8 @@
 }
 
 .nom {
+  font-family: var(--police-titre);
+  font-synthesis: none;
   margin-top: 24px;
   font-size: clamp(1.6rem, 3vw, 2.5rem);
   font-weight: 700;

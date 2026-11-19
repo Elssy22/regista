@@ -12,9 +12,8 @@
   content: "";
   position: absolute;
   inset: 0;
-  opacity: 0;
-  background-image: linear-gradient(to top, rgb(22 40 74 / 0.55), transparent);
-  transition: opacity 0.4s;
+  /* Toujours présent : il porte le titre et le résultat, en crème. */
+  background-image: linear-gradient(to top, rgb(22 40 74 / 0.85), rgb(22 40 74 / 0.35) 45%, transparent 70%);
 }
 
 .boite img {
@@ -23,10 +22,6 @@
   object-fit: cover;
   transform: scale(1);
   transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.boite:hover::after {
-  opacity: 1;
 }
 
 .boite:hover img {
@@ -52,36 +47,22 @@
   position: absolute;
   inset: auto 0 0;
   z-index: 1;
-  margin-bottom: -6px;
+  display: grid;
+  gap: 6px;
   padding: 0 30px 24px;
-  opacity: 0;
-  visibility: hidden;
-  transition: ease-out 0.5s;
 }
 
-.legende span {
+.titre {
+  font-family: var(--police-titre);
+  font-synthesis: none;
   font-size: clamp(1.4rem, 2.2vw, 1.875rem);
   font-weight: 500;
+  line-height: 1.15;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
-.boite:hover .legende,
-.boite:focus-visible .legende {
-  margin-bottom: 0;
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Sur écran tactile, pas de survol : la légende reste visible. */
-@media (hover: none) {
-  .boite::after {
-    opacity: 1;
-  }
-
-  .legende {
-    margin-bottom: 0;
-    opacity: 1;
-    visibility: visible;
-  }
+.resultat {
+  font-size: 1.0625rem;
+  color: var(--creme-texte);
 }

@@ -58,13 +58,14 @@ qu'elle soit `READY` avant d'annoncer un changement en ligne.
 - **Or et lisibilité** : sur crème, l'or ne porte que des traits et des
   formes (contraste 2,6:1, illisible en petit texte). Sur bleu (5:1), il
   peut porter du texte.
-- **Typographie** : Sanserata, en plusieurs graisses et tailles. **Les
-  fichiers ne sont pas encore fournis** : le site s'affiche pour l'instant
-  dans la police système. Dès qu'on les a (`.woff2`, licence web), les
-  mettre dans `src/fonts/`, les charger avec `next/font/local` (variable
-  `--font-sanserata`) et l'appliquer dans `layout.tsx`. `globals.css` les
-  utilise déjà via `--police`. Aucun appel à Google Fonts : les mentions
-  légales promettent que les polices sont hébergées par le site.
+- **Typographie** (charte Regista, 19/11/2026) : **TAN St. Canard** pour
+  les titres (une seule graisse, Regular ; `font-synthesis: none`) et
+  **Work Sans** pour tout le reste. Chargées dans `src/lib/polices.ts` :
+  TAN St. Canard depuis `src/fonts/` (`next/font/local`, variable
+  `--font-titre`), Work Sans par `next/font/google`, qui la télécharge à la
+  construction et la sert depuis le site. Le visiteur ne contacte jamais
+  Google, comme le promettent les mentions légales. `globals.css` les
+  expose en `--police-titre` et `--police`.
 - **Logos** : `public/brand/` (R seul et logotype complet, bleu et crème).
   `src/components/Logo.tsx` en est généré (`currentColor`) : ne jamais
   redessiner le tracé ni recomposer « Regista » dans une police.

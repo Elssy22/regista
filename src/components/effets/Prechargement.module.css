@@ -48,3 +48,8 @@
     opacity: 0.25;
   }
 }
+
+/* Déjà vu pendant cette visite : pas de rideau (voir layout.tsx). */
+:global(html.anim.rideau-vu) .prechargement {
+  display: none;
+}

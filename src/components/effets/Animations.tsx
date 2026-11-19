@@ -29,7 +29,21 @@ export function Animations() {
       { threshold: 0 },
     );
     for (const bloc of blocs) observateur.observe(bloc);
-    return () => observateur.disconnect();
+
+    // Au clavier, un bloc atteint avant d'avoir défilé à l'écran apparaît
+    // tout de suite : on ne tabule jamais dans du vide.
+    const auFocus = (e: FocusEvent) => {
+      const bloc = (e.target as Element | null)?.closest?.("[data-apparait]:not(.est-visible)");
+      if (bloc) {
+        bloc.classList.add("est-visible");
+        observateur.unobserve(bloc);
+      }
+    };
+    document.addEventListener("focusin", auFocus);
+    return () => {
+      observateur.disconnect();
+      document.removeEventListener("focusin", auFocus);
+    };
   }, [chemin]);
 
   return null;

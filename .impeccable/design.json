@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-19T11:30:00Z",
+  "title": "Design System: Regista",
+  "extensions": {
+    "colorMeta": {
+      "bleu-nuit": {
+        "role": "primary",
+        "displayName": "Bleu nuit de vestiaire",
+        "canonical": "#16284a",
+        "tonalRamp": [
+          "oklch(15% 0.04 262)",
+          "oklch(26% 0.06 262)",
+          "oklch(36% 0.06 262)",
+          "oklch(48% 0.05 262)",
+          "oklch(60% 0.04 262)",
+          "oklch(72% 0.03 262)",
+          "oklch(84% 0.02 262)",
+          "oklch(95% 0.008 262)"
+        ]
+      },
+      "or": {
+        "role": "secondary",
+        "displayName": "Or de trophée",
+        "canonical": "#b8924a",
+        "tonalRamp": [
+          "oklch(20% 0.03 80)",
+          "oklch(32% 0.06 80)",
+          "oklch(45% 0.08 80)",
+          "oklch(57% 0.09 80)",
+          "oklch(68% 0.09 80)",
+          "oklch(78% 0.07 80)",
+          "oklch(87% 0.04 80)",
+          "oklch(95% 0.015 80)"
+        ]
+      },
+      "creme": {
+        "role": "neutral",
+        "displayName": "Crème de maillot rétro",
+        "canonical": "#f3efe0",
+        "tonalRamp": [
+          "oklch(18% 0.01 95)",
+          "oklch(30% 0.015 95)",
+          "oklch(45% 0.02 95)",
+          "oklch(60% 0.025 95)",
+          "oklch(74% 0.025 95)",
+          "oklch(85% 0.025 95)",
+          "oklch(91% 0.025 95)",
+          "oklch(95.5% 0.022 95)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Logotype géant de l'accueil et appel « Parlons-en »."
+      },
+      "title": {
+        "displayName": "Titre de section",
+        "purpose": "Titres de section en capitales espacées."
+      },
+      "label": {
+        "displayName": "Surtitre / bouton",
+        "purpose": "Surtitres et boutons en capitales très espacées."
+      }
+    },
+    "shadows": [
+      {
+        "name": "panneau-mobile",
+        "value": "-5px 0 20px -5px rgb(0 0 0 / 0.5)",
+        "purpose": "Seule ombre du site : le panneau de menu mobile."
+      }
+    ],
+    "motion": [
+      {
+        "name": "courbe",
+        "value": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+        "purpose": "Transitions d'état (boutons, liens)."
+      },
+      {
+        "name": "fadeInUp",
+        "value": "1s ease",
+        "purpose": "Apparition des blocs au défilement, coupée sur écran tactile et en reduced-motion."
+      },
+      {
+        "name": "bandeau",
+        "value": "60s linear infinite",
+        "purpose": "Défilement du bandeau de logos."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "992px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Bouton plein",
+      "kind": "button",
+      "refersTo": "button-plein",
+      "description": "Appel principal.",
+      "html": "<a class=\"ds-bouton\" href=\"#\">Parlons de votre projet <svg viewBox=\"0 0 16 16\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M4 12 12 4M5 4h7v7\"/></svg></a>",
+      "css": ".ds-bouton{display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 30px;border:1px solid #16284a;background:#16284a;color:#f3efe0;font-size:.875rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:background-color .3s cubic-bezier(.2,.7,.2,1),color .3s cubic-bezier(.2,.7,.2,1)}.ds-bouton svg{transition:transform .3s cubic-bezier(.2,.7,.2,1)}.ds-bouton:hover{background:transparent;color:#16284a}.ds-bouton:hover svg{transform:translate(3px,-3px)}.ds-bouton:focus-visible{outline:2px solid #16284a;outline-offset:3px}"
+    },
+    {
+      "name": "Champ",
+      "kind": "input",
+      "refersTo": "champ",
+      "description": "Champ du formulaire de contact.",
+      "html": "<label class=\"ds-champ\">Nom<input placeholder=\"Votre nom\"></label>",
+      "css": ".ds-champ{display:grid;gap:14px;text-transform:uppercase;color:#16284a}.ds-champ input{padding:16px 20px;border:1px solid #16284a;border-radius:8px;background:transparent;color:#16284a;font:inherit;text-transform:none}.ds-champ input:focus-visible{outline:2px solid #16284a;outline-offset:3px}"
+    },
+    {
+      "name": "Carte métier",
+      "kind": "card",
+      "refersTo": "carte-metier",
+      "description": "Un des cinq métiers.",
+      "html": "<div class=\"ds-carte\"><span class=\"ds-num\">01</span><h3>Storytelling</h3><p>Votre histoire, racontée.</p></div>",
+      "css": ".ds-carte{padding:48px 32px;border:1px solid rgb(22 40 74/.16);border-radius:20px;background:rgb(22 40 74/.06);color:#16284a;transition:.5s}.ds-carte:hover{border-color:#16284a}.ds-num{display:inline-block;padding:4px 10px;border:1px solid;border-radius:6px;font-size:14px}.ds-carte h3{margin:20px 0;font-family:var(--font-titre,\"TAN St. Canard\"),Georgia,serif;font-weight:400;letter-spacing:.04em;text-transform:uppercase}"
+    },
+    {
+      "name": "Appel Parlons-en",
+      "kind": "custom",
+      "refersTo": "appel-contact",
+      "description": "Grand appel au contact en bas de page.",
+      "html": "<a class=\"ds-appel\" href=\"#\">Parlons-en</a>",
+      "css": ".ds-appel{font-family:var(--font-titre,\"TAN St. Canard\"),Georgia,serif;display:block;padding:40px 20px;background:#b8924a;color:#16284a;font-size:clamp(2.6rem,10vw,6rem);line-height:1;text-transform:uppercase;text-decoration:none;text-align:center}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Le meneur de jeu",
+    "overview": "Regista est le milieu qui oriente le jeu sans chercher la lumière. Peu d'éléments, joués avec autorité : trois couleurs, une seule famille de caractères en capitales espacées, le logotype comme titre. Chaque page ramène à la prise de contact.",
+    "keyCharacteristics": [
+      "Trois couleurs, aucune autre ; les variantes sont des transparences des mêmes couleurs.",
+      "Deux polices : TAN St. Canard, condensée et grasse, pour les titres ; Work Sans pour tout le reste.",
+      "Des surfaces plates, sans ombre ; la profondeur vient des aplats de couleur et des panoramas fixés à l'écran.",
+      "Le logotype et le R ne sont jamais redessinés.",
+      "Chaque page se termine sur l'appel « Parlons-en » en or."
+    ],
+    "rules": [
+      {
+        "name": "La règle des trois couleurs",
+        "body": "Bleu nuit, crème, or. Toute nuance supplémentaire est une transparence de l'une d'elles, jamais une teinte nouvelle.",
+        "section": "colors"
+      },
+      {
+        "name": "La règle de l'or muet",
+        "body": "Sur crème, l'or (2,5:1) ne porte que des traits et des formes. Sur bleu (5:1), il peut porter du texte. Sur or, le texte est toujours bleu nuit, jamais crème.",
+        "section": "colors"
+      },
+      {
+        "name": "La règle des capitales",
+        "body": "Tout titre est en capitales espacées (0.04em). Le texte courant ne l'est jamais.",
+        "section": "typography"
+      },
+      {
+        "name": "La règle de la graisse unique",
+        "body": "TAN St. Canard n'existe qu'en Regular : on ne lui demande jamais de gras (font-synthesis: none). La hiérarchie des titres passe par la taille. Les petits libellés (surtitres, boutons, « Notre bureau : ») restent en Work Sans.",
+        "section": "typography"
+      },
+      {
+        "name": "La règle du terrain plat",
+        "body": "Pas d'ombre portée. Un état se montre par un changement de couleur ou de bordure, jamais par une élévation.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do limiter la palette à bleu nuit, crème et or, et à leurs transparences.",
+      "Do mettre le texte en bleu nuit sur fond or, toujours.",
+      "Do écrire les titres en TAN St. Canard, en capitales espacées de 0.04em ; les surtitres en Work Sans, espacés de 0.14em.",
+      "Do couper toute animation avec prefers-reduced-motion, et ne rien cacher sans JavaScript (classe html.anim).",
+      "Do utiliser le logotype et le R de public/brand/ tels quels.",
+      "Do terminer chaque page sur l'appel « Parlons-en »."
+    ],
+    "donts": [
+      "Don't mettre de texte or sur crème, ni de texte crème sur or.",
+      "Don't ajouter d'ombre portée, de dégradé ou de nouvelle teinte.",
+      "Don't redessiner le logotype ni composer « Regista » dans une police.",
+      "Don't charger de police depuis Google Fonts : les polices sont hébergées par le site, comme le promettent les mentions légales.",
+      "Don't utiliser l'or comme contour de focus sur crème ou sur or : il y est trop peu visible."
+    ]
+  }
+}

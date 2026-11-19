@@ -88,6 +88,8 @@
 }
 
 .valeur {
+  font-family: var(--police-titre);
+  font-synthesis: none;
   font-size: 50px;
   font-weight: 700;
   line-height: 1;

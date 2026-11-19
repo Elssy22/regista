@@ -8,6 +8,8 @@
 }
 
 .geant {
+  font-family: var(--police-titre);
+  font-synthesis: none;
   font-size: clamp(2.5rem, 12.5vw, 11.25rem);
   font-weight: 700;
   line-height: 1;

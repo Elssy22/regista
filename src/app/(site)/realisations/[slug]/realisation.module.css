@@ -55,6 +55,8 @@
 }
 
 .description h2 {
+  font-family: var(--police-titre);
+  font-synthesis: none;
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--creme);

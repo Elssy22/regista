@@ -4,12 +4,13 @@ import { titreRealisation, type Realisation } from "@/lib/contenu";
 import styles from "./CarteProjet.module.css";
 
 /**
- * Une réalisation en vignette (portfolio-box du template) : au survol,
- * l'image grossit et se floute légèrement, un dégradé monte et le titre
- * glisse depuis le bas.
+ * Une réalisation en vignette (portfolio-box du template). Le titre et le
+ * résultat chiffré restent toujours visibles, sur un dégradé bleu : la
+ * preuve se lit sans survol (décision de Landry du 19/11/2026). Au survol,
+ * l'image grossit et se floute légèrement.
  */
 export function CarteProjet({ realisation, delai = 0 }: { realisation: Realisation; delai?: number }) {
-  const { slug, metier, couverture } = realisation;
+  const { slug, metier, couverture, resultat } = realisation;
   return (
     <Link
       href={`/realisations/${slug}`}
@@ -20,7 +21,8 @@ export function CarteProjet({ realisation, delai = 0 }: { realisation: Realisati
       <Image src={couverture.src} alt={couverture.alt} placeholder="blur" sizes="(min-width: 768px) 33vw, 100vw" />
       <span className={styles.categorie}>{metier}</span>
       <span className={styles.legende}>
-        <span>{titreRealisation(realisation)}</span>
+        <span className={styles.titre}>{titreRealisation(realisation)}</span>
+        <span className={styles.resultat}>{resultat}</span>
       </span>
     </Link>
   );

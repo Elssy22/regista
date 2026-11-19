@@ -14,10 +14,12 @@
 /*
  * Taille du template (jusqu'à 150 px), réduite si besoin pour que le titre
  * (ou son mot le plus long) tienne dans la largeur : une capitale occupe
- * environ 0,7 em ; 0,78 laisse de la marge aux polices plus larges
- * (Sanserata).
+ * environ 0,7 em (TAN St. Canard : 0,70 en moyenne, mesuré) ; 0,78 laisse
+ * de la marge aux mots riches en M et W.
  */
 .titre {
+  font-family: var(--police-titre);
+  font-synthesis: none;
   padding-bottom: 20px;
   margin-bottom: 15px;
   font-size: min(clamp(2.4rem, 8.5vw, 9.375rem), calc(100cqw / (var(--lettres, 10) * 0.78)));
@@ -36,6 +38,8 @@
    à la ligne libre ; à partir de 768 px, une ligne = un bloc, taille de la
    plus longue. */
 .lignes {
+  font-family: var(--police-titre);
+  font-synthesis: none;
   font-size: min(clamp(2.4rem, 8.5vw, 9.375rem), calc(100cqw / (var(--lettres-mot, 10) * 0.78)));
 }
 

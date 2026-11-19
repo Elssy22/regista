@@ -107,3 +107,11 @@
 :global(.fond-or) .ligne a:hover {
   text-decoration-color: currentColor;
 }
+
+/* Le bouton d'appel, en trait : il se remplit de bleu au survol, comme les
+   icônes des réseaux juste en dessous. */
+.ligne .appeler:hover {
+  background: var(--bleu);
+  border-color: var(--bleu);
+  color: var(--creme);
+}

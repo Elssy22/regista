@@ -64,7 +64,7 @@ expliquer l'offre servent ce but, ils ne le remplacent pas.
 - Décidé : mise en page et animations reprises du template ThemeForest
   « Nino » ; direction artistique tirée du deck « Présentation agence
   2026 » (détails dans `CLAUDE.md`).
-- À fournir : fichiers de la police Sanserata.
+- Polices : TAN St. Canard (titres) et Work Sans (texte), hébergées par le site.
 
 ## Brand Commitments
 

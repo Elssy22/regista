@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Impeccable : fichiers de travail locaux
+.impeccable/hook.cache.json
+.impeccable/live/

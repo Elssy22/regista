@@ -7,13 +7,13 @@ import styles from "./BlocContact.module.css";
 
 /**
  * La section contact du template : coordonnées à gauche, formulaire à droite.
- * Ni e-mail ni téléphone affichés ici (choix de Landry, 03/11/2026) : ils
- * restent dans les mentions légales, où la loi les demande, et le formulaire
- * écrit à l'adresse de `siteConfig`.
+ * Le téléphone est affiché avec un bouton d'appel (décision de Landry du
+ * 19/11/2026 : pour un bénévole sur son téléphone, c'est le plus court).
+ * L'e-mail n'est pas affiché : le formulaire écrit à l'adresse de `siteConfig`.
  * Sur crème par défaut ; sur or à l'accueil, sous « Parlons-en » en crème.
  */
 export function BlocContact({ fond = "creme" }: { fond?: "creme" | "or" }) {
-  const { rendezVous } = siteConfig.contact;
+  const { rendezVous, telephoneAffiche, telephoneLien } = siteConfig.contact;
   return (
     <section id="contact" className={`section fond-${fond}`} aria-labelledby="titre-contact">
       <div className="conteneur">
@@ -27,6 +27,16 @@ export function BlocContact({ fond = "creme" }: { fond?: "creme" | "or" }) {
               </svg>
               <h3>Notre bureau :</h3>
               <p>Île-de-France</p>
+            </div>
+            <div className={styles.ligne}>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" strokeWidth="1.6" />
+              </svg>
+              <h3>Téléphone :</h3>
+              <p>Landry vous répond directement.</p>
+              <a href={`tel:${telephoneLien}`} className={`bouton ${styles.rdv} ${styles.appeler}`}>
+                Appeler le {telephoneAffiche}
+              </a>
             </div>
             <div className={styles.ligne}>
               <svg viewBox="0 0 24 24" aria-hidden="true">

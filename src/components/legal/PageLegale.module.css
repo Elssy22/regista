@@ -9,6 +9,8 @@
 }
 
 .titre {
+  font-family: var(--police-titre);
+  font-synthesis: none;
   font-size: var(--t-h2);
   font-weight: 400;
   line-height: 1.05;

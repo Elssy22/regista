@@ -84,6 +84,8 @@
 }
 
 .contenu h3 {
+  font-family: var(--police-titre);
+  font-synthesis: none;
   margin: 6px 0 10px;
   font-size: clamp(1.15rem, 1.6vw, 1.375rem);
   font-weight: 600;
