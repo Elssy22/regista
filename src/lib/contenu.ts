@@ -331,38 +331,12 @@ export type Realisation = {
   galerie: Photo[];
 };
 
-/** Les réalisations, la plus récente en premier : c'est l'ordre de la grille et du menu. */
+/**
+ * Les réalisations, dans l'ordre choisi par Landry (19/11/2026) : FC Rocquancourt
+ * et All Parisian sur la 1re ligne de la grille, Maison de la Literie en
+ * dessous. C'est l'ordre de la grille et du menu.
+ */
 export const realisations: Realisation[] = [
-  {
-    slug: "doki-doki",
-    client: "Doki Doki",
-    projet: "Maison de la Literie",
-    metier: "Social média",
-    annee: "2026",
-    resultat: "+1 500 abonnés en 3 mois",
-    description: [
-      "L'agence Doki Doki a fait appel à Regista pour intervenir sur les réseaux sociaux de l'un de ses clients, Maison de la Literie. Notre mission : créer une ligne éditoriale capable d'engager la communauté de la marque et de faire grandir son compte Instagram.",
-      "Pour le compte de Doki Doki, nous avons construit un calendrier éditorial sur 6 mois, imaginé les concepts de contenus et produit les visuels et vidéos publiés. Après 3 mois : +1 500 abonnés, une quarantaine de contenus par mois et une communauté chaque jour un peu plus réactive et engagée.",
-    ],
-    couverture: {
-      src: lit11,
-      alt: "Visuel Instagram « 3 conseils pour mieux dormir ce soir » sur fond terracotta.",
-    },
-    galerie: [
-      { src: lit10, alt: "Visuel Instagram « Quand vient la nuit . 01 — La veille de la rentrée » : une femme endormie sous une couette orange." },
-      { src: lit01, alt: "Visuel Instagram : quatre parures de lit de couleurs différentes et l'étiquette « Une seule couleur à choisir… vous prenez laquelle ? »." },
-      { src: lit12, alt: "Visuel Instagram « Les nuits changent de saison… » sur un lit aux draps taupe." },
-      { src: lit13, alt: "Visuel Instagram du sommier Somflex d'Onéa sur fond terracotta." },
-      { src: lit02, alt: "Visuel Instagram du matelas Marcilly Medium dans une chambre bleu clair." },
-      { src: lit03, alt: "Visuel Instagram du matelas Fontenay dans une chambre au parquet clair." },
-      { src: lit04, alt: "Visuel Instagram : draps rose et bleu, jeu de couleurs croisées." },
-      { src: lit05, alt: "Visuel Instagram « 3 critères pour choisir votre matelas » sur fond terracotta." },
-      { src: lit06, alt: "Visuel Instagram « Un matelas ferme, c'est meilleur pour le dos ? » avec un sondage en story." },
-      { src: lit07, alt: "Visuel Instagram « Bien dormir, c'est bien. Se faire désirer, c'est mieux ! »." },
-      { src: lit08, alt: "Visuel Instagram « Et si mieux dormir passait aussi par la taille du lit ? »." },
-      { src: lit09, alt: "Visuel Instagram d'un lit aux draps vert sauge." },
-    ],
-  },
   {
     slug: "fc-rocquancourt",
     client: "FC Rocquancourt",
@@ -410,6 +384,36 @@ export const realisations: Realisation[] = [
       { src: ap06, alt: "Un jeune homme de profil, en sweat gris marqué du logo All African Celebration 2025, des drapeaux colorés sur la manche." },
       { src: ap04, alt: "Gros plan sur la manche blanche du sweat All African Celebration, ornée de drapeaux colorés, et un bracelet de perles." },
       { src: ap01, alt: "Un joueur en maillot vert « Africa » s'envole pour un dunk devant les tribunes pleines du gymnase." },
+    ],
+  },
+  {
+    slug: "doki-doki",
+    client: "Doki Doki",
+    projet: "Maison de la Literie",
+    metier: "Social média",
+    annee: "2026",
+    resultat: "+1 500 abonnés en 3 mois",
+    description: [
+      "L'agence Doki Doki a fait appel à Regista pour intervenir sur les réseaux sociaux de l'un de ses clients, Maison de la Literie. Notre mission : créer une ligne éditoriale capable d'engager la communauté de la marque et de faire grandir son compte Instagram.",
+      "Pour le compte de Doki Doki, nous avons construit un calendrier éditorial sur 6 mois, imaginé les concepts de contenus et produit les visuels et vidéos publiés. Après 3 mois : +1 500 abonnés, une quarantaine de contenus par mois et une communauté chaque jour un peu plus réactive et engagée.",
+    ],
+    couverture: {
+      src: lit11,
+      alt: "Visuel Instagram « 3 conseils pour mieux dormir ce soir » sur fond terracotta.",
+    },
+    galerie: [
+      { src: lit10, alt: "Visuel Instagram « Quand vient la nuit . 01 — La veille de la rentrée » : une femme endormie sous une couette orange." },
+      { src: lit01, alt: "Visuel Instagram : quatre parures de lit de couleurs différentes et l'étiquette « Une seule couleur à choisir… vous prenez laquelle ? »." },
+      { src: lit12, alt: "Visuel Instagram « Les nuits changent de saison… » sur un lit aux draps taupe." },
+      { src: lit13, alt: "Visuel Instagram du sommier Somflex d'Onéa sur fond terracotta." },
+      { src: lit02, alt: "Visuel Instagram du matelas Marcilly Medium dans une chambre bleu clair." },
+      { src: lit03, alt: "Visuel Instagram du matelas Fontenay dans une chambre au parquet clair." },
+      { src: lit04, alt: "Visuel Instagram : draps rose et bleu, jeu de couleurs croisées." },
+      { src: lit05, alt: "Visuel Instagram « 3 critères pour choisir votre matelas » sur fond terracotta." },
+      { src: lit06, alt: "Visuel Instagram « Un matelas ferme, c'est meilleur pour le dos ? » avec un sondage en story." },
+      { src: lit07, alt: "Visuel Instagram « Bien dormir, c'est bien. Se faire désirer, c'est mieux ! »." },
+      { src: lit08, alt: "Visuel Instagram « Et si mieux dormir passait aussi par la taille du lit ? »." },
+      { src: lit09, alt: "Visuel Instagram d'un lit aux draps vert sauge." },
     ],
   },
 ];

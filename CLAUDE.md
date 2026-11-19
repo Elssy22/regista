@@ -183,8 +183,9 @@ disent (phrases validées par Landry le 03/11/2026).
 
 ## Les réalisations
 
-Une fiche par projet dans `realisations` (`src/lib/contenu.ts`), **la plus
-récente en premier** : l'ordre pilote la grille de l'accueil
+Une fiche par projet dans `realisations` (`src/lib/contenu.ts`), **dans l'ordre
+choisi par Landry** (19/11/2026 : FC Rocquancourt, All Parisian, puis Maison
+de la Literie) : l'ordre pilote la grille de l'accueil
 (`blocs/GrilleProjets.tsx`, groupes de cinq : deux grandes puis trois
 moyennes), le sous-menu et les pages `/realisations/[slug]`. Le titre
 affiché passe toujours par `titreRealisation()` (le `projet` quand il
