@@ -104,6 +104,24 @@
     transform: scale3d(1, 1, 1);
   }
 
+  /* Contact en bouton : trait bleu, rempli au survol et sur sa page. */
+  .lienContact {
+    margin-block: -1px;
+    padding-inline: 18px;
+    border: 1px solid var(--bleu);
+    border-radius: 2em;
+  }
+
+  .lienContact::before {
+    display: none;
+  }
+
+  .lienContact:hover,
+  .lienContact[aria-current="page"] {
+    background: var(--bleu);
+    color: var(--creme);
+  }
+
   .aSousMenu > .lien {
     padding-right: 18px;
   }

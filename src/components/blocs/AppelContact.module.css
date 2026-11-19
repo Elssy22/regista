@@ -10,14 +10,39 @@
 .geant {
   font-family: var(--police-titre);
   font-synthesis: none;
-  font-size: clamp(2.5rem, 12.5vw, 11.25rem);
-  font-weight: 700;
+  /* 11 vw (et non 12,5) : le mot et sa flèche tiennent sur un téléphone. */
+  font-size: clamp(2.3rem, 11vw, 10rem);
+  font-weight: 400;
   line-height: 1;
+  /* Les capitales de TAN St. Canard dépassent le haut de la ligne : cet
+     espace les empêche de recouvrir la question au-dessus. */
+  padding-top: 0.22em;
   letter-spacing: 0.01em;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .geant a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.12em;
   text-decoration: none;
+}
+
+.fleche {
+  flex: none;
+  width: 0.6em;
+  height: 0.6em;
+  transition: translate 0.4s var(--courbe);
+}
+
+.geant a:hover .fleche,
+.geant a:focus-visible .fleche {
+  translate: 0.08em -0.08em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fleche {
+    transition: none;
+  }
 }

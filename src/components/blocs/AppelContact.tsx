@@ -26,7 +26,13 @@ export function AppelContact({
       <div className="conteneur">
         <p className={styles.question}>{question}</p>
         <p className={styles.geant}>
-          <Link href={href}>Parlons-en</Link>
+          <Link href={href}>
+            Parlons-en
+            {/* La flèche dit que le mot est un lien (revue de design, 19/11/2026). */}
+            <svg viewBox="0 0 16 16" aria-hidden="true" className={styles.fleche}>
+              <path d="M4 12 12 4M5 4h7v7" fill="none" stroke="currentColor" strokeWidth="1.6" />
+            </svg>
+          </Link>
         </p>
         {methode && <FriseMethode />}
       </div>

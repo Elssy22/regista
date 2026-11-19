@@ -53,7 +53,8 @@ export function Entete() {
                 <li key={lien.href} className={"sousMenu" in lien ? styles.aSousMenu : undefined}>
                   <Link
                     href={lien.href}
-                    className={styles.lien}
+                    // Contact, le but du site, se détache en bouton (revue de design, 19/11/2026).
+                    className={lien.href === "/contact" ? `${styles.lien} ${styles.lienContact}` : styles.lien}
                     aria-current={actif(lien.href) ? "page" : undefined}
                   >
                     {lien.libelle}
