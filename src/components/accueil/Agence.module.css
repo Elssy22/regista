@@ -81,8 +81,11 @@
   list-style: none;
 }
 
+/* Chiffres et libellés alignés en haut : un libellé plus long (sur
+   plusieurs lignes) descend sans décaler les autres. */
 .chiffres li {
   display: grid;
+  align-content: start;
   gap: 8px;
   text-align: center;
 }

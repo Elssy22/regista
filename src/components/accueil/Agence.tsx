@@ -3,10 +3,15 @@ import { chiffres, clients, manifeste } from "@/lib/contenu";
 import { Compteur } from "../effets/Compteur";
 import styles from "./Agence.module.css";
 
-/** Valeur numérique et suffixe d'un chiffre : « 100 % » → 100 et « % ». */
+/**
+ * Préfixe, valeur numérique et suffixe d'un chiffre :
+ * « +1 500 » → « + », 1500, « » ; « 24 h » → « », 24, « h ».
+ */
 function decouper(valeur: string) {
-  const m = valeur.match(/^(\d+)(.*)$/);
-  return m ? { n: Number(m[1]), suffixe: m[2] } : { n: 0, suffixe: valeur };
+  const m = valeur.match(/^(\D*?)(\d[\d\s\u202f\u00a0]*\d|\d)(.*)$/);
+  return m
+    ? { prefixe: m[1], n: Number(m[2].replace(/\D/g, "")), suffixe: m[3] }
+    : { prefixe: "", n: 0, suffixe: valeur };
 }
 
 /**
@@ -40,11 +45,11 @@ export function Agence() {
           <p className={styles.manifeste}>{manifeste}</p>
           <ul className={styles.chiffres}>
             {chiffres.map((c) => {
-              const { n, suffixe } = decouper(c.valeur);
+              const { prefixe, n, suffixe } = decouper(c.valeur);
               return (
                 <li key={c.libelle}>
                   <span className={styles.valeur}>
-                    <Compteur valeur={n} suffixe={suffixe} />
+                    <Compteur valeur={n} prefixe={prefixe} suffixe={suffixe} />
                   </span>
                   <span className={styles.libelle}>{c.libelle}</span>
                 </li>

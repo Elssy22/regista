@@ -83,7 +83,9 @@ export const accroche = {
   titre: "Le meneur qui fait briller vos projets.",
   // Espaces insécables : « les académies, les marques. » ne se coupe pas et
   // passe en entier à la ligne (demande de Landry).
-  resume: "Contenus, podcasts, identités, financements. Pour les clubs, les\u00a0académies,\u00a0les\u00a0marques.",
+  // Validée par Landry le 19/11/2026 (revue de design) : les métiers, et la
+  // cible n°1 nommée. Espaces insécables : « le football. » ne reste pas seul.
+  resume: "Communication, financement et outils numériques pour les clubs amateurs et ceux qui font vivre le\u00a0football.",
   bouton: "Parlons de votre projet",
 };
 
@@ -91,10 +93,12 @@ export const manifeste =
   "Regista est une agence qui se positionne au cœur de votre équipe et vous accompagne dans votre développement en utilisant ce que vous avez de plus précieux : votre histoire.";
 
 export const chiffres = [
+  // Les trois du milieu sont les résultats réels des réalisations
+  // (validé par Landry le 19/11/2026) : à garder alignés sur `realisations`.
   { valeur: "13+", libelle: "ans d'expérience" },
-  { valeur: "5", libelle: "métiers" },
-  { valeur: "1", libelle: "interlocuteur unique" },
-  { valeur: "100 %", libelle: "sur-mesure" },
+  { valeur: "500", libelle: "maillots vendus en moins d'une semaine" },
+  { valeur: "+1 500", libelle: "abonnés en 3 mois" },
+  { valeur: "1", libelle: "événement complet" },
   { valeur: "24 h", libelle: "temps de réponse" },
 ] as const;
 
