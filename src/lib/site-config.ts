@@ -58,7 +58,7 @@ export const siteConfig = {
  */
 export const rubriques = {
   temoignages: false,
-  actualites: false,
+  actualites: true,
 };
 
 /** Le menu principal, dans l'ordre du template (Home, About, Services, Projects, Blog, Contact). */
