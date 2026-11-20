@@ -29,7 +29,7 @@ export function Agence() {
             {[0, 1].map((copie) =>
               clients.map((client, i) => (
                 <li key={`${copie}-${i}`} aria-hidden={copie === 1 || undefined}>
-                  <Image src={client.logo} alt={copie === 1 ? "" : client.nom} sizes="120px" />
+                  <Image src={client.logo} alt={copie === 1 ? "" : client.nom} sizes="280px" />
                 </li>
               )),
             )}

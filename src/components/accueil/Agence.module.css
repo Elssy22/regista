@@ -28,19 +28,21 @@
 
 /* Les logos clients sont en couleurs : posés sur une pastille crème pour
    rester lisibles sur le bleu. */
+/* Taille relevée le 20/11/2026 (demande de Landry : logos trop petits) :
+   de 44 px à 56–76 px de haut selon la largeur d'écran. */
 .piste li {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60px;
-  padding: 8px 14px;
-  border-radius: 10px;
+  height: clamp(76px, 7vw, 100px);
+  padding: 10px 18px;
+  border-radius: 12px;
   background: var(--creme);
 }
 
 .piste img {
   width: auto;
-  height: 44px;
+  height: clamp(56px, 5.4vw, 76px);
 }
 
 @media (prefers-reduced-motion: no-preference) {
