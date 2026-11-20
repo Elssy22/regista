@@ -12,7 +12,28 @@ const LONGUEUR_UNE_LIGNE = 24;
  * tablette, chaque ligne tient d'un bloc et la taille suit la plus longue ;
  * sur mobile, le titre repasse à la ligne librement.
  */
-export function TitrePage({ titre, texte, children }: { titre: string; texte?: string; children?: React.ReactNode }) {
+export function TitrePage({
+  titre,
+  texte,
+  article = false,
+  children,
+}: {
+  titre: string;
+  texte?: string;
+  /** Titre d'article : une taille unique pour tous, sur deux lignes en principe. */
+  article?: boolean;
+  children?: React.ReactNode;
+}) {
+  if (article) {
+    return (
+      <Cadre texte={texte}>
+        {children}
+        <h1 className={`${styles.titre} ${styles.titreArticle}`} data-apparait style={{ "--delai": "0.2s" } as React.CSSProperties}>
+          {titre}
+        </h1>
+      </Cadre>
+    );
+  }
   const lignes = titre.split("\n");
   const motLePlusLong = Math.max(...titre.split(/\s+/).map((mot) => mot.length));
   if (lignes.length > 1) {
